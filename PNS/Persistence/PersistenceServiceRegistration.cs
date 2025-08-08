@@ -12,7 +12,7 @@ namespace Persistence
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PnsDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("PnsConnectionString"))); // ስሙ ተስተካክሏል
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

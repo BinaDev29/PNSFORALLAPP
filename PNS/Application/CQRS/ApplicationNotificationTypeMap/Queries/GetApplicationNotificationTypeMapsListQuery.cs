@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿// File Path: Application/CQRS/ClientApplication/Queries/GetClientApplicationsListQuery.cs
+using MediatR;
 using Application.DTO.ClientApplication;
 using System.Collections.Generic;
 

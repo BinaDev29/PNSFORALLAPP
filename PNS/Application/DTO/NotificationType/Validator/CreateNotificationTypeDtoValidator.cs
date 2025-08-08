@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Application.DTO.EmailTemplate;
+using Application.DTO.NotificationType;
 
-namespace Application.DTO.EmailTemplate.Validator
+namespace Application.DTO.NotificationType.Validator
 {
-    public class CreateEmailTemplateDtoValidator : AbstractValidator<CreateEmailTemplateDto>
+    public class CreateNotificationTypeDtoValidator : AbstractValidator<CreateNotificationTypeDto>
     {
-        public CreateEmailTemplateDtoValidator()
+        public CreateNotificationTypeDtoValidator()
         {
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -15,9 +15,8 @@ namespace Application.DTO.EmailTemplate.Validator
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .MaximumLength(200).WithMessage("{PropertyName} must not exceed 200 characters.");
 
-            RuleFor(p => p.BodyHtml)
+            RuleFor(p => p.Description)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
-            // ለBodyHtml maximum length መጨመር ትችላለህ
         }
     }
 }

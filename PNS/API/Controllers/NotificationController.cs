@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿// File Path: API/Controllers/NotificationController.cs
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Application.CQRS.Notification.Commands;
 using Application.CQRS.Notification.Queries;
 using Application.DTO.Notification;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -32,7 +34,7 @@ namespace API.Controllers
         {
             var command = new CreateNotificationCommand { CreateNotificationDto = dto };
             var response = await mediator.Send(command);
-            return Ok(response);
+            return CreatedAtAction(nameof(GetNotification), new { id = response.Id }, response);
         }
 
         [HttpPut]

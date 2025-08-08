@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.CQRS.ClientApplication.Commands;
 using Application.CQRS.ClientApplication.Queries;
 using Application.DTO.ClientApplication;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -16,6 +17,7 @@ namespace API.Controllers
         {
             var query = new GetClientApplicationsListQuery();
             var applications = await mediator.Send(query);
+            // ባዶ ሊስት ሲመጣ በቀጥታ መመለስ ትክክል ነው
             return Ok(applications);
         }
 
@@ -24,6 +26,13 @@ namespace API.Controllers
         {
             var query = new GetClientApplicationDetailQuery { Id = id };
             var application = await mediator.Send(query);
+
+            // መረጃው null ከሆነ NotFound() መመለስ ትክክለኛ RESTful API ልምድ ነው
+            if (application == null)
+            {
+                return NotFound();
+            }
+
             return Ok(application);
         }
 
@@ -32,7 +41,7 @@ namespace API.Controllers
         {
             var command = new CreateClientApplicationCommand { CreateClientApplicationDto = dto };
             var response = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetClientApplication), new { id = response.Id }, response); // የተሻሻለ
+            return CreatedAtAction(nameof(GetClientApplication), new { id = response.Id }, response);
         }
 
         [HttpPut]

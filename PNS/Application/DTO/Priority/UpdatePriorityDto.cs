@@ -7,6 +7,7 @@ namespace Application.DTO.Priority
     {
         public Guid Id { get; set; }
         [Required]
-        public required string Name { get; set; }
+        public required string Description { get; set; } // 'Name' ወደ 'Description' ተቀይሯል
+        public int Level { get; set; } // 'Level' ተጨምሯል
     }
 }

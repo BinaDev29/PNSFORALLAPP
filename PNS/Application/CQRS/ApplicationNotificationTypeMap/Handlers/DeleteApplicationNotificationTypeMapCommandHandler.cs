@@ -1,5 +1,4 @@
-﻿// DeleteApplicationNotificationTypeMapCommandHandler.cs
-using AutoMapper;
+﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Handlers/DeleteApplicationNotificationTypeMapCommandHandler.cs
 using MediatR;
 using Application.CQRS.ApplicationNotificationTypeMap.Commands;
 using Application.Contracts.IRepository;
@@ -15,14 +14,15 @@ public class DeleteApplicationNotificationTypeMapCommandHandler(IApplicationNoti
 {
     public async Task<Unit> Handle(DeleteApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
     {
-        var map = await repository.Get(request.ClientApplicationId, request.NotificationTypeId);
+        var map = await repository.Get(request.ClientApplicationId, request.NotificationTypeId, cancellationToken);
 
+        // 👉 Null ፍተሻው እዚህ ላይ ነው ያለው። መዝገቡ ከሌለ ስህተት ይጥላል።
         if (map is null)
         {
             throw new NotFoundException(nameof(ApplicationNotificationTypeMap), $"{request.ClientApplicationId}, {request.NotificationTypeId}");
         }
 
-        await repository.Delete(map);
+        await repository.Delete(map, cancellationToken);
 
         return Unit.Value;
     }

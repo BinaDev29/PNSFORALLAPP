@@ -9,12 +9,10 @@ namespace Application.DTO.ClientApplication.Validator
         {
             RuleFor(p => p.AppId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
                 .MaximumLength(100).WithMessage("{PropertyName} must not exceed 100 characters.");
         }
     }

@@ -9,5 +9,6 @@ namespace Application.DTO.NotificationType
         public required string Name { get; set; }
         [Required]
         public required string Subject { get; set; }
+        public required string Description { get; set; } // Description ተጨምሯል
     }
 }

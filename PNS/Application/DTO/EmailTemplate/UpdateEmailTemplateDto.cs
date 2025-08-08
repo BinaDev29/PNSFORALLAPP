@@ -5,12 +5,13 @@ namespace Application.DTO.EmailTemplate
 {
     public class UpdateEmailTemplateDto
     {
-        public Guid Id { get; set; } // ይህ ንብረት መኖሩን አረጋግጥ
+        public Guid Id { get; set; }
         [Required]
         public required string Name { get; set; }
         [Required]
         public required string Subject { get; set; }
         [Required]
-        public required string Message { get; set; }
+        public required string BodyHtml { get; set; } // ተስተካክሏል
+        public string? BodyText { get; set; } // እንደ አማራጭ ተጨምሯል
     }
 }

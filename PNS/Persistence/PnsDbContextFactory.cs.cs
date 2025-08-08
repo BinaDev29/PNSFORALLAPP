@@ -1,7 +1,7 @@
-﻿// File Path: Persistence/PnsDbContextFactory.cs
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Persistence
 {
@@ -9,13 +9,13 @@ namespace Persistence
     {
         public PnsDbContext CreateDbContext(string[] args)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
+            var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
 
             var builder = new DbContextOptionsBuilder<PnsDbContext>();
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var connectionString = configuration.GetConnectionString("PnsConnectionString"); // ስሙ ተስተካክሏል
 
             builder.UseSqlServer(connectionString);
 

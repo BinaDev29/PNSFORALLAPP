@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.CQRS.Priority.Commands;
 using Application.CQRS.Priority.Queries;
 using Application.DTO.Priority;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -32,7 +33,7 @@ namespace API.Controllers
         {
             var command = new CreatePriorityCommand { CreatePriorityDto = dto };
             var response = await mediator.Send(command);
-            return Ok(response);
+            return CreatedAtAction(nameof(GetPriority), new { id = response.Id }, response);
         }
 
         [HttpPut]

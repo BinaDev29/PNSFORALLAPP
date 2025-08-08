@@ -1,5 +1,4 @@
-﻿// UpdateApplicationNotificationTypeMapDto.cs
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTO.ApplicationNotificationTypeMap

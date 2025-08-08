@@ -1,4 +1,6 @@
 ﻿using Application.Contracts.IRepository;
+using Application.Contracts.IServices;
+using Application.Services;
 using Application.Profiles;
 using MediatR;
 using Persistence.Repositories;
@@ -18,9 +20,14 @@ builder.Services.AddDbContext<PnsDbContext>(options =>
 // የRepositoryዎች ምዝገባ
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IApplicationNotificationTypeMapRepository, ApplicationNotificationTypeMapRepository>();
+builder.Services.AddScoped<IClientApplicationRepository, ClientApplicationRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>(); // 🟢 አዲስ ምዝገባ
 
 // የApplication አገልግሎቶች ምዝገባ (MediatR እና Validatorዎችን ጨምሮ)
 builder.Services.AddApplicationServices();
+
+// የService ምዝገባ
+builder.Services.AddScoped<IPushNotificationService, PushNotificationService>(); // 🟢 አዲስ ምዝገባ
 
 // የAPI እና Swagger ምዝገባ
 builder.Services.AddControllers();

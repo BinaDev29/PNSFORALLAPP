@@ -1,4 +1,4 @@
-﻿// GetApplicationNotificationTypeMapDetailQuery.cs
+﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Queries/GetApplicationNotificationTypeMapDetailQuery.cs
 using MediatR;
 using Application.DTO.ApplicationNotificationTypeMap;
 using System;

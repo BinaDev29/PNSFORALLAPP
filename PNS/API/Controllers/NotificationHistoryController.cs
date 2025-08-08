@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.CQRS.NotificationHistory.Commands;
 using Application.CQRS.NotificationHistory.Queries;
 using Application.DTO.NotificationHistory;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -32,7 +33,9 @@ namespace API.Controllers
         {
             var command = new CreateNotificationHistoryCommand { CreateNotificationHistoryDto = dto };
             var response = await mediator.Send(command);
-            return Ok(response);
+            return CreatedAtAction(nameof(GetNotificationHistory), new { id = response.Id }, response);
         }
+
+        // Note: Updates and Deletes for history are often not needed, but can be added if required
     }
 }

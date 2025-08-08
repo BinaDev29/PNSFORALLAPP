@@ -1,39 +1,30 @@
-﻿using Application.Contracts.IRepository;
+﻿// File Path: Persistence/Repositories/ApplicationNotificationTypeMapRepository.cs
+using Application.Contracts.IRepository;
 using Domain.Models;
 using Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Repositories; // 🟢 ይህን መስመር መጨመር አስፈላጊ ነው
 
-namespace Persistence.Repositories
+// ከ`GenericRepository` በትክክል መውረስ
+public class ApplicationNotificationTypeMapRepository(PnsDbContext dbContext)
+    : GenericRepository<ApplicationNotificationTypeMap>(dbContext), IApplicationNotificationTypeMapRepository
 {
-        public class ApplicationNotificationTypeMapRepository : GenericRepository<ApplicationNotificationTypeMap>, IApplicationNotificationTypeMapRepository
+    public async Task<ApplicationNotificationTypeMap?> Get(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken = default)
     {
-        private readonly PnsDbContext _dbContext;
+        // 🟢 የ_dbContextን ከ`base class` (GenericRepository) መጠቀም
+        return await _dbContext.Set<ApplicationNotificationTypeMap>()
+            .FirstOrDefaultAsync(m => m.ClientApplicationId == clientApplicationId && m.NotificationTypeId == notificationTypeId, cancellationToken);
+    }
 
-        public ApplicationNotificationTypeMapRepository(PnsDbContext dbContext) : base(dbContext)
+    public async Task Delete(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken = default)
+    {
+        var map = await Get(clientApplicationId, notificationTypeId, cancellationToken);
+        if (map is not null)
         {
-            _dbContext = dbContext;
-        }
-
-        // Composite keyን ተጠቅሞ አንድን ApplicationNotificationTypeMap ለማግኘት
-        public async Task<ApplicationNotificationTypeMap> Get(Guid clientApplicationId, Guid notificationTypeId)
-        {
-            return await _dbContext.Set<ApplicationNotificationTypeMap>()
-                .FirstOrDefaultAsync(m => m.ClientApplicationId == clientApplicationId && m.NotificationTypeId == notificationTypeId)
-                ?? throw new InvalidOperationException("ApplicationNotificationTypeMap not found.");
-        }
-
-        // Composite keyን ተጠቅሞ አንድን ApplicationNotificationTypeMap ለመሰረዝ
-        public async Task Delete(Guid clientApplicationId, Guid notificationTypeId)
-        {
-            var map = await Get(clientApplicationId, notificationTypeId);
-            if (map != null)
-            {
-                _dbContext.Set<ApplicationNotificationTypeMap>().Remove(map);
-                await _dbContext.SaveChangesAsync();
-            }
+            await base.Delete(map, cancellationToken); // 🟢 `base` classን በመጠቀም Delete methodን መጥራት
         }
     }
 }

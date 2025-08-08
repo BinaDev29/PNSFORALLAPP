@@ -1,5 +1,4 @@
-﻿// File Path: Persistence/PnsDbContext.cs
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +18,10 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // የ ApplicationNotificationTypeMap composite key እዚህ ተዋቅሯል
+            modelBuilder.Entity<ApplicationNotificationTypeMap>()
+                .HasKey(map => new { map.ClientApplicationId, map.NotificationTypeId });
+
             base.OnModelCreating(modelBuilder);
         }
 

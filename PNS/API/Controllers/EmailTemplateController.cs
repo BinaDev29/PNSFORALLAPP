@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.CQRS.EmailTemplate.Commands;
 using Application.CQRS.EmailTemplate.Queries;
 using Application.DTO.EmailTemplate;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -32,7 +33,7 @@ namespace API.Controllers
         {
             var command = new CreateEmailTemplateCommand { CreateEmailTemplateDto = dto };
             var response = await mediator.Send(command);
-            return Ok(response);
+            return CreatedAtAction(nameof(GetEmailTemplate), new { id = response.Id }, response);
         }
 
         [HttpPut]

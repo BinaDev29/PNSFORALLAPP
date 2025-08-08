@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using FluentValidation;
+﻿using FluentValidation;
 using Application.DTO.Notification;
 
 namespace Application.DTO.Notification.Validator
@@ -13,9 +7,10 @@ namespace Application.DTO.Notification.Validator
     {
         public UpdateNotificationDtoValidator()
         {
-            RuleFor(p => p.Title)
+            RuleFor(p => p.Id)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
-            RuleFor(p => p.Message)
+
+            RuleFor(p => p.Status)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }

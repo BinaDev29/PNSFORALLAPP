@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using FluentValidation;
+﻿using FluentValidation;
 using Application.DTO.EmailTemplate;
 
 namespace Application.DTO.EmailTemplate.Validator
@@ -13,14 +7,19 @@ namespace Application.DTO.EmailTemplate.Validator
     {
         public UpdateEmailTemplateDtoValidator()
         {
+            RuleFor(p => p.Id)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
+
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
                 .MaximumLength(100).WithMessage("{PropertyName} must not exceed 100 characters.");
 
             RuleFor(p => p.Subject)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
+                .MaximumLength(200).WithMessage("{PropertyName} must not exceed 200 characters.");
+
+            RuleFor(p => p.BodyHtml)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }
 }

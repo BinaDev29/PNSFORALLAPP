@@ -13,9 +13,11 @@ namespace Application.DTO.ApplicationNotificationTypeMap.Validator
     {
         public UpdateApplicationNotificationTypeMapDtoValidator()
         {
-            // Update ሲደረግ የሚያስፈልገውን validation እዚህ ጋር ትጽፋለህ።
-            // ለምሳሌ IsEnabled ባዶ እንዳይሆን ማድረግ ከፈለግህ።
-            // RuleFor(p => p.IsEnabled).NotNull().WithMessage("{PropertyName} is required.");
+            RuleFor(p => p.ClientApplicationId)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
+
+            RuleFor(p => p.NotificationTypeId)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }
 }

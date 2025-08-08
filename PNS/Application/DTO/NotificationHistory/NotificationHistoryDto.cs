@@ -8,7 +8,6 @@ namespace Application.DTO.NotificationHistory
     {
         public Guid Id { get; set; }
         public required string Status { get; set; }
-        public DateTime SentDate { get; set; }
         public Guid NotificationId { get; set; }
         public NotificationDto Notification { get; set; }
     }

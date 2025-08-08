@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.CQRS.NotificationType.Commands;
 using Application.CQRS.NotificationType.Queries;
 using Application.DTO.NotificationType;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -32,7 +33,7 @@ namespace API.Controllers
         {
             var command = new CreateNotificationTypeCommand { CreateNotificationTypeDto = dto };
             var response = await mediator.Send(command);
-            return Ok(response);
+            return CreatedAtAction(nameof(GetNotificationType), new { id = response.Id }, response);
         }
 
         [HttpPut]
