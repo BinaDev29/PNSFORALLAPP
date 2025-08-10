@@ -1,28 +1,27 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.NotificationType.Commands;
+﻿// File Path: Application/CQRS/NotificationType/Handlers/DeleteNotificationTypeCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.NotificationType.Commands;
 using Application.Exceptions;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.NotificationType.Handlers;
-
-public class DeleteNotificationTypeCommandHandler(IGenericRepository<Domain.Models.NotificationType> repository)
-    : IRequestHandler<DeleteNotificationTypeCommand, Unit>
+namespace Application.CQRS.NotificationType.Handlers
 {
-    public async Task<Unit> Handle(DeleteNotificationTypeCommand request, CancellationToken cancellationToken)
+    public class DeleteNotificationTypeCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<DeleteNotificationTypeCommand, Unit>
     {
-        var notificationType = await repository.Get(request.Id);
-
-        if (notificationType is null)
+        public async Task<Unit> Handle(DeleteNotificationTypeCommand request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.NotificationType), request.Id);
+            var notificationType = await unitOfWork.NotificationTypes.Get(request.Id, cancellationToken);
+
+            if (notificationType is null)
+            {
+                throw new NotFoundException(nameof(Domain.Models.NotificationType), request.Id);
+            }
+
+            await unitOfWork.NotificationTypes.Delete(notificationType, cancellationToken);
+            return Unit.Value;
         }
-
-        await repository.Delete(notificationType);
-
-        return Unit.Value;
     }
 }

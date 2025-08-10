@@ -1,32 +1,12 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.NotificationHistory.Commands;
-using Application.Contracts.IRepository;
-using Application.Responses;
-using Domain.Models;
-using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.NotificationHistory.Handlers;
-
-// Primary constructor ጥቅም ላይ ውሏል
-public class CreateNotificationHistoryCommandHandler(IGenericRepository<Domain.Models.NotificationHistory> repository, IMapper mapper)
-    : IRequestHandler<CreateNotificationHistoryCommand, BaseCommandResponse>
+namespace Application.CQRS.NotificationHistory.Handlers
 {
-    public async Task<BaseCommandResponse> Handle(CreateNotificationHistoryCommand request, CancellationToken cancellationToken)
+    internal class CreateNotificationHistoryCommandHandler
     {
-        var response = new BaseCommandResponse();
-        var notificationHistory = mapper.Map<Domain.Models.NotificationHistory>(request.CreateNotificationHistoryDto);
-
-        // SentDate ንብረቱ ሞዴሉ ላይ መኖሩን አረጋግጥ
-        notificationHistory.SentDate = DateTime.Now;
-
-        notificationHistory = await repository.Add(notificationHistory);
-
-        response.Success = true;
-        response.Message = "Creation Successful.";
-        response.Id = notificationHistory.Id;
-
-        return response;
     }
 }

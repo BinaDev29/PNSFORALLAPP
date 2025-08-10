@@ -1,18 +1,20 @@
-﻿using Domain.Common;
-using System.Collections.Generic;
+﻿// File Path: Domain/Models/ClientApplication.cs
+// ...
+using Domain.Common;
 
 namespace Domain.Models
 {
     public class ClientApplication : BaseDomainEntity
     {
-        public required string AppId { get; set; }
-        public required string Name { get; set; }
-        public string? Slogan { get; set; }
-        public string? Logo { get; set; }
-        public string? Email { get; set; }
-        public bool IsActive { get; set; }
+        // ... ነባር properties ...
 
-        public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
-        public ICollection<ApplicationNotificationTypeMap> ApplicationNotificationTypeMaps { get; set; } = new List<ApplicationNotificationTypeMap>();
+        public required string AppId { get; set; }
+        public required string Key { get; set; }
+        public required string Name { get; set; }
+        public required string Slogan { get; set; }
+        public required string Logo { get; set; }
+
+        // ይህንን አዲስ property ጨምር
+        public required string SenderEmail { get; set; }
     }
 }

@@ -1,29 +1,27 @@
 ﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Handlers/DeleteApplicationNotificationTypeMapCommandHandler.cs
-using MediatR;
-using Application.CQRS.ApplicationNotificationTypeMap.Commands;
 using Application.Contracts.IRepository;
+using Application.CQRS.ApplicationNotificationTypeMap.Commands;
 using Application.Exceptions;
+using MediatR;
 using Domain.Models;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers;
-
-public class DeleteApplicationNotificationTypeMapCommandHandler(IApplicationNotificationTypeMapRepository repository)
-    : IRequestHandler<DeleteApplicationNotificationTypeMapCommand, Unit>
+namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 {
-    public async Task<Unit> Handle(DeleteApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
+    public class DeleteApplicationNotificationTypeMapCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<DeleteApplicationNotificationTypeMapCommand, Unit>
     {
-        var map = await repository.Get(request.ClientApplicationId, request.NotificationTypeId, cancellationToken);
-
-        // 👉 Null ፍተሻው እዚህ ላይ ነው ያለው። መዝገቡ ከሌለ ስህተት ይጥላል።
-        if (map is null)
+        public async Task<Unit> Handle(DeleteApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(ApplicationNotificationTypeMap), $"{request.ClientApplicationId}, {request.NotificationTypeId}");
+            var map = await unitOfWork.ApplicationNotificationTypeMaps.GetByKeys(request.ClientApplicationId, request.NotificationTypeId, cancellationToken);
+
+            if (map is null)
+            {
+                throw new NotFoundException($"{nameof(ApplicationNotificationTypeMap)} with ClientApplicationId: {request.ClientApplicationId} and NotificationTypeId: {request.NotificationTypeId}", "not found");
+            }
+
+            await unitOfWork.ApplicationNotificationTypeMaps.Delete(map, cancellationToken);
+            return Unit.Value;
         }
-
-        await repository.Delete(map, cancellationToken);
-
-        return Unit.Value;
     }
 }

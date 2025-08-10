@@ -1,28 +1,27 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.ClientApplication.Commands;
+﻿// File Path: Application/CQRS/ClientApplication/Handlers/DeleteClientApplicationCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.ClientApplication.Commands;
 using Application.Exceptions;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.ClientApplication.Handlers;
-
-public class DeleteClientApplicationCommandHandler(IGenericRepository<Domain.Models.ClientApplication> repository)
-    : IRequestHandler<DeleteClientApplicationCommand, Unit>
+namespace Application.CQRS.ClientApplication.Handlers
 {
-    public async Task<Unit> Handle(DeleteClientApplicationCommand request, CancellationToken cancellationToken)
+    public class DeleteClientApplicationCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<DeleteClientApplicationCommand, Unit>
     {
-        var clientApplication = await repository.Get(request.Id);
-
-        if (clientApplication is null)
+        public async Task<Unit> Handle(DeleteClientApplicationCommand request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.ClientApplication), request.Id);
+            var clientApplication = await unitOfWork.ClientApplications.Get(request.Id, cancellationToken);
+
+            if (clientApplication == null)
+            {
+                throw new NotFoundException(nameof(ClientApplication), request.Id);
+            }
+
+            await unitOfWork.ClientApplications.Delete(clientApplication, cancellationToken);
+            return Unit.Value;
         }
-
-        await repository.Delete(clientApplication);
-
-        return Unit.Value;
     }
 }

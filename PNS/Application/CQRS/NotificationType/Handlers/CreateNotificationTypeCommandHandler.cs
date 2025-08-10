@@ -1,28 +1,40 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.NotificationType.Commands;
+﻿// File Path: Application/CQRS/NotificationType/Handlers/CreateNotificationTypeCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.NotificationType.Commands;
+using Application.DTO.NotificationType.Validator;
 using Application.Responses;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.NotificationType.Handlers;
-
-public class CreateNotificationTypeCommandHandler(IGenericRepository<Domain.Models.NotificationType> repository, IMapper mapper)
-    : IRequestHandler<CreateNotificationTypeCommand, BaseCommandResponse>
+namespace Application.CQRS.NotificationType.Handlers
 {
-    public async Task<BaseCommandResponse> Handle(CreateNotificationTypeCommand request, CancellationToken cancellationToken)
+    public class CreateNotificationTypeCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateNotificationTypeCommand, BaseCommandResponse>
     {
-        var response = new BaseCommandResponse();
-        var notificationType = mapper.Map<Domain.Models.NotificationType>(request.CreateNotificationTypeDto);
+        public async Task<BaseCommandResponse> Handle(CreateNotificationTypeCommand request, CancellationToken cancellationToken)
+        {
+            var response = new BaseCommandResponse();
+            var validator = new CreateNotificationTypeDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.CreateNotificationTypeDto, cancellationToken);
 
-        notificationType = await repository.Add(notificationType);
+            if (!validationResult.IsValid)
+            {
+                response.Success = false;
+                response.Message = "Creation Failed";
+                response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
+                return response;
+            }
 
-        response.Success = true;
-        response.Message = "Creation Successful.";
-        response.Id = notificationType.Id;
+            var notificationType = mapper.Map<Domain.Models.NotificationType>(request.CreateNotificationTypeDto);
+            await unitOfWork.NotificationTypes.Add(notificationType, cancellationToken);
 
-        return response;
+            response.Success = true;
+            response.Message = "Creation Successful";
+            response.Id = notificationType.Id;
+            return response;
+        }
     }
 }

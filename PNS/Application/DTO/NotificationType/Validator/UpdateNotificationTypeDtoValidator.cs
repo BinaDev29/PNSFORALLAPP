@@ -1,5 +1,6 @@
-﻿using FluentValidation;
-using Application.DTO.NotificationType;
+﻿// File Path: Application/DTO/NotificationType/Validator/UpdateNotificationTypeDtoValidator.cs
+using FluentValidation;
+using System;
 
 namespace Application.DTO.NotificationType.Validator
 {
@@ -11,14 +12,6 @@ namespace Application.DTO.NotificationType.Validator
                 .NotEmpty().WithMessage("{PropertyName} is required.");
 
             RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(100).WithMessage("{PropertyName} must not exceed 100 characters.");
-
-            RuleFor(p => p.Subject)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(200).WithMessage("{PropertyName} must not exceed 200 characters.");
-
-            RuleFor(p => p.Description)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }

@@ -1,54 +1,79 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿// File Path: API/Controllers/NotificationTypeController.cs
 using Application.CQRS.NotificationType.Commands;
 using Application.CQRS.NotificationType.Queries;
 using Application.DTO.NotificationType;
+using Application.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class NotificationTypeController(IMediator mediator) : ControllerBase
+    [ApiController]
+    public class NotificationTypeController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public NotificationTypeController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        // GET: api/NotificationType
         [HttpGet]
-        public async Task<IActionResult> GetNotificationTypes()
+        [ProducesResponseType(typeof(List<NotificationTypeDto>), 200)]
+        public async Task<ActionResult<List<NotificationTypeDto>>> Get()
         {
             var query = new GetNotificationTypesListQuery();
-            var notificationTypes = await mediator.Send(query);
-            return Ok(notificationTypes);
+            var types = await _mediator.Send(query);
+            return Ok(types);
         }
 
+        // GET: api/NotificationType/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetNotificationType(Guid id)
+        [ProducesResponseType(typeof(NotificationTypeDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<NotificationTypeDto>> Get(Guid id)
         {
             var query = new GetNotificationTypeDetailQuery { Id = id };
-            var notificationType = await mediator.Send(query);
-            return Ok(notificationType);
+            var type = await _mediator.Send(query);
+            return Ok(type);
         }
 
+        // POST: api/NotificationType
         [HttpPost]
-        public async Task<IActionResult> CreateNotificationType([FromBody] CreateNotificationTypeDto dto)
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNotificationTypeDto createNotificationTypeDto)
         {
-            var command = new CreateNotificationTypeCommand { CreateNotificationTypeDto = dto };
-            var response = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetNotificationType), new { id = response.Id }, response);
+            var command = new CreateNotificationTypeCommand { CreateNotificationTypeDto = createNotificationTypeDto };
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
 
+        // PUT: api/NotificationType
         [HttpPut]
-        public async Task<IActionResult> UpdateNotificationType([FromBody] UpdateNotificationTypeDto dto)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Put([FromBody] UpdateNotificationTypeDto updateNotificationTypeDto)
         {
-            var command = new UpdateNotificationTypeCommand { UpdateNotificationTypeDto = dto };
-            await mediator.Send(command);
+            var command = new UpdateNotificationTypeCommand { UpdateNotificationTypeDto = updateNotificationTypeDto };
+            await _mediator.Send(command);
             return NoContent();
         }
 
+        // DELETE: api/NotificationType/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNotificationType(Guid id)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteNotificationTypeCommand { Id = id };
-            await mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
     }

@@ -1,54 +1,79 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿// File Path: API/Controllers/PriorityController.cs
 using Application.CQRS.Priority.Commands;
 using Application.CQRS.Priority.Queries;
 using Application.DTO.Priority;
+using Application.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class PriorityController(IMediator mediator) : ControllerBase
+    [ApiController]
+    public class PriorityController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public PriorityController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        // GET: api/Priority
         [HttpGet]
-        public async Task<IActionResult> GetPriorities()
+        [ProducesResponseType(typeof(List<PriorityDto>), 200)]
+        public async Task<ActionResult<List<PriorityDto>>> Get()
         {
             var query = new GetPrioritiesListQuery();
-            var priorities = await mediator.Send(query);
+            var priorities = await _mediator.Send(query);
             return Ok(priorities);
         }
 
+        // GET: api/Priority/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPriority(Guid id)
+        [ProducesResponseType(typeof(PriorityDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<PriorityDto>> Get(Guid id)
         {
             var query = new GetPriorityDetailQuery { Id = id };
-            var priority = await mediator.Send(query);
+            var priority = await _mediator.Send(query);
             return Ok(priority);
         }
 
+        // POST: api/Priority
         [HttpPost]
-        public async Task<IActionResult> CreatePriority([FromBody] CreatePriorityDto dto)
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreatePriorityDto createPriorityDto)
         {
-            var command = new CreatePriorityCommand { CreatePriorityDto = dto };
-            var response = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetPriority), new { id = response.Id }, response);
+            var command = new CreatePriorityCommand { CreatePriorityDto = createPriorityDto };
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
 
+        // PUT: api/Priority
         [HttpPut]
-        public async Task<IActionResult> UpdatePriority([FromBody] UpdatePriorityDto dto)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Put([FromBody] UpdatePriorityDto updatePriorityDto)
         {
-            var command = new UpdatePriorityCommand { UpdatePriorityDto = dto };
-            await mediator.Send(command);
+            var command = new UpdatePriorityCommand { UpdatePriorityDto = updatePriorityDto };
+            await _mediator.Send(command);
             return NoContent();
         }
 
+        // DELETE: api/Priority/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePriority(Guid id)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeletePriorityCommand { Id = id };
-            await mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
     }

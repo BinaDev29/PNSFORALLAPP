@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using Application.DTO.ClientApplication;
+﻿// File Path: Application/DTO/ClientApplication/Validator/CreateClientApplicationDtoValidator.cs
+using FluentValidation;
 
 namespace Application.DTO.ClientApplication.Validator
 {
@@ -7,13 +7,8 @@ namespace Application.DTO.ClientApplication.Validator
     {
         public CreateClientApplicationDtoValidator()
         {
-            RuleFor(p => p.AppId)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
-
-            RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(100).WithMessage("{PropertyName} must not exceed 100 characters.");
+            RuleFor(p => p.AppId).NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(p => p.Name).NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }
 }

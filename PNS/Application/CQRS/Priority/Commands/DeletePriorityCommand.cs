@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿// File Path: Application/CQRS/Priority/Commands/DeletePriorityCommand.cs
+using MediatR;
 using System;
 
 namespace Application.CQRS.Priority.Commands

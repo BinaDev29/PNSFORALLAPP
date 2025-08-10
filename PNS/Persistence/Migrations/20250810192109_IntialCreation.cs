@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Itialcreation : Migration
+    public partial class IntialCreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,13 +17,13 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AppId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Key = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Slogan = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Slogan = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SenderEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -42,7 +42,7 @@ namespace Persistence.Migrations
                     BodyHtml = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BodyText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -57,9 +57,9 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -76,7 +76,7 @@ namespace Persistence.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -89,30 +89,23 @@ namespace Persistence.Migrations
                 name: "ApplicationNotificationTypeMaps",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClientApplicationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NotificationTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    EmailTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ApplicationNotificationTypeMaps", x => x.Id);
+                    table.PrimaryKey("PK_ApplicationNotificationTypeMaps", x => new { x.ClientApplicationId, x.NotificationTypeId });
                     table.ForeignKey(
                         name: "FK_ApplicationNotificationTypeMaps_ClientApplications_ClientApplicationId",
                         column: x => x.ClientApplicationId,
                         principalTable: "ClientApplications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ApplicationNotificationTypeMaps_EmailTemplates_EmailTemplateId",
-                        column: x => x.EmailTemplateId,
-                        principalTable: "EmailTemplates",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ApplicationNotificationTypeMaps_NotificationTypes_NotificationTypeId",
                         column: x => x.NotificationTypeId,
@@ -127,18 +120,17 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClientApplicationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NotificationTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Recipient = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RecipientIp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RecipientDeviceType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Sender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    To = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReceivedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SeenTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Secret = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IP = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PriorityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ReceivedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    SeenAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    NotificationTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -174,7 +166,7 @@ namespace Persistence.Migrations
                     NotificationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -188,16 +180,6 @@ namespace Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ApplicationNotificationTypeMaps_ClientApplicationId",
-                table: "ApplicationNotificationTypeMaps",
-                column: "ClientApplicationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ApplicationNotificationTypeMaps_EmailTemplateId",
-                table: "ApplicationNotificationTypeMaps",
-                column: "EmailTemplateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationNotificationTypeMaps_NotificationTypeId",
@@ -232,10 +214,10 @@ namespace Persistence.Migrations
                 name: "ApplicationNotificationTypeMaps");
 
             migrationBuilder.DropTable(
-                name: "NotificationHistories");
+                name: "EmailTemplates");
 
             migrationBuilder.DropTable(
-                name: "EmailTemplates");
+                name: "NotificationHistories");
 
             migrationBuilder.DropTable(
                 name: "Notifications");

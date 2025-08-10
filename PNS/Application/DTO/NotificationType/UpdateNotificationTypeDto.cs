@@ -1,16 +1,15 @@
-﻿using System;
+﻿// File Path: Application/DTO/NotificationType/UpdateNotificationTypeDto.cs
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTO.NotificationType
 {
     public class UpdateNotificationTypeDto
     {
+        [Required]
         public Guid Id { get; set; }
         [Required]
         public required string Name { get; set; }
-        [Required]
-        public required string Subject { get; set; }
-        [Required]
-        public required string Description { get; set; } // Description ተጨምሯል
+        public string? Description { get; set; }
     }
 }

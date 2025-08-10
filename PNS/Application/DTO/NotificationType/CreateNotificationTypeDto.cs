@@ -1,4 +1,4 @@
-﻿using System;
+﻿// File Path: Application/DTO/NotificationType/CreateNotificationTypeDto.cs
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTO.NotificationType
@@ -7,8 +7,6 @@ namespace Application.DTO.NotificationType
     {
         [Required]
         public required string Name { get; set; }
-        [Required]
-        public required string Subject { get; set; }
-        public required string Description { get; set; } // Description ተጨምሯል
+        public string? Description { get; set; }
     }
 }

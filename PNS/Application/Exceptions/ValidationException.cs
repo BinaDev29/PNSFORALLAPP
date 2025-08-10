@@ -1,26 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿// File Path: Application/Exceptions/ValidationException.cs
 using FluentValidation.Results;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Application.Exceptions
 {
-    // ከሌሎቹ Exceptions ጋር እንዲመሳሰል ከ ApplicationException ይወርሳል
     public class ValidationException : ApplicationException
     {
-        public Dictionary<string, string[]> Errors { get; }
+        public List<string> Errors { get; set; } = new List<string>();
 
-        public ValidationException()
-            : base("One or more validation failures have occurred.")
+        public ValidationException(ValidationResult validationResult)
         {
-            Errors = new Dictionary<string, string[]>();
-        }
-
-        public ValidationException(IEnumerable<ValidationFailure> failures)
-            : this()
-        {
-            Errors = failures
-                .GroupBy(e => e.PropertyName, e => e.ErrorMessage)
-                .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());
+            foreach (var error in validationResult.Errors)
+            {
+                Errors.Add(error.ErrorMessage);
+            }
         }
     }
 }

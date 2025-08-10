@@ -1,28 +1,28 @@
-﻿// GetNotificationHistoryDetailQueryHandler.cs
-using AutoMapper;
-using MediatR;
-using Application.CQRS.NotificationHistory.Queries;
+﻿// File Path: Application/CQRS/NotificationHistory/Handlers/GetNotificationHistoryDetailQueryHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.NotificationHistory.Queries;
 using Application.DTO.NotificationHistory;
 using Application.Exceptions;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.NotificationHistory.Handlers;
-
-public class GetNotificationHistoryDetailQueryHandler(IGenericRepository<Domain.Models.NotificationHistory> repository, IMapper mapper)
-    : IRequestHandler<GetNotificationHistoryDetailQuery, NotificationHistoryDto>
+namespace Application.CQRS.NotificationHistory.Handlers
 {
-    public async Task<NotificationHistoryDto> Handle(GetNotificationHistoryDetailQuery request, CancellationToken cancellationToken)
+    public class GetNotificationHistoryDetailQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetNotificationHistoryDetailQuery, NotificationHistoryDto>
     {
-        var notificationHistory = await repository.Get(request.Id);
-
-        if (notificationHistory is null)
+        public async Task<NotificationHistoryDto> Handle(GetNotificationHistoryDetailQuery request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.NotificationHistory), request.Id);
-        }
+            var history = await unitOfWork.NotificationHistories.Get(request.Id, cancellationToken);
 
-        return mapper.Map<NotificationHistoryDto>(notificationHistory);
+            if (history is null)
+            {
+                throw new NotFoundException(nameof(Domain.Models.NotificationHistory), request.Id);
+            }
+
+            return mapper.Map<NotificationHistoryDto>(history);
+        }
     }
 }

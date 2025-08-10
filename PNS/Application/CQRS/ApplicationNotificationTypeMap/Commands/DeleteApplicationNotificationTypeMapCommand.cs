@@ -1,4 +1,4 @@
-﻿// DeleteApplicationNotificationTypeMapCommand.cs
+﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Commands/DeleteApplicationNotificationTypeMapCommand.cs
 using MediatR;
 using System;
 

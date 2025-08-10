@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿// File Path: Application/DTO/NotificationType/NotificationTypeDto.cs
+using System;
 
 namespace Application.DTO.NotificationType
 {
     public class NotificationTypeDto
     {
         public Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required string Subject { get; set; }
-        public required string Description { get; set; } // Description ተጨምሯል
+        public string Name { get; set; }
+        public string? Description { get; set; }
     }
 }

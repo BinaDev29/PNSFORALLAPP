@@ -1,29 +1,27 @@
-﻿// DeletePriorityCommandHandler.cs
-using AutoMapper;
-using MediatR;
-using Application.CQRS.Priority.Commands;
+﻿// File Path: Application/CQRS/Priority/Handlers/DeletePriorityCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.Priority.Commands;
 using Application.Exceptions;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.Priority.Handlers;
-
-public class DeletePriorityCommandHandler(IGenericRepository<Domain.Models.Priority> repository)
-    : IRequestHandler<DeletePriorityCommand, Unit>
+namespace Application.CQRS.Priority.Handlers
 {
-    public async Task<Unit> Handle(DeletePriorityCommand request, CancellationToken cancellationToken)
+    public class DeletePriorityCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<DeletePriorityCommand, Unit>
     {
-        var priority = await repository.Get(request.Id);
-
-        if (priority is null)
+        public async Task<Unit> Handle(DeletePriorityCommand request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.Priority), request.Id);
+            var priority = await unitOfWork.Priorities.Get(request.Id, cancellationToken);
+
+            if (priority is null)
+            {
+                throw new NotFoundException(nameof(Domain.Models.Priority), request.Id);
+            }
+
+            await unitOfWork.Priorities.Delete(priority, cancellationToken);
+            return Unit.Value;
         }
-
-        await repository.Delete(priority);
-
-        return Unit.Value;
     }
 }

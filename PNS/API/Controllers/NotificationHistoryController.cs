@@ -1,41 +1,60 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿// File Path: API/Controllers/NotificationHistoryController.cs
 using Application.CQRS.NotificationHistory.Commands;
 using Application.CQRS.NotificationHistory.Queries;
 using Application.DTO.NotificationHistory;
+using Application.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class NotificationHistoryController(IMediator mediator) : ControllerBase
+    [ApiController]
+    public class NotificationHistoryController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public NotificationHistoryController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        // GET: api/NotificationHistory
         [HttpGet]
-        public async Task<IActionResult> GetNotificationHistories()
+        [ProducesResponseType(typeof(List<NotificationHistoryDto>), 200)]
+        public async Task<ActionResult<List<NotificationHistoryDto>>> Get()
         {
             var query = new GetNotificationHistoriesListQuery();
-            var histories = await mediator.Send(query);
+            var histories = await _mediator.Send(query);
             return Ok(histories);
         }
 
+        // GET: api/NotificationHistory/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetNotificationHistory(Guid id)
+        [ProducesResponseType(typeof(NotificationHistoryDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<NotificationHistoryDto>> Get(Guid id)
         {
             var query = new GetNotificationHistoryDetailQuery { Id = id };
-            var history = await mediator.Send(query);
+            var history = await _mediator.Send(query);
             return Ok(history);
         }
 
+        // POST: api/NotificationHistory
         [HttpPost]
-        public async Task<IActionResult> CreateNotificationHistory([FromBody] CreateNotificationHistoryDto dto)
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNotificationHistoryDto createNotificationHistoryDto)
         {
-            var command = new CreateNotificationHistoryCommand { CreateNotificationHistoryDto = dto };
-            var response = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetNotificationHistory), new { id = response.Id }, response);
+            var command = new CreateNotificationHistoryCommand { CreateNotificationHistoryDto = createNotificationHistoryDto };
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
 
-        // Note: Updates and Deletes for history are often not needed, but can be added if required
+        // Note: Update and Delete are not implemented for NotificationHistory model
+        // as per the provided CQRS code, which only includes Create and Query.
     }
 }

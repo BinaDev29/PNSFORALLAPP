@@ -1,11 +1,11 @@
-﻿// File Path: Application/CQRS/ClientApplication/Queries/GetClientApplicationsListQuery.cs
+﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Queries/GetApplicationNotificationTypeMapsListQuery.cs
+using Application.DTO.ApplicationNotificationTypeMap;
 using MediatR;
-using Application.DTO.ClientApplication;
 using System.Collections.Generic;
 
-namespace Application.CQRS.ClientApplication.Queries
+namespace Application.CQRS.ApplicationNotificationTypeMap.Queries
 {
-    public class GetClientApplicationsListQuery : IRequest<IReadOnlyList<ClientApplicationDto>>
+    public class GetApplicationNotificationTypeMapsListQuery : IRequest<List<ApplicationNotificationTypeMapDto>>
     {
     }
 }

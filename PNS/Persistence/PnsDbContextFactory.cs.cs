@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// File Path: Persistence/PnsDbContextFactory.cs
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -15,7 +16,7 @@ namespace Persistence
                 .Build();
 
             var builder = new DbContextOptionsBuilder<PnsDbContext>();
-            var connectionString = configuration.GetConnectionString("PnsConnectionString"); // ስሙ ተስተካክሏል
+            var connectionString = configuration.GetConnectionString("PnsConnectionString");
 
             builder.UseSqlServer(connectionString);
 

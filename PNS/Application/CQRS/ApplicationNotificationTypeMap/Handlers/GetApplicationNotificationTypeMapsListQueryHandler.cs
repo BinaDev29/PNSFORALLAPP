@@ -10,13 +10,12 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 {
-    public class GetApplicationNotificationTypeMapsListQueryHandler(IApplicationNotificationTypeMapRepository repository, IMapper mapper)
-        : IRequestHandler<GetApplicationNotificationTypeMapsListQuery, IReadOnlyList<ApplicationNotificationTypeMapDto>>
+    public class GetApplicationNotificationTypeMapsListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetApplicationNotificationTypeMapsListQuery, List<ApplicationNotificationTypeMapDto>>
     {
-        public async Task<IReadOnlyList<ApplicationNotificationTypeMapDto>> Handle(GetApplicationNotificationTypeMapsListQuery request, CancellationToken cancellationToken)
+        public async Task<List<ApplicationNotificationTypeMapDto>> Handle(GetApplicationNotificationTypeMapsListQuery request, CancellationToken cancellationToken)
         {
-            var maps = await repository.GetAll(cancellationToken);
-            return mapper.Map<IReadOnlyList<ApplicationNotificationTypeMapDto>>(maps);
+            var maps = await unitOfWork.ApplicationNotificationTypeMaps.GetAll(cancellationToken);
+            return mapper.Map<List<ApplicationNotificationTypeMapDto>>(maps);
         }
     }
 }

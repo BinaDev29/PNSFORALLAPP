@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PnsDbContext))]
-    [Migration("20250807074224_Itialcreation")]
-    partial class Itialcreation
+    [Migration("20250810192109_IntialCreation")]
+    partial class IntialCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,24 +27,21 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.ApplicationNotificationTypeMap", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("ClientApplicationId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("NotificationTypeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("EmailTemplateId")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -52,14 +49,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("NotificationTypeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientApplicationId");
-
-                    b.HasIndex("EmailTemplateId");
+                    b.HasKey("ClientApplicationId", "NotificationTypeId");
 
                     b.HasIndex("NotificationTypeId");
 
@@ -77,16 +67,15 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Key")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -95,13 +84,19 @@ namespace Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Logo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SenderEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Slogan")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -123,6 +118,7 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -157,10 +153,14 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("IP")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -178,26 +178,20 @@ namespace Persistence.Migrations
                     b.Property<Guid>("PriorityId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("ReceivedAt")
+                    b.Property<DateTime?>("ReceivedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Recipient")
+                    b.Property<string>("Secret")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("SeenTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RecipientDeviceType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RecipientIp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("SeenAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Sender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
+                    b.PrimitiveCollection<string>("To")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -219,6 +213,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -254,13 +249,13 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastModifiedBy")
@@ -285,6 +280,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -311,14 +307,10 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Models.ApplicationNotificationTypeMap", b =>
                 {
                     b.HasOne("Domain.Models.ClientApplication", "ClientApplication")
-                        .WithMany("ApplicationNotificationTypeMaps")
+                        .WithMany()
                         .HasForeignKey("ClientApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Models.EmailTemplate", "EmailTemplate")
-                        .WithMany()
-                        .HasForeignKey("EmailTemplateId");
 
                     b.HasOne("Domain.Models.NotificationType", "NotificationType")
                         .WithMany("ApplicationNotificationTypeMaps")
@@ -328,15 +320,13 @@ namespace Persistence.Migrations
 
                     b.Navigation("ClientApplication");
 
-                    b.Navigation("EmailTemplate");
-
                     b.Navigation("NotificationType");
                 });
 
             modelBuilder.Entity("Domain.Models.Notification", b =>
                 {
                     b.HasOne("Domain.Models.ClientApplication", "ClientApplication")
-                        .WithMany("Notifications")
+                        .WithMany()
                         .HasForeignKey("ClientApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -369,13 +359,6 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Notification");
-                });
-
-            modelBuilder.Entity("Domain.Models.ClientApplication", b =>
-                {
-                    b.Navigation("ApplicationNotificationTypeMaps");
-
-                    b.Navigation("Notifications");
                 });
 
             modelBuilder.Entity("Domain.Models.NotificationType", b =>

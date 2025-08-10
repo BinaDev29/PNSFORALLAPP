@@ -1,6 +1,7 @@
-﻿using MediatR;
+﻿// File Path: Application/CQRS/EmailTemplate/Commands/CreateEmailTemplateCommand.cs
 using Application.DTO.EmailTemplate;
 using Application.Responses;
+using MediatR;
 
 namespace Application.CQRS.EmailTemplate.Commands
 {

@@ -1,24 +1,17 @@
-﻿using System.Reflection;
+﻿// File Path: Application/ApplicationServiceRegistration.cs
+using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Application.CQRS.ClientApplication.Queries;
-using FluentValidation;
+using System.Reflection;
 
 namespace Application
 {
     public static class ApplicationServiceRegistration
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
         {
-            // MediatRን በትክክለኛው Assembly ውስጥ እንዲመዘግብ
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetClientApplicationsListQuery).Assembly));
-
-            // AutoMapperን መመዝገብ
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-            // FluentValidationን መመዝገብ
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             return services;
         }
     }

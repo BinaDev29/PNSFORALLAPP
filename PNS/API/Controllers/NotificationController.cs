@@ -1,55 +1,101 @@
 ﻿// File Path: API/Controllers/NotificationController.cs
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Application.CQRS.Notification.Commands;
 using Application.CQRS.Notification.Queries;
 using Application.DTO.Notification;
+using Application.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class NotificationController(IMediator mediator) : ControllerBase
+    [ApiController]
+    public class NotificationController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public NotificationController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        // GET: api/Notification
         [HttpGet]
-        public async Task<IActionResult> GetNotifications()
+        [ProducesResponseType(typeof(List<NotificationDto>), 200)]
+        public async Task<ActionResult<List<NotificationDto>>> Get()
         {
             var query = new GetNotificationsListQuery();
-            var notifications = await mediator.Send(query);
+            var notifications = await _mediator.Send(query);
             return Ok(notifications);
         }
 
+        // GET: api/Notification/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetNotification(Guid id)
+        [ProducesResponseType(typeof(NotificationDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<NotificationDto>> Get(Guid id)
         {
             var query = new GetNotificationDetailQuery { Id = id };
-            var notification = await mediator.Send(query);
+            var notification = await _mediator.Send(query);
             return Ok(notification);
         }
 
+        // POST: api/Notification
         [HttpPost]
-        public async Task<IActionResult> CreateNotification([FromBody] CreateNotificationDto dto)
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNotificationDto createNotificationDto)
         {
-            var command = new CreateNotificationCommand { CreateNotificationDto = dto };
-            var response = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetNotification), new { id = response.Id }, response);
+            var command = new CreateNotificationCommand { CreateNotificationDto = createNotificationDto };
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
 
+        // PUT: api/Notification
         [HttpPut]
-        public async Task<IActionResult> UpdateNotification([FromBody] UpdateNotificationDto dto)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Put([FromBody] UpdateNotificationDto updateNotificationDto)
         {
-            var command = new UpdateNotificationCommand { UpdateNotificationDto = dto };
-            await mediator.Send(command);
+            var command = new UpdateNotificationCommand { UpdateNotificationDto = updateNotificationDto };
+            await _mediator.Send(command);
             return NoContent();
         }
 
+        // PUT: api/Notification/5/seen
+        // ይህ አፕሊኬሽን ላይ notification ሲታይ የሚያገለግል endpoint ነው።
+        [HttpPut("{id}/seen")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> MarkAsSeen(Guid id)
+        {
+            var command = new MarkNotificationAsSeenCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        // GET: api/Notification/5/track
+        // ይህ ኢሜይል ሲከፈት ብቻ SeenTimeን ለመመዝገብ የሚያገለግል endpoint ነው።
+        [HttpGet("{id}/track")]
+        public async Task<ActionResult> TrackEmailOpen(Guid id)
+        {
+            var command = new MarkNotificationAsSeenCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        // DELETE: api/Notification/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNotification(Guid id)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteNotificationCommand { Id = id };
-            await mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
     }

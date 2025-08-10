@@ -1,28 +1,28 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.ClientApplication.Queries;
+﻿// File Path: Application/CQRS/ClientApplication/Handlers/GetClientApplicationDetailQueryHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.ClientApplication.Queries;
 using Application.DTO.ClientApplication;
 using Application.Exceptions;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.ClientApplication.Handlers;
-
-public class GetClientApplicationDetailQueryHandler(IGenericRepository<Domain.Models.ClientApplication> repository, IMapper mapper)
-    : IRequestHandler<GetClientApplicationDetailQuery, ClientApplicationDto>
+namespace Application.CQRS.ClientApplication.Handlers
 {
-    public async Task<ClientApplicationDto> Handle(GetClientApplicationDetailQuery request, CancellationToken cancellationToken)
+    public class GetClientApplicationDetailQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetClientApplicationDetailQuery, ClientApplicationDto>
     {
-        var clientApplication = await repository.Get(request.Id);
-
-        // የNull check ማስጠንቀቂያን ለማስተካከል
-        if (clientApplication is null)
+        public async Task<ClientApplicationDto> Handle(GetClientApplicationDetailQuery request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.ClientApplication), request.Id);
-        }
+            var clientApplication = await unitOfWork.ClientApplications.Get(request.Id, cancellationToken);
 
-        return mapper.Map<ClientApplicationDto>(clientApplication);
+            if (clientApplication == null)
+            {
+                throw new NotFoundException(nameof(ClientApplication), request.Id);
+            }
+
+            return mapper.Map<ClientApplicationDto>(clientApplication);
+        }
     }
 }

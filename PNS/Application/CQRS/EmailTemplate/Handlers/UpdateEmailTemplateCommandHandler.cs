@@ -1,33 +1,40 @@
-﻿// UpdateEmailTemplateCommandHandler.cs
-using AutoMapper;
-using MediatR;
-using Application.CQRS.EmailTemplate.Commands;
+﻿// File Path: Application/CQRS/EmailTemplate/Handlers/UpdateEmailTemplateCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.EmailTemplate.Commands;
+using Application.DTO.EmailTemplate.Validator;
 using Application.Exceptions;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.EmailTemplate.Handlers;
-
-// Primary constructor ጥቅም ላይ ውሏል
-public class UpdateEmailTemplateCommandHandler(IGenericRepository<Domain.Models.EmailTemplate> repository, IMapper mapper)
-    : IRequestHandler<UpdateEmailTemplateCommand, Unit>
+namespace Application.CQRS.EmailTemplate.Handlers
 {
-    public async Task<Unit> Handle(UpdateEmailTemplateCommand request, CancellationToken cancellationToken)
+    public class UpdateEmailTemplateCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateEmailTemplateCommand, Unit>
     {
-        var emailTemplate = await repository.Get(request.UpdateEmailTemplateDto.Id);
-
-        // Null check ተስተካክሏል
-        if (emailTemplate is null)
+        public async Task<Unit> Handle(UpdateEmailTemplateCommand request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.EmailTemplate), request.UpdateEmailTemplateDto.Id);
+            var validator = new UpdateEmailTemplateDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.UpdateEmailTemplateDto, cancellationToken);
+
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult);
+            }
+
+            var emailTemplate = await unitOfWork.EmailTemplates.Get(request.UpdateEmailTemplateDto.Id, cancellationToken);
+
+            if (emailTemplate is null)
+            {
+                throw new NotFoundException(nameof(Domain.Models.EmailTemplate), request.UpdateEmailTemplateDto.Id);
+            }
+
+            mapper.Map(request.UpdateEmailTemplateDto, emailTemplate);
+            await unitOfWork.EmailTemplates.Update(emailTemplate, cancellationToken);
+
+            return Unit.Value;
         }
-
-        mapper.Map(request.UpdateEmailTemplateDto, emailTemplate);
-
-        await repository.Update(emailTemplate);
-
-        return Unit.Value;
     }
 }

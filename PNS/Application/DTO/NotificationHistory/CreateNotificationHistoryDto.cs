@@ -1,4 +1,5 @@
-﻿using System;
+﻿// File Path: Application/DTO/NotificationHistory/CreateNotificationHistoryDto.cs
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTO.NotificationHistory
@@ -6,8 +7,8 @@ namespace Application.DTO.NotificationHistory
     public class CreateNotificationHistoryDto
     {
         [Required]
-        public required string Status { get; set; }
-
-        public Guid NotificationId { get; set; }
+        public required string Status { get; set; } = "Pending";
+        [Required]
+        public required Guid NotificationId { get; set; }
     }
 }

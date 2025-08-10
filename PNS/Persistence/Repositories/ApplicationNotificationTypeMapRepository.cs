@@ -1,30 +1,22 @@
 ﻿// File Path: Persistence/Repositories/ApplicationNotificationTypeMapRepository.cs
 using Application.Contracts.IRepository;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Persistence.Repositories;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Repositories; // 🟢 ይህን መስመር መጨመር አስፈላጊ ነው
 
-// ከ`GenericRepository` በትክክል መውረስ
-public class ApplicationNotificationTypeMapRepository(PnsDbContext dbContext)
-    : GenericRepository<ApplicationNotificationTypeMap>(dbContext), IApplicationNotificationTypeMapRepository
+namespace Persistence.Repositories
 {
-    public async Task<ApplicationNotificationTypeMap?> Get(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken = default)
+    public class ApplicationNotificationTypeMapRepository(PnsDbContext dbContext) : GenericRepository<ApplicationNotificationTypeMap>(dbContext), IApplicationNotificationTypeMapRepository
     {
-        // 🟢 የ_dbContextን ከ`base class` (GenericRepository) መጠቀም
-        return await _dbContext.Set<ApplicationNotificationTypeMap>()
-            .FirstOrDefaultAsync(m => m.ClientApplicationId == clientApplicationId && m.NotificationTypeId == notificationTypeId, cancellationToken);
-    }
-
-    public async Task Delete(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken = default)
-    {
-        var map = await Get(clientApplicationId, notificationTypeId, cancellationToken);
-        if (map is not null)
+        public async Task<ApplicationNotificationTypeMap?> GetByKeys(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken)
         {
-            await base.Delete(map, cancellationToken); // 🟢 `base` classን በመጠቀም Delete methodን መጥራት
+            return await dbContext.ApplicationNotificationTypeMaps
+                .FirstOrDefaultAsync(q => q.ClientApplicationId == clientApplicationId && q.NotificationTypeId == notificationTypeId, cancellationToken);
         }
     }
 }

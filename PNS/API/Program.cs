@@ -1,50 +1,46 @@
-﻿using Application.Contracts.IRepository;
-using Application.Contracts.IServices;
-using Application.Services;
-using Application.Profiles;
-using MediatR;
-using Persistence.Repositories;
-using Persistence;
-using Microsoft.EntityFrameworkCore;
+﻿// File Path: API/Program.cs
 using Application;
-using FluentValidation;
+using Application.Contracts;
+using Infrastructure.Email;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Persistence;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureApplicationServices();
 
-// የPersistence አገልግሎቶች ምዝገባ
-builder.Services.AddDbContext<PnsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PnsConnectionString")));
+// Configure Email services for SMTP
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
-// የRepositoryዎች ምዝገባ
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IApplicationNotificationTypeMapRepository, ApplicationNotificationTypeMapRepository>();
-builder.Services.AddScoped<IClientApplicationRepository, ClientApplicationRepository>();
-builder.Services.AddScoped<INotificationRepository, NotificationRepository>(); // 🟢 አዲስ ምዝገባ
-
-// የApplication አገልግሎቶች ምዝገባ (MediatR እና Validatorዎችን ጨምሮ)
-builder.Services.AddApplicationServices();
-
-// የService ምዝገባ
-builder.Services.AddScoped<IPushNotificationService, PushNotificationService>(); // 🟢 አዲስ ምዝገባ
-
-// የAPI እና Swagger ምዝገባ
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PNS API", Version = "v1" });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<PnsDbContext>();
+    dbContext.Database.Migrate();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "PNS API V1");
+    });
 }
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

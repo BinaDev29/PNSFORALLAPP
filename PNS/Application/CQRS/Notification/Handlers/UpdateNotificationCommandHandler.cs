@@ -1,30 +1,38 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.Notification.Commands;
+﻿// File Path: Application/CQRS/Notification/Handlers/UpdateNotificationCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.Notification.Commands;
+using Application.DTO.Notification.Validator;
 using Application.Exceptions;
-using Domain.Models;
+using AutoMapper;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.Notification.Handlers;
-
-public class UpdateNotificationCommandHandler(IGenericRepository<Domain.Models.Notification> repository, IMapper mapper)
-    : IRequestHandler<UpdateNotificationCommand, Unit>
+namespace Application.CQRS.Notification.Handlers
 {
-    public async Task<Unit> Handle(UpdateNotificationCommand request, CancellationToken cancellationToken)
+    public class UpdateNotificationCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateNotificationCommand, Unit>
     {
-        var notification = await repository.Get(request.UpdateNotificationDto.Id);
-
-        if (notification is null) // Null check ተስተካክሏል
+        public async Task<Unit> Handle(UpdateNotificationCommand request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.Notification), request.UpdateNotificationDto.Id);
+            var validator = new UpdateNotificationDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.UpdateNotificationDto, cancellationToken);
+
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult);
+            }
+
+            var notification = await unitOfWork.Notifications.Get(request.UpdateNotificationDto.Id, cancellationToken);
+
+            if (notification is null)
+            {
+                throw new NotFoundException(nameof(Domain.Models.Notification), request.UpdateNotificationDto.Id);
+            }
+
+            mapper.Map(request.UpdateNotificationDto, notification);
+            await unitOfWork.Notifications.Update(notification, cancellationToken);
+
+            return Unit.Value;
         }
-
-        mapper.Map(request.UpdateNotificationDto, notification);
-
-        await repository.Update(notification);
-
-        return Unit.Value;
     }
 }

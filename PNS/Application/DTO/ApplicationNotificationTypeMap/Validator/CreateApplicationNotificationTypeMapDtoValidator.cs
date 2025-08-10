@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// File Path: Application/DTO/ApplicationNotificationTypeMap/Validator/CreateApplicationNotificationTypeMapDtoValidator.cs
 using FluentValidation;
-using Application.DTO.ApplicationNotificationTypeMap;
 
 namespace Application.DTO.ApplicationNotificationTypeMap.Validator
 {

@@ -3,10 +3,7 @@ using Application.Contracts.IRepository;
 using Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Persistence.Repositories
 {
@@ -14,41 +11,45 @@ namespace Persistence.Repositories
     {
         protected readonly PnsDbContext _dbContext = dbContext;
 
-        public async Task<T> Add(T entity, CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<T>> GetAll(CancellationToken cancellationToken)
         {
-            await _dbContext.Set<T>().AddAsync(entity, cancellationToken);
+            return await _dbContext.Set<T>().ToListAsync(cancellationToken);
+        }
+
+        public async Task<T?> Get(Guid id, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Set<T>().AsNoTracking().FirstOrDefaultAsync(q => q.Id == id, cancellationToken);
+        }
+
+        public async Task<T> Add(T entity, CancellationToken cancellationToken)
+        {
+            await _dbContext.AddAsync(entity, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return entity;
         }
 
-        public async Task<bool> Delete(T entity, CancellationToken cancellationToken = default)
-        {
-            _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync(cancellationToken);
-            return true;
-        }
-
-        public async Task<bool> Exists(Guid id, CancellationToken cancellationToken = default)
-        {
-            var entity = await Get(id, cancellationToken);
-            return entity is not null;
-        }
-
-        public async Task<T?> Get(Guid id, CancellationToken cancellationToken = default)
-        {
-            return await _dbContext.Set<T>().FindAsync(new object[] { id }, cancellationToken);
-        }
-
-        public async Task<IReadOnlyList<T>> GetAll(CancellationToken cancellationToken = default)
-        {
-            return await _dbContext.Set<T>().AsNoTracking().ToListAsync(cancellationToken);
-        }
-
-        public async Task<bool> Update(T entity, CancellationToken cancellationToken = default)
+        public async Task<bool> Update(T entity, CancellationToken cancellationToken)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
-            await _dbContext.SaveChangesAsync(cancellationToken);
-            return true;
+            var result = await _dbContext.SaveChangesAsync(cancellationToken);
+            return result > 0;
+        }
+
+        public async Task<bool> Delete(T entity, CancellationToken cancellationToken)
+        {
+            _dbContext.Remove(entity);
+            var result = await _dbContext.SaveChangesAsync(cancellationToken);
+            return result > 0;
+        }
+
+        public async Task<IReadOnlyList<T>> Find(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Set<T>().Where(predicate).ToListAsync(cancellationToken);
+        }
+
+        public async Task<bool> Exists(Guid id, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Set<T>().AnyAsync(q => q.Id == id, cancellationToken);
         }
     }
 }

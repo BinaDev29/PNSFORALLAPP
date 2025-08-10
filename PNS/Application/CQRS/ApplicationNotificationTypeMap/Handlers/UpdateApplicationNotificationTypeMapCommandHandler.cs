@@ -1,44 +1,40 @@
-﻿
-using ValidationException = Application.Exceptions.ValidationException;
-// File Path: Application/CQRS/ApplicationNotificationTypeMap/Handlers/UpdateApplicationNotificationTypeMapCommandHandler.cs
-using AutoMapper;
-using MediatR;
-using Application.CQRS.ApplicationNotificationTypeMap.Commands;
+﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Handlers/UpdateApplicationNotificationTypeMapCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.ApplicationNotificationTypeMap.Commands;
+using Application.DTO.ApplicationNotificationTypeMap.Validator;
 using Application.Exceptions;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.DTO.ApplicationNotificationTypeMap.Validator;
-using FluentValidation;
 
-namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers;
-
-public class UpdateApplicationNotificationTypeMapCommandHandler(IApplicationNotificationTypeMapRepository repository, IMapper mapper)
-    : IRequestHandler<UpdateApplicationNotificationTypeMapCommand, Unit>
+namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 {
-    public async Task<Unit> Handle(UpdateApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
+    public class UpdateApplicationNotificationTypeMapCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateApplicationNotificationTypeMapCommand, Unit>
     {
-        var validator = new UpdateApplicationNotificationTypeMapDtoValidator();
-        var validationResult = await validator.ValidateAsync(request.UpdateApplicationNotificationTypeMapDto, cancellationToken);
-
-        if (!validationResult.IsValid)
+        public async Task<Unit> Handle(UpdateApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
         {
-            throw new ValidationException(validationResult.Errors);
+            var validator = new UpdateApplicationNotificationTypeMapDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.UpdateApplicationNotificationTypeMapDto, cancellationToken);
+
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult);
+            }
+
+            var map = await unitOfWork.ApplicationNotificationTypeMaps.Get(request.UpdateApplicationNotificationTypeMapDto.Id, cancellationToken);
+
+            if (map is null)
+            {
+                throw new NotFoundException(nameof(Domain.Models.ApplicationNotificationTypeMap), request.UpdateApplicationNotificationTypeMapDto.Id);
+            }
+
+            mapper.Map(request.UpdateApplicationNotificationTypeMapDto, map);
+            await unitOfWork.ApplicationNotificationTypeMaps.Update(map, cancellationToken);
+
+            return Unit.Value;
         }
-
-        var map = await repository.Get(request.UpdateApplicationNotificationTypeMapDto.ClientApplicationId, request.UpdateApplicationNotificationTypeMapDto.NotificationTypeId, cancellationToken);
-
-        // 🟢 ወሳኝ ማስተካከያ: Null ፍተሻ
-        if (map is null)
-        {
-            // መዝገቡ ከሌለ NotFoundException ን ይጥላል
-            throw new NotFoundException(nameof(ApplicationNotificationTypeMap), $"{request.UpdateApplicationNotificationTypeMapDto.ClientApplicationId}, {request.UpdateApplicationNotificationTypeMapDto.NotificationTypeId}");
-        }
-
-        mapper.Map(request.UpdateApplicationNotificationTypeMapDto, map);
-        await repository.Update(map, cancellationToken);
-
-        return Unit.Value;
     }
 }

@@ -1,23 +1,21 @@
-﻿// GetEmailTemplatesListQueryHandler.cs
+﻿// File Path: Application/CQRS/EmailTemplate/Handlers/GetEmailTemplatesListQueryHandler.cs
+using Application.Contracts.IRepository;
+using Application.CQRS.EmailTemplate.Queries;
+using Application.DTO.EmailTemplate;
 using AutoMapper;
 using MediatR;
-using Application.CQRS.EmailTemplate.Queries;
-using Application.Contracts.IRepository;
-using Application.DTO.EmailTemplate;
-using Domain.Models;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 
-namespace Application.CQRS.EmailTemplate.Handlers;
-
-public class GetEmailTemplatesListQueryHandler(IGenericRepository<Domain.Models.EmailTemplate> repository, IMapper mapper)
-    : IRequestHandler<GetEmailTemplatesListQuery, IReadOnlyList<EmailTemplateDto>>
+namespace Application.CQRS.EmailTemplate.Handlers
 {
-    public async Task<IReadOnlyList<EmailTemplateDto>> Handle(GetEmailTemplatesListQuery request, CancellationToken cancellationToken)
+    public class GetEmailTemplatesListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetEmailTemplatesListQuery, List<EmailTemplateDto>>
     {
-        var emailTemplates = await repository.GetAll();
-        return mapper.Map<IReadOnlyList<EmailTemplateDto>>(emailTemplates);
+        public async Task<List<EmailTemplateDto>> Handle(GetEmailTemplatesListQuery request, CancellationToken cancellationToken)
+        {
+            var templates = await unitOfWork.EmailTemplates.GetAll(cancellationToken);
+            return mapper.Map<List<EmailTemplateDto>>(templates);
+        }
     }
 }

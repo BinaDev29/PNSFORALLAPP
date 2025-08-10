@@ -1,41 +1,40 @@
 ﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Handlers/CreateApplicationNotificationTypeMapCommandHandler.cs
-using AutoMapper;
-using MediatR;
-using Application.CQRS.ApplicationNotificationTypeMap.Commands;
 using Application.Contracts.IRepository;
+using Application.CQRS.ApplicationNotificationTypeMap.Commands;
+using Application.DTO.ApplicationNotificationTypeMap.Validator;
 using Application.Responses;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.DTO.ApplicationNotificationTypeMap.Validator;
-using System.Linq;
-using FluentValidation; // FluentValidationን ማስገባት አይዘንጋ
 
-namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers;
-
-public class CreateApplicationNotificationTypeMapCommandHandler(IApplicationNotificationTypeMapRepository repository, IMapper mapper)
-    : IRequestHandler<CreateApplicationNotificationTypeMapCommand, BaseCommandResponse>
+namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 {
-    public async Task<BaseCommandResponse> Handle(CreateApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
+    public class CreateApplicationNotificationTypeMapCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateApplicationNotificationTypeMapCommand, BaseCommandResponse>
     {
-        var response = new BaseCommandResponse();
-        var validator = new CreateApplicationNotificationTypeMapDtoValidator();
-        var validationResult = await validator.ValidateAsync(request.MapDto, cancellationToken);
-
-        if (!validationResult.IsValid)
+        public async Task<BaseCommandResponse> Handle(CreateApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
         {
-            response.Success = false;
-            response.Message = "Creation Failed";
-            response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
+            var response = new BaseCommandResponse();
+            var validator = new CreateApplicationNotificationTypeMapDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.CreateApplicationNotificationTypeMapDto, cancellationToken);
+
+            if (!validationResult.IsValid)
+            {
+                response.Success = false;
+                response.Message = "Creation Failed";
+                response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
+                return response;
+            }
+
+            var map = mapper.Map<Domain.Models.ApplicationNotificationTypeMap>(request.CreateApplicationNotificationTypeMapDto);
+            await unitOfWork.ApplicationNotificationTypeMaps.Add(map, cancellationToken);
+
+            response.Success = true;
+            response.Message = "Creation Successful";
+            response.Id = map.Id;
             return response;
         }
-
-        var map = mapper.Map<Domain.Models.ApplicationNotificationTypeMap>(request.MapDto);
-        await repository.Add(map, cancellationToken);
-
-        response.Success = true;
-        response.Message = "Creation Successful.";
-
-        return response;
     }
 }

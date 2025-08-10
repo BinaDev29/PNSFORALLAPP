@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// File Path: Application/DTO/ApplicationNotificationTypeMap/Validator/UpdateApplicationNotificationTypeMapDtoValidator.cs
 using FluentValidation;
-using Application.DTO.ApplicationNotificationTypeMap;
 
 namespace Application.DTO.ApplicationNotificationTypeMap.Validator
 {
@@ -13,11 +7,17 @@ namespace Application.DTO.ApplicationNotificationTypeMap.Validator
     {
         public UpdateApplicationNotificationTypeMapDtoValidator()
         {
+            RuleFor(p => p.Id)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
+
             RuleFor(p => p.ClientApplicationId)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
 
             RuleFor(p => p.NotificationTypeId)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
         }
     }
 }

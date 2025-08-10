@@ -1,54 +1,79 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿// File Path: API/Controllers/EmailTemplateController.cs
 using Application.CQRS.EmailTemplate.Commands;
 using Application.CQRS.EmailTemplate.Queries;
 using Application.DTO.EmailTemplate;
+using Application.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class EmailTemplateController(IMediator mediator) : ControllerBase
+    [ApiController]
+    public class EmailTemplateController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public EmailTemplateController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        // GET: api/EmailTemplate
         [HttpGet]
-        public async Task<IActionResult> GetEmailTemplates()
+        [ProducesResponseType(typeof(List<EmailTemplateDto>), 200)]
+        public async Task<ActionResult<List<EmailTemplateDto>>> Get()
         {
             var query = new GetEmailTemplatesListQuery();
-            var templates = await mediator.Send(query);
+            var templates = await _mediator.Send(query);
             return Ok(templates);
         }
 
+        // GET: api/EmailTemplate/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmailTemplate(Guid id)
+        [ProducesResponseType(typeof(EmailTemplateDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<EmailTemplateDto>> Get(Guid id)
         {
             var query = new GetEmailTemplateDetailQuery { Id = id };
-            var template = await mediator.Send(query);
+            var template = await _mediator.Send(query);
             return Ok(template);
         }
 
+        // POST: api/EmailTemplate
         [HttpPost]
-        public async Task<IActionResult> CreateEmailTemplate([FromBody] CreateEmailTemplateDto dto)
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateEmailTemplateDto createEmailTemplateDto)
         {
-            var command = new CreateEmailTemplateCommand { CreateEmailTemplateDto = dto };
-            var response = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetEmailTemplate), new { id = response.Id }, response);
+            var command = new CreateEmailTemplateCommand { CreateEmailTemplateDto = createEmailTemplateDto };
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
 
+        // PUT: api/EmailTemplate
         [HttpPut]
-        public async Task<IActionResult> UpdateEmailTemplate([FromBody] UpdateEmailTemplateDto dto)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Put([FromBody] UpdateEmailTemplateDto updateEmailTemplateDto)
         {
-            var command = new UpdateEmailTemplateCommand { UpdateEmailTemplateDto = dto };
-            await mediator.Send(command);
+            var command = new UpdateEmailTemplateCommand { UpdateEmailTemplateDto = updateEmailTemplateDto };
+            await _mediator.Send(command);
             return NoContent();
         }
 
+        // DELETE: api/EmailTemplate/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmailTemplate(Guid id)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteEmailTemplateCommand { Id = id };
-            await mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
     }

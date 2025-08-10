@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using Application.DTO.Notification;
+﻿// File Path: Application/DTO/Notification/Validator/CreateNotificationDtoValidator.cs
+using FluentValidation;
 
 namespace Application.DTO.Notification.Validator
 {
@@ -10,11 +10,10 @@ namespace Application.DTO.Notification.Validator
             RuleFor(p => p.ClientApplicationId)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
 
-            RuleFor(p => p.NotificationTypeId)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
-
-            RuleFor(p => p.Recipient)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
+            // RuleFor(p => p.To) የሚለውን ወደ RuleForEach ቀይረናል
+            RuleForEach(p => p.To)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .EmailAddress().WithMessage("Each {PropertyName} must be a valid email address.");
 
             RuleFor(p => p.Title)
                 .NotEmpty().WithMessage("{PropertyName} is required.");

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿// File Path: Application/CQRS/EmailTemplate/Commands/DeleteEmailTemplateCommand.cs
+using MediatR;
 using System;
 
 namespace Application.CQRS.EmailTemplate.Commands

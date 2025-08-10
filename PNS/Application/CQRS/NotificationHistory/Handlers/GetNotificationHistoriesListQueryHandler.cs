@@ -1,23 +1,21 @@
-﻿// GetNotificationHistoriesListQueryHandler.cs
+﻿// File Path: Application/CQRS/NotificationHistory/Handlers/GetNotificationHistoriesListQueryHandler.cs
+using Application.Contracts.IRepository;
+using Application.CQRS.NotificationHistory.Queries;
+using Application.DTO.NotificationHistory;
 using AutoMapper;
 using MediatR;
-using Application.CQRS.NotificationHistory.Queries;
-using Application.Contracts.IRepository;
-using Application.DTO.NotificationHistory;
-using Domain.Models;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 
-namespace Application.CQRS.NotificationHistory.Handlers;
-
-public class GetNotificationHistoriesListQueryHandler(IGenericRepository<Domain.Models.NotificationHistory> repository, IMapper mapper)
-    : IRequestHandler<GetNotificationHistoriesListQuery, IReadOnlyList<NotificationHistoryDto>>
+namespace Application.CQRS.NotificationHistory.Handlers
 {
-    public async Task<IReadOnlyList<NotificationHistoryDto>> Handle(GetNotificationHistoriesListQuery request, CancellationToken cancellationToken)
+    public class GetNotificationHistoriesListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetNotificationHistoriesListQuery, List<NotificationHistoryDto>>
     {
-        var notificationHistories = await repository.GetAll();
-        return mapper.Map<IReadOnlyList<NotificationHistoryDto>>(notificationHistories);
+        public async Task<List<NotificationHistoryDto>> Handle(GetNotificationHistoriesListQuery request, CancellationToken cancellationToken)
+        {
+            var histories = await unitOfWork.NotificationHistories.GetAll(cancellationToken);
+            return mapper.Map<List<NotificationHistoryDto>>(histories);
+        }
     }
 }

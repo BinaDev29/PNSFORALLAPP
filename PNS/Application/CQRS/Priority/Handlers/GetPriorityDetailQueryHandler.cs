@@ -1,28 +1,28 @@
-﻿// GetPriorityDetailQueryHandler.cs
-using AutoMapper;
-using MediatR;
-using Application.CQRS.Priority.Queries;
+﻿// File Path: Application/CQRS/Priority/Handlers/GetPriorityDetailQueryHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.Priority.Queries;
 using Application.DTO.Priority;
 using Application.Exceptions;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.Priority.Handlers;
-
-public class GetPriorityDetailQueryHandler(IGenericRepository<Domain.Models.Priority> repository, IMapper mapper)
-    : IRequestHandler<GetPriorityDetailQuery, PriorityDto>
+namespace Application.CQRS.Priority.Handlers
 {
-    public async Task<PriorityDto> Handle(GetPriorityDetailQuery request, CancellationToken cancellationToken)
+    public class GetPriorityDetailQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetPriorityDetailQuery, PriorityDto>
     {
-        var priority = await repository.Get(request.Id);
-
-        if (priority is null)
+        public async Task<PriorityDto> Handle(GetPriorityDetailQuery request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.Priority), request.Id);
-        }
+            var priority = await unitOfWork.Priorities.Get(request.Id, cancellationToken);
 
-        return mapper.Map<PriorityDto>(priority);
+            if (priority is null)
+            {
+                throw new NotFoundException(nameof(Domain.Models.Priority), request.Id);
+            }
+
+            return mapper.Map<PriorityDto>(priority);
+        }
     }
 }

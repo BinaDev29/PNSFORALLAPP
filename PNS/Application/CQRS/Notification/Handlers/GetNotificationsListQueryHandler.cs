@@ -1,22 +1,21 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.Notification.Queries;
+﻿// File Path: Application/CQRS/Notification/Handlers/GetNotificationsListQueryHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.Notification.Queries;
 using Application.DTO.Notification;
-using Domain.Models;
+using AutoMapper;
+using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 
-namespace Application.CQRS.Notification.Handlers;
-
-public class GetNotificationsListQueryHandler(IGenericRepository<Domain.Models.Notification> repository, IMapper mapper)
-    : IRequestHandler<GetNotificationsListQuery, IReadOnlyList<NotificationDto>>
+namespace Application.CQRS.Notification.Handlers
 {
-    public async Task<IReadOnlyList<NotificationDto>> Handle(GetNotificationsListQuery request, CancellationToken cancellationToken)
+    public class GetNotificationsListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetNotificationsListQuery, List<NotificationDto>>
     {
-        var notifications = await repository.GetAll();
-        return mapper.Map<IReadOnlyList<NotificationDto>>(notifications);
+        public async Task<List<NotificationDto>> Handle(GetNotificationsListQuery request, CancellationToken cancellationToken)
+        {
+            var notifications = await unitOfWork.Notifications.GetAll(cancellationToken);
+            return mapper.Map<List<NotificationDto>>(notifications);
+        }
     }
 }

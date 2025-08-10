@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿// File Path: Application/CQRS/ApplicationNotificationTypeMap/Commands/UpdateApplicationNotificationTypeMapCommand.cs
 using Application.DTO.ApplicationNotificationTypeMap;
-using System;
+using MediatR;
 
 namespace Application.CQRS.ApplicationNotificationTypeMap.Commands
 {

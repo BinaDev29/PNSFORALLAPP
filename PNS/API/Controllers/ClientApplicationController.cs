@@ -1,62 +1,79 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿// File Path: API/Controllers/ClientApplicationController.cs
 using Application.CQRS.ClientApplication.Commands;
 using Application.CQRS.ClientApplication.Queries;
 using Application.DTO.ClientApplication;
+using Application.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class ClientApplicationController(IMediator mediator) : ControllerBase
+    [ApiController]
+    public class ClientApplicationController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public ClientApplicationController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        // GET: api/ClientApplication
         [HttpGet]
-        public async Task<IActionResult> GetClientApplications()
+        [ProducesResponseType(typeof(List<ClientApplicationDto>), 200)]
+        public async Task<ActionResult<List<ClientApplicationDto>>> Get()
         {
             var query = new GetClientApplicationsListQuery();
-            var applications = await mediator.Send(query);
-            // ባዶ ሊስት ሲመጣ በቀጥታ መመለስ ትክክል ነው
+            var applications = await _mediator.Send(query);
             return Ok(applications);
         }
 
+        // GET: api/ClientApplication/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetClientApplication(Guid id)
+        [ProducesResponseType(typeof(ClientApplicationDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<ClientApplicationDto>> Get(Guid id)
         {
             var query = new GetClientApplicationDetailQuery { Id = id };
-            var application = await mediator.Send(query);
-
-            // መረጃው null ከሆነ NotFound() መመለስ ትክክለኛ RESTful API ልምድ ነው
-            if (application == null)
-            {
-                return NotFound();
-            }
-
+            var application = await _mediator.Send(query);
             return Ok(application);
         }
 
+        // POST: api/ClientApplication
         [HttpPost]
-        public async Task<IActionResult> CreateClientApplication([FromBody] CreateClientApplicationDto dto)
+        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateClientApplicationDto createClientApplicationDto)
         {
-            var command = new CreateClientApplicationCommand { CreateClientApplicationDto = dto };
-            var response = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetClientApplication), new { id = response.Id }, response);
+            var command = new CreateClientApplicationCommand { CreateClientApplicationDto = createClientApplicationDto };
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
 
+        // PUT: api/ClientApplication
         [HttpPut]
-        public async Task<IActionResult> UpdateClientApplication([FromBody] UpdateClientApplicationDto dto)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Put([FromBody] UpdateClientApplicationDto updateClientApplicationDto)
         {
-            var command = new UpdateClientApplicationCommand { UpdateClientApplicationDto = dto };
-            await mediator.Send(command);
+            var command = new UpdateClientApplicationCommand { UpdateClientApplicationDto = updateClientApplicationDto };
+            await _mediator.Send(command);
             return NoContent();
         }
 
+        // DELETE: api/ClientApplication/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClientApplication(Guid id)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteClientApplicationCommand { Id = id };
-            await mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
     }

@@ -1,5 +1,6 @@
-﻿using MediatR;
+﻿// File Path: Application/CQRS/ClientApplication/Queries/GetClientApplicationDetailQuery.cs
 using Application.DTO.ClientApplication;
+using MediatR;
 using System;
 
 namespace Application.CQRS.ClientApplication.Queries

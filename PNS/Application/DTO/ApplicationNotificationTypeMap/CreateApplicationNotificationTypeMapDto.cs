@@ -1,4 +1,5 @@
-﻿using System;
+﻿// File Path: Application/DTO/ApplicationNotificationTypeMap/CreateApplicationNotificationTypeMapDto.cs
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTO.ApplicationNotificationTypeMap
@@ -9,7 +10,5 @@ namespace Application.DTO.ApplicationNotificationTypeMap
         public Guid ClientApplicationId { get; set; }
         [Required]
         public Guid NotificationTypeId { get; set; }
-        public bool IsEnabled { get; set; }
-        public Guid? EmailTemplateId { get; set; }
     }
 }

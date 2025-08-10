@@ -1,4 +1,5 @@
-﻿using System;
+﻿// File Path: Application/DTO/Notification/UpdateNotificationDto.cs
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTO.Notification
@@ -7,7 +8,17 @@ namespace Application.DTO.Notification
     {
         [Required]
         public Guid Id { get; set; }
-        public required string Status { get; set; }
-        public DateTime? SeenAt { get; set; } // ይህን መጨመር የnotificationው መነበቡን ለመመዝገብ ይጠቅማል
+        [Required]
+        public required Guid ClientApplicationId { get; set; }
+        [Required]
+        public required string To { get; set; }
+        [Required]
+        public required string Title { get; set; }
+        [Required]
+        public required string Message { get; set; }
+        [Required]
+        public required Guid NotificationTypeId { get; set; }
+        [Required]
+        public required Guid PriorityId { get; set; }
     }
 }

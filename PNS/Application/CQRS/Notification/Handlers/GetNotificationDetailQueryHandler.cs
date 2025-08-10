@@ -1,27 +1,28 @@
-﻿using AutoMapper;
-using MediatR;
-using Application.CQRS.Notification.Queries;
+﻿// File Path: Application/CQRS/Notification/Handlers/GetNotificationDetailQueryHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.Notification.Queries;
 using Application.DTO.Notification;
 using Application.Exceptions;
+using AutoMapper;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.Notification.Handlers;
-
-public class GetNotificationDetailQueryHandler(IGenericRepository<Domain.Models.Notification> repository, IMapper mapper)
-    : IRequestHandler<GetNotificationDetailQuery, NotificationDto>
+namespace Application.CQRS.Notification.Handlers
 {
-    public async Task<NotificationDto> Handle(GetNotificationDetailQuery request, CancellationToken cancellationToken)
+    public class GetNotificationDetailQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<GetNotificationDetailQuery, NotificationDto>
     {
-        var notification = await repository.Get(request.Id);
-
-        if (notification is null)
+        public async Task<NotificationDto> Handle(GetNotificationDetailQuery request, CancellationToken cancellationToken)
         {
-            throw new NotFoundException(nameof(Domain.Models.Notification), request.Id);
-        }
+            var notification = await unitOfWork.Notifications.Get(request.Id, cancellationToken);
 
-        return mapper.Map<NotificationDto>(notification);
+            if (notification is null)
+            {
+                throw new NotFoundException(nameof(Notification), request.Id);
+            }
+
+            return mapper.Map<NotificationDto>(notification);
+        }
     }
 }

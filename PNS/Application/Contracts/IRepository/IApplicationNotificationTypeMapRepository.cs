@@ -8,7 +8,6 @@ namespace Application.Contracts.IRepository
 {
     public interface IApplicationNotificationTypeMapRepository : IGenericRepository<ApplicationNotificationTypeMap>
     {
-        Task<ApplicationNotificationTypeMap?> Get(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken = default);
-        Task Delete(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken = default);
+        Task<ApplicationNotificationTypeMap?> GetByKeys(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken);
     }
 }

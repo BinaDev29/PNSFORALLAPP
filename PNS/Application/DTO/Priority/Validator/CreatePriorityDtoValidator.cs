@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// File Path: Application/DTO/Priority/Validator/CreatePriorityDtoValidator.cs
 using FluentValidation;
-using Application.DTO.Priority;
 
 namespace Application.DTO.Priority.Validator
 {
@@ -14,12 +8,10 @@ namespace Application.DTO.Priority.Validator
         public CreatePriorityDtoValidator()
         {
             RuleFor(p => p.Description)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(200).WithMessage("{PropertyName} must not exceed 200 characters.");
+                .NotEmpty().WithMessage("{PropertyName} is required.");
 
             RuleFor(p => p.Level)
-                .GreaterThanOrEqualTo(1).WithMessage("{PropertyName} must be at least 1.");
+                .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0.");
         }
     }
 }
