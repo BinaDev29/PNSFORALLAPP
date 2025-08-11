@@ -21,11 +21,10 @@ public class CreateClientApplicationCommandHandler(IMapper mapper, IUnitOfWork u
     {
         var response = new BaseCommandResponse();
 
-        // ⭐ የይለፍ ቃሉን ከማስቀመጥ በፊት ኢንክሪፕት እናደርጋለን ⭐
         var encryptedPassword = EncryptionService.Encrypt(request.CreateClientApplicationDto.AppPassword);
 
         var clientApplication = _mapper.Map<ClientApplication>(request.CreateClientApplicationDto);
-        clientApplication.AppPassword = encryptedPassword; // የተመሰጠረውን የይለፍ ቃል ወደ ሞዴሉ እናስገባዋለን
+        clientApplication.AppPassword = encryptedPassword; 
 
         await _unitOfWork.ClientApplications.Add(clientApplication, cancellationToken);
         await _unitOfWork.Save(cancellationToken);

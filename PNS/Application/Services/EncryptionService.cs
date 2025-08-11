@@ -4,7 +4,6 @@ using System.Text;
 
 public class EncryptionService
 {
-    // ⭐ ለምሳሌ ያህል ብቻ ሃርድ ኮድ የተደረገ ቁልፍ እና IV። በምርት ላይ (production) አትጠቀምበት ⭐
     private static readonly byte[] Key = Encoding.UTF8.GetBytes("a2b1c4e6f8d1e2a3c5d7b9f1e2a3b4c5"); // 32 bytes for AES-256
     private static readonly byte[] IV = Encoding.UTF8.GetBytes("a2b1c4e6f8d1e2a3"); // 16 bytes
 

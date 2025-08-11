@@ -13,7 +13,6 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    // ⭐ Primary constructorን ተጠቀም ⭐
     public class ClientApplicationController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
