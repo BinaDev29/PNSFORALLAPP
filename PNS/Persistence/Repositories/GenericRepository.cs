@@ -10,6 +10,12 @@ namespace Persistence.Repositories
     public class GenericRepository<T>(PnsDbContext dbContext) : IGenericRepository<T> where T : BaseDomainEntity
     {
         protected readonly PnsDbContext _dbContext = dbContext;
+        public async Task<List<T>> Get(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Set<T>()
+                .Where(predicate)
+                .ToListAsync(cancellationToken);
+        }
 
         public async Task<IReadOnlyList<T>> GetAll(CancellationToken cancellationToken)
         {

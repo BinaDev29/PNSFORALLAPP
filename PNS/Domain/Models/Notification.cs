@@ -1,7 +1,7 @@
 ﻿// File Path: Domain/Models/Notification.cs
 using Domain.Common;
 using System;
-using System.Collections.Generic; // ለ'List<string>' ያስፈልጋል
+using System.Collections.Generic;
 
 namespace Domain.Models
 {
@@ -10,7 +10,7 @@ namespace Domain.Models
         public required Guid ClientApplicationId { get; set; }
         public virtual ClientApplication? ClientApplication { get; set; }
 
-        public required List<string> To { get; set; } // 'string' ወደ 'List<string>' ተቀይሯል
+        public required List<string> To { get; set; }
         public DateTime? ReceivedTime { get; set; }
         public DateTime? SeenTime { get; set; }
         public string? Secret { get; set; }

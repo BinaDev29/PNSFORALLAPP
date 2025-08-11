@@ -22,6 +22,36 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
+        // GET: api/Notification/unseen/{clientApplicationId}
+        [HttpGet("unseen/{clientApplicationId}")]
+        [ProducesResponseType(typeof(List<NotificationDto>), 200)]
+        public async Task<ActionResult<List<NotificationDto>>> GetUnseen(Guid clientApplicationId)
+        {
+            var query = new GetUnseenNotificationsQuery { ClientApplicationId = clientApplicationId };
+            var notifications = await _mediator.Send(query);
+            return Ok(notifications);
+        }
+
+        // GET: api/Notification/seen/{clientApplicationId}
+        [HttpGet("seen/{clientApplicationId}")]
+        [ProducesResponseType(typeof(List<NotificationDto>), 200)]
+        public async Task<ActionResult<List<NotificationDto>>> GetSeen(Guid clientApplicationId)
+        {
+            var query = new GetSeenNotificationsQuery { ClientApplicationId = clientApplicationId };
+            var notifications = await _mediator.Send(query);
+            return Ok(notifications);
+        }
+
+        // GET: api/Notification/high-priority/{clientApplicationId}
+        [HttpGet("high-priority/{clientApplicationId}")]
+        [ProducesResponseType(typeof(List<NotificationDto>), 200)]
+        public async Task<ActionResult<List<NotificationDto>>> GetHighPriority(Guid clientApplicationId)
+        {
+            var query = new GetHighPriorityNotificationsQuery { ClientApplicationId = clientApplicationId };
+            var notifications = await _mediator.Send(query);
+            return Ok(notifications);
+        }
+
         // GET: api/Notification
         [HttpGet]
         [ProducesResponseType(typeof(List<NotificationDto>), 200)]
@@ -67,7 +97,6 @@ namespace API.Controllers
         }
 
         // PUT: api/Notification/5/seen
-        // ይህ አፕሊኬሽን ላይ notification ሲታይ የሚያገለግል endpoint ነው።
         [HttpPut("{id}/seen")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -79,7 +108,6 @@ namespace API.Controllers
         }
 
         // GET: api/Notification/5/track
-        // ይህ ኢሜይል ሲከፈት ብቻ SeenTimeን ለመመዝገብ የሚያገለግል endpoint ነው።
         [HttpGet("{id}/track")]
         public async Task<ActionResult> TrackEmailOpen(Guid id)
         {

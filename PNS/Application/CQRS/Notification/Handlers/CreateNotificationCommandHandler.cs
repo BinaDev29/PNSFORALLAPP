@@ -55,16 +55,17 @@ namespace Application.CQRS.Notification.Handlers
             bool allEmailsSentSuccessfully = true;
             foreach (var recipient in notification.To)
             {
+                // ⭐ EmailMessageን በትክክል አዘምን ⭐
                 var emailMessage = new EmailMessage
                 {
                     To = new List<string> { recipient },
                     From = clientApplication.SenderEmail,
                     Subject = notification.Title,
-                    Body = $"<p>{clientApplication.Name}.</p><p>{notification.Message}</p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto;' />",
-                    IsHtml = true
+                    BodyHtml = $"<p>{clientApplication.Name}.</p><p>{notification.Message}</p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto;' />",
                 };
 
-                var emailResult = await _emailService.SendEmail(emailMessage);
+                // ⭐ SendEmail methodን በትክክል ጥራ ⭐
+                var emailResult = await _emailService.SendEmail(emailMessage, notification.Id);
                 if (!emailResult)
                 {
                     allEmailsSentSuccessfully = false;
@@ -77,7 +78,7 @@ namespace Application.CQRS.Notification.Handlers
                 {
                     Id = Guid.NewGuid(),
                     NotificationId = notification.Id,
-                    SentDate = notification.ReceivedTime.Value, 
+                    SentDate = notification.ReceivedTime.Value,
                     Status = allEmailsSentSuccessfully ? "Sent" : "Failed",
                 };
                 await _unitOfWork.NotificationHistory.Add(notificationHistory, cancellationToken);

@@ -15,5 +15,7 @@ namespace Application.Contracts.IRepository
         Task<bool> Delete(T entity, CancellationToken cancellationToken);
         Task<IReadOnlyList<T>> Find(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken);
         Task<bool> Exists(Guid id, CancellationToken cancellationToken);
+        Task<List<T>> Get(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken);
+
     }
 }

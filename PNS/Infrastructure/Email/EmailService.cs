@@ -2,6 +2,7 @@
 using Application.Contracts;
 using Application.Models.Email;
 using Microsoft.Extensions.Options;
+using System;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Infrastructure.Email
     {
         private readonly SmtpSettings _smtpSettings = smtpSettings.Value;
 
-        public async Task<bool> SendEmail(EmailMessage email)
+        public async Task<bool> SendEmail(EmailMessage email, Guid notificationId) // ⭐ notificationIdን ጨምር ⭐
         {
             try
             {
@@ -31,16 +32,19 @@ namespace Infrastructure.Email
                     EnableSsl = true,
                 };
 
+                // ⭐ Tracking Pixel ን ለመጨመር ⭐
+                var trackingUrl = $"https://localhost:7198/api/Notification/{notificationId}/track";
+                var htmlBodyWithTrackingPixel = $"{email.BodyHtml}<img src='{trackingUrl}' style='display:none;' />";
+
                 using var mailMessage = new MailMessage
                 {
                     From = new MailAddress(_smtpSettings.Username),
                     Subject = email.Subject,
-                    Body = email.Body,
-                    IsBodyHtml = true // ይህ መስመር መልእክቱ እንደ HTML እንዲነበብ ያደርጋል
-                };
+                    Body = htmlBodyWithTrackingPixel, // ⭐ የተስተካከለውን HTML Body ተጠቀም ⭐
+                    IsBodyHtml = true
+                };
 
-                // ለእያንዳንዱ ተቀባይ ኢሜይሉን ወደ 'To' field እንጨምራለን
-                foreach (var recipient in email.To)
+                foreach (var recipient in email.To)
                 {
                     mailMessage.To.Add(recipient);
                 }
@@ -50,8 +54,7 @@ namespace Infrastructure.Email
             }
             catch (SmtpException ex)
             {
-                // ለምርመራ እንዲረዳህ ስህተቱን ወደ ኮንሶል ማሳየት ትችላለህ
-                Console.WriteLine($"SMTP Error: {ex.Message}");
+                Console.WriteLine($"SMTP Error: {ex.Message}");
                 return false;
             }
             catch (Exception ex)
