@@ -7,7 +7,6 @@ namespace Application.Contracts
 {
     public interface IEmailService
     {
-        // ⭐ ይህን method አዘምን ⭐
-        Task<bool> SendEmail(EmailMessage emailMessage, Guid notificationId);
+        Task<bool> SendEmail(EmailMessage emailMessage, Guid notificationId, string appemail, string apppassword);
     }
 }

@@ -13,14 +13,10 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientApplicationController : ControllerBase
+    // ⭐ Primary constructorን ተጠቀም ⭐
+    public class ClientApplicationController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public ClientApplicationController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        private readonly IMediator _mediator = mediator;
 
         // GET: api/ClientApplication
         [HttpGet]
@@ -49,7 +45,8 @@ namespace API.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateClientApplicationDto createClientApplicationDto)
         {
-            var command = new CreateClientApplicationCommand { CreateClientApplicationDto = createClientApplicationDto };
+            // ⭐ የስህተቱን መንስኤ ለማስተካከል Commandውን በዚህ መንገድ ፍጠር ⭐
+            var command = new CreateClientApplicationCommand(createClientApplicationDto);
             var response = await _mediator.Send(command);
             return Ok(response);
         }

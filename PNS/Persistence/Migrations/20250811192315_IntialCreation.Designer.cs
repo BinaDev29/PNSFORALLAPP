@@ -12,7 +12,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PnsDbContext))]
-    [Migration("20250810192109_IntialCreation")]
+    [Migration("20250811192315_IntialCreation")]
     partial class IntialCreation
     {
         /// <inheritdoc />
@@ -63,6 +63,10 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AppId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AppPassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

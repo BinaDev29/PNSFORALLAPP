@@ -5,8 +5,7 @@ using MediatR;
 
 namespace Application.CQRS.ClientApplication.Commands
 {
-    public class CreateClientApplicationCommand : IRequest<BaseCommandResponse>
-    {
-        public required CreateClientApplicationDto CreateClientApplicationDto { get; set; }
-    }
+    // ⭐ ከ class ይልቅ recordን ተጠቀም ⭐
+    // ⭐ የ constructor አጻጻፍ በጣም ቀላል ነው። ⭐
+    public record CreateClientApplicationCommand(CreateClientApplicationDto CreateClientApplicationDto) : IRequest<BaseCommandResponse>;
 }

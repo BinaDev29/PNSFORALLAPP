@@ -52,20 +52,22 @@ namespace Application.CQRS.Notification.Handlers
             await _unitOfWork.Notifications.Add(notification, cancellationToken);
             await _unitOfWork.Save(cancellationToken);
 
+            // ⭐ የተመሰጠረውን የይለፍ ቃል ከማስቀመጥ በፊት ዲክሪፕት እናደርጋለን ⭐
+            var decryptedAppPassword = EncryptionService.Decrypt(clientApplication.AppPassword);
+
             bool allEmailsSentSuccessfully = true;
             foreach (var recipient in notification.To)
             {
-                // ⭐ EmailMessageን በትክክል አዘምን ⭐
                 var emailMessage = new EmailMessage
                 {
                     To = new List<string> { recipient },
                     From = clientApplication.SenderEmail,
                     Subject = notification.Title,
-                    BodyHtml = $"<p>{clientApplication.Name}.</p><p>{notification.Message}</p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto;' />",
+                    BodyHtml = $"<p>New Message from {clientApplication.Name}.</p><p>{notification.Message}</p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto;' />",
                 };
 
-                // ⭐ SendEmail methodን በትክክል ጥራ ⭐
-                var emailResult = await _emailService.SendEmail(emailMessage, notification.Id);
+                // ⭐ SendEmail methodን በዲክሪፕት በተደረገው የይለፍ ቃል ጥራ ⭐
+                var emailResult = await _emailService.SendEmail(emailMessage, notification.Id, clientApplication.SenderEmail, decryptedAppPassword);
                 if (!emailResult)
                 {
                     allEmailsSentSuccessfully = false;

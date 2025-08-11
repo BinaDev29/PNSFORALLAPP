@@ -21,26 +21,25 @@ namespace Infrastructure.Email
     {
         private readonly SmtpSettings _smtpSettings = smtpSettings.Value;
 
-        public async Task<bool> SendEmail(EmailMessage email, Guid notificationId) // ⭐ notificationIdን ጨምር ⭐
+        public async Task<bool> SendEmail(EmailMessage email, Guid notificationId, string appemail, string apppassword)
         {
             try
             {
                 using var smtpClient = new SmtpClient(_smtpSettings.SmtpServer)
                 {
                     Port = _smtpSettings.Port,
-                    Credentials = new NetworkCredential(_smtpSettings.Username, _smtpSettings.Password),
+                    Credentials = new NetworkCredential(appemail, apppassword), // የPassed email እና passwordን ይጠቀማል
                     EnableSsl = true,
                 };
 
-                // ⭐ Tracking Pixel ን ለመጨመር ⭐
                 var trackingUrl = $"https://localhost:7198/api/Notification/{notificationId}/track";
                 var htmlBodyWithTrackingPixel = $"{email.BodyHtml}<img src='{trackingUrl}' style='display:none;' />";
 
                 using var mailMessage = new MailMessage
                 {
-                    From = new MailAddress(_smtpSettings.Username),
+                    From = new MailAddress(email.From),
                     Subject = email.Subject,
-                    Body = htmlBodyWithTrackingPixel, // ⭐ የተስተካከለውን HTML Body ተጠቀም ⭐
+                    Body = htmlBodyWithTrackingPixel,
                     IsBodyHtml = true
                 };
 

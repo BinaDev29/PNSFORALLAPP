@@ -9,6 +9,9 @@ namespace Application.DTO.ClientApplication
         public required string AppId { get; set; }
 
         [Required]
+        public required string Key { get; set; } // ⭐ ይህንን ጨምር ⭐
+
+        [Required]
         public required string Name { get; set; }
 
         [Required]
@@ -17,9 +20,11 @@ namespace Application.DTO.ClientApplication
         [Required]
         public required string Logo { get; set; }
 
-        // ይህንን አዲስ property ጨምር
         [Required]
         [EmailAddress]
         public required string SenderEmail { get; set; }
+
+        [Required]
+        public required string AppPassword { get; set; }
     }
 }
