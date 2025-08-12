@@ -13,8 +13,6 @@ namespace Infrastructure.Email
     {
         public required string SmtpServer { get; set; }
         public required int Port { get; set; }
-        public required string Username { get; set; }
-        public required string Password { get; set; }
     }
 
     public class EmailService(IOptions<SmtpSettings> smtpSettings) : IEmailService
@@ -28,7 +26,7 @@ namespace Infrastructure.Email
                 using var smtpClient = new SmtpClient(_smtpSettings.SmtpServer)
                 {
                     Port = _smtpSettings.Port,
-                    Credentials = new NetworkCredential(appemail, apppassword), // የPassed email እና passwordን ይጠቀማል
+                    Credentials = new NetworkCredential(appemail, apppassword),
                     EnableSsl = true,
                 };
 

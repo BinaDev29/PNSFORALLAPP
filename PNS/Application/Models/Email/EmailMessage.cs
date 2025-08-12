@@ -8,6 +8,6 @@ namespace Application.Models.Email
         public required List<string> To { get; set; }
         public required string From { get; set; }
         public required string Subject { get; set; }
-        public required string BodyHtml { get; set; } // ⭐ Bodyን ወደ BodyHtml ቀይረው ⭐
+        public required string BodyHtml { get; set; } 
     }
 }

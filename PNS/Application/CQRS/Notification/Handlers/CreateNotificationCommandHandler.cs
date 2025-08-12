@@ -46,7 +46,7 @@ namespace Application.CQRS.Notification.Handlers
             }
 
             var notification = _mapper.Map<Domain.Models.Notification>(request.CreateNotificationDto);
-            notification.Title = $"New Notification from {clientApplication.Name}";
+            notification.Title = $" {clientApplication.Name}";
             notification.ReceivedTime = DateTime.UtcNow;
 
             await _unitOfWork.Notifications.Add(notification, cancellationToken);
@@ -62,7 +62,7 @@ namespace Application.CQRS.Notification.Handlers
                     To = new List<string> { recipient },
                     From = clientApplication.SenderEmail,
                     Subject = notification.Title,
-                    BodyHtml = $"<p>New Message from {clientApplication.Name}.</p><p>{notification.Message}</p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto;' />",
+                    BodyHtml = $"<p><h2>{clientApplication.Name}.</h2></p><p><em>{notification.Message}</em></p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto; border:2px solid black;border-radius:10px;padding:20px; box-shadow:0px 4px 8px rgba(0,0,0,0.8);background-color:white;margin-top:10px' />",
                 };
 
                 var emailResult = await _emailService.SendEmail(emailMessage, notification.Id, clientApplication.SenderEmail, decryptedAppPassword);
