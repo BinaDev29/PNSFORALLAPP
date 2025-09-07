@@ -55,10 +55,12 @@ builder.Services.Configure<SendGridSettings>(builder.Configuration.GetSection("S
 builder.Services.AddScoped<IEmailProvider, SmtpEmailProvider>();
 builder.Services.AddScoped<IEmailProvider, SendGridEmailProvider>();
 builder.Services.AddScoped<EnhancedEmailService>();
+builder.Services.AddScoped<Application.Contracts.IEmailService, EnhancedEmailService>();
 
 // Background Services
 builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
-builder.Services.AddHostedService<EmailQueueProcessor>();
+builder.Services.AddSingleton<EmailQueueProcessor>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<EmailQueueProcessor>());
 
 // Caching
 builder.Services.AddStackExchangeRedisCache(options =>
@@ -79,9 +81,7 @@ builder.Services.AddScoped<INotificationTypeRepository, NotificationTypeReposito
 builder.Services.AddScoped<IApplicationNotificationTypeMapRepository, ApplicationNotificationTypeMapRepository>();
 builder.Services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
 builder.Services.AddScoped<IPriorityRepository, PriorityRepository>();
-// open generic
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-// UnitOfWork
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Rate Limiting
@@ -134,6 +134,10 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer"
     });
+
+    // Show all controllers in Swagger
+    c.DocInclusionPredicate((docName, apiDesc) => true);
+    c.CustomSchemaIds(type => type.FullName);
 });
 
 // Logging
@@ -145,16 +149,14 @@ builder.Services.AddLogging(configure =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Always enable Swagger UI (not just in Development)
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "PNS API V1");
-        c.RoutePrefix = string.Empty; // Serve Swagger UI at root
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "PNS API V1");
+    // Remove or set RoutePrefix to "swagger" to serve at /swagger/index.html
+    c.RoutePrefix = "swagger";
+});
 
 // Custom middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
