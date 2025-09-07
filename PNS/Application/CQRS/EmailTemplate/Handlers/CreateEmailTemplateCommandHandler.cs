@@ -1,4 +1,4 @@
-﻿// File Path: Application/CQRS/EmailTemplate/Handlers/CreateEmailTemplateCommandHandler.cs
+// File Path: Application/CQRS/EmailTemplate/Handlers/CreateEmailTemplateCommandHandler.cs
 using Application.Contracts.IRepository;
 using Application.CQRS.EmailTemplate.Commands;
 using Application.DTO.EmailTemplate.Validator;
@@ -30,6 +30,7 @@ namespace Application.CQRS.EmailTemplate.Handlers
 
             var emailTemplate = mapper.Map<Domain.Models.EmailTemplate>(request.CreateEmailTemplateDto);
             await unitOfWork.EmailTemplates.Add(emailTemplate, cancellationToken);
+            await unitOfWork.Save(cancellationToken);
 
             response.Success = true;
             response.Message = "Creation Successful";

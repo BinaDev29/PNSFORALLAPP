@@ -1,0 +1,16 @@
+// File Path: Application/Common/Exceptions/ApplicationException.cs
+using System;
+
+namespace Application.Common.Exceptions
+{
+    public abstract class ApplicationException : Exception
+    {
+        protected ApplicationException(string message) : base(message)
+        {
+        }
+
+        protected ApplicationException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
+}

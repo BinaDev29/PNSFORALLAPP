@@ -1,0 +1,398 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\events\\notificationseenevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\events\\notificationseenevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\events\\notificationcreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\events\\notificationcreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\idomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\idomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\basedomainentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\basedomainentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\aggregateroot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\aggregateroot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\cqrs\\clientapplication\\handlers\\createclientapplicationcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\cqrs\\clientapplication\\handlers\\createclientapplicationcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\cqrs\\clientapplication\\commands\\createclientapplicationcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\cqrs\\clientapplication\\commands\\createclientapplicationcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\contracts\\irepository\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\contracts\\irepository\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\migrations\\20250907093325_intialcreaion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\migrations\\20250907093325_intialcreaion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\prioritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\prioritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\notificationtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\notificationtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\notificationhistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\notificationhistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\emailtemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\emailtemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\clientapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\clientapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\applicationnotificationtypemapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\applicationnotificationtypemapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\persistence.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\persistence.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NotificationSeenEvent.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationSeenEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\Events\\NotificationSeenEvent.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationSeenEvent.cs",
+              "RelativeToolTip": "Domain\\Events\\NotificationSeenEvent.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAwAsAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T11:02:47.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IDomainEvent.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IDomainEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\common\\IDomainEvent.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IDomainEvent.cs",
+              "RelativeToolTip": "Domain\\common\\IDomainEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T10:53:17.14Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IAuditableEntity.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IAuditableEntity.cs",
+              "RelativeDocumentMoniker": "Domain\\common\\IAuditableEntity.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IAuditableEntity.cs",
+              "RelativeToolTip": "Domain\\common\\IAuditableEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T10:53:06.424Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:31:47.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NotificationCreatedEvent.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationCreatedEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\Events\\NotificationCreatedEvent.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationCreatedEvent.cs",
+              "RelativeToolTip": "Domain\\Events\\NotificationCreatedEvent.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA3wB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T11:02:29.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DomainEvent.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\DomainEvent.cs",
+              "RelativeDocumentMoniker": "Domain\\common\\DomainEvent.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\DomainEvent.cs",
+              "RelativeToolTip": "Domain\\common\\DomainEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAYwAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T10:52:55.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BaseDomainEntity.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\BaseDomainEntity.cs",
+              "RelativeDocumentMoniker": "Domain\\common\\BaseDomainEntity.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\BaseDomainEntity.cs",
+              "RelativeToolTip": "Domain\\common\\BaseDomainEntity.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA+wBIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T10:52:42.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AggregateRoot.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\AggregateRoot.cs",
+              "RelativeDocumentMoniker": "Domain\\common\\AggregateRoot.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\AggregateRoot.cs",
+              "RelativeToolTip": "Domain\\common\\AggregateRoot.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA3wB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T10:52:20.178Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CreateClientApplicationCommandHandler.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
+              "RelativeToolTip": "Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAIwCEAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:56:12.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CreateClientApplicationCommand.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
+              "RelativeDocumentMoniker": "Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
+              "RelativeToolTip": "Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:56:07.704Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Contracts\\IRepository\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Application\\Contracts\\IRepository\\IUnitOfWork.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Contracts\\IRepository\\IUnitOfWork.cs",
+              "RelativeToolTip": "Application\\Contracts\\IRepository\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAswBUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:48:37.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "Persistence\\Repositories\\UnitOfWork.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\UnitOfWork.cs",
+              "RelativeToolTip": "Persistence\\Repositories\\UnitOfWork.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAiwEIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:48:17.939Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "20250907093325_IntialCreaion.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
+              "RelativeDocumentMoniker": "Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
+              "RelativeToolTip": "Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:33:26.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PriorityController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\PriorityController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\PriorityController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\PriorityController.cs",
+              "RelativeToolTip": "API\\Controllers\\PriorityController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:30:34.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "NotificationTypeController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationTypeController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\NotificationTypeController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationTypeController.cs",
+              "RelativeToolTip": "API\\Controllers\\NotificationTypeController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:30:12.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "NotificationHistoryController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationHistoryController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\NotificationHistoryController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationHistoryController.cs",
+              "RelativeToolTip": "API\\Controllers\\NotificationHistoryController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAswDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:29:24.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ClientApplicationController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ClientApplicationController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\ClientApplicationController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ClientApplicationController.cs",
+              "RelativeToolTip": "API\\Controllers\\ClientApplicationController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAswEsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:26:08.907Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "EmailTemplateController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\EmailTemplateController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\EmailTemplateController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\EmailTemplateController.cs",
+              "RelativeToolTip": "API\\Controllers\\EmailTemplateController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:24:33.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\NotificationController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "API\\Controllers\\NotificationController.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAswIEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:24:38.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ApplicationNotificationTypeMapController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ApplicationNotificationTypeMapController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\ApplicationNotificationTypeMapController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ApplicationNotificationTypeMapController.cs",
+              "RelativeToolTip": "API\\Controllers\\ApplicationNotificationTypeMapController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:23:09.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CurrentUserService.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\CurrentUserService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Services\\CurrentUserService.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\CurrentUserService.cs",
+              "RelativeToolTip": "Infrastructure\\Services\\CurrentUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T09:20:57.646Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Persistence.csproj",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Persistence.csproj",
+              "RelativeDocumentMoniker": "Persistence\\Persistence.csproj",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Persistence.csproj",
+              "RelativeToolTip": "Persistence\\Persistence.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-07T09:19:07.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Domain.csproj",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Domain.csproj",
+              "RelativeDocumentMoniker": "Domain\\Domain.csproj",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Domain.csproj",
+              "RelativeToolTip": "Domain\\Domain.csproj",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-07T09:08:26.814Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

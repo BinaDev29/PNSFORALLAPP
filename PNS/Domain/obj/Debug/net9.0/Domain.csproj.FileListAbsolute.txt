@@ -1,0 +1,13 @@
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\bin\Debug\net9.0\Domain.deps.json
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\bin\Debug\net9.0\Domain.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\bin\Debug\net9.0\Domain.pdb
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.sourcelink.json
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\refint\Domain.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\Domain.pdb
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Domain\obj\Debug\net9.0\ref\Domain.dll

@@ -1,4 +1,4 @@
-﻿// File Path: API/Controllers/NotificationHistoryController.cs
+// File Path: API/Controllers/NotificationHistoryController.cs
 using Application.CQRS.NotificationHistory.Commands;
 using Application.CQRS.NotificationHistory.Queries;
 using Application.DTO.NotificationHistory;

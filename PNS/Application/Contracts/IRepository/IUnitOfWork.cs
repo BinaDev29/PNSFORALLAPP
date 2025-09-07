@@ -16,6 +16,7 @@ namespace Application.Contracts.IRepository
         IEmailTemplateRepository EmailTemplates { get; }
         IPriorityRepository Priorities { get; }
         IGenericRepository<NotificationHistory> NotificationHistory { get; }
+
         Task<int> Save(CancellationToken cancellationToken);
     }
 }

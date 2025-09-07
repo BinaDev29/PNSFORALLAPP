@@ -1,4 +1,4 @@
-﻿// File Path: API/Controllers/NotificationTypeController.cs
+// File Path: API/Controllers/NotificationTypeController.cs
 using Application.CQRS.NotificationType.Commands;
 using Application.CQRS.NotificationType.Queries;
 using Application.DTO.NotificationType;

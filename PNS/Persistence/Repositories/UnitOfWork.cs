@@ -12,36 +12,46 @@ namespace Persistence.Repositories
     {
         private readonly PnsDbContext _dbContext;
 
-        // Repositoriesን ለማስተዳደር የሚረዱ properties
-        public IClientApplicationRepository ClientApplications { get; }
-        public INotificationRepository Notifications { get; }
-        public INotificationHistoryRepository NotificationHistories { get; }
-        public IGenericRepository<NotificationHistory> NotificationHistory { get; }
-        public INotificationTypeRepository NotificationTypes { get; }
-        public IApplicationNotificationTypeMapRepository ApplicationNotificationTypeMaps { get; }
-        public IEmailTemplateRepository EmailTemplates { get; }
-        public IPriorityRepository Priorities { get; }
+        // Repositories
+        private readonly IClientApplicationRepository _clientApplications;
+        private readonly INotificationRepository _notifications;
+        private readonly INotificationHistoryRepository _notificationHistories;
+        private readonly INotificationTypeRepository _notificationTypes;
+        private readonly IApplicationNotificationTypeMapRepository _applicationNotificationTypeMaps;
+        private readonly IEmailTemplateRepository _emailTemplates;
+        private readonly IPriorityRepository _priorities;
+        private readonly IGenericRepository<NotificationHistory> _notificationHistory;
 
         public UnitOfWork(PnsDbContext dbContext,
-            IClientApplicationRepository clientApplicationRepository,
-            INotificationRepository notificationRepository,
-            INotificationHistoryRepository notificationHistoryRepository,
-            INotificationTypeRepository notificationTypeRepository,
-            IApplicationNotificationTypeMapRepository applicationNotificationTypeMapRepository,
-            IEmailTemplateRepository emailTemplateRepository,
-            IPriorityRepository priorityRepository,
-            IGenericRepository<NotificationHistory> notificationHistoryGenericRepository) // ይህንን መስመር አክል
+            IClientApplicationRepository clientApplications,
+            INotificationRepository notifications,
+            INotificationHistoryRepository notificationHistories,
+            INotificationTypeRepository notificationTypes,
+            IApplicationNotificationTypeMapRepository applicationNotificationTypeMaps,
+            IEmailTemplateRepository emailTemplates,
+            IPriorityRepository priorities,
+            IGenericRepository<NotificationHistory> notificationHistory)
         {
             _dbContext = dbContext;
-            ClientApplications = clientApplicationRepository;
-            Notifications = notificationRepository;
-            NotificationHistories = notificationHistoryRepository;
-            NotificationTypes = notificationTypeRepository;
-            ApplicationNotificationTypeMaps = applicationNotificationTypeMapRepository;
-            EmailTemplates = emailTemplateRepository;
-            Priorities = priorityRepository;
-            NotificationHistory = notificationHistoryGenericRepository; // ይህንን መስመር አክል
+            _clientApplications = clientApplications;
+            _notifications = notifications;
+            _notificationHistories = notificationHistories;
+            _notificationTypes = notificationTypes;
+            _applicationNotificationTypeMaps = applicationNotificationTypeMaps;
+            _emailTemplates = emailTemplates;
+            _priorities = priorities;
+            _notificationHistory = notificationHistory;
         }
+
+        // Public properties to access the repositories
+        public IClientApplicationRepository ClientApplications => _clientApplications;
+        public INotificationRepository Notifications => _notifications;
+        public INotificationHistoryRepository NotificationHistories => _notificationHistories;
+        public INotificationTypeRepository NotificationTypes => _notificationTypes;
+        public IApplicationNotificationTypeMapRepository ApplicationNotificationTypeMaps => _applicationNotificationTypeMaps;
+        public IEmailTemplateRepository EmailTemplates => _emailTemplates;
+        public IPriorityRepository Priorities => _priorities;
+        public IGenericRepository<NotificationHistory> NotificationHistory => _notificationHistory;
 
         public async Task<int> Save(CancellationToken cancellationToken)
         {

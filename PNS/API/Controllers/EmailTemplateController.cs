@@ -1,4 +1,4 @@
-﻿// File Path: API/Controllers/EmailTemplateController.cs
+// File Path: API/Controllers/EmailTemplateController.cs
 using Application.CQRS.EmailTemplate.Commands;
 using Application.CQRS.EmailTemplate.Queries;
 using Application.DTO.EmailTemplate;

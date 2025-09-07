@@ -1,4 +1,4 @@
-﻿// File Path: API/Controllers/PriorityController.cs
+// File Path: API/Controllers/PriorityController.cs
 using Application.CQRS.Priority.Commands;
 using Application.CQRS.Priority.Queries;
 using Application.DTO.Priority;

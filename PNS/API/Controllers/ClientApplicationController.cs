@@ -1,4 +1,4 @@
-﻿// File Path: API/Controllers/ClientApplicationController.cs
+// File Path: API/Controllers/ClientApplicationController.cs
 using Application.CQRS.ClientApplication.Commands;
 using Application.CQRS.ClientApplication.Queries;
 using Application.DTO.ClientApplication;
@@ -44,7 +44,7 @@ namespace API.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateClientApplicationDto createClientApplicationDto)
         {
-            // ⭐ የስህተቱን መንስኤ ለማስተካከል Commandውን በዚህ መንገድ ፍጠር ⭐
+            // ? ?????? ???? ??????? Command?? ??? ???? ??? ?
             var command = new CreateClientApplicationCommand(createClientApplicationDto);
             var response = await _mediator.Send(command);
             return Ok(response);
