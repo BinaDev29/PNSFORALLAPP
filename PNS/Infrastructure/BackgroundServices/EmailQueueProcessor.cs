@@ -1,4 +1,3 @@
-// File Path: Infrastructure/BackgroundServices/EmailQueueProcessor.cs
 using Application.Common.Interfaces;
 using Application.Models.Email;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +35,7 @@ namespace Infrastructure.BackgroundServices
                     if (_emailQueue.TryDequeue(out var queuedEmail))
                     {
                         await _semaphore.WaitAsync(stoppingToken);
-                        
+
                         _ = Task.Run(async () =>
                         {
                             try
@@ -80,21 +79,22 @@ namespace Infrastructure.BackgroundServices
                 }
                 else
                 {
-                    _logger.LogWarning("Failed to send email {EmailId}, attempt {Attempt}", 
+                    _logger.LogWarning("Failed to send email {EmailId}, attempt {Attempt}",
                         queuedEmail.Email.Id, queuedEmail.AttemptCount);
 
                     if (queuedEmail.AttemptCount < queuedEmail.Email.MaxRetries)
                     {
                         queuedEmail.AttemptCount++;
                         queuedEmail.NextAttempt = DateTime.UtcNow.AddMinutes(Math.Pow(2, queuedEmail.AttemptCount)); // Exponential backoff
-                        
+
                         // Re-queue for retry
+                        _logger.LogInformation("Re-queuing email {EmailId} for attempt {Attempt}", queuedEmail.Email.Id, queuedEmail.AttemptCount);
                         await Task.Delay(TimeSpan.FromMinutes(1)); // Wait before re-queuing
                         _emailQueue.Enqueue(queuedEmail);
                     }
                     else
                     {
-                        _logger.LogError("Email {EmailId} failed permanently after {MaxRetries} attempts", 
+                        _logger.LogError("Email {EmailId} failed permanently after {MaxRetries} attempts",
                             queuedEmail.Email.Id, queuedEmail.Email.MaxRetries);
                     }
                 }
@@ -112,7 +112,8 @@ namespace Infrastructure.BackgroundServices
                 Email = email,
                 Priority = priority,
                 QueuedAt = DateTime.UtcNow,
-                AttemptCount = 0
+                AttemptCount = 0,
+                NextAttempt = DateTime.UtcNow
             };
 
             _emailQueue.Enqueue(queuedEmail);

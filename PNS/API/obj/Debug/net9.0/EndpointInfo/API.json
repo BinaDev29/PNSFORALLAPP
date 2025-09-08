@@ -2450,6 +2450,24 @@
           "batchDelayMs": {
             "type": "integer",
             "format": "int32"
+          },
+          "globalTemplateData": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "personalizedData": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": { }
+            },
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2550,6 +2568,11 @@
           },
           "subject": {
             "type": "string",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": { },
             "nullable": true
           }
         },

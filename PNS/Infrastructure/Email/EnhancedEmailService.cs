@@ -26,18 +26,24 @@ namespace Infrastructure.Email
             _logger = logger;
         }
 
-        public async Task<bool> SendEmail(EmailMessage emailMessage, Guid notificationId, string appemail, string apppassword)
+        // Always use client application's sender email and app password
+        public async Task<bool> SendEmail(EmailMessage emailMessage, Guid notificationId, string clientAppSenderEmail, string clientAppPassword)
         {
             try
             {
                 var enhancedEmail = new EnhancedEmailMessage
                 {
-                    From = emailMessage.From,
+                    From = clientAppSenderEmail,
                     To = emailMessage.To,
                     Subject = emailMessage.Subject,
                     BodyHtml = emailMessage.BodyHtml,
                     TrackingId = notificationId.ToString(),
-                    EnableTracking = true
+                    EnableTracking = true,
+                    Metadata = new Dictionary<string, object>
+                    {
+                        { "SenderEmail", clientAppSenderEmail },
+                        { "AppPassword", clientAppPassword }
+                    }
                 };
 
                 if (enhancedEmail.EnableTracking)
@@ -91,7 +97,7 @@ namespace Infrastructure.Email
             return false;
         }
 
-        public async Task<bool> SendBulkEmailAsync(BulkEmailMessage bulkEmailMessage)
+        public async Task<bool> SendBulkEmailAsync(BulkEmailMessage bulkEmailMessage, string clientAppSenderEmail, string clientAppPassword)
         {
             var availableProviders = _emailProviders.Where(p => p.IsConfigured).ToList();
 
@@ -100,6 +106,15 @@ namespace Infrastructure.Email
                 _logger.LogError("No email providers are configured for bulk email");
                 return false;
             }
+
+            // Set sender email and credentials in each bulk message if needed
+            bulkEmailMessage.From = clientAppSenderEmail;
+            // If your provider supports credentials via Metadata, you can add:
+            // bulkEmailMessage.Metadata = new Dictionary<string, object>
+            // {
+            //     { "SenderEmail", clientAppSenderEmail },
+            //     { "AppPassword", clientAppPassword }
+            // };
 
             foreach (var provider in availableProviders)
             {
@@ -126,7 +141,7 @@ namespace Infrastructure.Email
             return false;
         }
 
-        public async Task<bool> SendTemplatedEmailAsync(string templateName, Dictionary<string, object> templateData, List<string> recipients, string from, string subject)
+        public async Task<bool> SendTemplatedEmailAsync(string templateName, Dictionary<string, object> templateData, List<string> recipients, string from, string subject, string clientAppSenderEmail = null, string clientAppPassword = null)
         {
             try
             {
@@ -141,10 +156,17 @@ namespace Infrastructure.Email
 
                 var emailMessage = new EnhancedEmailMessage
                 {
-                    From = from,
+                    From = clientAppSenderEmail ?? from,
                     To = recipients,
                     Subject = subject,
-                    BodyHtml = processedHtml
+                    BodyHtml = processedHtml,
+                    Metadata = (clientAppSenderEmail != null && clientAppPassword != null)
+                        ? new Dictionary<string, object>
+                        {
+                            { "SenderEmail", clientAppSenderEmail },
+                            { "AppPassword", clientAppPassword }
+                        }
+                        : null
                 };
 
                 return await SendEnhancedEmailAsync(emailMessage);

@@ -1,5 +1,5 @@
-// File Path: API/Controllers/EnhancedNotificationController.cs
 using Application.Common.Interfaces;
+using Application.Contracts.IRepository;
 using Application.CQRS.Notification.Commands;
 using Application.DTO.Notification;
 using Application.Models.Email;
@@ -8,6 +8,7 @@ using Infrastructure.Email;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Threading;
 
 namespace API.Controllers
 {
@@ -22,6 +23,7 @@ namespace API.Controllers
         private readonly IEmailTemplateService _emailTemplateService;
         private readonly ICacheService _cacheService;
         private readonly ILogger<EnhancedNotificationController> _logger;
+        private readonly IClientApplicationRepository _clientApplicationRepository;
 
         public EnhancedNotificationController(
             IMediator mediator,
@@ -29,7 +31,8 @@ namespace API.Controllers
             EnhancedEmailService enhancedEmailService,
             IEmailTemplateService emailTemplateService,
             ICacheService cacheService,
-            ILogger<EnhancedNotificationController> logger)
+            ILogger<EnhancedNotificationController> logger,
+            IClientApplicationRepository clientApplicationRepository)
         {
             _mediator = mediator;
             _emailQueueService = emailQueueService;
@@ -37,6 +40,7 @@ namespace API.Controllers
             _emailTemplateService = emailTemplateService;
             _cacheService = cacheService;
             _logger = logger;
+            _clientApplicationRepository = clientApplicationRepository;
         }
 
         [HttpPost("send")]
@@ -51,12 +55,12 @@ namespace API.Controllers
 
                 var command = new CreateNotificationCommand { CreateNotificationDto = createNotificationDto };
                 var result = await _mediator.Send(command);
-                
+
                 if (result.Success)
                 {
                     return Ok(new { message = "Notification sent successfully", id = result.Id });
                 }
-                
+
                 return BadRequest(result);
             }
             catch (Exception ex)
@@ -78,9 +82,28 @@ namespace API.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
+                if (request.Metadata == null || !request.Metadata.TryGetValue("ClientApplicationId", out var clientAppIdObj))
+                {
+                    return BadRequest(new { message = "ClientApplicationId must be provided in Metadata." });
+                }
+
+                if (!Guid.TryParse(clientAppIdObj?.ToString(), out var clientAppId))
+                {
+                    return BadRequest(new { message = "ClientApplicationId is invalid." });
+                }
+
+                var clientApp = await _clientApplicationRepository.Get(clientAppId, CancellationToken.None);
+                if (clientApp == null)
+                {
+                    return BadRequest(new { message = "Client application not found." });
+                }
+
+                request.Metadata["SenderEmail"] = clientApp.SenderEmail;
+                request.Metadata["AppPassword"] = clientApp.AppPassword;
+
                 var emailMessage = new EnhancedEmailMessage
                 {
-                    From = request.From,
+                    From = clientApp.SenderEmail,
                     To = request.To,
                     Subject = request.Subject,
                     BodyHtml = request.BodyHtml,
@@ -99,7 +122,18 @@ namespace API.Controllers
                 }
                 else
                 {
-                    var success = await _enhancedEmailService.SendEnhancedEmailAsync(emailMessage);
+                    var success = await _enhancedEmailService.SendEmail(
+                        new EmailMessage
+                        {
+                            To = emailMessage.To,
+                            From = emailMessage.From,
+                            Subject = emailMessage.Subject,
+                            BodyHtml = emailMessage.BodyHtml
+                        },
+                        emailMessage.Id,
+                        clientApp.SenderEmail,
+                        clientApp.AppPassword
+                    );
                     if (success)
                     {
                         return Ok(new { message = "Email sent successfully", id = emailMessage.Id });
@@ -128,18 +162,33 @@ namespace API.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
+                string senderEmail = request.From;
+                string appPassword = null;
+                if (request.Metadata != null && request.Metadata.TryGetValue("ClientApplicationId", out var clientAppIdObj)
+                    && Guid.TryParse(clientAppIdObj?.ToString(), out var clientAppId))
+                {
+                    var clientApp = await _clientApplicationRepository.Get(clientAppId, CancellationToken.None);
+                    if (clientApp != null)
+                    {
+                        senderEmail = clientApp.SenderEmail;
+                        appPassword = clientApp.AppPassword;
+                    }
+                }
+
                 var bulkEmailMessage = new BulkEmailMessage
                 {
                     Recipients = request.Recipients,
-                    From = request.From,
+                    From = senderEmail,
                     Subject = request.Subject,
                     BodyHtml = request.BodyHtml,
                     BodyText = request.BodyText,
                     BatchSize = request.BatchSize,
-                    BatchDelay = TimeSpan.FromMilliseconds(request.BatchDelayMs)
+                    BatchDelay = TimeSpan.FromMilliseconds(request.BatchDelayMs),
+                    GlobalTemplateData = request.GlobalTemplateData,
+                    PersonalizedData = request.PersonalizedData
                 };
 
-                await _emailQueueService.QueueBulkEmailAsync(bulkEmailMessage);
+                await _enhancedEmailService.SendBulkEmailAsync(bulkEmailMessage, senderEmail, appPassword);
                 return Accepted(new { message = "Bulk email queued successfully", id = bulkEmailMessage.Id });
             }
             catch (Exception ex)
@@ -160,12 +209,35 @@ namespace API.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
+                string senderEmail = request.From;
+                string appPassword = null;
+                if (request.Metadata == null || !request.Metadata.TryGetValue("ClientApplicationId", out var clientAppIdObj))
+                {
+                    return BadRequest(new { message = "ClientApplicationId must be provided in Metadata." });
+                }
+
+                if (!Guid.TryParse(clientAppIdObj?.ToString(), out var clientAppId))
+                {
+                    return BadRequest(new { message = "ClientApplicationId is invalid." });
+                }
+
+                var clientApp = await _clientApplicationRepository.Get(clientAppId, CancellationToken.None);
+                if (clientApp == null)
+                {
+                    return BadRequest(new { message = "Client application not found." });
+                }
+
+                senderEmail = clientApp.SenderEmail;
+                appPassword = clientApp.AppPassword;
+
                 var success = await _enhancedEmailService.SendTemplatedEmailAsync(
                     request.TemplateName,
                     request.TemplateData,
                     request.Recipients,
-                    request.From,
-                    request.Subject
+                    senderEmail,
+                    request.Subject,
+                    senderEmail,
+                    appPassword
                 );
 
                 if (success)
@@ -191,14 +263,11 @@ namespace API.Controllers
         {
             try
             {
-                // This endpoint is called when the tracking pixel is loaded
                 var userAgent = Request.Headers["User-Agent"].ToString();
                 var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
 
-                // Update notification as seen (would typically update database)
                 _logger.LogInformation("Notification {NotificationId} tracked from IP {IpAddress}", id, ipAddress);
 
-                // Return a 1x1 transparent pixel
                 var pixel = Convert.FromBase64String("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
                 return File(pixel, "image/gif");
             }
@@ -277,6 +346,9 @@ namespace API.Controllers
         public string? BodyText { get; set; }
         public int BatchSize { get; set; } = 100;
         public int BatchDelayMs { get; set; } = 1000;
+        public Dictionary<string, object>? GlobalTemplateData { get; set; }
+        public Dictionary<string, Dictionary<string, object>>? PersonalizedData { get; set; }
+        public Dictionary<string, object>? Metadata { get; set; }
     }
 
     public class TemplatedNotificationRequest
@@ -286,5 +358,6 @@ namespace API.Controllers
         public required List<string> Recipients { get; set; }
         public required string From { get; set; }
         public required string Subject { get; set; }
+        public Dictionary<string, object>? Metadata { get; set; }
     }
 }

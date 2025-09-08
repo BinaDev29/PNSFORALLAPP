@@ -94,6 +94,7 @@ namespace Infrastructure.Email.Providers
 
                 var response = await _client.SendEmailAsync(msg);
 
+
                 if (response.IsSuccessStatusCode)
                 {
                     var messageId = response.Headers.GetValues("X-Message-Id").FirstOrDefault() ?? $"Bulk-{Guid.NewGuid()}";

@@ -50,10 +50,18 @@ builder.Services.AddScoped<IDomainEventService, DomainEventService>();
 
 // Email Services
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
-builder.Services.Configure<SendGridSettings>(builder.Configuration.GetSection("SendGridSettings"));
 
+// Only configure and register SendGrid provider when an ApiKey is present.
+// This prevents DI from constructing SendGridEmailProvider with a null ApiKey and throwing ArgumentNullException.
+var sendGridSection = builder.Configuration.GetSection("SendGridSettings");
+if (!string.IsNullOrEmpty(sendGridSection["ApiKey"]))
+{
+    builder.Services.Configure<SendGridSettings>(sendGridSection);
+    builder.Services.AddScoped<IEmailProvider, SendGridEmailProvider>();
+}
+
+// Ensure SMTP provider is registered so emails are sent via SMTP when SendGrid is not configured.
 builder.Services.AddScoped<IEmailProvider, SmtpEmailProvider>();
-builder.Services.AddScoped<IEmailProvider, SendGridEmailProvider>();
 builder.Services.AddScoped<EnhancedEmailService>();
 builder.Services.AddScoped<Application.Contracts.IEmailService, EnhancedEmailService>();
 

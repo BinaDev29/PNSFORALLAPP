@@ -3,156 +3,40 @@
   "WorkspaceRootPath": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\enhancedemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\enhancedemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\enhancednotificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\enhancednotificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\providers\\smtpemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\providers\\smtpemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\providers\\iemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\providers\\iemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\providers\\sendgridemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\providers\\sendgridemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\dto\\applicationnotificationtypemap\\validator\\updateapplicationnotificationtypemapdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\dto\\applicationnotificationtypemap\\validator\\updateapplicationnotificationtypemapdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\dto\\applicationnotificationtypemap\\validator\\createapplicationnotificationtypemapdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\dto\\applicationnotificationtypemap\\validator\\createapplicationnotificationtypemapdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\dto\\applicationnotificationtypemap\\updateapplicationnotificationtypemapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\dto\\applicationnotificationtypemap\\updateapplicationnotificationtypemapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\dto\\applicationnotificationtypemap\\createapplicationnotificationtypemapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\dto\\applicationnotificationtypemap\\createapplicationnotificationtypemapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\dto\\applicationnotificationtypemap\\applicationnotificationtypemapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\dto\\applicationnotificationtypemap\\applicationnotificationtypemapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\dto\\addresss\\addressdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\dto\\addresss\\addressdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\dto\\addresss\\validator\\adressdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\dto\\addresss\\validator\\adressdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\applicationserviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\applicationserviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\services\\encryptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\services\\encryptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\services\\emailtemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\services\\emailtemplateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\responses\\basecommandresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\responses\\basecommandresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\responses\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\responses\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\models\\email\\enhancedemailmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\models\\email\\enhancedemailmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\models\\email\\emailmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\models\\email\\emailmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\exceptions\\validationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\exceptions\\validationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\exceptions\\externalserviceexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\exceptions\\externalserviceexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\exceptions\\badrequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\exceptions\\badrequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\eventhandlers\\notificationcreatedeventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\eventhandlers\\notificationcreatedeventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\interfaces\\iemailqueueservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\interfaces\\iemailqueueservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\interfaces\\idomaineventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\interfaces\\idomaineventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\interfaces\\idatetime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\interfaces\\idatetime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\interfaces\\icurrentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\interfaces\\icurrentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\interfaces\\icacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\interfaces\\icacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\exceptions\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\exceptions\\applicationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\exceptions\\applicationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\behaviors\\validationbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\behaviors\\performancebehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\behaviors\\performancebehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\common\\behaviors\\loggingbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\common\\behaviors\\loggingbehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\services\\domaineventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\domaineventservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\services\\datetimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\datetimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\enhancedemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\enhancedemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -161,190 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\caching\\rediscacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\caching\\rediscacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\pnsdbcontextfactory.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\pnsdbcontextfactory.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\pnsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\pnsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\persistenceserviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\persistenceserviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\priorityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\priorityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\notificationtyperepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\notificationtyperepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\notificationhistoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\notificationhistoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\emailtemplaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\emailtemplaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\clientapplicationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\clientapplicationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\repositories\\applicationnotificationtypemaprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\repositories\\applicationnotificationtypemaprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\interceptors\\domaineventinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\interceptors\\domaineventinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\interceptors\\auditableentityinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\interceptors\\auditableentityinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\entityconfigurations\\notificationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\entityconfigurations\\notificationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\valueobjects\\emailaddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\valueobjects\\emailaddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\models\\priority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\models\\priority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\models\\notificationtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\models\\notificationtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\models\\notificationhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\models\\notificationhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\models\\emailtemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\models\\emailtemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\models\\clientapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\models\\clientapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\models\\applicationnotificationtypemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\models\\applicationnotificationtypemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\exceptions\\notificationnotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\exceptions\\notificationnotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\exceptions\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\exceptions\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\events\\notificationseenevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\events\\notificationseenevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\events\\notificationcreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\events\\notificationcreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\idomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\idomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\domainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\basedomainentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\basedomainentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\common\\aggregateroot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\common\\aggregateroot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\cqrs\\clientapplication\\handlers\\createclientapplicationcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\cqrs\\clientapplication\\handlers\\createclientapplicationcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\cqrs\\clientapplication\\commands\\createclientapplicationcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\cqrs\\clientapplication\\commands\\createclientapplicationcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\application\\contracts\\irepository\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1612657B-4732-4451-994C-6DD5B154C549}|Application\\Application.csproj|solutionrelative:application\\contracts\\irepository\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\migrations\\20250907093325_intialcreaion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\migrations\\20250907093325_intialcreaion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\prioritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\prioritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\notificationtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\notificationtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\notificationhistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\notificationhistorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\emailtemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\emailtemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\clientapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\clientapplicationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\applicationnotificationtypemapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\applicationnotificationtypemapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\persistence\\persistence.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{CD1876FE-EC26-4A51-A926-82EB41B85A4D}|Persistence\\Persistence.csproj|solutionrelative:persistence\\persistence.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -363,19 +63,97 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "API\\Properties\\launchSettings.json",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Properties\\launchSettings.json",
-              "RelativeToolTip": "API\\Properties\\launchSettings.json",
-              "ViewState": "AgIAABYAAAAAAAAAAAAIwCkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-07T14:12:26.211Z",
+              "Title": "EmailQueueProcessor.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "RelativeToolTip": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAwwLcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-08T09:26:51.822Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "EnhancedNotificationController.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\EnhancedNotificationController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\EnhancedNotificationController.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\EnhancedNotificationController.cs",
+              "RelativeToolTip": "API\\Controllers\\EnhancedNotificationController.cs",
+              "ViewState": "AgIAANsAAAAAAAAAAAAqwGoAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-08T06:16:10.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IEmailProvider.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T18:25:37.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EnhancedEmailService.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EnhancedEmailService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\EnhancedEmailService.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EnhancedEmailService.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\EnhancedEmailService.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAUwLQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-08T08:32:39.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAUwL8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T16:43:14.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SmtpEmailProvider.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\SmtpEmailProvider.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\Providers\\SmtpEmailProvider.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\SmtpEmailProvider.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\Providers\\SmtpEmailProvider.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAYwFQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T18:26:14.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SendGridEmailProvider.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\SendGridEmailProvider.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\Providers\\SendGridEmailProvider.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\SendGridEmailProvider.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\Providers\\SendGridEmailProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T16:52:25.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
               "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\appsettings.json",
               "RelativeDocumentMoniker": "API\\appsettings.json",
@@ -383,1093 +161,44 @@
               "RelativeToolTip": "API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-07T14:00:04.434Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ExceptionHandlingMiddleware.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeDocumentMoniker": "API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "RelativeToolTip": "API\\Middleware\\ExceptionHandlingMiddleware.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAYwFUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:59:52.702Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAUwJ8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:31:47.861Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UpdateApplicationNotificationTypeMapDtoValidator.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\UpdateApplicationNotificationTypeMapDtoValidator.cs",
-              "RelativeDocumentMoniker": "Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\UpdateApplicationNotificationTypeMapDtoValidator.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\UpdateApplicationNotificationTypeMapDtoValidator.cs",
-              "RelativeToolTip": "Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\UpdateApplicationNotificationTypeMapDtoValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:59:33.572Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CreateApplicationNotificationTypeMapDtoValidator.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\CreateApplicationNotificationTypeMapDtoValidator.cs",
-              "RelativeDocumentMoniker": "Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\CreateApplicationNotificationTypeMapDtoValidator.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\CreateApplicationNotificationTypeMapDtoValidator.cs",
-              "RelativeToolTip": "Application\\DTO\\ApplicationNotificationTypeMap\\Validator\\CreateApplicationNotificationTypeMapDtoValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:59:32.325Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UpdateApplicationNotificationTypeMapDto.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\UpdateApplicationNotificationTypeMapDto.cs",
-              "RelativeDocumentMoniker": "Application\\DTO\\ApplicationNotificationTypeMap\\UpdateApplicationNotificationTypeMapDto.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\UpdateApplicationNotificationTypeMapDto.cs",
-              "RelativeToolTip": "Application\\DTO\\ApplicationNotificationTypeMap\\UpdateApplicationNotificationTypeMapDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:59:29.748Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CreateApplicationNotificationTypeMapDto.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\CreateApplicationNotificationTypeMapDto.cs",
-              "RelativeDocumentMoniker": "Application\\DTO\\ApplicationNotificationTypeMap\\CreateApplicationNotificationTypeMapDto.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\CreateApplicationNotificationTypeMapDto.cs",
-              "RelativeToolTip": "Application\\DTO\\ApplicationNotificationTypeMap\\CreateApplicationNotificationTypeMapDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:59:26.668Z",
+              "WhenOpened": "2025-09-08T06:40:01.25Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ApplicationNotificationTypeMapDto.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\ApplicationNotificationTypeMapDto.cs",
-              "RelativeDocumentMoniker": "Application\\DTO\\ApplicationNotificationTypeMap\\ApplicationNotificationTypeMapDto.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\ApplicationNotificationTypeMap\\ApplicationNotificationTypeMapDto.cs",
-              "RelativeToolTip": "Application\\DTO\\ApplicationNotificationTypeMap\\ApplicationNotificationTypeMapDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:59:22.277Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ApplicationServiceRegistration.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\ApplicationServiceRegistration.cs",
-              "RelativeDocumentMoniker": "Application\\ApplicationServiceRegistration.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\ApplicationServiceRegistration.cs",
-              "RelativeToolTip": "Application\\ApplicationServiceRegistration.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAkwBUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:09:27.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AdressDtoValidator.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\Addresss\\Validator\\AdressDtoValidator.cs",
-              "RelativeDocumentMoniker": "Application\\DTO\\Addresss\\Validator\\AdressDtoValidator.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\Addresss\\Validator\\AdressDtoValidator.cs",
-              "RelativeToolTip": "Application\\DTO\\Addresss\\Validator\\AdressDtoValidator.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:56:51.787Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AddressDto.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\Addresss\\AddressDto.cs",
-              "RelativeDocumentMoniker": "Application\\DTO\\Addresss\\AddressDto.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\DTO\\Addresss\\AddressDto.cs",
-              "RelativeToolTip": "Application\\DTO\\Addresss\\AddressDto.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAqwBwAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:56:34.111Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "EmailTemplateService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Services\\EmailTemplateService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\EmailTemplateService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Services\\EmailTemplateService.cs",
-              "RelativeToolTip": "Application\\Services\\EmailTemplateService.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAowHUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:35:32.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "EncryptionService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Services\\EncryptionService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\EncryptionService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Services\\EncryptionService.cs",
-              "RelativeToolTip": "Application\\Services\\EncryptionService.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAA9wDMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:35:43.033Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "BaseCommandResponse.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Responses\\BaseCommandResponse.cs",
-              "RelativeDocumentMoniker": "Application\\Responses\\BaseCommandResponse.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Responses\\BaseCommandResponse.cs",
-              "RelativeToolTip": "Application\\Responses\\BaseCommandResponse.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAA5wCAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:35:19.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ApiResponse.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Responses\\ApiResponse.cs",
-              "RelativeDocumentMoniker": "Application\\Responses\\ApiResponse.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Responses\\ApiResponse.cs",
-              "RelativeToolTip": "Application\\Responses\\ApiResponse.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAgwB8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:34:59.294Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "EnhancedEmailMessage.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Models\\Email\\EnhancedEmailMessage.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Email\\EnhancedEmailMessage.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Models\\Email\\EnhancedEmailMessage.cs",
-              "RelativeToolTip": "Application\\Models\\Email\\EnhancedEmailMessage.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAmwEIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:34:48.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "EmailMessage.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Models\\Email\\EmailMessage.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Email\\EmailMessage.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Models\\Email\\EmailMessage.cs",
-              "RelativeToolTip": "Application\\Models\\Email\\EmailMessage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:34:40.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "ValidationException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\ValidationException.cs",
-              "RelativeDocumentMoniker": "Application\\Exceptions\\ValidationException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\ValidationException.cs",
-              "RelativeToolTip": "Application\\Exceptions\\ValidationException.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAgwBQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:34:24.968Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "NotFoundException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\NotFoundException.cs",
-              "RelativeDocumentMoniker": "Application\\Exceptions\\NotFoundException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\NotFoundException.cs",
-              "RelativeToolTip": "Application\\Exceptions\\NotFoundException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:34:16.682Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "ExternalServiceException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\ExternalServiceException.cs",
-              "RelativeDocumentMoniker": "Application\\Exceptions\\ExternalServiceException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\ExternalServiceException.cs",
-              "RelativeToolTip": "Application\\Exceptions\\ExternalServiceException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:34:05.123Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "BadRequestException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\BadRequestException.cs",
-              "RelativeDocumentMoniker": "Application\\Exceptions\\BadRequestException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Exceptions\\BadRequestException.cs",
-              "RelativeToolTip": "Application\\Exceptions\\BadRequestException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:33:56.235Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "NotificationCreatedEventHandler.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\EventHandlers\\NotificationCreatedEventHandler.cs",
-              "RelativeDocumentMoniker": "Application\\EventHandlers\\NotificationCreatedEventHandler.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\EventHandlers\\NotificationCreatedEventHandler.cs",
-              "RelativeToolTip": "Application\\EventHandlers\\NotificationCreatedEventHandler.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAowE8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:33:35.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "IEmailQueueService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\IEmailQueueService.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Interfaces\\IEmailQueueService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\IEmailQueueService.cs",
-              "RelativeToolTip": "Application\\Common\\Interfaces\\IEmailQueueService.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:11:23.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "IDomainEventService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\IDomainEventService.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Interfaces\\IDomainEventService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\IDomainEventService.cs",
-              "RelativeToolTip": "Application\\Common\\Interfaces\\IDomainEventService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:11:15.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "IDateTime.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\IDateTime.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Interfaces\\IDateTime.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\IDateTime.cs",
-              "RelativeToolTip": "Application\\Common\\Interfaces\\IDateTime.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:11:05.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "ICurrentUserService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\ICurrentUserService.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Interfaces\\ICurrentUserService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\ICurrentUserService.cs",
-              "RelativeToolTip": "Application\\Common\\Interfaces\\ICurrentUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:10:57.112Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "ICacheService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\ICacheService.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Interfaces\\ICacheService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Interfaces\\ICacheService.cs",
-              "RelativeToolTip": "Application\\Common\\Interfaces\\ICacheService.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:10:48.41Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "NotFoundException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Exceptions\\NotFoundException.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Exceptions\\NotFoundException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Exceptions\\NotFoundException.cs",
-              "RelativeToolTip": "Application\\Common\\Exceptions\\NotFoundException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:10:36.011Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "ApplicationException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Exceptions\\ApplicationException.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Exceptions\\ApplicationException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Exceptions\\ApplicationException.cs",
-              "RelativeToolTip": "Application\\Common\\Exceptions\\ApplicationException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:10:27.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "ValidationBehavior.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "RelativeToolTip": "Application\\Common\\Behaviors\\ValidationBehavior.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAswCkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:10:15.044Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "PerformanceBehavior.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Behaviors\\PerformanceBehavior.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Behaviors\\PerformanceBehavior.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Behaviors\\PerformanceBehavior.cs",
-              "RelativeToolTip": "Application\\Common\\Behaviors\\PerformanceBehavior.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAswC8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:10:05.675Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "LoggingBehavior.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Behaviors\\LoggingBehavior.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Behaviors\\LoggingBehavior.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Common\\Behaviors\\LoggingBehavior.cs",
-              "RelativeToolTip": "Application\\Common\\Behaviors\\LoggingBehavior.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAkwCAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T13:09:45.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "Infrastructure",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Infrastructure.csproj",
-              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Infrastructure.csproj",
-              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAQwBMAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-09-07T13:05:27.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "DomainEventService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\DomainEventService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Services\\DomainEventService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\DomainEventService.cs",
-              "RelativeToolTip": "Infrastructure\\Services\\DomainEventService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAA9wCgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:53:03.202Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "DateTimeService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\DateTimeService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Services\\DateTimeService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\DateTimeService.cs",
-              "RelativeToolTip": "Infrastructure\\Services\\DateTimeService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:52:50.979Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "EnhancedEmailService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EnhancedEmailService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Email\\EnhancedEmailService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EnhancedEmailService.cs",
-              "RelativeToolTip": "Infrastructure\\Email\\EnhancedEmailService.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAswJ4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:52:21.602Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "EmailService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Email\\EmailService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
-              "RelativeToolTip": "Infrastructure\\Email\\EmailService.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAswD8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:52:12.866Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "RedisCacheService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Caching\\RedisCacheService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Caching\\RedisCacheService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Caching\\RedisCacheService.cs",
-              "RelativeToolTip": "Infrastructure\\Caching\\RedisCacheService.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAowGwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:51:59.468Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
               "Title": "CurrentUserService.cs",
               "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\CurrentUserService.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Services\\CurrentUserService.cs",
               "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\CurrentUserService.cs",
               "RelativeToolTip": "Infrastructure\\Services\\CurrentUserService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA1wCEAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAA5wAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:20:57.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-07T18:23:11.046Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "EmailQueueProcessor.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "RelativeToolTip": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAkwLYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:51:46.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "PnsDbContextFactory.cs.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\PnsDbContextFactory.cs.cs",
-              "RelativeDocumentMoniker": "Persistence\\PnsDbContextFactory.cs.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\PnsDbContextFactory.cs.cs",
-              "RelativeToolTip": "Persistence\\PnsDbContextFactory.cs.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAkwBkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:47:14.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "PnsDbContext.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\PnsDbContext.cs",
-              "RelativeDocumentMoniker": "Persistence\\PnsDbContext.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\PnsDbContext.cs",
-              "RelativeToolTip": "Persistence\\PnsDbContext.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAswH4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:47:06.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "PersistenceServiceRegistration.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\PersistenceServiceRegistration.cs",
-              "RelativeDocumentMoniker": "Persistence\\PersistenceServiceRegistration.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\PersistenceServiceRegistration.cs",
-              "RelativeToolTip": "Persistence\\PersistenceServiceRegistration.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAswCAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:46:57.488Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "PriorityRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\PriorityRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\PriorityRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\PriorityRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\PriorityRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:46:36.904Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "NotificationTypeRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\NotificationTypeRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\NotificationTypeRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\NotificationTypeRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\NotificationTypeRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:46:28.62Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "NotificationRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\NotificationRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\NotificationRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\NotificationRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\NotificationRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:46:18.66Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\UnitOfWork.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\UnitOfWork.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\UnitOfWork.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\UnitOfWork.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAQwEIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:48:17.939Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "NotificationHistoryRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\NotificationHistoryRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\NotificationHistoryRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\NotificationHistoryRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\NotificationHistoryRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:46:05.889Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "GenericRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\GenericRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\GenericRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\GenericRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\GenericRepository.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAgwDwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:45:55.981Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "EmailTemplateRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\EmailTemplateRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\EmailTemplateRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\EmailTemplateRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\EmailTemplateRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:45:45.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "ClientApplicationRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\ClientApplicationRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\ClientApplicationRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\ClientApplicationRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\ClientApplicationRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:45:35.666Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
-              "Title": "ApplicationNotificationTypeMapRepository.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\ApplicationNotificationTypeMapRepository.cs",
-              "RelativeDocumentMoniker": "Persistence\\Repositories\\ApplicationNotificationTypeMapRepository.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Repositories\\ApplicationNotificationTypeMapRepository.cs",
-              "RelativeToolTip": "Persistence\\Repositories\\ApplicationNotificationTypeMapRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAkwBUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:45:24.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 53,
-              "Title": "DomainEventInterceptor.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Interceptors\\DomainEventInterceptor.cs",
-              "RelativeDocumentMoniker": "Persistence\\Interceptors\\DomainEventInterceptor.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Interceptors\\DomainEventInterceptor.cs",
-              "RelativeToolTip": "Persistence\\Interceptors\\DomainEventInterceptor.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAswDMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:45:13.804Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
-              "Title": "AuditableEntityInterceptor.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
-              "RelativeDocumentMoniker": "Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
-              "RelativeToolTip": "Persistence\\Interceptors\\AuditableEntityInterceptor.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAswEcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:45:03.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 55,
-              "Title": "NotificationConfiguration.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\EntityConfigurations\\NotificationConfiguration.cs",
-              "RelativeDocumentMoniker": "Persistence\\EntityConfigurations\\NotificationConfiguration.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\EntityConfigurations\\NotificationConfiguration.cs",
-              "RelativeToolTip": "Persistence\\EntityConfigurations\\NotificationConfiguration.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAswEgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:44:42.114Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 56,
-              "Title": "EmailAddress.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\ValueObjects\\EmailAddress.cs",
-              "RelativeDocumentMoniker": "Domain\\ValueObjects\\EmailAddress.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\ValueObjects\\EmailAddress.cs",
-              "RelativeToolTip": "Domain\\ValueObjects\\EmailAddress.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAowCkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:37:46.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "Priority.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\Priority.cs",
-              "RelativeDocumentMoniker": "Domain\\Models\\Priority.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\Priority.cs",
-              "RelativeToolTip": "Domain\\Models\\Priority.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:37:37.317Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "NotificationType.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\NotificationType.cs",
-              "RelativeDocumentMoniker": "Domain\\Models\\NotificationType.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\NotificationType.cs",
-              "RelativeToolTip": "Domain\\Models\\NotificationType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:37:28.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "NotificationHistory.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\NotificationHistory.cs",
-              "RelativeDocumentMoniker": "Domain\\Models\\NotificationHistory.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\NotificationHistory.cs",
-              "RelativeToolTip": "Domain\\Models\\NotificationHistory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:37:20.623Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "Notification.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\Notification.cs",
-              "RelativeDocumentMoniker": "Domain\\Models\\Notification.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\Notification.cs",
-              "RelativeToolTip": "Domain\\Models\\Notification.cs",
-              "ViewState": "AgIAAHAAAAAAAAAAAAAowIMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:37:09.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "EmailTemplate.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\EmailTemplate.cs",
-              "RelativeDocumentMoniker": "Domain\\Models\\EmailTemplate.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\EmailTemplate.cs",
-              "RelativeToolTip": "Domain\\Models\\EmailTemplate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:36:58.381Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "ClientApplication.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\ClientApplication.cs",
-              "RelativeDocumentMoniker": "Domain\\Models\\ClientApplication.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\ClientApplication.cs",
-              "RelativeToolTip": "Domain\\Models\\ClientApplication.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:36:50.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "ApplicationNotificationTypeMap.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\ApplicationNotificationTypeMap.cs",
-              "RelativeDocumentMoniker": "Domain\\Models\\ApplicationNotificationTypeMap.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Models\\ApplicationNotificationTypeMap.cs",
-              "RelativeToolTip": "Domain\\Models\\ApplicationNotificationTypeMap.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:36:42.244Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "NotificationNotFoundException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Exceptions\\NotificationNotFoundException.cs",
-              "RelativeDocumentMoniker": "Domain\\Exceptions\\NotificationNotFoundException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Exceptions\\NotificationNotFoundException.cs",
-              "RelativeToolTip": "Domain\\Exceptions\\NotificationNotFoundException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:36:29.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "DomainException.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Exceptions\\DomainException.cs",
-              "RelativeDocumentMoniker": "Domain\\Exceptions\\DomainException.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Exceptions\\DomainException.cs",
-              "RelativeToolTip": "Domain\\Exceptions\\DomainException.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T12:36:21.024Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 69,
-              "Title": "IAuditableEntity.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IAuditableEntity.cs",
-              "RelativeDocumentMoniker": "Domain\\common\\IAuditableEntity.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IAuditableEntity.cs",
-              "RelativeToolTip": "Domain\\common\\IAuditableEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T10:53:06.424Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
-              "Title": "IDomainEvent.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IDomainEvent.cs",
-              "RelativeDocumentMoniker": "Domain\\common\\IDomainEvent.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\IDomainEvent.cs",
-              "RelativeToolTip": "Domain\\common\\IDomainEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T10:53:17.14Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "NotificationCreatedEvent.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationCreatedEvent.cs",
-              "RelativeDocumentMoniker": "Domain\\Events\\NotificationCreatedEvent.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationCreatedEvent.cs",
-              "RelativeToolTip": "Domain\\Events\\NotificationCreatedEvent.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA3wB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T11:02:29.192Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "NotificationSeenEvent.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationSeenEvent.cs",
-              "RelativeDocumentMoniker": "Domain\\Events\\NotificationSeenEvent.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Events\\NotificationSeenEvent.cs",
-              "RelativeToolTip": "Domain\\Events\\NotificationSeenEvent.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAzwBUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T11:02:47.978Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
-              "Title": "DomainEvent.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\DomainEvent.cs",
-              "RelativeDocumentMoniker": "Domain\\common\\DomainEvent.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\DomainEvent.cs",
-              "RelativeToolTip": "Domain\\common\\DomainEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAYwBAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T10:52:55.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 71,
-              "Title": "BaseDomainEntity.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\BaseDomainEntity.cs",
-              "RelativeDocumentMoniker": "Domain\\common\\BaseDomainEntity.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\BaseDomainEntity.cs",
-              "RelativeToolTip": "Domain\\common\\BaseDomainEntity.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAA+wBIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T10:52:42.538Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "AggregateRoot.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\AggregateRoot.cs",
-              "RelativeDocumentMoniker": "Domain\\common\\AggregateRoot.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\common\\AggregateRoot.cs",
-              "RelativeToolTip": "Domain\\common\\AggregateRoot.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA3wB0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T10:52:20.178Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "CreateClientApplicationCommandHandler.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
-              "RelativeDocumentMoniker": "Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
-              "RelativeToolTip": "Application\\CQRS\\ClientApplication\\Handlers\\CreateClientApplicationCommandHandler.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAIwCEAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:56:12.493Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 74,
-              "Title": "CreateClientApplicationCommand.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
-              "RelativeDocumentMoniker": "Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
-              "RelativeToolTip": "Application\\CQRS\\ClientApplication\\Commands\\CreateClientApplicationCommand.cs",
+              "DocumentIndex": 10,
+              "Title": "RedisCacheService.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Caching\\RedisCacheService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Caching\\RedisCacheService.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Caching\\RedisCacheService.cs",
+              "RelativeToolTip": "Infrastructure\\Caching\\RedisCacheService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:56:07.704Z"
+              "WhenOpened": "2025-09-07T18:14:58.002Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Contracts\\IRepository\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "Application\\Contracts\\IRepository\\IUnitOfWork.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Application\\Contracts\\IRepository\\IUnitOfWork.cs",
-              "RelativeToolTip": "Application\\Contracts\\IRepository\\IUnitOfWork.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAswBUAAAABAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\EmailService.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\EmailService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:48:37.58Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 76,
-              "Title": "20250907093325_IntialCreaion.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
-              "RelativeDocumentMoniker": "Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
-              "RelativeToolTip": "Persistence\\Migrations\\20250907093325_IntialCreaion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:33:26.545Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 77,
-              "Title": "PriorityController.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\PriorityController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\PriorityController.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\PriorityController.cs",
-              "RelativeToolTip": "API\\Controllers\\PriorityController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:30:34.228Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 78,
-              "Title": "NotificationTypeController.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationTypeController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\NotificationTypeController.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationTypeController.cs",
-              "RelativeToolTip": "API\\Controllers\\NotificationTypeController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:30:12.298Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
-              "Title": "NotificationHistoryController.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationHistoryController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\NotificationHistoryController.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationHistoryController.cs",
-              "RelativeToolTip": "API\\Controllers\\NotificationHistoryController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAswDsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:29:24.897Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 82,
-              "Title": "ClientApplicationController.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ClientApplicationController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\ClientApplicationController.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ClientApplicationController.cs",
-              "RelativeToolTip": "API\\Controllers\\ClientApplicationController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAswEsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:26:08.907Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 81,
-              "Title": "EmailTemplateController.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\EmailTemplateController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\EmailTemplateController.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\EmailTemplateController.cs",
-              "RelativeToolTip": "API\\Controllers\\EmailTemplateController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:24:33.445Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 80,
-              "Title": "NotificationController.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\NotificationController.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\NotificationController.cs",
-              "RelativeToolTip": "API\\Controllers\\NotificationController.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAswIEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:24:38.068Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 83,
-              "Title": "ApplicationNotificationTypeMapController.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ApplicationNotificationTypeMapController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\ApplicationNotificationTypeMapController.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\ApplicationNotificationTypeMapController.cs",
-              "RelativeToolTip": "API\\Controllers\\ApplicationNotificationTypeMapController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAswE8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T09:23:09.344Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 84,
-              "Title": "Persistence.csproj",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Persistence.csproj",
-              "RelativeDocumentMoniker": "Persistence\\Persistence.csproj",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Persistence\\Persistence.csproj",
-              "RelativeToolTip": "Persistence\\Persistence.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-09-07T09:19:07.947Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 85,
-              "Title": "Domain.csproj",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Domain.csproj",
-              "RelativeDocumentMoniker": "Domain\\Domain.csproj",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Domain.csproj",
-              "RelativeToolTip": "Domain\\Domain.csproj",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-09-07T09:08:26.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-07T18:14:24.601Z"
             }
           ]
         }
