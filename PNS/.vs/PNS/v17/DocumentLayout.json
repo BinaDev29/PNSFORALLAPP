@@ -7,12 +7,20 @@
       "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\enhancedemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\controllers\\enhancednotificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\controllers\\enhancednotificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\backgroundservices\\emailqueueprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\providers\\smtpemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,16 +39,8 @@
       "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\providers\\sendgridemailprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C5BF4731-7000-41CD-925D-3DB1CCBED57C}|Infrastructure\\Infrastructure.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\infrastructure\\caching\\rediscacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -63,15 +63,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EmailQueueProcessor.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "RelativeToolTip": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAwwLcAAAABAAAAAAAAAA==",
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\EmailService.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\EmailService.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAswD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T09:26:51.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-07T18:14:24.601Z"
             },
             {
               "$type": "Document",
@@ -81,23 +80,21 @@
               "RelativeDocumentMoniker": "API\\Controllers\\EnhancedNotificationController.cs",
               "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Controllers\\EnhancedNotificationController.cs",
               "RelativeToolTip": "API\\Controllers\\EnhancedNotificationController.cs",
-              "ViewState": "AgIAANsAAAAAAAAAAAAqwGoAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAGMBAAAAAAAAAAAuwGoBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T06:16:10.348Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-08T06:16:10.348Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IEmailProvider.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\IEmailProvider.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Email\\Providers\\IEmailProvider.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\IEmailProvider.cs",
-              "RelativeToolTip": "Infrastructure\\Email\\Providers\\IEmailProvider.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "EmailQueueProcessor.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "RelativeToolTip": "Infrastructure\\BackgroundServices\\EmailQueueProcessor.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAADwv7cAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T18:25:37.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-08T09:26:51.822Z"
             },
             {
               "$type": "Document",
@@ -107,14 +104,37 @@
               "RelativeDocumentMoniker": "Infrastructure\\Email\\EnhancedEmailService.cs",
               "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EnhancedEmailService.cs",
               "RelativeToolTip": "Infrastructure\\Email\\EnhancedEmailService.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAIwJkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKAAAAAAAAAAAAAswKwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T08:32:39.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-08T08:32:39.841Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
+              "Title": "IEmailProvider.cs",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\Providers\\IEmailProvider.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T18:25:37.597Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-08T06:40:01.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\Program.cs",
               "RelativeDocumentMoniker": "API\\Program.cs",
@@ -122,12 +142,11 @@
               "RelativeToolTip": "API\\Program.cs",
               "ViewState": "AgIAAKwAAAAAAAAAAAAUwL8AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:43:14.493Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-07T16:43:14.493Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "SmtpEmailProvider.cs",
               "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\SmtpEmailProvider.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Email\\Providers\\SmtpEmailProvider.cs",
@@ -135,12 +154,11 @@
               "RelativeToolTip": "Infrastructure\\Email\\Providers\\SmtpEmailProvider.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAYwFQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T18:26:14.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-07T18:26:14.964Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "SendGridEmailProvider.cs",
               "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\Providers\\SendGridEmailProvider.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Email\\Providers\\SendGridEmailProvider.cs",
@@ -148,25 +166,11 @@
               "RelativeToolTip": "Infrastructure\\Email\\Providers\\SendGridEmailProvider.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T16:52:25.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-07T16:52:25.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-08T06:40:01.25Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "CurrentUserService.cs",
               "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Services\\CurrentUserService.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Services\\CurrentUserService.cs",
@@ -187,18 +191,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-07T18:14:58.002Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "EmailService.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Email\\EmailService.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Infrastructure\\Email\\EmailService.cs",
-              "RelativeToolTip": "Infrastructure\\Email\\EmailService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T18:14:24.601Z"
             }
           ]
         }
