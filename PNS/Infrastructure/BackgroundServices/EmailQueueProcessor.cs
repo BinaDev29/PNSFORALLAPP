@@ -1,9 +1,13 @@
+﻿// File Path: Infrastructure/BackgroundServices/EmailQueueProcessor.cs
 using Application.Common.Interfaces;
 using Application.Models.Email;
+using Infrastructure.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,15 +17,15 @@ namespace Infrastructure.BackgroundServices
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<EmailQueueProcessor> _logger;
-        private readonly ConcurrentQueue<QueuedEmail> _emailQueue;
+        private readonly ConcurrentDictionary<Guid, QueuedEmail> _emailQueue;
         private readonly SemaphoreSlim _semaphore;
 
         public EmailQueueProcessor(IServiceProvider serviceProvider, ILogger<EmailQueueProcessor> logger)
         {
             _serviceProvider = serviceProvider;
             _logger = logger;
-            _emailQueue = new ConcurrentQueue<QueuedEmail>();
-            _semaphore = new SemaphoreSlim(5, 5); // Process max 5 emails concurrently
+            _emailQueue = new ConcurrentDictionary<Guid, QueuedEmail>();
+            _semaphore = new SemaphoreSlim(5, 5);
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -32,25 +36,33 @@ namespace Infrastructure.BackgroundServices
             {
                 try
                 {
-                    if (_emailQueue.TryDequeue(out var queuedEmail))
-                    {
-                        await _semaphore.WaitAsync(stoppingToken);
+                    var nextEmail = _emailQueue.Values
+                        .OrderByDescending(e => e.Priority)
+                        .ThenBy(e => e.NextAttempt)
+                        .FirstOrDefault(e => e.NextAttempt <= DateTime.UtcNow);
 
-                        _ = Task.Run(async () =>
+                    if (nextEmail != null)
+                    {
+                        if (_emailQueue.TryRemove(nextEmail.Email.Id, out var queuedEmail))
                         {
-                            try
+                            await _semaphore.WaitAsync(stoppingToken);
+
+                            _ = Task.Run(async () =>
                             {
-                                await ProcessEmailAsync(queuedEmail);
-                            }
-                            finally
-                            {
-                                _semaphore.Release();
-                            }
-                        }, stoppingToken);
+                                try
+                                {
+                                    await ProcessEmailAsync(queuedEmail);
+                                }
+                                finally
+                                {
+                                    _semaphore.Release();
+                                }
+                            }, stoppingToken);
+                        }
                     }
                     else
                     {
-                        await Task.Delay(1000, stoppingToken); // Wait 1 second if no emails in queue
+                        await Task.Delay(1000, stoppingToken);
                     }
                 }
                 catch (Exception ex)
@@ -58,20 +70,20 @@ namespace Infrastructure.BackgroundServices
                     _logger.LogError(ex, "Error in email queue processor");
                 }
             }
-
             _logger.LogInformation("Email Queue Processor stopped");
         }
 
         private async Task ProcessEmailAsync(QueuedEmail queuedEmail)
         {
             using var scope = _serviceProvider.CreateScope();
-            var emailService = scope.ServiceProvider.GetRequiredService<Infrastructure.Email.EnhancedEmailService>();
+            var emailService = scope.ServiceProvider.GetRequiredService<Application.Contracts.IEmailService>();
 
             try
             {
                 _logger.LogInformation("Processing email {EmailId}", queuedEmail.Email.Id);
 
-                var success = await emailService.SendEnhancedEmailAsync(queuedEmail.Email);
+                // FIX: The method call is now corrected to use the public IEmailService method.
+                var success = await emailService.SendEmail(queuedEmail.Email);
 
                 if (success)
                 {
@@ -85,12 +97,10 @@ namespace Infrastructure.BackgroundServices
                     if (queuedEmail.AttemptCount < queuedEmail.Email.MaxRetries)
                     {
                         queuedEmail.AttemptCount++;
-                        queuedEmail.NextAttempt = DateTime.UtcNow.AddMinutes(Math.Pow(2, queuedEmail.AttemptCount)); // Exponential backoff
+                        queuedEmail.NextAttempt = DateTime.UtcNow.AddMinutes(Math.Pow(2, queuedEmail.AttemptCount));
 
-                        // Re-queue for retry
-                        _logger.LogInformation("Re-queuing email {EmailId} for attempt {Attempt}", queuedEmail.Email.Id, queuedEmail.AttemptCount);
-                        await Task.Delay(TimeSpan.FromMinutes(1)); // Wait before re-queuing
-                        _emailQueue.Enqueue(queuedEmail);
+                        _logger.LogInformation("Re-queuing email {EmailId} for attempt {Attempt} at {NextAttempt}", queuedEmail.Email.Id, queuedEmail.AttemptCount, queuedEmail.NextAttempt);
+                        _emailQueue.TryAdd(queuedEmail.Email.Id, queuedEmail);
                     }
                     else
                     {
@@ -116,69 +126,14 @@ namespace Infrastructure.BackgroundServices
                 NextAttempt = DateTime.UtcNow
             };
 
-            _emailQueue.Enqueue(queuedEmail);
-            _logger.LogInformation("Email {EmailId} queued with priority {Priority}", email.Id, priority);
-        }
-    }
-
-    public class QueuedEmail
-    {
-        public required EnhancedEmailMessage Email { get; set; }
-        public int Priority { get; set; }
-        public DateTime QueuedAt { get; set; }
-        public int AttemptCount { get; set; }
-        public DateTime NextAttempt { get; set; }
-    }
-
-    public class EmailQueueService : IEmailQueueService
-    {
-        private readonly EmailQueueProcessor _processor;
-        private readonly ILogger<EmailQueueService> _logger;
-
-        public EmailQueueService(EmailQueueProcessor processor, ILogger<EmailQueueService> logger)
-        {
-            _processor = processor;
-            _logger = logger;
-        }
-
-        public Task QueueEmailAsync(EnhancedEmailMessage emailMessage, int priority = 0)
-        {
-            _processor.QueueEmail(emailMessage, priority);
-            return Task.CompletedTask;
-        }
-
-        public Task QueueBulkEmailAsync(BulkEmailMessage bulkEmailMessage, int priority = 0)
-        {
-            // Convert bulk message to individual enhanced messages
-            foreach (var recipient in bulkEmailMessage.Recipients)
+            if (!_emailQueue.TryAdd(email.Id, queuedEmail))
             {
-                var enhancedEmail = new EnhancedEmailMessage
-                {
-                    From = bulkEmailMessage.From,
-                    To = new List<string> { recipient },
-                    Subject = bulkEmailMessage.Subject,
-                    BodyHtml = bulkEmailMessage.BodyHtml,
-                    Priority = (EmailPriority)priority
-                };
-
-                _processor.QueueEmail(enhancedEmail, priority);
+                _logger.LogWarning("Email {EmailId} is already in the queue. Skipping.", email.Id);
             }
-
-            return Task.CompletedTask;
-        }
-
-        public Task<EmailQueueStatus> GetEmailStatusAsync(Guid emailId)
-        {
-            // This would typically query a database for email status
-            // For now, return a default status
-            return Task.FromResult(EmailQueueStatus.Queued);
-        }
-
-        public Task RetryFailedEmailAsync(Guid emailId)
-        {
-            // This would typically find the failed email and re-queue it
-            _logger.LogInformation("Retrying failed email {EmailId}", emailId);
-            return Task.CompletedTask;
+            else
+            {
+                _logger.LogInformation("Email {EmailId} queued with priority {Priority}", email.Id, priority);
+            }
         }
     }
 }

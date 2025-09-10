@@ -40,6 +40,13 @@ namespace API.Controllers
         {
             var query = new GetApplicationNotificationTypeMapDetailQuery { ClientApplicationId = clientApplicationId, NotificationTypeId = notificationTypeId };
             var map = await _mediator.Send(query);
+
+            // FIX: Explicitly check if the map was not found
+            if (map == null)
+            {
+                return NotFound();
+            }
+
             return Ok(map);
         }
 
@@ -51,6 +58,14 @@ namespace API.Controllers
         {
             var command = new CreateApplicationNotificationTypeMapCommand { CreateApplicationNotificationTypeMapDto = createApplicationNotificationTypeMapDto };
             var response = await _mediator.Send(command);
+
+            // FIX: Check for validation errors from the MediatR handler
+            if (!response.Success)
+            {
+                // Assuming BaseCommandResponse has a property for validation errors
+                return BadRequest(response.Errors);
+            }
+
             return Ok(response);
         }
 
@@ -62,8 +77,21 @@ namespace API.Controllers
         public async Task<ActionResult> Put([FromBody] UpdateApplicationNotificationTypeMapDto updateApplicationNotificationTypeMapDto)
         {
             var command = new UpdateApplicationNotificationTypeMapCommand { UpdateApplicationNotificationTypeMapDto = updateApplicationNotificationTypeMapDto };
-            await _mediator.Send(command);
-            return NoContent();
+
+            // FIX: Wrap in a try-catch to handle potential NotFound exceptions from the handler
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (Application.Exceptions.NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         // DELETE: api/ApplicationNotificationTypeMap/{clientApplicationId}/{notificationTypeId}
@@ -73,8 +101,22 @@ namespace API.Controllers
         public async Task<ActionResult> Delete(Guid clientApplicationId, Guid notificationTypeId)
         {
             var command = new DeleteApplicationNotificationTypeMapCommand { ClientApplicationId = clientApplicationId, NotificationTypeId = notificationTypeId };
-            await _mediator.Send(command);
-            return NoContent();
+
+            // FIX: Wrap in a try-catch to handle potential NotFound exceptions from the handler
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (Application.Exceptions.NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                // For other potential exceptions, a BadRequest might be more appropriate than a 500 error
+                return BadRequest(new { Message = ex.Message });
+            }
         }
     }
 }

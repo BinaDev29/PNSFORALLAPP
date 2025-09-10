@@ -3,6 +3,7 @@ using Application.Common.Interfaces;
 using Domain.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Services
@@ -22,18 +23,20 @@ namespace Infrastructure.Services
         {
             try
             {
-                _logger.LogInformation("Publishing domain event {EventType} with ID {EventId}", 
-                    domainEvent.GetType().Name, domainEvent.Id);
+                // Better logging for clarity
+                _logger.LogInformation("Publishing domain event: {EventType} for AggregateId: {AggregateId}",
+                    domainEvent.GetType().Name, ((AggregateRoot)domainEvent).Id);
 
                 await _mediator.Publish(domainEvent);
 
-                _logger.LogInformation("Successfully published domain event {EventType} with ID {EventId}", 
-                    domainEvent.GetType().Name, domainEvent.Id);
+                _logger.LogInformation("Successfully published domain event: {EventType}",
+                    domainEvent.GetType().Name);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error publishing domain event {EventType} with ID {EventId}", 
-                    domainEvent.GetType().Name, domainEvent.Id);
+                // Log the exception with a clear message and stack trace
+                _logger.LogError(ex, "Failed to publish domain event {EventType}. Exception: {Message}",
+                    domainEvent.GetType().Name, ex.Message);
                 throw;
             }
         }

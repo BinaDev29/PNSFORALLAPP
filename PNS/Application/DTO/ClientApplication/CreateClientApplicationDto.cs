@@ -9,7 +9,7 @@ namespace Application.DTO.ClientApplication
         public required string AppId { get; set; }
 
         [Required]
-        public required string Key { get; set; } // ⭐ ይህንን ጨምር ⭐
+        public required string Key { get; set; }
 
         [Required]
         public required string Name { get; set; }

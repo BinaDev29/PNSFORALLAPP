@@ -1,5 +1,4 @@
 ﻿// File Path: Application/Contracts/IRepository/IUnitOfWork.cs
-using Domain.Models;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +14,7 @@ namespace Application.Contracts.IRepository
         IApplicationNotificationTypeMapRepository ApplicationNotificationTypeMaps { get; }
         IEmailTemplateRepository EmailTemplates { get; }
         IPriorityRepository Priorities { get; }
-        IGenericRepository<NotificationHistory> NotificationHistory { get; }
+        ISmsTemplateRepository SmsTemplates { get; } // ይህ ጎድሎ ነበር፣ ጨምር።
 
         Task<int> Save(CancellationToken cancellationToken);
     }

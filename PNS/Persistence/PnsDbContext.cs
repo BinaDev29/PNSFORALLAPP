@@ -3,35 +3,19 @@ using Application.Common.Interfaces;
 using Domain.Common;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Persistence.EntityConfigurations;
-using Persistence.Interceptors;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking; // Added using
+using System.Text.Json; // Added using
+using System.Collections.Generic; // Added using
 
 namespace Persistence
 {
     public class PnsDbContext : DbContext
     {
-        private readonly ICurrentUserService? _currentUserService;
-        private readonly IDateTime? _dateTime;
-        private readonly IDomainEventService? _domainEventService;
-
-        public PnsDbContext(DbContextOptions<PnsDbContext> options) : base(options) 
+        public PnsDbContext(DbContextOptions<PnsDbContext> options) : base(options)
         {
-            _currentUserService = null;
-            _dateTime = null;
-            _domainEventService = null;
-        }
-
-        public PnsDbContext(DbContextOptions<PnsDbContext> options, 
-            ICurrentUserService currentUserService, 
-            IDateTime dateTime,
-            IDomainEventService domainEventService) : base(options)
-        {
-            _currentUserService = currentUserService;
-            _dateTime = dateTime;
-            _domainEventService = domainEventService;
         }
 
         public DbSet<ClientApplication> ClientApplications { get; set; }
@@ -41,6 +25,7 @@ namespace Persistence
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<EmailTemplate> EmailTemplates { get; set; }
         public DbSet<NotificationHistory> NotificationHistories { get; set; }
+        public DbSet<SmsTemplate> SmsTemplates { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +46,38 @@ namespace Persistence
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
+            // FIX: Explicitly configure relationships to prevent shadow properties
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.NotificationType)
+                .WithMany()
+                .HasForeignKey(n => n.NotificationTypeId);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Priority)
+                .WithMany()
+                .HasForeignKey(n => n.PriorityId);
+
+            // FIX: Configure value comparers for collection properties
+            modelBuilder.Entity<Notification>()
+                .Property(n => n.To)
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                    v => JsonSerializer.Deserialize<List<object>>(v, (JsonSerializerOptions)null),
+                    new ValueComparer<List<object>>(
+                        (c1, c2) => c1.SequenceEqual(c2),
+                        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                        c => c.ToList()));
+
+            modelBuilder.Entity<Notification>()
+                .Property(n => n.Metadata)
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                    v => JsonSerializer.Deserialize<Dictionary<string, string>>(v, (JsonSerializerOptions)null),
+                    new ValueComparer<Dictionary<string, string>>(
+                        (c1, c2) => c1.SequenceEqual(c2),
+                        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                        c => c.ToDictionary(e => e.Key, e => e.Value)));
+
             // Global query filters for soft delete
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
@@ -69,7 +86,7 @@ namespace Persistence
                     var method = typeof(PnsDbContext)
                         .GetMethod(nameof(SetGlobalQueryFilter), BindingFlags.NonPublic | BindingFlags.Static)?
                         .MakeGenericMethod(entityType.ClrType);
-                    
+
                     method?.Invoke(null, new object[] { modelBuilder });
                 }
             }
@@ -82,46 +99,6 @@ namespace Persistence
             builder.Entity<T>().HasQueryFilter(e => !e.IsDeleted);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (_currentUserService != null && _dateTime != null)
-            {
-                optionsBuilder.AddInterceptors(new AuditableEntityInterceptor(_currentUserService, _dateTime));
-            }
-        }
-
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            await DispatchDomainEventsAsync();
-            return await base.SaveChangesAsync(cancellationToken);
-        }
-
-        public override int SaveChanges()
-        {
-            DispatchDomainEventsAsync().GetAwaiter().GetResult();
-            return base.SaveChanges();
-        }
-
-        private async Task DispatchDomainEventsAsync()
-        {
-            if (_domainEventService == null) return;
-
-            var entities = ChangeTracker
-                .Entries<AggregateRoot>()
-                .Where(e => e.Entity.DomainEvents.Any())
-                .Select(e => e.Entity)
-                .ToList();
-
-            var domainEvents = entities
-                .SelectMany(e => e.DomainEvents)
-                .ToList();
-
-            entities.ForEach(e => e.ClearDomainEvents());
-
-            foreach (var domainEvent in domainEvents)
-            {
-                await _domainEventService.PublishAsync(domainEvent);
-            }
-        }
+        // Removed the SaveChanges method as it's not part of the DbContext's main purpose
     }
 }

@@ -21,6 +21,10 @@ namespace Application.CQRS.Priority.Handlers
             }
 
             await unitOfWork.Priorities.Delete(priority, cancellationToken);
+
+            // Critical fix: Add the save call to persist the deletion.
+            await unitOfWork.Save(cancellationToken);
+
             return Unit.Value;
         }
     }

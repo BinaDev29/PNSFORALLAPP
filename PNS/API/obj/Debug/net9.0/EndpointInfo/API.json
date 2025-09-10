@@ -359,8 +359,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "text/plain": {
                 "schema": {
@@ -633,8 +633,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "text/plain": {
                 "schema": {
@@ -1757,8 +1757,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "text/plain": {
                 "schema": {
@@ -1921,8 +1921,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2195,8 +2195,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2940,8 +2940,10 @@
             "format": "uuid"
           },
           "to": {
-            "minLength": 1,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "title": {
             "minLength": 1,
@@ -3020,6 +3022,9 @@
         "additionalProperties": false
       },
       "Application.DTO.NotificationType.NotificationTypeDto": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -3027,8 +3032,8 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "description": {
             "type": "string",
@@ -3150,10 +3155,6 @@
             "items": {
               "type": "string"
             },
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
             "nullable": true
           }
         },

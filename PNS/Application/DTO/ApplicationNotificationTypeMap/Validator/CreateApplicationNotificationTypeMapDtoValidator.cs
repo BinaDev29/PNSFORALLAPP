@@ -1,4 +1,5 @@
-﻿// File Path: Application/DTO/ApplicationNotificationTypeMap/Validator/CreateApplicationNotificationTypeMapDtoValidator.cs
+﻿//-------------------------------------------------------------
+// File Path: Application/DTO/ApplicationNotificationTypeMap/Validator/CreateApplicationNotificationTypeMapDtoValidator.cs
 using FluentValidation;
 
 namespace Application.DTO.ApplicationNotificationTypeMap.Validator

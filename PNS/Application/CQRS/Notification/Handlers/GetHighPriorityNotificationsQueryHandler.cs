@@ -17,8 +17,9 @@ namespace Application.CQRS.Notification.Handlers
 
         public async Task<List<NotificationDto>> Handle(GetHighPriorityNotificationsQuery request, CancellationToken cancellationToken)
         {
-            var highPriorityNotifications = await _unitOfWork.Notifications.Get(
-                q => q.ClientApplicationId == request.ClientApplicationId && q.Priority != null && q.Priority.Level == 1, cancellationToken
+            // Fix: Use 'GetWhere' or a similar method that accepts a predicate for filtering.
+            var highPriorityNotifications = await _unitOfWork.Notifications.GetWhere(
+                q => q.ClientApplicationId == request.ClientApplicationId && q.Priority != null && q.Priority.Level == 1
             );
             return _mapper.Map<List<NotificationDto>>(highPriorityNotifications);
         }

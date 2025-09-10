@@ -6,17 +6,17 @@ using Application.Exceptions;
 using AutoMapper;
 using Domain.Models;
 using MediatR;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.CQRS.EmailTemplate.Handlers
 {
-    public class UpdateEmailTemplateCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateEmailTemplateCommand, Unit>
+    // Inject the validator for better testability and design
+    public class UpdateEmailTemplateCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, UpdateEmailTemplateDtoValidator validator) : IRequestHandler<UpdateEmailTemplateCommand, Unit>
     {
         public async Task<Unit> Handle(UpdateEmailTemplateCommand request, CancellationToken cancellationToken)
         {
-            var validator = new UpdateEmailTemplateDtoValidator();
+            // Use the injected validator instance
             var validationResult = await validator.ValidateAsync(request.UpdateEmailTemplateDto, cancellationToken);
 
             if (!validationResult.IsValid)
@@ -33,6 +33,9 @@ namespace Application.CQRS.EmailTemplate.Handlers
 
             mapper.Map(request.UpdateEmailTemplateDto, emailTemplate);
             await unitOfWork.EmailTemplates.Update(emailTemplate, cancellationToken);
+
+            // Critical fix: Add the save call to persist the update
+            await unitOfWork.Save(cancellationToken);
 
             return Unit.Value;
         }

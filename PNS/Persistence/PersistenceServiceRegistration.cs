@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Interceptors;
+using Application.Common.Interfaces; // ይህን ያክሉ
 
 namespace Persistence
 {
@@ -11,8 +13,18 @@ namespace Persistence
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<PnsDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("PnsConnectionString")));
+            // Interceptors ን ለመመዝገብ
+            services.AddScoped<AuditableEntityInterceptor>();
+            services.AddScoped<DomainEventInterceptor>();
+
+            services.AddDbContext<PnsDbContext>((sp, options) =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("PnsConnectionString"));
+                options.AddInterceptors(
+                    sp.GetRequiredService<AuditableEntityInterceptor>(),
+                    sp.GetRequiredService<DomainEventInterceptor>()
+                );
+            });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

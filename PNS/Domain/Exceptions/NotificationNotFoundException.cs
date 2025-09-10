@@ -5,7 +5,7 @@ namespace Domain.Exceptions
 {
     public class NotificationNotFoundException : DomainException
     {
-        public NotificationNotFoundException(Guid notificationId) 
+        public NotificationNotFoundException(Guid notificationId)
             : base($"Notification with ID '{notificationId}' was not found.")
         {
         }

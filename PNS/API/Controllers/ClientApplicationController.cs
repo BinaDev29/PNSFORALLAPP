@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Exceptions;
 
 namespace API.Controllers
 {
@@ -35,19 +36,34 @@ namespace API.Controllers
         {
             var query = new GetClientApplicationDetailQuery { Id = id };
             var application = await _mediator.Send(query);
+
+            // FIX: Return a 404 Not Found if the application is null.
+            if (application == null)
+            {
+                return NotFound();
+            }
+
             return Ok(application);
         }
 
         // POST: api/ClientApplication
         [HttpPost]
-        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(typeof(BaseCommandResponse), 201)] // FIX: Changed to 201 Created for resource creation.
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateClientApplicationDto createClientApplicationDto)
         {
-            // ? ?????? ???? ??????? Command?? ??? ???? ??? ?
             var command = new CreateClientApplicationCommand(createClientApplicationDto);
             var response = await _mediator.Send(command);
-            return Ok(response);
+
+            // FIX: Check for validation errors from the MediatR handler.
+            if (!response.Success)
+            {
+                return BadRequest(response.Errors);
+            }
+
+            // FIX: Return 201 Created with the location of the new resource.
+            // Assuming Id is the unique identifier of the newly created application.
+            return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
         }
 
         // PUT: api/ClientApplication
@@ -58,8 +74,22 @@ namespace API.Controllers
         public async Task<ActionResult> Put([FromBody] UpdateClientApplicationDto updateClientApplicationDto)
         {
             var command = new UpdateClientApplicationCommand { UpdateClientApplicationDto = updateClientApplicationDto };
-            await _mediator.Send(command);
-            return NoContent();
+
+            // FIX: Wrap in a try-catch to handle potential NotFound and Validation exceptions.
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (NotFoundException) // Assuming a custom NotFoundException is thrown by the handler.
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                // A generic catch-all for other types of errors.
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         // DELETE: api/ClientApplication/5
@@ -69,8 +99,21 @@ namespace API.Controllers
         public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteClientApplicationCommand { Id = id };
-            await _mediator.Send(command);
-            return NoContent();
+
+            // FIX: Wrap in a try-catch to handle potential NotFound exceptions.
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (NotFoundException) // Assuming a custom NotFoundException is thrown by the handler.
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
     }
 }

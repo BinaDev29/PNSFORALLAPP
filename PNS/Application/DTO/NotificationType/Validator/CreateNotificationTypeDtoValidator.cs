@@ -8,7 +8,9 @@ namespace Application.DTO.NotificationType.Validator
         public CreateNotificationTypeDtoValidator()
         {
             RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull()
+                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
         }
     }
 }

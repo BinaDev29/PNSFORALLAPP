@@ -14,8 +14,8 @@ namespace Application.CQRS.NotificationType.Handlers
     {
         public async Task<List<NotificationTypeDto>> Handle(GetNotificationTypesListQuery request, CancellationToken cancellationToken)
         {
-            var types = await unitOfWork.NotificationTypes.GetAll(cancellationToken);
-            return mapper.Map<List<NotificationTypeDto>>(types);
+            var notificationTypes = await unitOfWork.NotificationTypes.GetAll();
+            return mapper.Map<List<NotificationTypeDto>>(notificationTypes);
         }
     }
 }

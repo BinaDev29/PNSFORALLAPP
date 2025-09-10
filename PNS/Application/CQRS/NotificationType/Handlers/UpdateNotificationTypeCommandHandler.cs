@@ -4,9 +4,8 @@ using Application.CQRS.NotificationType.Commands;
 using Application.DTO.NotificationType.Validator;
 using Application.Exceptions;
 using AutoMapper;
-using Domain.Models;
 using MediatR;
-using System.Linq;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,15 +23,17 @@ namespace Application.CQRS.NotificationType.Handlers
                 throw new ValidationException(validationResult);
             }
 
-            var notificationType = await unitOfWork.NotificationTypes.Get(request.UpdateNotificationTypeDto.Id, cancellationToken);
+            var notificationType = await unitOfWork.NotificationTypes.Get(request.UpdateNotificationTypeDto.Id);
 
-            if (notificationType is null)
+            if (notificationType == null)
             {
                 throw new NotFoundException(nameof(Domain.Models.NotificationType), request.UpdateNotificationTypeDto.Id);
             }
 
             mapper.Map(request.UpdateNotificationTypeDto, notificationType);
-            await unitOfWork.NotificationTypes.Update(notificationType, cancellationToken);
+
+            await unitOfWork.NotificationTypes.Update(notificationType);
+            await unitOfWork.Save(cancellationToken);
 
             return Unit.Value;
         }

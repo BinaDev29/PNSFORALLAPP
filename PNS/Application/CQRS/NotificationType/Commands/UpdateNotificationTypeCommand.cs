@@ -1,6 +1,7 @@
 ﻿// File Path: Application/CQRS/NotificationType/Commands/UpdateNotificationTypeCommand.cs
 using Application.DTO.NotificationType;
 using MediatR;
+using System;
 
 namespace Application.CQRS.NotificationType.Commands
 {

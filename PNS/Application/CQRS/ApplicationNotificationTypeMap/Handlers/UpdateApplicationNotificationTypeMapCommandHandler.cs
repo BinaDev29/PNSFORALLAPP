@@ -6,17 +6,17 @@ using Application.Exceptions;
 using AutoMapper;
 using Domain.Models;
 using MediatR;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 {
-    public class UpdateApplicationNotificationTypeMapCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateApplicationNotificationTypeMapCommand, Unit>
+    // The validator should be injected for better testability
+    public class UpdateApplicationNotificationTypeMapCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, UpdateApplicationNotificationTypeMapDtoValidator validator) : IRequestHandler<UpdateApplicationNotificationTypeMapCommand, Unit>
     {
         public async Task<Unit> Handle(UpdateApplicationNotificationTypeMapCommand request, CancellationToken cancellationToken)
         {
-            var validator = new UpdateApplicationNotificationTypeMapDtoValidator();
+            // Use the injected validator instead of creating a new instance
             var validationResult = await validator.ValidateAsync(request.UpdateApplicationNotificationTypeMapDto, cancellationToken);
 
             if (!validationResult.IsValid)
@@ -33,6 +33,9 @@ namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 
             mapper.Map(request.UpdateApplicationNotificationTypeMapDto, map);
             await unitOfWork.ApplicationNotificationTypeMaps.Update(map, cancellationToken);
+
+            // The essential Save() call to commit the update
+            await unitOfWork.Save(cancellationToken);
 
             return Unit.Value;
         }

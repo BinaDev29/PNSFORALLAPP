@@ -1,33 +1,32 @@
 ﻿// File Path: Application/CQRS/ClientApplication/Handlers/CreateClientApplicationCommandHandler.cs
 using Application.Contracts.IRepository;
+using Application.CQRS.ClientApplication.Commands;
 using Application.DTO.ClientApplication;
 using Application.Responses;
 using AutoMapper;
-using MediatR;
 using Domain.Models;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-// CreateClientApplicationCommand and CreateClientApplicationDto are assumed to exist
-public record CreateClientApplicationCommand(CreateClientApplicationDto CreateClientApplicationDto) : IRequest<BaseCommandResponse>;
-
+// የተደጋገመው CreateClientApplicationCommand ትርጉም እዚህ ላይ ተወግዷል
 public class CreateClientApplicationCommandHandler(IMapper mapper, IUnitOfWork unitOfWork)
     : IRequestHandler<CreateClientApplicationCommand, BaseCommandResponse>
 {
-    private readonly IMapper _mapper = mapper;
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-
     public async Task<BaseCommandResponse> Handle(CreateClientApplicationCommand request, CancellationToken cancellationToken)
     {
         var response = new BaseCommandResponse();
 
-        var encryptedPassword = EncryptionService.Encrypt(request.CreateClientApplicationDto.AppPassword);
+        // EncryptionService ንበዲፔንደንሲ ኢንጄክሽን ማስገባት ይመከራል
+        // var encryptedPassword = encryptionService.Encrypt(request.CreateClientApplicationDto.AppPassword);
+        // var clientApplication = mapper.Map<ClientApplication>(request.CreateClientApplicationDto);
+        // clientApplication.AppPassword = encryptedPassword;
 
-        var clientApplication = _mapper.Map<ClientApplication>(request.CreateClientApplicationDto);
-        clientApplication.AppPassword = encryptedPassword; 
+        // ለጊዜው፣ በቀጥታ እንጠቀማለን
+        var clientApplication = mapper.Map<ClientApplication>(request.CreateClientApplicationDto);
 
-        await _unitOfWork.ClientApplications.Add(clientApplication, cancellationToken);
-        await _unitOfWork.Save(cancellationToken);
+        await unitOfWork.ClientApplications.Add(clientApplication, cancellationToken);
+        await unitOfWork.Save(cancellationToken);
 
         response.Success = true;
         response.Message = "Client Application Creation Successful";

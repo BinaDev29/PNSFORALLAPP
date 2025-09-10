@@ -17,10 +17,15 @@ namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 
             if (map is null)
             {
-                throw new NotFoundException($"{nameof(ApplicationNotificationTypeMap)} with ClientApplicationId: {request.ClientApplicationId} and NotificationTypeId: {request.NotificationTypeId}", "not found");
+                // A more consistent exception message
+                throw new NotFoundException(nameof(ApplicationNotificationTypeMap), new { request.ClientApplicationId, request.NotificationTypeId });
             }
 
             await unitOfWork.ApplicationNotificationTypeMaps.Delete(map, cancellationToken);
+
+            // The essential Save() call to commit the deletion
+            await unitOfWork.Save(cancellationToken);
+
             return Unit.Value;
         }
     }

@@ -21,6 +21,10 @@ namespace Application.CQRS.EmailTemplate.Handlers
             }
 
             await unitOfWork.EmailTemplates.Delete(emailTemplate, cancellationToken);
+
+            // Critical fix: Add the save call to persist the deletion
+            await unitOfWork.Save(cancellationToken);
+
             return Unit.Value;
         }
     }

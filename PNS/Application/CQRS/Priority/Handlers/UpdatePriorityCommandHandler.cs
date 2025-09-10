@@ -2,25 +2,26 @@
 using Application.Contracts.IRepository;
 using Application.CQRS.Priority.Commands;
 using Application.DTO.Priority.Validator;
-using Application.Exceptions;
+using Application.Exceptions; // This is the correct namespace for your custom exception
 using AutoMapper;
 using Domain.Models;
 using MediatR;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+// NOTE: The 'using System.ComponentModel.DataAnnotations;' has been removed to resolve the ambiguity.
+
 namespace Application.CQRS.Priority.Handlers
 {
-    public class UpdatePriorityCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdatePriorityCommand, Unit>
+    public class UpdatePriorityCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, UpdatePriorityDtoValidator validator) : IRequestHandler<UpdatePriorityCommand, Unit>
     {
         public async Task<Unit> Handle(UpdatePriorityCommand request, CancellationToken cancellationToken)
         {
-            var validator = new UpdatePriorityDtoValidator();
             var validationResult = await validator.ValidateAsync(request.UpdatePriorityDto, cancellationToken);
 
             if (!validationResult.IsValid)
             {
+                // The ValidationException from Application.Exceptions is now unambiguously used.
                 throw new ValidationException(validationResult);
             }
 
@@ -33,6 +34,8 @@ namespace Application.CQRS.Priority.Handlers
 
             mapper.Map(request.UpdatePriorityDto, priority);
             await unitOfWork.Priorities.Update(priority, cancellationToken);
+
+            await unitOfWork.Save(cancellationToken);
 
             return Unit.Value;
         }

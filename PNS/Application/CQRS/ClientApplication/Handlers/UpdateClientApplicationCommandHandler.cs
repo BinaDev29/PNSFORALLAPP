@@ -1,13 +1,10 @@
 ﻿// File Path: Application/CQRS/ClientApplication/Handlers/UpdateClientApplicationCommandHandler.cs
 using Application.Contracts.IRepository;
 using Application.CQRS.ClientApplication.Commands;
-using Application.DTO.ClientApplication;
 using Application.DTO.ClientApplication.Validator;
 using Application.Exceptions;
 using AutoMapper;
-using Domain.Models;
 using MediatR;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,6 +31,9 @@ namespace Application.CQRS.ClientApplication.Handlers
 
             mapper.Map(request.UpdateClientApplicationDto, clientApplication);
             await unitOfWork.ClientApplications.Update(clientApplication, cancellationToken);
+
+            // የጠፋው የ Save ጥሪ እዚህ ላይ ታክሏል!
+            await unitOfWork.Save(cancellationToken);
 
             return Unit.Value;
         }

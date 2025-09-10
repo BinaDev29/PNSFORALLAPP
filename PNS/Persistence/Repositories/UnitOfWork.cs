@@ -22,6 +22,9 @@ namespace Persistence.Repositories
         private readonly IPriorityRepository _priorities;
         private readonly IGenericRepository<NotificationHistory> _notificationHistory;
 
+        // FIX: Add a private field for the SMS template repository
+        private readonly ISmsTemplateRepository _smsTemplates;
+
         public UnitOfWork(PnsDbContext dbContext,
             IClientApplicationRepository clientApplications,
             INotificationRepository notifications,
@@ -30,7 +33,9 @@ namespace Persistence.Repositories
             IApplicationNotificationTypeMapRepository applicationNotificationTypeMaps,
             IEmailTemplateRepository emailTemplates,
             IPriorityRepository priorities,
-            IGenericRepository<NotificationHistory> notificationHistory)
+            IGenericRepository<NotificationHistory> notificationHistory,
+            // FIX: Add the SMS template repository to the constructor parameters
+            ISmsTemplateRepository smsTemplates)
         {
             _dbContext = dbContext;
             _clientApplications = clientApplications;
@@ -41,6 +46,8 @@ namespace Persistence.Repositories
             _emailTemplates = emailTemplates;
             _priorities = priorities;
             _notificationHistory = notificationHistory;
+            // FIX: Initialize the new repository field
+            _smsTemplates = smsTemplates;
         }
 
         // Public properties to access the repositories
@@ -52,6 +59,9 @@ namespace Persistence.Repositories
         public IEmailTemplateRepository EmailTemplates => _emailTemplates;
         public IPriorityRepository Priorities => _priorities;
         public IGenericRepository<NotificationHistory> NotificationHistory => _notificationHistory;
+
+        // FIX: Add the public property for the SMS template repository
+        public ISmsTemplateRepository SmsTemplates => _smsTemplates;
 
         public async Task<int> Save(CancellationToken cancellationToken)
         {

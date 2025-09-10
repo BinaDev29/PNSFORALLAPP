@@ -8,19 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Exceptions;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NotificationHistoryController : ControllerBase
+    public class NotificationHistoryController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public NotificationHistoryController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        private readonly IMediator _mediator = mediator;
 
         // GET: api/NotificationHistory
         [HttpGet]
@@ -40,21 +36,33 @@ namespace API.Controllers
         {
             var query = new GetNotificationHistoryDetailQuery { Id = id };
             var history = await _mediator.Send(query);
+
+            // FIX: Return a 404 Not Found if the history item is null.
+            if (history == null)
+            {
+                return NotFound();
+            }
+
             return Ok(history);
         }
 
         // POST: api/NotificationHistory
         [HttpPost]
-        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(typeof(BaseCommandResponse), 201)] // FIX: Change status code to 201 Created.
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNotificationHistoryDto createNotificationHistoryDto)
         {
             var command = new CreateNotificationHistoryCommand { CreateNotificationHistoryDto = createNotificationHistoryDto };
             var response = await _mediator.Send(command);
-            return Ok(response);
-        }
 
-        // Note: Update and Delete are not implemented for NotificationHistory model
-        // as per the provided CQRS code, which only includes Create and Query.
+            // FIX: Check for validation errors from the MediatR handler.
+            if (!response.Success)
+            {
+                return BadRequest(response.Errors);
+            }
+
+            // FIX: Return 201 Created with the location of the new resource.
+            return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
+        }
     }
 }

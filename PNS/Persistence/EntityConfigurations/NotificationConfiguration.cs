@@ -1,5 +1,7 @@
-// File Path: Persistence/EntityConfigurations/NotificationConfiguration.cs
+﻿// File Path: Persistence/EntityConfigurations/NotificationConfiguration.cs
 using Domain.Models;
+using Persistence.Converters;
+using Domain.ValueObjects; // ይህን መስመር ያክሉ
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Text.Json;
@@ -22,14 +24,25 @@ namespace Persistence.EntityConfigurations
 
             builder.Property(n => n.To)
                 .HasConversion(
-                    v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
-                    v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions?)null) ?? new List<string>())
+                    // To JSON
+                    v => JsonSerializer.Serialize(v, typeof(List<object>), new JsonSerializerOptions
+                    {
+                        WriteIndented = true,
+                        // EmailAddress እና PhoneNumber አይነቶችን ለመምራት Converters እንጨምራለን።
+                        Converters = { new EmailAddressConverter(), new PhoneNumberConverter() }
+                    }),
+                    // From JSON
+                    v => JsonSerializer.Deserialize<List<object>>(v, new JsonSerializerOptions
+                    {
+                        // Converters ን እዚህም እንጨምራለን
+                        Converters = { new EmailAddressConverter(), new PhoneNumberConverter() }
+                    }) ?? new List<object>())
                 .HasColumnType("nvarchar(max)");
 
             builder.Property(n => n.Metadata)
                 .HasConversion(
                     v => v == null ? null : JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
-                    v => v == null ? null : JsonSerializer.Deserialize<Dictionary<string, object>>(v, (JsonSerializerOptions?)null))
+                    v => v == null ? null : JsonSerializer.Deserialize<Dictionary<string, string>>(v, (JsonSerializerOptions?)null))
                 .HasColumnType("nvarchar(max)");
 
             builder.Property(n => n.Status)

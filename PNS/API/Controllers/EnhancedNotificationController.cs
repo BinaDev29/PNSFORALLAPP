@@ -1,4 +1,6 @@
+// File Path: API/Controllers/EnhancedNotificationController.cs
 using Application.Common.Interfaces;
+using Application.Contracts;
 using Application.Contracts.IRepository;
 using Application.CQRS.Notification.Commands;
 using Application.DTO.Notification;
@@ -8,7 +10,10 @@ using Infrastructure.Email;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -19,7 +24,8 @@ namespace API.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IEmailQueueService _emailQueueService;
-        private readonly EnhancedEmailService _enhancedEmailService;
+        // FIX: Change the type to the interface IEmailService
+        private readonly IEmailService _enhancedEmailService;
         private readonly IEmailTemplateService _emailTemplateService;
         private readonly ICacheService _cacheService;
         private readonly ILogger<EnhancedNotificationController> _logger;
@@ -28,7 +34,8 @@ namespace API.Controllers
         public EnhancedNotificationController(
             IMediator mediator,
             IEmailQueueService emailQueueService,
-            EnhancedEmailService enhancedEmailService,
+            // FIX: Accept the interface type in the constructor
+            IEmailService enhancedEmailService,
             IEmailTemplateService emailTemplateService,
             ICacheService cacheService,
             ILogger<EnhancedNotificationController> logger,
@@ -98,6 +105,10 @@ namespace API.Controllers
                     return BadRequest(new { message = "Client application not found." });
                 }
 
+                if (request.Metadata == null)
+                {
+                    request.Metadata = new Dictionary<string, object>();
+                }
                 request.Metadata["SenderEmail"] = clientApp.SenderEmail;
                 request.Metadata["AppPassword"] = clientApp.AppPassword;
 
@@ -122,18 +133,8 @@ namespace API.Controllers
                 }
                 else
                 {
-                    var success = await _enhancedEmailService.SendEmail(
-                        new EmailMessage
-                        {
-                            To = emailMessage.To,
-                            From = emailMessage.From,
-                            Subject = emailMessage.Subject,
-                            BodyHtml = emailMessage.BodyHtml
-                        },
-                        emailMessage.Id,
-                        clientApp.SenderEmail,
-                        clientApp.AppPassword
-                    );
+                    // FIX: Call the correct SendEmail method from the IEmailService interface
+                    var success = await _enhancedEmailService.SendEmail(emailMessage);
                     if (success)
                     {
                         return Ok(new { message = "Email sent successfully", id = emailMessage.Id });

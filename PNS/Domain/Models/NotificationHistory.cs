@@ -6,9 +6,9 @@ namespace Domain.Models
 {
     public class NotificationHistory : BaseDomainEntity
     {
-        public required string Status { get; set; } 
-        public required Guid NotificationId { get; set; } 
-        public required DateTime SentDate { get; set; } 
+        public required string Status { get; set; }
+        public Guid? NotificationId { get; set; } // ወደ Nullable ተቀይሯል
+        public required DateTime SentDate { get; set; }
         public virtual Notification? Notification { get; set; }
     }
 }

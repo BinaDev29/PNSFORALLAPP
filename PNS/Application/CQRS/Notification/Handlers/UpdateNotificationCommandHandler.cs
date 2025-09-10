@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Notification.Handlers
 {
-    public class UpdateNotificationCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateNotificationCommand, Unit>
+    // Inject the validator as a dependency
+    public class UpdateNotificationCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, UpdateNotificationDtoValidator validator)
+        : IRequestHandler<UpdateNotificationCommand, Unit>
     {
         public async Task<Unit> Handle(UpdateNotificationCommand request, CancellationToken cancellationToken)
         {
-            var validator = new UpdateNotificationDtoValidator();
+            // Use the injected validator instance
             var validationResult = await validator.ValidateAsync(request.UpdateNotificationDto, cancellationToken);
 
             if (!validationResult.IsValid)
@@ -31,6 +33,9 @@ namespace Application.CQRS.Notification.Handlers
 
             mapper.Map(request.UpdateNotificationDto, notification);
             await unitOfWork.Notifications.Update(notification, cancellationToken);
+
+            // Critical fix: Add the save call
+            await unitOfWork.Save(cancellationToken);
 
             return Unit.Value;
         }

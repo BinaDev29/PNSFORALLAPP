@@ -50,19 +50,20 @@ builder.Services.AddScoped<IDomainEventService, DomainEventService>();
 
 // Email Services
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+builder.Services.AddScoped<EnhancedEmailService>();
 
-// Only configure and register SendGrid provider when an ApiKey is present.
-// This prevents DI from constructing SendGridEmailProvider with a null ApiKey and throwing ArgumentNullException.
+// Conditionally register email providers
 var sendGridSection = builder.Configuration.GetSection("SendGridSettings");
 if (!string.IsNullOrEmpty(sendGridSection["ApiKey"]))
 {
     builder.Services.Configure<SendGridSettings>(sendGridSection);
     builder.Services.AddScoped<IEmailProvider, SendGridEmailProvider>();
 }
-
-// Ensure SMTP provider is registered so emails are sent via SMTP when SendGrid is not configured.
-builder.Services.AddScoped<IEmailProvider, SmtpEmailProvider>();
-builder.Services.AddScoped<EnhancedEmailService>();
+else
+{
+    // Register SMTP provider only if SendGrid isn't configured
+    builder.Services.AddScoped<IEmailProvider, SmtpEmailProvider>();
+}
 builder.Services.AddScoped<Application.Contracts.IEmailService, EnhancedEmailService>();
 
 // Background Services
@@ -89,6 +90,8 @@ builder.Services.AddScoped<INotificationTypeRepository, NotificationTypeReposito
 builder.Services.AddScoped<IApplicationNotificationTypeMapRepository, ApplicationNotificationTypeMapRepository>();
 builder.Services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
 builder.Services.AddScoped<IPriorityRepository, PriorityRepository>();
+// FIX: Added registration for the ISmsTemplateRepository
+builder.Services.AddScoped<ISmsTemplateRepository, SmsTemplateRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

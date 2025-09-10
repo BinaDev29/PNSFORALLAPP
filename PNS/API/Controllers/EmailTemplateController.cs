@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Exceptions;
 
 namespace API.Controllers
 {
@@ -40,18 +41,33 @@ namespace API.Controllers
         {
             var query = new GetEmailTemplateDetailQuery { Id = id };
             var template = await _mediator.Send(query);
+
+            // FIX: Return a 404 Not Found if the template is null.
+            if (template == null)
+            {
+                return NotFound();
+            }
+
             return Ok(template);
         }
 
         // POST: api/EmailTemplate
         [HttpPost]
-        [ProducesResponseType(typeof(BaseCommandResponse), 200)]
+        [ProducesResponseType(typeof(BaseCommandResponse), 201)] // FIX: Change status code to 201 Created.
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateEmailTemplateDto createEmailTemplateDto)
         {
             var command = new CreateEmailTemplateCommand { CreateEmailTemplateDto = createEmailTemplateDto };
             var response = await _mediator.Send(command);
-            return Ok(response);
+
+            // FIX: Check for validation errors from the MediatR handler.
+            if (!response.Success)
+            {
+                return BadRequest(response.Errors);
+            }
+
+            // FIX: Return 201 Created with the location of the new resource.
+            return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
         }
 
         // PUT: api/EmailTemplate
@@ -62,8 +78,21 @@ namespace API.Controllers
         public async Task<ActionResult> Put([FromBody] UpdateEmailTemplateDto updateEmailTemplateDto)
         {
             var command = new UpdateEmailTemplateCommand { UpdateEmailTemplateDto = updateEmailTemplateDto };
-            await _mediator.Send(command);
-            return NoContent();
+
+            // FIX: Wrap in a try-catch to handle potential NotFound and Validation exceptions.
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (NotFoundException) // Assuming a custom NotFoundException is thrown by the handler.
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         // DELETE: api/EmailTemplate/5
@@ -73,8 +102,21 @@ namespace API.Controllers
         public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteEmailTemplateCommand { Id = id };
-            await _mediator.Send(command);
-            return NoContent();
+
+            // FIX: Wrap in a try-catch to handle potential NotFound exceptions.
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (NotFoundException) // Assuming a custom NotFoundException is thrown by the handler.
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
     }
 }

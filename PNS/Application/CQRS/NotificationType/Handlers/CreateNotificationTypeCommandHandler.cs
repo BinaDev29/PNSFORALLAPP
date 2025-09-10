@@ -6,6 +6,7 @@ using Application.Responses;
 using AutoMapper;
 using Domain.Models;
 using MediatR;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +30,12 @@ namespace Application.CQRS.NotificationType.Handlers
             }
 
             var notificationType = mapper.Map<Domain.Models.NotificationType>(request.CreateNotificationTypeDto);
+
+            // This is the crucial line: it generates a new, unique Guid for the Id.
+            notificationType.Id = Guid.NewGuid();
+
             await unitOfWork.NotificationTypes.Add(notificationType, cancellationToken);
+            await unitOfWork.Save(cancellationToken);
 
             response.Success = true;
             response.Message = "Creation Successful";

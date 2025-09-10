@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration; // ይህን መስመር ጨምር
-using System.IO; 
+using System.IO;
 
 namespace Persistence
 {

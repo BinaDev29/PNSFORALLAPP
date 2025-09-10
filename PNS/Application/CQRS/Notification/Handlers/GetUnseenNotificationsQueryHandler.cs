@@ -17,8 +17,9 @@ namespace Application.CQRS.Notification.Handlers
 
         public async Task<List<NotificationDto>> Handle(GetUnseenNotificationsQuery request, CancellationToken cancellationToken)
         {
-            var unseenNotifications = await _unitOfWork.Notifications.Get(
-                q => q.ClientApplicationId == request.ClientApplicationId && q.SeenTime == null, cancellationToken
+            var unseenNotifications = await _unitOfWork.Notifications.GetWhere(
+                q => q.ClientApplicationId == request.ClientApplicationId && q.SeenTime == null,
+                cancellationToken
             );
             return _mapper.Map<List<NotificationDto>>(unseenNotifications);
         }

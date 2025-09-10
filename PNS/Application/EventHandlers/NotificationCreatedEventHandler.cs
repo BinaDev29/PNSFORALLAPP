@@ -7,6 +7,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic; // Added for List and Dictionary
+using System.Linq; // Added for LINQ extension methods
 
 namespace Application.EventHandlers
 {
@@ -30,7 +32,7 @@ namespace Application.EventHandlers
         {
             try
             {
-                _logger.LogInformation("Processing NotificationCreatedEvent for notification {NotificationId}", 
+                _logger.LogInformation("Processing NotificationCreatedEvent for notification {NotificationId}",
                     notification.NotificationId);
 
                 // Process the notification template
@@ -41,7 +43,8 @@ namespace Application.EventHandlers
                 var emailMessage = new EnhancedEmailMessage
                 {
                     From = "noreply@yourapp.com", // This should come from configuration
-                    To = notification.Recipients,
+                    // FIX: Explicitly convert the list of objects to a list of strings using LINQ
+                    To = notification.Recipients.Select(r => r.ToString()).ToList(),
                     Subject = notification.Title,
                     BodyHtml = processedHtml,
                     TrackingId = notification.NotificationId.ToString(),
@@ -56,15 +59,15 @@ namespace Application.EventHandlers
                 };
 
                 // Queue the email for sending
-                await _emailQueueService.QueueEmailAsync(emailMessage, 
+                await _emailQueueService.QueueEmailAsync(emailMessage,
                     GetPriorityFromId(notification.PriorityId));
 
-                _logger.LogInformation("Successfully queued email for notification {NotificationId}", 
+                _logger.LogInformation("Successfully queued email for notification {NotificationId}",
                     notification.NotificationId);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error processing NotificationCreatedEvent for notification {NotificationId}", 
+                _logger.LogError(ex, "Error processing NotificationCreatedEvent for notification {NotificationId}",
                     notification.NotificationId);
                 throw;
             }

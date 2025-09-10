@@ -20,7 +20,12 @@ namespace Application.CQRS.ClientApplication.Handlers
                 throw new NotFoundException(nameof(ClientApplication), request.Id);
             }
 
+            // ይህ መስመር ኤንቲቲውን ለመሰረዝ ያዘጋጃል.
             await unitOfWork.ClientApplications.Delete(clientApplication, cancellationToken);
+
+            // FIX: ይህ ወሳኝ መስመር ለውጡን ወደ ዳታቤዝ ያስቀምጣል.
+            await unitOfWork.Save(cancellationToken);
+
             return Unit.Value;
         }
     }

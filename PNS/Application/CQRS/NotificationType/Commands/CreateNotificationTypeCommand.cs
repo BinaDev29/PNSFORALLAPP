@@ -5,8 +5,8 @@ using MediatR;
 
 namespace Application.CQRS.NotificationType.Commands
 {
-    public class CreateNotificationTypeCommand : IRequest<BaseCommandResponse>
+    public class CreateNotificationTypeCommand(CreateNotificationTypeDto createNotificationTypeDto) : IRequest<BaseCommandResponse>
     {
-        public required CreateNotificationTypeDto CreateNotificationTypeDto { get; set; }
+        public CreateNotificationTypeDto CreateNotificationTypeDto { get; set; } = createNotificationTypeDto;
     }
 }

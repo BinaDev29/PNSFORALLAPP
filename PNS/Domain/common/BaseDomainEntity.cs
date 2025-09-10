@@ -1,4 +1,5 @@
-﻿using System;
+﻿// File Path: Domain/Common/BaseDomainEntity.cs
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Common
@@ -11,7 +12,6 @@ namespace Domain.Common
         public DateTime? LastModifiedDate { get; set; }
         public string? LastModifiedBy { get; set; }
 
-        // እነዚህን አዲስ properties ጨምር
         public bool IsDeleted { get; set; }
         public DateTime? DeletedDate { get; set; }
         public string? DeletedBy { get; set; }

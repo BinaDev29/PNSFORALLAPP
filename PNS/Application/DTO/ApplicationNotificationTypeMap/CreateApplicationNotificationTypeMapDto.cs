@@ -1,4 +1,6 @@
-﻿// File Path: Application/DTO/ApplicationNotificationTypeMap/CreateApplicationNotificationTypeMapDto.cs
+﻿//-------------------------------------------------------------
+// File Path: Application/DTO/ApplicationNotificationTypeMap/CreateApplicationNotificationTypeMapDto.cs
+using FluentValidation;
 using System;
 using System.ComponentModel.DataAnnotations;
 

@@ -1,3 +1,4 @@
+// File Path: Infrastructure/Email/EnhancedEmailService.cs
 using Application.Contracts;
 using Application.Models.Email;
 using Application.Services;
@@ -26,42 +27,34 @@ namespace Infrastructure.Email
             _logger = logger;
         }
 
-        // Always use client application's sender email and app password
-        public async Task<bool> SendEmail(EmailMessage emailMessage, Guid notificationId, string clientAppSenderEmail, string clientAppPassword)
+        // FIX: The method signature now correctly implements IEmailService.
+        // It accepts a single EnhancedEmailMessage object, which should contain all necessary data.
+        public async Task<bool> SendEmail(EnhancedEmailMessage emailMessage)
         {
             try
             {
-                var enhancedEmail = new EnhancedEmailMessage
+                // Note: The logic to add the tracking pixel should be in a single place, 
+                // ideally within the EmailTemplateService or a dedicated decorator.
+                // For now, it's kept here for demonstration.
+                if (emailMessage.EnableTracking && !string.IsNullOrEmpty(emailMessage.TrackingId))
                 {
-                    From = clientAppSenderEmail,
-                    To = emailMessage.To,
-                    Subject = emailMessage.Subject,
-                    BodyHtml = emailMessage.BodyHtml,
-                    TrackingId = notificationId.ToString(),
-                    EnableTracking = true,
-                    Metadata = new Dictionary<string, object>
-                    {
-                        { "SenderEmail", clientAppSenderEmail },
-                        { "AppPassword", clientAppPassword }
-                    }
-                };
-
-                if (enhancedEmail.EnableTracking)
-                {
-                    var trackingUrl = $"https://localhost:7198/api/Notification/{notificationId}/track";
-                    enhancedEmail.BodyHtml += $"<img src='{trackingUrl}' style='display:none;' />";
+                    var trackingUrl = $"https://localhost:7198/api/Notification/{emailMessage.TrackingId}/track";
+                    emailMessage.BodyHtml += $"<img src='{trackingUrl}' style='display:none;' />";
                 }
 
-                return await SendEnhancedEmailAsync(enhancedEmail);
+                // Call the internal method to handle the provider failover logic.
+                return await SendEmailWithProviderFailoverAsync(emailMessage);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to send email for notification {NotificationId}", notificationId);
+                // This is a more appropriate place for a general catch-all log.
+                _logger.LogError(ex, "Failed to send email: {Subject}", emailMessage.Subject);
                 return false;
             }
         }
 
-        public async Task<bool> SendEnhancedEmailAsync(EnhancedEmailMessage emailMessage)
+        // This is a new, private method to handle the provider failover logic.
+        private async Task<bool> SendEmailWithProviderFailoverAsync(EnhancedEmailMessage emailMessage)
         {
             var availableProviders = _emailProviders.Where(p => p.IsConfigured).ToList();
 
@@ -97,6 +90,7 @@ namespace Infrastructure.Email
             return false;
         }
 
+        // This method can be part of a separate IBulkEmailService interface if needed.
         public async Task<bool> SendBulkEmailAsync(BulkEmailMessage bulkEmailMessage, string clientAppSenderEmail, string clientAppPassword)
         {
             var availableProviders = _emailProviders.Where(p => p.IsConfigured).ToList();
@@ -112,8 +106,8 @@ namespace Infrastructure.Email
             // If your provider supports credentials via Metadata, you can add:
             // bulkEmailMessage.Metadata = new Dictionary<string, object>
             // {
-            //     { "SenderEmail", clientAppSenderEmail },
-            //     { "AppPassword", clientAppPassword }
+            //      { "SenderEmail", clientAppSenderEmail },
+            //      { "AppPassword", clientAppPassword }
             // };
 
             foreach (var provider in availableProviders)
@@ -141,6 +135,7 @@ namespace Infrastructure.Email
             return false;
         }
 
+        // This method can also be part of a separate ITemplatedEmailService interface.
         public async Task<bool> SendTemplatedEmailAsync(string templateName, Dictionary<string, object> templateData, List<string> recipients, string from, string subject, string clientAppSenderEmail = null, string clientAppPassword = null)
         {
             try
@@ -169,7 +164,7 @@ namespace Infrastructure.Email
                         : null
                 };
 
-                return await SendEnhancedEmailAsync(emailMessage);
+                return await SendEmailWithProviderFailoverAsync(emailMessage);
             }
             catch (Exception ex)
             {

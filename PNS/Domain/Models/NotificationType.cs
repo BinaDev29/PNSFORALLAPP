@@ -1,11 +1,13 @@
 ﻿// File Path: Domain/Models/NotificationType.cs
 using Domain.Common;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Models
 {
     public class NotificationType : BaseDomainEntity
     {
+        [Required]
         public required string Name { get; set; }
         public string? Description { get; set; }
 

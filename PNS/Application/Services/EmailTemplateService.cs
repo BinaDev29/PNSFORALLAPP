@@ -1,3 +1,4 @@
+// File Path: Application/Services/EmailTemplateService.cs
 using Application.Contracts.IRepository;
 using AppEmailTemplate = Application.Models.Email.EmailTemplate;
 using DomainEmailTemplate = Domain.Models.EmailTemplate;
@@ -44,7 +45,9 @@ namespace Application.Services
 
         public async Task<AppEmailTemplate?> GetTemplateAsync(string templateName)
         {
-            var templates = await _emailTemplateRepository.Find(t => t.Name == templateName, CancellationToken.None);
+            // Fix: Change 'Find' to a valid repository method. Assuming 'GetWhere' is the correct method.
+            // Also, your repository should accept a CancellationToken.
+            var templates = await _emailTemplateRepository.GetWhere(t => t.Name == templateName, CancellationToken.None);
             var template = templates.FirstOrDefault();
 
             if (template == null) return null;

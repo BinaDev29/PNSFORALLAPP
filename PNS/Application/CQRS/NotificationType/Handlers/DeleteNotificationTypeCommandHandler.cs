@@ -2,8 +2,8 @@
 using Application.Contracts.IRepository;
 using Application.CQRS.NotificationType.Commands;
 using Application.Exceptions;
-using Domain.Models;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,14 +13,16 @@ namespace Application.CQRS.NotificationType.Handlers
     {
         public async Task<Unit> Handle(DeleteNotificationTypeCommand request, CancellationToken cancellationToken)
         {
-            var notificationType = await unitOfWork.NotificationTypes.Get(request.Id, cancellationToken);
+            var notificationType = await unitOfWork.NotificationTypes.Get(request.Id);
 
-            if (notificationType is null)
+            if (notificationType == null)
             {
                 throw new NotFoundException(nameof(Domain.Models.NotificationType), request.Id);
             }
 
-            await unitOfWork.NotificationTypes.Delete(notificationType, cancellationToken);
+            await unitOfWork.NotificationTypes.Delete(notificationType);
+            await unitOfWork.Save(cancellationToken);
+
             return Unit.Value;
         }
     }

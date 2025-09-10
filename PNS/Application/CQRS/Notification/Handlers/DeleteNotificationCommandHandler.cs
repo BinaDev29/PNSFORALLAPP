@@ -21,6 +21,11 @@ namespace Application.CQRS.Notification.Handlers
             }
 
             await unitOfWork.Notifications.Delete(notification, cancellationToken);
+
+            // Critical fix: Add the save call
+            await unitOfWork.Save(cancellationToken);
+
+
             return Unit.Value;
         }
     }

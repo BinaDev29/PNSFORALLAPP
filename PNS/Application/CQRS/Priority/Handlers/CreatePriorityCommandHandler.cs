@@ -30,6 +30,8 @@ namespace Application.CQRS.Priority.Handlers
 
             var priority = mapper.Map<Domain.Models.Priority>(request.CreatePriorityDto);
             await unitOfWork.Priorities.Add(priority, cancellationToken);
+            await unitOfWork.Save(cancellationToken);
+
 
             response.Success = true;
             response.Message = "Creation Successful";

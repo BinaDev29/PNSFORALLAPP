@@ -1,4 +1,7 @@
+// File Path: Infrastructure/Email/Providers/SmtpEmailProvider.cs
 using Application.Models.Email;
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -13,7 +16,6 @@ namespace Infrastructure.Email.Providers
 
         public async Task<EmailSendResult> SendEmailAsync(EnhancedEmailMessage emailMessage)
         {
-            // Extract credentials from Metadata
             if (emailMessage.Metadata == null ||
                 !emailMessage.Metadata.TryGetValue("SenderEmail", out var senderEmailObj) ||
                 !emailMessage.Metadata.TryGetValue("AppPassword", out var appPasswordObj))
@@ -77,9 +79,8 @@ namespace Infrastructure.Email.Providers
 
         public async Task<EmailSendResult> SendBulkEmailAsync(BulkEmailMessage bulkEmailMessage)
         {
-            return await Task.FromResult(
-                EmailSendResult.Failure("Bulk email via SMTP requires sender credentials in Metadata.", Name)
-            );
+            // Bulk email via SMTP is not a standard feature, so we'll treat it as a failure
+            return await Task.FromResult(EmailSendResult.Failure("Bulk email not supported directly by SMTP provider.", Name));
         }
     }
 }
