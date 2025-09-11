@@ -8,7 +8,7 @@ using Infrastructure.Caching;
 using Infrastructure.Email;
 using Infrastructure.Email.Providers;
 using Infrastructure.Services;
-using Infrastructure.Sms; // ይህን ያክሉ
+using Infrastructure.Sms;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,8 +18,6 @@ namespace Infrastructure
     {
         public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            // Other registrations...
-
             // Email Services
             services.AddSingleton<EmailQueueProcessor>();
             services.AddHostedService(provider => provider.GetRequiredService<EmailQueueProcessor>());
@@ -29,8 +27,12 @@ namespace Infrastructure
 
             // SMS Services
             services.AddScoped<ISmsService, EnhancedSmsService>();
-            services.AddScoped<ISmsProvider, TwilioSmsProvider>(); // የ Twilio አቅራቢን ያስመዝግቡ
+            services.AddScoped<ISmsProvider, TwilioSmsProvider>();
+            services.AddSingleton<ISmsQueueService, SmsQueueService>();
+            services.AddSingleton<SmsQueueProcessor>();
+            services.AddHostedService(provider => provider.GetRequiredService<SmsQueueProcessor>());
 
+            // Other Services
             services.AddSingleton<IDateTime, DateTimeService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IDomainEventService, DomainEventService>();

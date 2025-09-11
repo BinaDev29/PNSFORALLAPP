@@ -1,6 +1,7 @@
 ﻿// File Path: Domain/Models/Notification.cs
 using Domain.Common;
 using Domain.Events;
+using Domain.Enums; // ከዚህ ነው የምትጨምረው
 using Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Domain.Models
 {
     public class Notification : AggregateRoot
     {
-        public required Guid ClientApplicationId { get; set; }
+        public Guid ClientApplicationId { get; set; }
         public virtual ClientApplication? ClientApplication { get; set; }
 
         public required List<object> To { get; set; }
@@ -25,6 +26,9 @@ namespace Domain.Models
         public required Guid NotificationTypeId { get; set; }
         public virtual NotificationType? NotificationType { get; set; }
 
+        // አዲስ የጨመርከው ግንኙነት
+        public ICollection<NotificationHistory> NotificationHistories { get; set; } = new List<NotificationHistory>();
+
         // Enhanced properties
         public NotificationStatus Status { get; set; } = NotificationStatus.Pending;
         public int RetryCount { get; set; } = 0;
@@ -36,13 +40,15 @@ namespace Domain.Models
         private Notification() { }
 
         // Factory Method
-        public static Notification CreateNotification(Guid clientApplicationId, List<string> recipients,
-                                                      string title, string message, Guid priorityId, Guid notificationTypeId,
-                                                      DateTime? scheduledAt = null, Dictionary<string, string>? metadata = null)
+        public static Notification CreateNotification(
+            Guid clientApplicationId, List<string> recipients,
+            string title, string message, Guid priorityId, Guid notificationTypeId,
+            DateTime? scheduledAt = null, Dictionary<string, string>? metadata = null)
         {
-            var validRecipients = notificationTypeId == new Guid("B2A1C3D4-F5E6-7890-1234-567890ABCDEF") // Placeholder for SMS
-                                    ? recipients.Select(r => (object)PhoneNumber.Create(r)).ToList()
-                                    : recipients.Select(r => (object)EmailAddress.Create(r)).ToList();
+            // ይህንን ክፍል በApplication Layer ውስጥ መቆጣጠር የተሻለ ነው።
+            // This part of the logic is better handled in the Application Layer.
+            // Domain Layer should only deal with domain-specific logic.
+            var validRecipients = recipients.Select(r => (object)EmailAddress.Create(r)).ToList();
 
             var notification = new Notification
             {
@@ -65,7 +71,7 @@ namespace Domain.Models
             return notification;
         }
 
-        // Business methods
+        // ... Business methods
         public void MarkAsSeen(string? userAgent = null, string? ipAddress = null)
         {
             if (SeenTime.HasValue) return;
@@ -104,16 +110,5 @@ namespace Domain.Models
             return Status == NotificationStatus.Pending ||
                    (Status == NotificationStatus.Scheduled && ScheduledAt <= DateTime.UtcNow);
         }
-    }
-
-    public enum NotificationStatus
-    {
-        Pending = 0,
-        Scheduled = 1,
-        Sending = 2,
-        Sent = 3,
-        Seen = 4,
-        Failed = 5,
-        Cancelled = 6
     }
 }

@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Push Notification Service API",
-    "description": "Enhanced Push Notification Service with advanced email capabilities",
+    "description": "Enhanced Push Notification Service with advanced email and SMS capabilities",
     "version": "v1"
   },
   "paths": {
@@ -2407,6 +2407,60 @@
           }
         }
       }
+    },
+    "/api/Sms/send": {
+      "post": {
+        "tags": [
+          "Sms"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Application.DTO.Sms.SendSmsNotificationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Application.DTO.Sms.SendSmsNotificationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Application.DTO.Sms.SendSmsNotificationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Sms/status/{notificationId}": {
+      "get": {
+        "tags": [
+          "Sms"
+        ],
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3122,6 +3176,63 @@
           "level": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Application.DTO.Sms.SendSmsNotificationDto": {
+        "required": [
+          "clientApplicationId",
+          "message",
+          "notificationTypeId",
+          "phoneNumber",
+          "priorityId",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "clientApplicationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string",
+            "format": "tel"
+          },
+          "title": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 1600,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priorityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "notificationTypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "scheduledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "templateName": {
+            "type": "string",
+            "nullable": true
+          },
+          "templateData": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

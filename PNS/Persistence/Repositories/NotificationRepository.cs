@@ -13,8 +13,8 @@ namespace Persistence.Repositories
 {
     public class NotificationRepository(PnsDbContext dbContext) : GenericRepository<Notification>(dbContext), INotificationRepository
     {
-        // Now you can implement the GetWhere method here
-        public async Task<IReadOnlyList<Notification>> GetWhere(Expression<Func<Notification, bool>> predicate, CancellationToken cancellationToken = default)
+        // የ GetWhere ዘዴን እንደገና ለመተግበር new የሚለውን ቃል ተጠቀም
+        public new async Task<IReadOnlyList<Notification>> GetWhere(Expression<Func<Notification, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return await _dbContext.Set<Notification>()
                                    .Where(predicate)

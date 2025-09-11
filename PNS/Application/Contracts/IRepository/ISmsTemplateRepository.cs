@@ -1,13 +1,15 @@
 ﻿// File Path: Application/Contracts/IRepository/ISmsTemplateRepository.cs
 
 using Domain.Models;
+using System.Threading.Tasks;
 
 namespace Application.Contracts.IRepository
 {
     // Extends the generic repository interface for specific SMS template operations
     public interface ISmsTemplateRepository : IGenericRepository<SmsTemplate>
     {
-        // Add any SMS-template-specific methods here if needed
-        // For example: Task<SmsTemplate> GetByTemplateName(string name);
+        // Add SMS-template-specific methods
+        Task<SmsTemplate?> GetByNameAsync(string templateName);
+        Task<List<SmsTemplate>> GetActiveTemplatesAsync();
     }
 }

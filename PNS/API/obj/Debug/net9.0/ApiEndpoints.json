@@ -1191,6 +1191,38 @@
     ]
   },
   {
+    "ContainingType": "API.Controllers.SmsController",
+    "Method": "SendSms",
+    "RelativePath": "api/Sms/send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sendSmsDto",
+        "Type": "Application.DTO.Sms.SendSmsNotificationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.SmsController",
+    "Method": "GetSmsStatus",
+    "RelativePath": "api/Sms/status/{notificationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.EnhancedNotificationController",
     "Method": "TrackNotification",
     "RelativePath": "api/v1/EnhancedNotification/{id}/track",

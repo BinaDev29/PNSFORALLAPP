@@ -1,7 +1,8 @@
 // File Path: Infrastructure/Email/Providers/SmtpEmailProvider.cs
 using Application.Models.Email;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -10,77 +11,147 @@ namespace Infrastructure.Email.Providers
 {
     public class SmtpEmailProvider : IEmailProvider
     {
+        private readonly SmtpSettings _smtpSettings;
+        private readonly ILogger<SmtpEmailProvider> _logger;
+
+        public SmtpEmailProvider(IOptions<SmtpSettings> smtpSettings, ILogger<SmtpEmailProvider> logger)
+        {
+            _smtpSettings = smtpSettings.Value;
+            _logger = logger;
+        }
+
         public string Name => "SMTP";
         public int Priority => 1;
-        public bool IsConfigured => true;
+        public bool IsConfigured => !string.IsNullOrEmpty(_smtpSettings.Host) && _smtpSettings.Port > 0;
 
         public async Task<EmailSendResult> SendEmailAsync(EnhancedEmailMessage emailMessage)
         {
-            if (emailMessage.Metadata == null ||
-                !emailMessage.Metadata.TryGetValue("SenderEmail", out var senderEmailObj) ||
-                !emailMessage.Metadata.TryGetValue("AppPassword", out var appPasswordObj))
-            {
-                return EmailSendResult.Failure("SenderEmail and AppPassword must be provided in Metadata.", Name);
-            }
-
-            var senderEmail = senderEmailObj?.ToString();
-            var appPassword = appPasswordObj?.ToString();
-
-            if (string.IsNullOrWhiteSpace(senderEmail) || string.IsNullOrWhiteSpace(appPassword))
-            {
-                return EmailSendResult.Failure("SenderEmail or AppPassword is empty.", Name);
-            }
-
             try
             {
-                using var smtpClient = new SmtpClient("smtp.gmail.com", 587)
+                // Use client application credentials from metadata if available, otherwise fallback to SMTP settings
+                var senderEmail = GetClientSenderEmail(emailMessage) ?? _smtpSettings.SenderEmail;
+                var senderPassword = GetClientAppPassword(emailMessage) ?? _smtpSettings.SenderPassword;
+
+                if (string.IsNullOrEmpty(senderEmail) || string.IsNullOrEmpty(senderPassword))
                 {
-                    Credentials = new NetworkCredential(senderEmail, appPassword),
-                    EnableSsl = true
+                    var errorMsg = "SMTP configuration incomplete: SenderEmail and AppPassword must be provided either in ClientApplication or SMTP settings";
+                    _logger.LogError(errorMsg);
+                    return EmailSendResult.Failure(errorMsg, Name);
+                }
+
+                // Use SMTP settings for host, port, SSL but client credentials for authentication
+                using var client = new SmtpClient(_smtpSettings.Host, _smtpSettings.Port)
+                {
+                    EnableSsl = _smtpSettings.EnableSsl,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail, senderPassword)
                 };
 
                 using var mailMessage = new MailMessage
                 {
-                    From = new MailAddress(senderEmail),
+                    From = new MailAddress(senderEmail, _smtpSettings.SenderName ?? senderEmail),
                     Subject = emailMessage.Subject,
                     Body = emailMessage.BodyHtml,
                     IsBodyHtml = true
                 };
 
-                foreach (var to in emailMessage.To)
-                    mailMessage.To.Add(to);
-
-                if (emailMessage.Cc != null)
-                    foreach (var cc in emailMessage.Cc)
-                        mailMessage.CC.Add(cc);
-
-                if (emailMessage.Bcc != null)
-                    foreach (var bcc in emailMessage.Bcc)
-                        mailMessage.Bcc.Add(bcc);
-
-                if (emailMessage.Attachments != null)
+                // Add recipients
+                foreach (var recipient in emailMessage.To)
                 {
-                    foreach (var attachment in emailMessage.Attachments)
-                    {
-                        var stream = new System.IO.MemoryStream(attachment.Content);
-                        mailMessage.Attachments.Add(new Attachment(stream, attachment.FileName, attachment.ContentType));
-                    }
+                    mailMessage.To.Add(recipient);
                 }
 
-                await smtpClient.SendMailAsync(mailMessage);
+                await client.SendMailAsync(mailMessage);
+                _logger.LogInformation("Email sent successfully via SMTP using client credentials {SenderEmail} to {Recipients}",
+                    senderEmail, string.Join(", ", emailMessage.To));
 
                 return EmailSendResult.Success(Guid.NewGuid().ToString(), Name);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Failed to send email via SMTP: {Message}", ex.Message);
                 return EmailSendResult.Failure(ex.Message, Name);
             }
         }
 
         public async Task<EmailSendResult> SendBulkEmailAsync(BulkEmailMessage bulkEmailMessage)
         {
-            // Bulk email via SMTP is not a standard feature, so we'll treat it as a failure
-            return await Task.FromResult(EmailSendResult.Failure("Bulk email not supported directly by SMTP provider.", Name));
+            try
+            {
+                // For bulk email, use the From field or fallback to SMTP settings
+                var senderEmail = bulkEmailMessage.From ?? _smtpSettings.SenderEmail;
+                var senderPassword = _smtpSettings.SenderPassword; // For bulk, use SMTP settings password
+
+                if (string.IsNullOrEmpty(senderEmail) || string.IsNullOrEmpty(senderPassword))
+                {
+                    var errorMsg = "SMTP configuration incomplete for bulk email: SenderEmail and SenderPassword required";
+                    _logger.LogError(errorMsg);
+                    return EmailSendResult.Failure(errorMsg, Name);
+                }
+
+                using var client = new SmtpClient(_smtpSettings.Host, _smtpSettings.Port)
+                {
+                    EnableSsl = _smtpSettings.EnableSsl,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail, senderPassword)
+                };
+
+                foreach (var recipient in bulkEmailMessage.Recipients)
+                {
+                    using var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress(senderEmail, _smtpSettings.SenderName ?? senderEmail),
+                        Subject = bulkEmailMessage.Subject,
+                        Body = bulkEmailMessage.BodyHtml,
+                        IsBodyHtml = true
+                    };
+
+                    mailMessage.To.Add(recipient);
+                    await client.SendMailAsync(mailMessage);
+                }
+
+                _logger.LogInformation("Bulk email sent successfully via SMTP to {Count} recipients using {SenderEmail}",
+                    bulkEmailMessage.Recipients.Count, senderEmail);
+                return EmailSendResult.Success(Guid.NewGuid().ToString(), Name);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to send bulk email via SMTP: {Message}", ex.Message);
+                return EmailSendResult.Failure(ex.Message, Name);
+            }
         }
+
+        private string? GetClientSenderEmail(EnhancedEmailMessage emailMessage)
+        {
+            // First check if SenderEmail is provided in metadata (from ClientApplication)
+            if (emailMessage.Metadata?.ContainsKey("SenderEmail") == true)
+            {
+                return emailMessage.Metadata["SenderEmail"]?.ToString();
+            }
+
+            // Then check the From field
+            return emailMessage.From;
+        }
+
+        private string? GetClientAppPassword(EnhancedEmailMessage emailMessage)
+        {
+            // Check if AppPassword is provided in metadata (from ClientApplication)
+            if (emailMessage.Metadata?.ContainsKey("AppPassword") == true)
+            {
+                return emailMessage.Metadata["AppPassword"]?.ToString();
+            }
+
+            return null;
+        }
+    }
+
+    public class SmtpSettings
+    {
+        public string Host { get; set; } = "smtp.gmail.com";
+        public int Port { get; set; } = 587;
+        public bool EnableSsl { get; set; } = true;
+        public string? SenderEmail { get; set; }
+        public string? SenderPassword { get; set; }
+        public string? SenderName { get; set; }
     }
 }

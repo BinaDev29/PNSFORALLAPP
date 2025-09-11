@@ -2,6 +2,7 @@ using API.Middleware;
 using Application;
 using Application.Common.Behaviors;
 using Application.Common.Interfaces;
+using Application.Contracts;
 using Application.Contracts.IRepository;
 using Application.Services;
 using FluentValidation;
@@ -10,6 +11,7 @@ using Infrastructure.Caching;
 using Infrastructure.Email;
 using Infrastructure.Email.Providers;
 using Infrastructure.Services;
+using Infrastructure.Sms;
 using MediatR;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
@@ -48,8 +50,8 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IDateTime, DateTimeService>();
 builder.Services.AddScoped<IDomainEventService, DomainEventService>();
 
-// Email Services
-builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+// Email Services - Use the SmtpSettings from Infrastructure.Email.Providers
+builder.Services.Configure<Infrastructure.Email.Providers.SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddScoped<EnhancedEmailService>();
 
 // Conditionally register email providers
@@ -66,10 +68,19 @@ else
 }
 builder.Services.AddScoped<Application.Contracts.IEmailService, EnhancedEmailService>();
 
+// SMS Services
+builder.Services.AddScoped<ISmsService, Infrastructure.Services.SmsService>();
+builder.Services.AddScoped<ISmsQueueService, SmsQueueService>();
+builder.Services.AddScoped<EnhancedSmsService>();
+
 // Background Services
 builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
 builder.Services.AddSingleton<EmailQueueProcessor>();
 builder.Services.AddHostedService(sp => sp.GetRequiredService<EmailQueueProcessor>());
+
+// SMS Background Services
+builder.Services.AddSingleton<SmsQueueProcessor>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<SmsQueueProcessor>());
 
 // Caching
 builder.Services.AddStackExchangeRedisCache(options =>
@@ -121,7 +132,8 @@ builder.Services.AddCors(options =>
 // Health Checks
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<PnsDbContext>("PnsDbContext-check")
-    .AddCheck("email_service", () => HealthCheckResult.Healthy("Email service is running"));
+    .AddCheck("email_service", () => HealthCheckResult.Healthy("Email service is running"))
+    .AddCheck("sms_service", () => HealthCheckResult.Healthy("SMS service is running"));
 
 // HTTP Context Accessor
 builder.Services.AddHttpContextAccessor();
@@ -134,7 +146,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Push Notification Service API",
         Version = "v1",
-        Description = "Enhanced Push Notification Service with advanced email capabilities"
+        Description = "Enhanced Push Notification Service with advanced email and SMS capabilities"
     });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
