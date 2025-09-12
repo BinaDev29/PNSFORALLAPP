@@ -30,6 +30,7 @@ namespace Application.CQRS.ApplicationNotificationTypeMap.Handlers
 
             var map = mapper.Map<Domain.Models.ApplicationNotificationTypeMap>(request.CreateApplicationNotificationTypeMapDto);
             await unitOfWork.ApplicationNotificationTypeMaps.Add(map, cancellationToken);
+            await unitOfWork.Save(cancellationToken);
 
             response.Success = true;
             response.Message = "Creation Successful";

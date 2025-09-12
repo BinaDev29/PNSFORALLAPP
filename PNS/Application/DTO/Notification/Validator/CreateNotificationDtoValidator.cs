@@ -10,7 +10,6 @@ namespace Application.DTO.Notification.Validator
             RuleFor(p => p.ClientApplicationId)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
 
-            // RuleFor(p => p.To) የሚለውን ወደ RuleForEach ቀይረናል
             RuleForEach(p => p.To)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .EmailAddress().WithMessage("Each {PropertyName} must be a valid email address.");

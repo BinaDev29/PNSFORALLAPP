@@ -82,47 +82,98 @@ namespace Application.CQRS.Notification.Handlers
                 await _unitOfWork.Notifications.Add(notification, cancellationToken);
                 await _unitOfWork.Save(cancellationToken);
 
-                // Create email message using client application's SMTP credentials
-                var emailMessage = new EnhancedEmailMessage
+                // MODIFIED: Send individual emails to each recipient to ensure privacy
+                var recipients = notification.To.Select(o => o.ToString()).ToList();
+                var successfulSends = 0;
+                var failedRecipients = new List<string>();
+
+                _logger.LogInformation("Sending individual notification emails to {RecipientCount} recipients to ensure privacy", recipients.Count);
+
+                foreach (var recipient in recipients)
                 {
-                    To = notification.To.Select(o => o.ToString()).ToList(),
-                    From = clientApplication.SenderEmail, // Use client application's sender email
-                    Subject = notification.Title,
-                    BodyHtml = $"<p><h2>{clientApplication.Name}.</h2></p><p><em>{notification.Message}</em></p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto; border:2px solid black;border-radius:10px;padding:20px; box-shadow:0px 4px 8px rgba(0,0,0,0.8);background-color:white;margin-top:10px' />",
-                    TrackingId = notification.Id.ToString(),
-                    EnableTracking = true,
-                    // Pass client application credentials to SMTP provider
-                    Metadata = new Dictionary<string, object>
+                    try
                     {
-                        { "SenderEmail", clientApplication.SenderEmail },
-                        { "AppPassword", clientApplication.AppPassword },
-                        { "ClientApplicationId", clientApplication.Id.ToString() }
+                        // Create individual email message for each recipient
+                        var individualEmailMessage = new EnhancedEmailMessage
+                        {
+                            To = new List<string> { recipient }, // Only this recipient
+                            From = clientApplication.SenderEmail,
+                            Subject = notification.Title,
+                            BodyHtml = $"<p><h2>{clientApplication.Name}.</h2></p><p><em>{notification.Message}</em></p><img src='{clientApplication.Logo}' alt='Client Logo' style='width:100px; height:auto; border:2px solid black;border-radius:10px;padding:20px; box-shadow:0px 4px 8px rgba(0,0,0,0.8);background-color:white;margin-top:10px' />",
+                            TrackingId = $"{notification.Id}_{recipient}",
+                            EnableTracking = true,
+                            // Pass client application credentials to SMTP provider
+                            Metadata = new Dictionary<string, object>
+                            {
+                                { "SenderEmail", clientApplication.SenderEmail },
+                                { "AppPassword", clientApplication.AppPassword },
+                                { "ClientApplicationId", clientApplication.Id.ToString() },
+                                { "RecipientEmail", recipient }
+                            }
+                        };
+
+                        _logger.LogDebug("Sending individual notification email to {Recipient} using client SMTP credentials: {SenderEmail}", recipient, clientApplication.SenderEmail);
+
+                        var emailResult = await _emailService.SendEmail(individualEmailMessage);
+
+                        if (emailResult)
+                        {
+                            successfulSends++;
+                            _logger.LogDebug("Successfully sent notification email to {Recipient}", recipient);
+                        }
+                        else
+                        {
+                            failedRecipients.Add(recipient);
+                            _logger.LogWarning("Failed to send notification email to {Recipient}", recipient);
+                        }
+
+                        // Create individual notification history for each recipient
+                        var notificationHistory = new Domain.Models.NotificationHistory
+                        {
+                            Id = Guid.NewGuid(),
+                            NotificationId = notification.Id,
+                            SentDate = notification.ReceivedTime.Value,
+                            Status = emailResult ? "Sent" : "Failed",
+                            CreatedDate = DateTime.UtcNow,
+                            IsDeleted = false
+                        };
+
+                        await _unitOfWork.NotificationHistories.Add(notificationHistory, cancellationToken);
                     }
-                };
+                    catch (Exception ex)
+                    {
+                        failedRecipients.Add(recipient);
+                        _logger.LogError(ex, "Error sending notification email to {Recipient}", recipient);
+                    }
+                }
 
-                _logger.LogInformation("Sending notification email using client SMTP credentials: {SenderEmail}", clientApplication.SenderEmail);
-
-                var emailResult = await _emailService.SendEmail(emailMessage);
-
-                // Create notification history
-                var notificationHistory = new Domain.Models.NotificationHistory
-                {
-                    Id = Guid.NewGuid(),
-                    NotificationId = notification.Id,
-                    SentDate = notification.ReceivedTime.Value,
-                    Status = emailResult ? "Sent" : "Failed",
-                    CreatedDate = DateTime.UtcNow,
-                    IsDeleted = false
-                };
-
-                await _unitOfWork.NotificationHistories.Add(notificationHistory, cancellationToken);
                 await _unitOfWork.Save(cancellationToken);
 
-                response.Success = true;
-                response.Message = emailResult ? "Notification created and email sent successfully using client SMTP credentials" : "Notification created, but email failed to send";
+                // Prepare response based on results
+                var allSuccessful = successfulSends == recipients.Count;
+                var partialSuccess = successfulSends > 0 && successfulSends < recipients.Count;
+
+                response.Success = allSuccessful || partialSuccess;
+
+                if (allSuccessful)
+                {
+                    response.Message = $"Notification created and individual emails sent successfully to all {successfulSends} recipients using client SMTP credentials";
+                }
+                else if (partialSuccess)
+                {
+                    response.Message = $"Notification created and individual emails sent successfully to {successfulSends}/{recipients.Count} recipients. Failed recipients: {string.Join(", ", failedRecipients)}";
+                    response.Errors = new List<string> { $"Failed to send to: {string.Join(", ", failedRecipients)}" };
+                }
+                else
+                {
+                    response.Message = $"Notification created, but all individual emails failed to send. Failed recipients: {string.Join(", ", failedRecipients)}";
+                    response.Errors = new List<string> { $"Failed to send to all recipients: {string.Join(", ", failedRecipients)}" };
+                }
+
                 response.Id = notification.Id;
 
-                _logger.LogInformation("Notification {NotificationId} processed. Email result: {EmailResult}", notification.Id, emailResult);
+                _logger.LogInformation("Notification {NotificationId} processed. Individual emails sent: {SuccessCount}/{TotalCount}",
+                    notification.Id, successfulSends, recipients.Count);
             }
             catch (ValidationException)
             {

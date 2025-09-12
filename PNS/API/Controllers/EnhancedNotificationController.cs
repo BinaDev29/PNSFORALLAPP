@@ -112,36 +112,88 @@ namespace API.Controllers
                 request.Metadata["SenderEmail"] = clientApp.SenderEmail;
                 request.Metadata["AppPassword"] = clientApp.AppPassword;
 
-                var emailMessage = new EnhancedEmailMessage
+                // MODIFIED: Send individual emails to each recipient to ensure privacy
+                var successCount = 0;
+                var failureCount = 0;
+                var errors = new List<string>();
+
+                foreach (var recipient in request.To)
                 {
-                    From = clientApp.SenderEmail,
-                    To = request.To,
-                    Subject = request.Subject,
-                    BodyHtml = request.BodyHtml,
-                    Cc = request.Cc,
-                    Bcc = request.Bcc,
-                    Priority = request.Priority,
-                    ScheduledAt = request.ScheduledAt,
-                    EnableTracking = request.EnableTracking,
-                    Metadata = request.Metadata
-                };
+                    var individualEmailMessage = new EnhancedEmailMessage
+                    {
+                        From = clientApp.SenderEmail,
+                        To = new List<string> { recipient }, // Only this recipient
+                        Subject = request.Subject,
+                        BodyHtml = request.BodyHtml,
+                        Priority = request.Priority,
+                        ScheduledAt = request.ScheduledAt,
+                        EnableTracking = request.EnableTracking,
+                        Metadata = request.Metadata
+                    };
+
+                    try
+                    {
+                        if (request.UseQueue)
+                        {
+                            await _emailQueueService.QueueEmailAsync(individualEmailMessage, (int)request.Priority);
+                            successCount++;
+                        }
+                        else
+                        {
+                            var success = await _enhancedEmailService.SendEmail(individualEmailMessage);
+                            if (success)
+                            {
+                                successCount++;
+                            }
+                            else
+                            {
+                                failureCount++;
+                                errors.Add($"Failed to send to {recipient}");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        failureCount++;
+                        errors.Add($"Error sending to {recipient}: {ex.Message}");
+                        _logger.LogError(ex, "Error sending email to {Recipient}", recipient);
+                    }
+                }
 
                 if (request.UseQueue)
                 {
-                    await _emailQueueService.QueueEmailAsync(emailMessage, (int)request.Priority);
-                    return Accepted(new { message = "Email queued successfully", id = emailMessage.Id });
+                    return Accepted(new
+                    {
+                        message = $"Individual emails queued successfully for {successCount} recipients",
+                        totalRecipients = request.To.Count,
+                        successCount = successCount,
+                        failureCount = failureCount,
+                        errors = errors
+                    });
                 }
                 else
                 {
-                    // FIX: Call the correct SendEmail method from the IEmailService interface
-                    var success = await _enhancedEmailService.SendEmail(emailMessage);
-                    if (success)
+                    if (successCount > 0)
                     {
-                        return Ok(new { message = "Email sent successfully", id = emailMessage.Id });
+                        return Ok(new
+                        {
+                            message = $"Individual emails sent successfully to {successCount}/{request.To.Count} recipients",
+                            totalRecipients = request.To.Count,
+                            successCount = successCount,
+                            failureCount = failureCount,
+                            errors = errors
+                        });
                     }
                     else
                     {
-                        return StatusCode(500, new { message = "Failed to send email" });
+                        return StatusCode(500, new
+                        {
+                            message = "Failed to send emails to all recipients",
+                            totalRecipients = request.To.Count,
+                            successCount = successCount,
+                            failureCount = failureCount,
+                            errors = errors
+                        });
                     }
                 }
             }
@@ -176,21 +228,93 @@ namespace API.Controllers
                     }
                 }
 
-                var bulkEmailMessage = new BulkEmailMessage
-                {
-                    Recipients = request.Recipients,
-                    From = senderEmail,
-                    Subject = request.Subject,
-                    BodyHtml = request.BodyHtml,
-                    BodyText = request.BodyText,
-                    BatchSize = request.BatchSize,
-                    BatchDelay = TimeSpan.FromMilliseconds(request.BatchDelayMs),
-                    GlobalTemplateData = request.GlobalTemplateData,
-                    PersonalizedData = request.PersonalizedData
-                };
+                // MODIFIED: Send individual emails instead of bulk to ensure recipient privacy
+                var successCount = 0;
+                var failureCount = 0;
+                var errors = new List<string>();
 
-                await _enhancedEmailService.SendBulkEmailAsync(bulkEmailMessage, senderEmail, appPassword);
-                return Accepted(new { message = "Bulk email queued successfully", id = bulkEmailMessage.Id });
+                _logger.LogInformation("Sending individual emails to {RecipientCount} recipients to ensure privacy", request.Recipients.Count);
+
+                // Process recipients in batches to avoid overwhelming the system
+                var batchSize = request.BatchSize;
+                for (int i = 0; i < request.Recipients.Count; i += batchSize)
+                {
+                    var batch = request.Recipients.Skip(i).Take(batchSize).ToList();
+
+                    foreach (var recipient in batch)
+                    {
+                        try
+                        {
+                            // Get personalized data for this recipient if available
+                            var personalizedData = request.PersonalizedData?.ContainsKey(recipient) == true
+                                ? request.PersonalizedData[recipient]
+                                : new Dictionary<string, object>();
+
+                            // Merge global and personalized data
+                            var templateData = new Dictionary<string, object>();
+                            if (request.GlobalTemplateData != null)
+                            {
+                                foreach (var kvp in request.GlobalTemplateData)
+                                    templateData[kvp.Key] = kvp.Value;
+                            }
+                            foreach (var kvp in personalizedData)
+                                templateData[kvp.Key] = kvp.Value;
+
+                            // Add recipient info to template data
+                            templateData["RecipientEmail"] = recipient;
+
+                            var individualEmailMessage = new EnhancedEmailMessage
+                            {
+                                From = senderEmail,
+                                To = new List<string> { recipient }, // Only this recipient
+                                Subject = request.Subject,
+                                BodyHtml = ProcessTemplate(request.BodyHtml, templateData),
+                                BodyText = !string.IsNullOrEmpty(request.BodyText) ? ProcessTemplate(request.BodyText, templateData) : null,
+                                Metadata = new Dictionary<string, object>
+                                {
+                                    ["SenderEmail"] = senderEmail,
+                                    ["AppPassword"] = appPassword ?? "",
+                                    ["RecipientEmail"] = recipient
+                                }
+                            };
+
+                            var success = await _enhancedEmailService.SendEmail(individualEmailMessage);
+                            if (success)
+                            {
+                                successCount++;
+                                _logger.LogDebug("Successfully sent individual email to {Recipient}", recipient);
+                            }
+                            else
+                            {
+                                failureCount++;
+                                errors.Add($"Failed to send to {recipient}");
+                                _logger.LogWarning("Failed to send individual email to {Recipient}", recipient);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            failureCount++;
+                            errors.Add($"Error sending to {recipient}: {ex.Message}");
+                            _logger.LogError(ex, "Error sending individual email to {Recipient}", recipient);
+                        }
+                    }
+
+                    // Add delay between batches if specified
+                    if (i + batchSize < request.Recipients.Count && request.BatchDelayMs > 0)
+                    {
+                        await Task.Delay(request.BatchDelayMs);
+                    }
+                }
+
+                return Accepted(new
+                {
+                    message = $"Individual emails processed successfully for {successCount}/{request.Recipients.Count} recipients",
+                    totalRecipients = request.Recipients.Count,
+                    successCount = successCount,
+                    failureCount = failureCount,
+                    errors = errors.Take(10).ToList(), // Limit errors shown
+                    note = "Each recipient received an individual email for privacy"
+                });
             }
             catch (Exception ex)
             {
@@ -231,23 +355,74 @@ namespace API.Controllers
                 senderEmail = clientApp.SenderEmail;
                 appPassword = clientApp.AppPassword;
 
-                var success = await _enhancedEmailService.SendTemplatedEmailAsync(
-                    request.TemplateName,
-                    request.TemplateData,
-                    request.Recipients,
-                    senderEmail,
-                    request.Subject,
-                    senderEmail,
-                    appPassword
-                );
+                // MODIFIED: Send individual templated emails to each recipient
+                var successCount = 0;
+                var failureCount = 0;
+                var errors = new List<string>();
 
-                if (success)
+                foreach (var recipient in request.Recipients)
                 {
-                    return Ok(new { message = "Templated email sent successfully" });
+                    try
+                    {
+                        // Create individual template data for this recipient
+                        var individualTemplateData = new Dictionary<string, object>(request.TemplateData)
+                        {
+                            ["RecipientEmail"] = recipient,
+                            ["RecipientName"] = ExtractNameFromEmail(recipient)
+                        };
+
+                        var success = await _enhancedEmailService.SendTemplatedEmailAsync(
+                            request.TemplateName,
+                            individualTemplateData,
+                            new List<string> { recipient }, // Only this recipient
+                            senderEmail,
+                            request.Subject,
+                            senderEmail,
+                            appPassword
+                        );
+
+                        if (success)
+                        {
+                            successCount++;
+                        }
+                        else
+                        {
+                            failureCount++;
+                            errors.Add($"Failed to send templated email to {recipient}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        failureCount++;
+                        errors.Add($"Error sending templated email to {recipient}: {ex.Message}");
+                        _logger.LogError(ex, "Error sending templated email to {Recipient}", recipient);
+                    }
+                }
+
+                if (successCount > 0)
+                {
+                    return Ok(new
+                    {
+                        message = $"Individual templated emails sent successfully to {successCount}/{request.Recipients.Count} recipients",
+                        templateName = request.TemplateName,
+                        totalRecipients = request.Recipients.Count,
+                        successCount = successCount,
+                        failureCount = failureCount,
+                        errors = errors,
+                        note = "Each recipient received an individual email for privacy"
+                    });
                 }
                 else
                 {
-                    return StatusCode(500, new { message = "Failed to send templated email" });
+                    return StatusCode(500, new
+                    {
+                        message = "Failed to send templated emails to all recipients",
+                        templateName = request.TemplateName,
+                        totalRecipients = request.Recipients.Count,
+                        successCount = successCount,
+                        failureCount = failureCount,
+                        errors = errors
+                    });
                 }
             }
             catch (Exception ex)
@@ -320,6 +495,30 @@ namespace API.Controllers
         public IActionResult HealthCheck()
         {
             return Ok(new { status = "Healthy", timestamp = DateTime.UtcNow });
+        }
+
+        // Helper method to process simple template variables
+        private static string ProcessTemplate(string template, Dictionary<string, object> data)
+        {
+            if (string.IsNullOrEmpty(template) || data == null)
+                return template;
+
+            var result = template;
+            foreach (var kvp in data)
+            {
+                result = result.Replace($"{{{kvp.Key}}}", kvp.Value?.ToString() ?? "");
+            }
+            return result;
+        }
+
+        // Helper method to extract name from email
+        private static string ExtractNameFromEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return "";
+
+            var atIndex = email.IndexOf('@');
+            return atIndex > 0 ? email.Substring(0, atIndex) : email;
         }
     }
 
