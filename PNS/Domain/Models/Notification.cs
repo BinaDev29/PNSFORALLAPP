@@ -1,7 +1,7 @@
 ﻿// File Path: Domain/Models/Notification.cs
 using Domain.Common;
 using Domain.Events;
-using Domain.Enums; // ከዚህ ነው የምትጨምረው
+using Domain.Enums; 
 using Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace Domain.Models
         public required Guid NotificationTypeId { get; set; }
         public virtual NotificationType? NotificationType { get; set; }
 
-        // አዲስ የጨመርከው ግንኙነት
+       
         public ICollection<NotificationHistory> NotificationHistories { get; set; } = new List<NotificationHistory>();
 
         // Enhanced properties
@@ -45,7 +45,6 @@ namespace Domain.Models
             string title, string message, Guid priorityId, Guid notificationTypeId,
             DateTime? scheduledAt = null, Dictionary<string, string>? metadata = null)
         {
-            // ይህንን ክፍል በApplication Layer ውስጥ መቆጣጠር የተሻለ ነው።
             // This part of the logic is better handled in the Application Layer.
             // Domain Layer should only deal with domain-specific logic.
             var validRecipients = recipients.Select(r => (object)EmailAddress.Create(r)).ToList();

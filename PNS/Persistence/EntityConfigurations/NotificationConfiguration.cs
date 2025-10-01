@@ -28,13 +28,13 @@ namespace Persistence.EntityConfigurations
                     v => JsonSerializer.Serialize(v, typeof(List<object>), new JsonSerializerOptions
                     {
                         WriteIndented = true,
-                        // EmailAddress እና PhoneNumber አይነቶችን ለመምራት Converters እንጨምራለን።
+                        // EmailAddress and PhoneNumber add Converters 
                         Converters = { new EmailAddressConverter(), new PhoneNumberConverter() }
                     }),
                     // From JSON
                     v => JsonSerializer.Deserialize<List<object>>(v, new JsonSerializerOptions
                     {
-                        // Converters ን እዚህም እንጨምራለን
+                        
                         Converters = { new EmailAddressConverter(), new PhoneNumberConverter() }
                     }) ?? new List<object>())
                 .HasColumnType("nvarchar(max)");

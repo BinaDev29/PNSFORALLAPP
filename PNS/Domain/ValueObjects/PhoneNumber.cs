@@ -36,10 +36,10 @@ namespace Domain.ValueObjects
 
         public override string ToString() => Value;
 
-        // ከ string ወደ PhoneNumber የሚቀይር Implicit operator
+        // change from string to PhoneNumber  Implicit operator
         public static implicit operator PhoneNumber(string value) => Create(value);
 
-        // ከ PhoneNumber ወደ string የሚቀይር Explicit operator
+        // change from PhoneNumber to string  Explicit operator
         public static explicit operator string(PhoneNumber phoneNumber) => phoneNumber.Value;
     }
 }

@@ -9,7 +9,7 @@ namespace Domain.Events
     {
         public Guid NotificationId { get; private set; }
         public Guid ClientApplicationId { get; private set; }
-        public List<object> Recipients { get; private set; } // ወደ List<object> ተቀይሯል
+        public List<object> Recipients { get; private set; } 
         public string Title { get; private set; }
         public string Message { get; private set; }
         public Guid NotificationTypeId { get; private set; }

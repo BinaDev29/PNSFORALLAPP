@@ -23,7 +23,7 @@ namespace Domain.ValueObjects
             if (!IsValidEmail(email))
                 throw new ArgumentException($"'{email}' is not a valid email address format.", nameof(email));
 
-            return new EmailAddress(email.ToLowerInvariant()); // ወደ lower case ይቀይራል
+            return new EmailAddress(email.ToLowerInvariant()); 
         }
 
         public static bool IsValidEmail(string email)
@@ -51,11 +51,10 @@ namespace Domain.ValueObjects
 
         public override string ToString() => Value;
 
-        // ከ string ወደ EmailAddress የሚቀይር Implicit operator
+        //change from string to EmailAddress Implicit operator
         public static implicit operator EmailAddress(string value) => Create(value);
 
         // Explicit operator for converting EmailAddress to string
-        // ይህም ግልጽ ያደርገዋል እንጂ ግራ አያጋባም
         public static explicit operator string(EmailAddress emailAddress) => emailAddress.Value;
     }
 }
