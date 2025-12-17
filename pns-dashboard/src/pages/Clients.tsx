@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Plus, Loader2, Smartphone, Key, Trash2 } from "lucide-react";
-import { DashboardService, CreateClientApplicationRequest } from "@/services/api";
+import { Plus, Loader2, Smartphone, Key, Trash2, Pencil } from "lucide-react";
+import { DashboardService, CreateClientApplicationRequest, ClientApplication } from "@/services/api";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
@@ -13,6 +13,7 @@ import { toast } from "sonner";
 export default function ClientsPage() {
     const [clientToDelete, setClientToDelete] = useState<string | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [editingId, setEditingId] = useState<string | null>(null);
     const [formData, setFormData] = useState<CreateClientApplicationRequest>({
         appId: '',
         key: '',
@@ -34,12 +35,23 @@ export default function ClientsPage() {
         mutationFn: DashboardService.createClientApplication,
         onSuccess: () => {
             toast.success("Client application created successfully");
-            setIsDialogOpen(false);
-            setFormData({ appId: '', key: '', name: '', slogan: '', logo: '', senderEmail: '', appPassword: '' });
+            handleCloseDialog();
             queryClient.invalidateQueries({ queryKey: ['activeClients'] });
         },
         onError: () => {
             toast.error("Failed to create client application");
+        }
+    });
+
+    const updateMutation = useMutation({
+        mutationFn: ({ id, data }: { id: string, data: CreateClientApplicationRequest }) => DashboardService.updateClientApplication(id, data),
+        onSuccess: () => {
+            toast.success("Client application updated successfully");
+            handleCloseDialog();
+            queryClient.invalidateQueries({ queryKey: ['activeClients'] });
+        },
+        onError: () => {
+            toast.error("Failed to update client application");
         }
     });
 
@@ -62,15 +74,46 @@ export default function ClientsPage() {
         }
     });
 
-    // Remove the unused filteredClients login since searchTerm was removed
-    // Just use clients directly or bring back search if needed. For now simpler is better.
     const displayClients = clients || [];
 
+    const handleOpenCreate = () => {
+        setEditingId(null);
+        setFormData({ appId: '', key: '', name: '', slogan: '', logo: '', senderEmail: '', appPassword: '' });
+        setIsDialogOpen(true);
+    };
 
+    const handleOpenEdit = (client: ClientApplication) => {
+        setEditingId(client.id);
+        // We need to map ClientApplication to CreateClientApplicationRequest format.
+        // Assuming client contains senderEmail and appPassword if fetched, otherwise we might need to handle empty/masked values.
+        // Note: The ClientApplication interface in api.ts doesn't show senderEmail and appPassword.
+        // If they are not returned by the API, we can't edit them easily without clearing them or asking user to re-enter.
+        // For now, let's assume they might be there or we handle them as optional/empty.
+        setFormData({
+            appId: client.appId,
+            key: client.key,
+            name: client.name,
+            slogan: client.slogan || '',
+            logo: client.logo || '',
+            senderEmail: '', // Cannot pre-fill sensitive/missing data if API doesn't return it
+            appPassword: ''  // password should definitely not be filled back
+        });
+        setIsDialogOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false);
+        setEditingId(null);
+        setFormData({ appId: '', key: '', name: '', slogan: '', logo: '', senderEmail: '', appPassword: '' });
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        createMutation.mutate(formData);
+        if (editingId) {
+            updateMutation.mutate({ id: editingId, data: formData });
+        } else {
+            createMutation.mutate(formData);
+        }
     };
 
     if (isLoading) {
@@ -91,18 +134,21 @@ export default function ClientsPage() {
                     <p className="text-muted-foreground">Manage connected applications and their API credentials.</p>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <Dialog open={isDialogOpen} onOpenChange={(open) => !open && handleCloseDialog()}>
                         <DialogTrigger asChild>
-                            <Button className="gap-2 bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/25">
+                            <Button
+                                onClick={handleOpenCreate}
+                                className="gap-2 bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/25"
+                            >
                                 <Plus className="h-4 w-4" />
                                 Register App
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[500px]">
                             <DialogHeader>
-                                <DialogTitle>Register New Application</DialogTitle>
+                                <DialogTitle>{editingId ? "Edit Application" : "Register New Application"}</DialogTitle>
                                 <DialogDescription>
-                                    Add a new client application to the system. All fields are required.
+                                    {editingId ? "Update existing client application details." : "Add a new client application to the system. All fields are required."}
                                 </DialogDescription>
                             </DialogHeader>
                             <form onSubmit={handleSubmit} className="grid gap-4 py-4">
@@ -161,7 +207,8 @@ export default function ClientsPage() {
                                             type="email"
                                             value={formData.senderEmail}
                                             onChange={(e) => setFormData({ ...formData, senderEmail: e.target.value })}
-                                            required
+                                            required={!editingId} // Only required for new creation if we assume edit doesn't require re-entry unless changing
+                                            placeholder={editingId ? "(Leave empty to keep unchanged)" : ""}
                                         />
                                     </div>
                                     <div className="grid gap-2">
@@ -171,14 +218,15 @@ export default function ClientsPage() {
                                             type="password"
                                             value={formData.appPassword}
                                             onChange={(e) => setFormData({ ...formData, appPassword: e.target.value })}
-                                            required
+                                            required={!editingId}
+                                            placeholder={editingId ? "(Leave empty to keep unchanged)" : ""}
                                         />
                                     </div>
                                 </div>
                                 <DialogFooter>
-                                    <Button type="submit" disabled={createMutation.isPending}>
-                                        {createMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        Register Application
+                                    <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending}>
+                                        {(createMutation.isPending || updateMutation.isPending) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                        {editingId ? "Update Application" : "Register Application"}
                                     </Button>
                                 </DialogFooter>
                             </form>
@@ -190,23 +238,47 @@ export default function ClientsPage() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {displayClients.map((client) => (
                     <Card key={client.id} className="relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:border-blue-500/20 group">
-                        <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity flex gap-2">
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-8 w-8 text-destructive hover:bg-destructive/10"
-                                onClick={() => setClientToDelete(client.id)}
-                            >
-                                <Trash2 className="w-4 h-4" />
-                            </Button>
-                            {client.logo ? <img src={client.logo} alt="logo" className="w-12 h-12 object-contain rounded-lg bg-white/5 p-1" /> : <Smartphone className="w-12 h-12 text-muted-foreground/20" />}
-                        </div>
-                        <CardHeader className="pb-2">
-                            <CardTitle className="text-xl font-bold">{client.name}</CardTitle>
-                            <CardDescription className="line-clamp-1">{client.slogan || "No slogan provided"}</CardDescription>
+                        <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2 gap-2">
+                            <div className="flex-1 min-w-0 space-y-1">
+                                <CardTitle className="text-xl font-bold truncate pr-1" title={client.name}>
+                                    {client.name}
+                                </CardTitle>
+                                <CardDescription className="line-clamp-2 text-xs">
+                                    {client.slogan || "No slogan provided"}
+                                </CardDescription>
+                            </div>
+                            <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                                <div className="flex gap-1">
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 text-primary hover:bg-primary/10 transition-opacity"
+                                        onClick={() => handleOpenEdit(client)}
+                                        title="Edit Application"
+                                    >
+                                        <Pencil className="w-4 h-4" />
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 text-destructive hover:bg-destructive/10 transition-opacity"
+                                        onClick={() => setClientToDelete(client.id)}
+                                        title="Delete Application"
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </Button>
+                                </div>
+                                <div className="h-12 w-12 flex items-center justify-center rounded-lg bg-white/5 p-1 border border-border/10">
+                                    {client.logo ? (
+                                        <img src={client.logo} alt="logo" className="w-full h-full object-contain rounded-md" />
+                                    ) : (
+                                        <Smartphone className="w-8 h-8 text-muted-foreground/20" />
+                                    )}
+                                </div>
+                            </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="space-y-3 mt-2">
+                            <div className="space-y-3 mt-1">
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground p-2 rounded-md bg-secondary/50">
                                     <Key className="w-4 h-4 flex-shrink-0" />
                                     <code className="text-xs truncate font-mono">{client.key}</code>

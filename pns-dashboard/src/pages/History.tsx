@@ -27,8 +27,7 @@ export default function HistoryPage() {
             const matchesSearch =
                 item.id.toLowerCase().includes(searchLower) ||
                 item.status.toLowerCase().includes(searchLower) ||
-                item.notificationId.toLowerCase().includes(searchLower) ||
-                (item.recipient && item.recipient.toLowerCase().includes(searchLower));
+                item.notificationId.toLowerCase().includes(searchLower);
 
             // Status Filter
             const matchesStatus = statusFilter === "all" || item.status === statusFilter;
@@ -123,8 +122,6 @@ export default function HistoryPage() {
                             <TableRow className="hover:bg-transparent">
                                 <TableHead>History ID</TableHead>
                                 <TableHead>Notification ID</TableHead>
-                                <TableHead>Message</TableHead>
-                                <TableHead>Recipient</TableHead>
                                 <TableHead>Status</TableHead>
                                 <TableHead className="text-right">Sent Date</TableHead>
                             </TableRow>
@@ -134,12 +131,6 @@ export default function HistoryPage() {
                                 <TableRow key={item.id} className="group hover:bg-muted/50 transition-colors">
                                     <TableCell className="font-medium font-mono text-xs text-muted-foreground group-hover:text-foreground">{item.id}</TableCell>
                                     <TableCell className="font-mono text-xs">{item.notificationId}</TableCell>
-                                    <TableCell className="max-w-[200px] truncate" title={item.message || ''}>
-                                        {item.message || <span className="text-muted-foreground italic">No message</span>}
-                                    </TableCell>
-                                    <TableCell className="max-w-[150px] truncate" title={item.recipient || ''}>
-                                        {item.recipient || <span className="text-muted-foreground italic">Unknown</span>}
-                                    </TableCell>
                                     <TableCell>
                                         <Badge
                                             variant="secondary"

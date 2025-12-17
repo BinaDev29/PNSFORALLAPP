@@ -23,12 +23,11 @@ export interface NotificationHistory {
     status: string;
     notificationId: string;
     sentDate: string; // ISO string
-    recipient?: string;
-    subject?: string;
+    to?: string;      // Comma separated list of recipients
+    title?: string;
     message?: string;
-    clientApplicationId?: string;
-    notificationTypeId?: string;
-    priorityId?: string;
+    notificationType?: string;
+    errorMessage?: string;
 }
 
 export interface ClientApplication {
@@ -44,7 +43,12 @@ export interface Notification {
     id: string;
     title: string;
     message: string;
-    // ... other fields
+    to: string[];
+    clientApplicationId: string;
+    notificationTypeId: string;
+    priorityId: string;
+    status?: string;
+    sentDate?: string;
 }
 
 export const DashboardService = {
@@ -100,6 +104,11 @@ export const DashboardService = {
         return response.data;
     },
 
+    updateClientApplication: async (id: string, data: Partial<CreateClientApplicationRequest>) => {
+        const response = await api.put(`/ClientApplication/${id}`, data);
+        return response.data;
+    },
+
     deleteClientApplication: async (id: string) => {
         await api.delete(`/ClientApplication/${id}`);
     },
@@ -111,6 +120,11 @@ export const DashboardService = {
 
     createEmailTemplate: async (data: CreateEmailTemplateRequest) => {
         const response = await api.post('/EmailTemplate', data);
+        return response.data;
+    },
+
+    updateEmailTemplate: async (id: string, data: Partial<CreateEmailTemplateRequest>) => {
+        const response = await api.put(`/EmailTemplate/${id}`, data);
         return response.data;
     },
 

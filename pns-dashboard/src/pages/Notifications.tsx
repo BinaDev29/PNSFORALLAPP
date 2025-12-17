@@ -110,8 +110,6 @@ export default function NotificationsPage() {
                             <TableRow className="hover:bg-transparent">
                                 <TableHead>ID</TableHead>
                                 <TableHead>Notification ID</TableHead>
-                                <TableHead>Message</TableHead>
-                                <TableHead>Recipient</TableHead>
                                 <TableHead>Status</TableHead>
                                 <TableHead className="text-right">Time</TableHead>
                                 <TableHead className="w-[50px]"></TableHead>
@@ -128,12 +126,6 @@ export default function NotificationsPage() {
                                             </div>
                                             <span className="font-medium">{notification.notificationId.substring(0, 8)}...</span>
                                         </div>
-                                    </TableCell>
-                                    <TableCell className="max-w-[200px] truncate" title={notification.message || ''}>
-                                        {notification.message || <span className="text-muted-foreground italic">No message</span>}
-                                    </TableCell>
-                                    <TableCell className="max-w-[150px] truncate" title={notification.recipient || ''}>
-                                        {notification.recipient || <span className="text-muted-foreground italic">Unknown</span>}
                                     </TableCell>
                                     <TableCell>
                                         <Badge

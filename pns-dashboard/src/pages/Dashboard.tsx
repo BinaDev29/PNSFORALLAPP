@@ -81,7 +81,8 @@ export default function Dashboard() {
             icon: Bell,
             color: "text-purple-500",
             bg: "bg-purple-500/10",
-            gradient: "from-purple-500/20 to-transparent"
+            gradient: "from-purple-500/20 to-transparent",
+            href: "/notifications"
         },
         {
             title: t('dashboard.successRate', "Success Rate"),
@@ -91,7 +92,8 @@ export default function Dashboard() {
             icon: CheckCircle,
             color: "text-emerald-500",
             bg: "bg-emerald-500/10",
-            gradient: "from-emerald-500/20 to-transparent"
+            gradient: "from-emerald-500/20 to-transparent",
+            href: "/history"
         },
         {
             title: t('dashboard.failedMessages', "Failed Messages"),
@@ -101,7 +103,8 @@ export default function Dashboard() {
             icon: AlertTriangle,
             color: "text-rose-500",
             bg: "bg-rose-500/10",
-            gradient: "from-rose-500/20 to-transparent"
+            gradient: "from-rose-500/20 to-transparent",
+            href: "/history"
         },
         {
             title: t('dashboard.activeClients', "Active Clients"),
@@ -111,7 +114,8 @@ export default function Dashboard() {
             icon: Smartphone,
             color: "text-blue-500",
             bg: "bg-blue-500/10",
-            gradient: "from-blue-500/20 to-transparent"
+            gradient: "from-blue-500/20 to-transparent",
+            href: "/clients"
         },
     ];
 
@@ -126,16 +130,13 @@ export default function Dashboard() {
     const handleDownloadReport = () => {
         if (!allHistory) return;
 
-        const headers = ["ID", "Recipient", "Subject", "Status", "Sent Date", "Message"];
+        const headers = ["ID", "Status", "Sent Date"];
         const csvContent = [
             headers.join(","),
             ...allHistory.map(row => [
                 row.id,
-                `"${row.recipient}"`,
-                `"${row.subject}"`,
                 row.status,
-                row.sentDate,
-                `"${row.message?.replace(/"/g, '""') || ''}"` // Escape quotes
+                row.sentDate
             ].join(","))
         ].join("\n");
 
@@ -174,9 +175,9 @@ export default function Dashboard() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {stats.map((stat, index) => (
-                    <motion.div key={index} variants={item}>
-                        <Card className="border-border/50 bg-card/40 backdrop-blur-sm hover:bg-card/60 transition-colors duration-300 overflow-hidden relative group">
+                {stats.map((stat, index) => {
+                    const CardComponent = (
+                        <Card className="border-border/50 bg-card/40 backdrop-blur-sm hover:bg-card/60 transition-colors duration-300 overflow-hidden relative group h-full cursor-pointer">
                             <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
                                 <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -196,8 +197,20 @@ export default function Dashboard() {
                                 </p>
                             </CardContent>
                         </Card>
-                    </motion.div>
-                ))}
+                    );
+
+                    return (
+                        <motion.div key={index} variants={item}>
+                            {stat.href ? (
+                                <Link to={stat.href} className="block h-full">
+                                    {CardComponent}
+                                </Link>
+                            ) : (
+                                CardComponent
+                            )}
+                        </motion.div>
+                    );
+                })}
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
@@ -301,12 +314,6 @@ export default function Dashboard() {
                                                 <p className="text-sm font-semibold leading-none">{item.status}</p>
                                                 <span className="text-[10px] text-muted-foreground font-medium bg-secondary px-2 py-0.5 rounded-full">{formatDate(item.sentDate)}</span>
                                             </div>
-                                            <p className="text-xs text-foreground/80 mb-1 truncate max-w-[200px]" title={item.recipient}>
-                                                To: {item.recipient || <span className="text-muted-foreground italic">Unknown</span>}
-                                            </p>
-                                            <p className="text-xs text-muted-foreground mb-1 line-clamp-2" title={item.message}>
-                                                {item.message || <span className="italic">No message</span>}
-                                            </p>
                                             <p className="text-[10px] text-muted-foreground/60">
                                                 ID: <span className="text-foreground/80 font-mono">{item.id.slice(0, 8)}...</span>
                                             </p>

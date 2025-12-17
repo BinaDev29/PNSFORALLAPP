@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Plus, Loader2, Mail, Trash2 } from "lucide-react";
-import { DashboardService, CreateEmailTemplateRequest } from "@/services/api";
+import { Plus, Loader2, Mail, Trash2, Pencil } from "lucide-react";
+import { DashboardService, CreateEmailTemplateRequest, EmailTemplate } from "@/services/api";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
@@ -12,6 +12,7 @@ import { toast } from "sonner";
 
 export default function TemplatesPage() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [editingId, setEditingId] = useState<string | null>(null);
     const [templateToDelete, setTemplateToDelete] = useState<string | null>(null);
     const [formData, setFormData] = useState<CreateEmailTemplateRequest>({
         name: '',
@@ -31,12 +32,23 @@ export default function TemplatesPage() {
         mutationFn: DashboardService.createEmailTemplate,
         onSuccess: () => {
             toast.success("Email template created successfully");
-            setIsDialogOpen(false);
-            setFormData({ name: '', subject: '', bodyHtml: '', bodyText: '' });
+            handleCloseDialog();
             queryClient.invalidateQueries({ queryKey: ['emailTemplates'] });
         },
         onError: () => {
             toast.error("Failed to create email template");
+        }
+    });
+
+    const updateMutation = useMutation({
+        mutationFn: ({ id, data }: { id: string, data: CreateEmailTemplateRequest }) => DashboardService.updateEmailTemplate(id, data),
+        onSuccess: () => {
+            toast.success("Email template updated successfully");
+            handleCloseDialog();
+            queryClient.invalidateQueries({ queryKey: ['emailTemplates'] });
+        },
+        onError: () => {
+            toast.error("Failed to update email template");
         }
     });
 
@@ -56,9 +68,36 @@ export default function TemplatesPage() {
 
     const displayTemplates = templates || [];
 
+    const handleOpenCreate = () => {
+        setEditingId(null);
+        setFormData({ name: '', subject: '', bodyHtml: '', bodyText: '' });
+        setIsDialogOpen(true);
+    };
+
+    const handleEdit = (template: EmailTemplate) => {
+        setEditingId(template.id);
+        setFormData({
+            name: template.name,
+            subject: template.subject,
+            bodyHtml: template.bodyHtml,
+            bodyText: template.bodyText || ''
+        });
+        setIsDialogOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false);
+        setEditingId(null);
+        setFormData({ name: '', subject: '', bodyHtml: '', bodyText: '' });
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        createMutation.mutate(formData);
+        if (editingId) {
+            updateMutation.mutate({ id: editingId, data: formData });
+        } else {
+            createMutation.mutate(formData);
+        }
     };
 
     if (isLoading) {
@@ -79,18 +118,21 @@ export default function TemplatesPage() {
                     <p className="text-muted-foreground">Manage email templates for your notifications.</p>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <Dialog open={isDialogOpen} onOpenChange={(open) => !open && handleCloseDialog()}>
                         <DialogTrigger asChild>
-                            <Button className="gap-2 bg-teal-600 hover:bg-teal-700 shadow-lg shadow-teal-500/25">
+                            <Button
+                                onClick={handleOpenCreate}
+                                className="gap-2 bg-teal-600 hover:bg-teal-700 shadow-lg shadow-teal-500/25"
+                            >
                                 <Plus className="h-4 w-4" />
                                 Create Template
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[700px]">
                             <DialogHeader>
-                                <DialogTitle>Create Email Template</DialogTitle>
+                                <DialogTitle>{editingId ? "Edit Email Template" : "Create Email Template"}</DialogTitle>
                                 <DialogDescription>
-                                    Design a new email template. HTML body is supported.
+                                    {editingId ? "Update existing template details." : "Design a new email template. HTML body is supported."}
                                 </DialogDescription>
                             </DialogHeader>
                             <form onSubmit={handleSubmit} className="grid gap-4 py-4">
@@ -136,9 +178,9 @@ export default function TemplatesPage() {
                                     />
                                 </div>
                                 <DialogFooter>
-                                    <Button type="submit" disabled={createMutation.isPending}>
-                                        {createMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        Save Template
+                                    <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending}>
+                                        {(createMutation.isPending || updateMutation.isPending) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                        {editingId ? "Update Template" : "Save Template"}
                                     </Button>
                                 </DialogFooter>
                             </form>
@@ -151,21 +193,33 @@ export default function TemplatesPage() {
                 {displayTemplates.map((template) => (
                     <Card key={template.id} className="border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/10 hover:border-teal-500/20 group">
                         <CardHeader>
-                            <div className="flex items-center justify-between">
-                                <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                                    <Mail className="w-4 h-4 text-teal-500" />
-                                    {template.name}
+                            <div className="flex items-start justify-between">
+                                <CardTitle className="text-lg font-semibold flex items-center gap-2 truncate pr-2" title={template.name}>
+                                    <Mail className="w-4 h-4 text-teal-500 flex-shrink-0" />
+                                    <span className="truncate">{template.name}</span>
                                 </CardTitle>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
-                                    onClick={() => setTemplateToDelete(template.id)}
-                                >
-                                    <Trash2 className="w-4 h-4" />
-                                </Button>
+                                <div className="flex items-center gap-1 flex-shrink-0">
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                                        onClick={() => handleEdit(template)}
+                                        title="Edit Template"
+                                    >
+                                        <Pencil className="w-4 h-4" />
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+                                        onClick={() => setTemplateToDelete(template.id)}
+                                        title="Delete Template"
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </Button>
+                                </div>
                             </div>
-                            <CardDescription>
+                            <CardDescription className="line-clamp-1" title={template.subject}>
                                 Subject: <span className="text-foreground font-medium">{template.subject}</span>
                             </CardDescription>
                         </CardHeader>
