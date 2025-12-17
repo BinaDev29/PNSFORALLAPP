@@ -216,7 +216,7 @@ namespace API.Controllers
                     return BadRequest(ModelState);
 
                 string senderEmail = request.From;
-                string appPassword = null;
+                string? appPassword = null;
                 if (request.Metadata != null && request.Metadata.TryGetValue("ClientApplicationId", out var clientAppIdObj)
                     && Guid.TryParse(clientAppIdObj?.ToString(), out var clientAppId))
                 {
@@ -335,7 +335,7 @@ namespace API.Controllers
                     return BadRequest(ModelState);
 
                 string senderEmail = request.From;
-                string appPassword = null;
+                string? appPassword = null;
                 if (request.Metadata == null || !request.Metadata.TryGetValue("ClientApplicationId", out var clientAppIdObj))
                 {
                     return BadRequest(new { message = "ClientApplicationId must be provided in Metadata." });
@@ -435,7 +435,7 @@ namespace API.Controllers
         [HttpGet("{id}/track")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> TrackNotification(Guid id)
+        public IActionResult TrackNotification(Guid id)
         {
             try
             {

@@ -83,7 +83,11 @@ namespace Application.CQRS.Notification.Handlers
                 await _unitOfWork.Save(cancellationToken);
 
                 // MODIFIED: Send individual emails to each recipient to ensure privacy
-                var recipients = notification.To.Select(o => o.ToString()).ToList();
+                var recipients = notification.To
+                    .Select(o => o?.ToString())
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .Cast<string>()
+                    .ToList();
                 var successfulSends = 0;
                 var failedRecipients = new List<string>();
 

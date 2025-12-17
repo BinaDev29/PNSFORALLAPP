@@ -1,9 +1,3 @@
-F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.csproj.AssemblyReference.cache
-F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
-F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.AssemblyInfoInputs.cache
-F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.AssemblyInfo.cs
-F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.csproj.CoreCompileInputs.cache
-F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.sourcelink.json
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\bin\Debug\net9.0\Persistence.deps.json
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\bin\Debug\net9.0\Persistence.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\bin\Debug\net9.0\Persistence.pdb
@@ -11,6 +5,12 @@ F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\bin\Debug\net9.0\Application.dl
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\bin\Debug\net9.0\Domain.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\bin\Debug\net9.0\Application.pdb
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\bin\Debug\net9.0\Domain.pdb
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.csproj.AssemblyReference.cache
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.AssemblyInfoInputs.cache
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.AssemblyInfo.cs
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.csproj.CoreCompileInputs.cache
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.sourcelink.json
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persiste.61C28332.Up2Date
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\Persistence.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\Persistence\obj\Debug\net9.0\refint\Persistence.dll

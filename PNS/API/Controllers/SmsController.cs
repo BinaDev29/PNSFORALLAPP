@@ -55,7 +55,7 @@ namespace API.Controllers
         /// <param name="notificationId">Notification ID</param>
         /// <returns>SMS status information</returns>
         [HttpGet("status/{notificationId}")]
-        public async Task<IActionResult> GetSmsStatus(Guid notificationId)
+        public IActionResult GetSmsStatus(Guid notificationId)
         {
             try
             {

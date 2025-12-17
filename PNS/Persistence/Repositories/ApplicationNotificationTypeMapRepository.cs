@@ -15,7 +15,7 @@ namespace Persistence.Repositories
     {
         public async Task<ApplicationNotificationTypeMap?> GetByKeys(Guid clientApplicationId, Guid notificationTypeId, CancellationToken cancellationToken)
         {
-            return await dbContext.ApplicationNotificationTypeMaps
+            return await _dbContext.ApplicationNotificationTypeMaps
                 .FirstOrDefaultAsync(q => q.ClientApplicationId == clientApplicationId && q.NotificationTypeId == notificationTypeId, cancellationToken);
         }
     }

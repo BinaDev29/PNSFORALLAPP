@@ -126,5 +126,23 @@ namespace API.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
+
+        // GET: api/Notification/statistics
+        [HttpGet("statistics")]
+        [ProducesResponseType(typeof(NotificationStatisticsDto), 200)]
+        public async Task<ActionResult<NotificationStatisticsDto>> GetStatistics(
+            [FromQuery] DateTime? startDate,
+            [FromQuery] DateTime? endDate,
+            [FromQuery] Guid? clientApplicationId)
+        {
+            var query = new GetNotificationStatisticsQuery
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                ClientApplicationId = clientApplicationId
+            };
+            var stats = await _mediator.Send(query);
+            return Ok(stats);
+        }
     }
 }
