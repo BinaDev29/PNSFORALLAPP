@@ -1,0 +1,21 @@
+2026-02-04 19:46:19.581 +03:00 [INF] SMS Queue Processor started
+2026-02-04 19:46:19.581 +03:00 [INF] Email Queue Processor started
+2026-02-04 19:48:52.875 +03:00 [INF] Email Queue Processor started
+2026-02-04 19:48:52.889 +03:00 [INF] SMS Queue Processor started
+2026-02-04 19:49:55.357 +03:00 [WRN] PNS Long Running Request: GetNotificationStatisticsQuery (696 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"StartDate":null,"EndDate":null,"ClientApplicationId":null,"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationStatisticsQuery"}
+2026-02-04 19:49:56.056 +03:00 [WRN] PNS Long Running Request: GetClientApplicationsListQuery (1413 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetClientApplicationsListQuery"}
+2026-02-04 19:49:56.275 +03:00 [WRN] PNS Long Running Request: GetNotificationHistoriesListQuery (1637 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationHistoriesListQuery"}
+2026-02-04 19:49:58.412 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (1658 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 19:49:59.326 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (2546 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 19:50:40.618 +03:00 [INF] Sending individual notification emails to 1 recipients to ensure privacy
+2026-02-04 19:50:40.866 +03:00 [INF] Attempting to send email via SMTP
+2026-02-04 19:50:45.984 +03:00 [INF] Email sent successfully via SMTP using client credentials biniyamtehakele9@gmail.com to genettehakele@gmail.com
+2026-02-04 19:50:49.165 +03:00 [INF] Email sent successfully via SMTP, MessageId: d77b6a42-1446-492d-9492-07248c0e01cc
+2026-02-04 19:50:53.547 +03:00 [INF] Notification "fffcd8ca-bc3a-4055-12dc-08de640d8586" processed. Individual emails sent: 1/1
+2026-02-04 19:50:58.232 +03:00 [WRN] PNS Long Running Request: CreateNotificationCommand (22996 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"CreateNotificationDto":{"ClientApplicationId":"f82501cd-22c0-4b08-d30b-08de3d86a130","To":["genettehakele@gmail.com"],"Title":"Africom","Message":"Africommmmmmmmmmmmmmmmmmmmmmm","NotificationTypeId":"8cd6f661-4ead-4a70-9d6e-e63347890645","PriorityId":"bbae86ca-e672-446a-f9cc-08de19fbe5df","$type":"CreateNotificationDto"},"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"CreateNotificationCommand"}
+2026-02-04 19:51:04.853 +03:00 [WRN] PNS Long Running Request: GetNotificationHistoriesListQuery (7770 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationHistoriesListQuery"}
+2026-02-04 19:52:57.149 +03:00 [WRN] PNS Long Running Request: GetNotificationStatisticsQuery (1193 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"StartDate":null,"EndDate":null,"ClientApplicationId":null,"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationStatisticsQuery"}
+2026-02-04 19:52:57.113 +03:00 [WRN] PNS Long Running Request: GetNotificationHistoriesListQuery (1160 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationHistoriesListQuery"}
+2026-02-04 19:52:57.121 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (1173 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 19:52:57.393 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (1442 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 19:54:31.203 +03:00 [WRN] PNS Long Running Request: GetNotificationHistoriesListQuery (1009 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationHistoriesListQuery"}

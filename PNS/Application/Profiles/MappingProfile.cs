@@ -1,4 +1,6 @@
 ﻿// File Path: Application/Profiles/MappingProfile.cs
+using System;
+using System.Linq;
 using Application.DTO.ApplicationNotificationTypeMap;
 using Application.DTO.ClientApplication;
 using Application.DTO.EmailTemplate;
@@ -8,6 +10,7 @@ using Application.DTO.NotificationType;
 using Application.DTO.Priority;
 using AutoMapper;
 using Domain.Models;
+using Domain.ValueObjects;
 
 namespace Application.Profiles
 {
@@ -21,12 +24,33 @@ namespace Application.Profiles
             CreateMap<ClientApplication, UpdateClientApplicationDto>().ReverseMap();
 
             // Notification
-            CreateMap<Notification, NotificationDto>().ReverseMap();
-            CreateMap<Notification, CreateNotificationDto>().ReverseMap();
-            CreateMap<Notification, UpdateNotificationDto>().ReverseMap();
+            CreateMap<Notification, NotificationDto>()
+                .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString()).ToList()))
+                .ReverseMap();
+
+            CreateMap<CreateNotificationDto, Notification>()
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(t => (object)EmailAddress.Create(t)).ToList()));
+            CreateMap<Notification, CreateNotificationDto>()
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString()).ToList()));
+
+            CreateMap<UpdateNotificationDto, Notification>()
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(t => (object)EmailAddress.Create(t)).ToList()));
+            CreateMap<Notification, UpdateNotificationDto>()
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString()).ToList()));
 
             // NotificationHistory
-            CreateMap<NotificationHistory, NotificationHistoryDto>().ReverseMap();
+            CreateMap<NotificationHistory, NotificationHistoryDto>()
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Notification != null ? src.Notification.Title : string.Empty))
+                .ForMember(dest => dest.Message, opt => opt.MapFrom(src => src.Notification != null ? src.Notification.Message : string.Empty))
+                .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.Notification != null && src.Notification.To != null 
+                    ? string.Join(", ", src.Notification.To.Select(x => x.ToString())) 
+                    : string.Empty))
+                .ForMember(dest => dest.NotificationType, opt => opt.MapFrom(src => src.Notification != null && src.Notification.NotificationType != null 
+                    ? src.Notification.NotificationType.Name 
+                    : string.Empty))
+                 .ForMember(dest => dest.ErrorMessage, opt => opt.MapFrom(src => src.Notification != null ? src.Notification.ErrorMessage : null))
+                .ReverseMap();
+
             CreateMap<NotificationHistory, CreateNotificationHistoryDto>().ReverseMap();
 
             // NotificationType

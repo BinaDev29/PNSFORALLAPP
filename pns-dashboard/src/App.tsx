@@ -11,6 +11,7 @@ import SettingsPage from "@/pages/Settings";
 import { Toaster } from "@/components/ui/sonner"
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import LoginPage from "@/pages/Login";
+import RegisterPage from "@/pages/Register";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, checkAuth } = useAuth();
@@ -30,6 +31,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
 
           <Route path="/" element={
             <ProtectedRoute>

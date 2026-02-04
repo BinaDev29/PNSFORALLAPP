@@ -6,6 +6,8 @@ using Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Interceptors;
 using Application.Common.Interfaces; // ይህን ያክሉ
+using Microsoft.AspNetCore.Identity;
+using Domain.Models;
 
 namespace Persistence
 {
@@ -26,6 +28,18 @@ namespace Persistence
                 );
             });
 
+            services.AddIdentityCore<AppUser>(options => {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+            })
+            .AddRoles<IdentityRole>()
+            .AddSignInManager<SignInManager<AppUser>>()
+            .AddEntityFrameworkStores<PnsDbContext>()
+            .AddDefaultTokenProviders();
+
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Register all your specific repositories
@@ -36,6 +50,7 @@ namespace Persistence
             services.AddScoped<IApplicationNotificationTypeMapRepository, ApplicationNotificationTypeMapRepository>();
             services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
             services.AddScoped<IPriorityRepository, PriorityRepository>();
+            services.AddScoped<ISmsTemplateRepository, SmsTemplateRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

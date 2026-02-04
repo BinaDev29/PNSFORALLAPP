@@ -13,6 +13,18 @@ namespace Persistence.Repositories
 {
     public class NotificationRepository(PnsDbContext dbContext) : GenericRepository<Notification>(dbContext), INotificationRepository
     {
+        public async Task<IReadOnlyList<Notification>> GetByUserId(string? userId, bool isAdmin, CancellationToken cancellationToken = default)
+        {
+            var query = _dbContext.Notifications.AsQueryable();
+
+            if (!isAdmin && !string.IsNullOrEmpty(userId))
+            {
+                query = query.Where(n => n.CreatedBy == userId);
+            }
+
+            return await query.ToListAsync(cancellationToken);
+        }
+
         // የ GetWhere ዘዴን እንደገና ለመተግበር new የሚለውን ቃል ተጠቀም
         public new async Task<IReadOnlyList<Notification>> GetWhere(Expression<Func<Notification, bool>> predicate, CancellationToken cancellationToken = default)
         {
@@ -21,9 +33,15 @@ namespace Persistence.Repositories
                                    .ToListAsync(cancellationToken);
         }
 
-        public async Task<Application.DTO.Notification.NotificationStatisticsDto> GetStatisticsAsync(DateTime? startDate, DateTime? endDate, Guid? clientApplicationId, CancellationToken cancellationToken = default)
+        public async Task<Application.DTO.Notification.NotificationStatisticsDto> GetStatisticsAsync(DateTime? startDate, DateTime? endDate, Guid? clientApplicationId, string? userId = null, bool isAdmin = false, CancellationToken cancellationToken = default)
         {
             var query = _dbContext.Notifications.AsQueryable();
+
+            // Filter by Admin status
+            if (!isAdmin && !string.IsNullOrEmpty(userId))
+            {
+                query = query.Where(n => n.CreatedBy == userId);
+            }
 
             // Filter by Date Range
             if (startDate.HasValue)

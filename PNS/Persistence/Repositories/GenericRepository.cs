@@ -21,6 +21,11 @@ namespace Persistence.Repositories
             return entity;
         }
 
+        public async Task<int> Count(CancellationToken cancellationToken)
+        {
+            return await _dbSet.CountAsync(cancellationToken);
+        }
+
         public async Task<T?> Get(Guid id, CancellationToken cancellationToken)
         {
             return await _dbSet.FindAsync(new object[] { id }, cancellationToken);

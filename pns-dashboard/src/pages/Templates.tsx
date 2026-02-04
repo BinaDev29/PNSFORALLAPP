@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Plus, Loader2, Mail, Trash2, Pencil } from "lucide-react";
+import { Plus, Loader2, Mail, Trash2, Pencil, Eye } from "lucide-react";
 import { DashboardService, CreateEmailTemplateRequest, EmailTemplate } from "@/services/api";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -14,6 +14,7 @@ export default function TemplatesPage() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [templateToDelete, setTemplateToDelete] = useState<string | null>(null);
+    const [previewTemplate, setPreviewTemplate] = useState<EmailTemplate | null>(null);
     const [formData, setFormData] = useState<CreateEmailTemplateRequest>({
         name: '',
         subject: '',
@@ -202,6 +203,15 @@ export default function TemplatesPage() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
+                                        className="h-8 w-8 text-muted-foreground hover:text-teal-500 hover:bg-teal-500/10 transition-colors"
+                                        onClick={() => setPreviewTemplate(template)}
+                                        title="Preview Template"
+                                    >
+                                        <Eye className="w-4 h-4" />
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
                                         className="h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
                                         onClick={() => handleEdit(template)}
                                         title="Edit Template"
@@ -232,6 +242,32 @@ export default function TemplatesPage() {
                         </CardContent>
                     </Card>
                 ))}
+
+                {/* Preview Dialog */}
+                <Dialog open={!!previewTemplate} onOpenChange={(open) => !open && setPreviewTemplate(null)}>
+                    <DialogContent className="sm:max-w-[800px] h-[80vh] flex flex-col p-0">
+                        <DialogHeader className="p-6 pb-2">
+                            <DialogTitle className="flex items-center gap-2">
+                                <Eye className="w-5 h-5 text-teal-500" />
+                                {previewTemplate?.name}
+                            </DialogTitle>
+                            <DialogDescription>
+                                Subject: {previewTemplate?.subject}
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex-1 overflow-hidden p-6 pt-0">
+                            <div className="w-full h-full rounded-lg border bg-white overflow-y-auto">
+                                <div
+                                    className="p-8 prose prose-sm max-w-none text-black"
+                                    dangerouslySetInnerHTML={{ __html: previewTemplate?.bodyHtml || '' }}
+                                />
+                            </div>
+                        </div>
+                        <DialogFooter className="p-6 pt-2 border-t">
+                            <Button variant="outline" onClick={() => setPreviewTemplate(null)}>Close Preview</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
 
                 {/* Delete Confirmation Dialog */}
                 <Dialog open={!!templateToDelete} onOpenChange={(open) => !open && setTemplateToDelete(null)}>

@@ -14,7 +14,7 @@ namespace Application.CQRS.NotificationHistory.Handlers
     {
         public async Task<List<NotificationHistoryDto>> Handle(GetNotificationHistoriesListQuery request, CancellationToken cancellationToken)
         {
-            var histories = await unitOfWork.NotificationHistories.GetAll(cancellationToken);
+            var histories = await unitOfWork.NotificationHistories.GetNotificationHistoriesWithDetails(request.UserId, request.IsAdmin, cancellationToken);
             return mapper.Map<List<NotificationHistoryDto>>(histories);
         }
     }

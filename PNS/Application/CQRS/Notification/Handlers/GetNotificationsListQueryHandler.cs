@@ -14,7 +14,7 @@ namespace Application.CQRS.Notification.Handlers
     {
         public async Task<List<NotificationDto>> Handle(GetNotificationsListQuery request, CancellationToken cancellationToken)
         {
-            var notifications = await unitOfWork.Notifications.GetAll(cancellationToken);
+            var notifications = await unitOfWork.Notifications.GetByUserId(request.UserId, request.IsAdmin, cancellationToken);
             return mapper.Map<List<NotificationDto>>(notifications);
         }
     }

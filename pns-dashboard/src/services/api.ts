@@ -5,6 +5,99 @@ const api = axios.create({
     baseURL: '/api',
 });
 
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('pns_auth_token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
+export interface AuthResponse {
+    id: string;
+    firstName: string;
+    lastName: string;
+    userName: string;
+    email: string;
+    token: string;
+    roles: string[];
+}
+
+export interface AuthRequest {
+    email: string;
+    password: string;
+}
+
+export interface RegistrationRequest {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    userName?: string;
+}
+
+export interface UserProfileUpdateDto {
+    firstName: string;
+    lastName: string;
+    email: string;
+}
+
+export interface ChangePasswordDto {
+    currentPassword: string;
+    newPassword: string;
+}
+
+export const AuthService = {
+    login: async (data: AuthRequest) => {
+        const response = await api.post<AuthResponse>('/Auth/login', data);
+        if (response.data.token) {
+            localStorage.setItem('pns_auth_token', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data));
+        }
+        return response.data;
+    },
+
+    register: async (data: RegistrationRequest) => {
+        const response = await api.post<AuthResponse>('/Auth/register', data);
+        if (response.data.token) {
+            localStorage.setItem('pns_auth_token', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data));
+        }
+        return response.data;
+    },
+
+    updateProfile: async (data: UserProfileUpdateDto) => {
+        const response = await api.put('/Auth/profile', data);
+        // Refresh local storage user data if needed
+        const currentUser = AuthService.getCurrentUser();
+        if (currentUser) {
+            const newUser = { ...currentUser, ...data };
+            localStorage.setItem('user', JSON.stringify(newUser));
+        }
+        return response.data;
+    },
+
+    changePassword: async (data: ChangePasswordDto) => {
+        const response = await api.post('/Auth/change-password', data);
+        return response.data;
+    },
+
+    logout: () => {
+        localStorage.removeItem('pns_auth_token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+    },
+
+    getCurrentUser: () => {
+        const userStr = localStorage.getItem('user');
+        return userStr ? JSON.parse(userStr) : null;
+    },
+
+    isAuthenticated: () => {
+        return !!localStorage.getItem('pns_auth_token');
+    }
+};
+
 // Response wrapper if backend uses a standard wrapper (doesn't look like it for GETs, but maybe for some)
 // Based on controllers, GETs return the data directly or wrapped in ActionResult.
 

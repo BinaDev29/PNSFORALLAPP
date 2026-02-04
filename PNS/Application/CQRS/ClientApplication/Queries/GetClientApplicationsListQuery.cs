@@ -7,5 +7,7 @@ namespace Application.CQRS.ClientApplication.Queries
 {
     public class GetClientApplicationsListQuery : IRequest<List<ClientApplicationDto>>
     {
+        public string? UserId { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

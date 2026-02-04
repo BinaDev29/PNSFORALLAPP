@@ -7,5 +7,7 @@ namespace Application.CQRS.Notification.Queries
 {
     public class GetNotificationsListQuery : IRequest<List<NotificationDto>>
     {
+        public string? UserId { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

@@ -22,6 +22,8 @@ namespace Application.CQRS.Notification.Handlers
                 request.StartDate, 
                 request.EndDate, 
                 request.ClientApplicationId, 
+                request.UserId,
+                request.IsAdmin,
                 cancellationToken);
         }
     }

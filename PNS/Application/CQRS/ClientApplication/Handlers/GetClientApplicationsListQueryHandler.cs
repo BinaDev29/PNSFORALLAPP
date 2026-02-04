@@ -14,7 +14,7 @@ namespace Application.CQRS.ClientApplication.Handlers
     {
         public async Task<List<ClientApplicationDto>> Handle(GetClientApplicationsListQuery request, CancellationToken cancellationToken)
         {
-            var clientApplications = await unitOfWork.ClientApplications.GetAll(cancellationToken);
+            var clientApplications = await unitOfWork.ClientApplications.GetByUserId(request.UserId, request.IsAdmin, cancellationToken);
             return mapper.Map<List<ClientApplicationDto>>(clientApplications);
         }
     }

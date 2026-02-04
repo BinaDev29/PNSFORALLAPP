@@ -11,5 +11,6 @@ namespace Application.Contracts.IRepository
         // Add SMS-template-specific methods
         Task<SmsTemplate?> GetByNameAsync(string templateName);
         Task<List<SmsTemplate>> GetActiveTemplatesAsync();
+        Task<IReadOnlyList<SmsTemplate>> GetByUserId(string? userId, bool isAdmin, CancellationToken cancellationToken = default);
     }
 }

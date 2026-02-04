@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Plus, Loader2, Smartphone, Key, Trash2, Pencil } from "lucide-react";
+import { Plus, Loader2, Smartphone, Key, Trash2, Pencil, Eye, EyeOff } from "lucide-react";
 import { DashboardService, CreateClientApplicationRequest, ClientApplication } from "@/services/api";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -14,6 +14,7 @@ export default function ClientsPage() {
     const [clientToDelete, setClientToDelete] = useState<string | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
+    const [showAppPassword, setShowAppPassword] = useState(false);
     const [formData, setFormData] = useState<CreateClientApplicationRequest>({
         appId: '',
         key: '',
@@ -213,14 +214,30 @@ export default function ClientsPage() {
                                     </div>
                                     <div className="grid gap-2">
                                         <Label htmlFor="appPassword">App Password</Label>
-                                        <Input
-                                            id="appPassword"
-                                            type="password"
-                                            value={formData.appPassword}
-                                            onChange={(e) => setFormData({ ...formData, appPassword: e.target.value })}
-                                            required={!editingId}
-                                            placeholder={editingId ? "(Leave empty to keep unchanged)" : ""}
-                                        />
+                                        <div className="relative">
+                                            <Input
+                                                id="appPassword"
+                                                type={showAppPassword ? "text" : "password"}
+                                                value={formData.appPassword}
+                                                onChange={(e) => setFormData({ ...formData, appPassword: e.target.value })}
+                                                required={!editingId}
+                                                className="pr-10"
+                                                placeholder={editingId ? "(Leave empty to keep unchanged)" : ""}
+                                            />
+                                            <Button
+                                                type="button"
+                                                variant="ghost"
+                                                size="sm"
+                                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-foreground"
+                                                onClick={() => setShowAppPassword(!showAppPassword)}
+                                            >
+                                                {showAppPassword ? (
+                                                    <EyeOff className="h-4 w-4" />
+                                                ) : (
+                                                    <Eye className="h-4 w-4" />
+                                                )}
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                                 <DialogFooter>

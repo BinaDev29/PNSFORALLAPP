@@ -4,6 +4,7 @@ using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Persistence.Repositories
@@ -29,6 +30,18 @@ namespace Persistence.Repositories
                 .Where(t => !t.IsDeleted)
                 .OrderBy(t => t.Name)
                 .ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<SmsTemplate>> GetByUserId(string? userId, bool isAdmin, CancellationToken cancellationToken = default)
+        {
+            var query = _dbContext.SmsTemplates.AsQueryable();
+
+            if (!isAdmin && !string.IsNullOrEmpty(userId))
+            {
+                query = query.Where(s => s.CreatedBy == userId);
+            }
+
+            return await query.ToListAsync(cancellationToken);
         }
     }
 }

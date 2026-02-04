@@ -8,11 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NotificationController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -57,7 +60,14 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<NotificationDto>), 200)]
         public async Task<ActionResult<List<NotificationDto>>> Get()
         {
-            var query = new GetNotificationsListQuery();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var isAdmin = User.IsInRole("Admin");
+
+            var query = new GetNotificationsListQuery
+            {
+                UserId = userId,
+                IsAdmin = isAdmin
+            };
             var notifications = await _mediator.Send(query);
             return Ok(notifications);
         }
@@ -79,7 +89,15 @@ namespace API.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNotificationDto createNotificationDto)
         {
-            var command = new CreateNotificationCommand { CreateNotificationDto = createNotificationDto };
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var isAdmin = User.IsInRole("Admin");
+
+            var command = new CreateNotificationCommand 
+            { 
+                CreateNotificationDto = createNotificationDto,
+                UserId = userId,
+                IsAdmin = isAdmin
+            };
             var response = await _mediator.Send(command);
             return Ok(response);
         }
@@ -135,11 +153,16 @@ namespace API.Controllers
             [FromQuery] DateTime? endDate,
             [FromQuery] Guid? clientApplicationId)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var isAdmin = User.IsInRole("Admin");
+
             var query = new GetNotificationStatisticsQuery
             {
                 StartDate = startDate,
                 EndDate = endDate,
-                ClientApplicationId = clientApplicationId
+                ClientApplicationId = clientApplicationId,
+                UserId = userId,
+                IsAdmin = isAdmin
             };
             var stats = await _mediator.Send(query);
             return Ok(stats);

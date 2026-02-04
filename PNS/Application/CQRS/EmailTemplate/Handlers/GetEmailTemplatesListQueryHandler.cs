@@ -14,7 +14,7 @@ namespace Application.CQRS.EmailTemplate.Handlers
     {
         public async Task<List<EmailTemplateDto>> Handle(GetEmailTemplatesListQuery request, CancellationToken cancellationToken)
         {
-            var templates = await unitOfWork.EmailTemplates.GetAll(cancellationToken);
+            var templates = await unitOfWork.EmailTemplates.GetByUserId(request.UserId, request.IsAdmin, cancellationToken);
             return mapper.Map<List<EmailTemplateDto>>(templates);
         }
     }

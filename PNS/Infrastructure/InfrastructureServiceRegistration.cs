@@ -11,6 +11,8 @@ using Infrastructure.Services;
 using Infrastructure.Sms;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Application.Contracts.Identity;
+using Infrastructure.Identity;
 
 namespace Infrastructure
 {
@@ -38,6 +40,7 @@ namespace Infrastructure
             services.AddScoped<IDomainEventService, DomainEventService>();
             services.AddScoped<ICacheService, RedisCacheService>();
             services.AddScoped<IEmailTemplateService, EmailTemplateService>();
+            services.AddTransient<IAuthService, AuthService>();
 
             return services;
         }

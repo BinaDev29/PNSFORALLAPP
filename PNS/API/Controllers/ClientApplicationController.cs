@@ -9,11 +9,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Exceptions;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClientApplicationController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
@@ -23,7 +26,14 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<ClientApplicationDto>), 200)]
         public async Task<ActionResult<List<ClientApplicationDto>>> Get()
         {
-            var query = new GetClientApplicationsListQuery();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var isAdmin = User.IsInRole("Admin");
+
+            var query = new GetClientApplicationsListQuery
+            {
+                UserId = userId,
+                IsAdmin = isAdmin
+            };
             var applications = await _mediator.Send(query);
             return Ok(applications);
         }

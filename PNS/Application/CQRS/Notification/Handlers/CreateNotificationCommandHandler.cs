@@ -25,19 +25,22 @@ namespace Application.CQRS.Notification.Handlers
         private readonly IEmailService _emailService;
         private readonly CreateNotificationDtoValidator _validator;
         private readonly ILogger<CreateNotificationCommandHandler> _logger;
+        private readonly IDashboardHubService _hubService;
 
         public CreateNotificationCommandHandler(
             IMapper mapper,
             IUnitOfWork unitOfWork,
             IEmailService emailService,
             CreateNotificationDtoValidator validator,
-            ILogger<CreateNotificationCommandHandler> logger)
+            ILogger<CreateNotificationCommandHandler> logger,
+            IDashboardHubService hubService)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _emailService = emailService;
             _validator = validator;
             _logger = logger;
+            _hubService = hubService;
         }
 
         public async Task<BaseCommandResponse> Handle(CreateNotificationCommand request, CancellationToken cancellationToken)
@@ -56,6 +59,15 @@ namespace Application.CQRS.Notification.Handlers
                 if (clientApplication is null)
                 {
                     throw new NotFoundException(nameof(ClientApplication), request.CreateNotificationDto.ClientApplicationId);
+                }
+
+                // Ownership check: If not admin, the client application must belong to the user
+                if (!request.IsAdmin && clientApplication.CreatedBy != request.UserId)
+                {
+                    response.Success = false;
+                    response.Message = "You do not have permission to use this client application";
+                    response.Errors = new List<string> { "Unauthorized access to client application" };
+                    return response;
                 }
 
                 // Validate that client application has required email credentials
@@ -178,6 +190,13 @@ namespace Application.CQRS.Notification.Handlers
 
                 _logger.LogInformation("Notification {NotificationId} processed. Individual emails sent: {SuccessCount}/{TotalCount}",
                     notification.Id, successfulSends, recipients.Count);
+
+                // Send real-time update to dashboard
+                await _hubService.SendNotificationUpdate($"New notification processed for {clientApplication.Name}. Success: {successfulSends}/{recipients.Count}");
+                await _hubService.SendDashboardStats(new { 
+                    Total = await _unitOfWork.Notifications.Count(cancellationToken),
+                    RecentSuccess = successfulSends 
+                });
             }
             catch (ValidationException)
             {

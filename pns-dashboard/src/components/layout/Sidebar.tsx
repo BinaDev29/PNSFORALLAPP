@@ -11,7 +11,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 export function Sidebar() {
     const { t } = useTranslation();
-    const { logout } = useAuth();
+    const { logout, isAdmin, user } = useAuth();
 
     const navItems = [
         { icon: LayoutDashboard, label: t('sidebar.dashboard', "Dashboard"), href: "/" },
@@ -19,15 +19,19 @@ export function Sidebar() {
         { icon: History, label: t('sidebar.history', "History"), href: "/history" },
         { icon: FileText, label: t('sidebar.templates', "Templates"), href: "/templates" },
         { icon: Smartphone, label: t('sidebar.clients', "Client Apps"), href: "/clients" },
-        { icon: Activity, label: "System Health", href: "/system-health" },
+        { icon: Activity, label: "System Health", href: "/system-health", adminOnly: true },
         { icon: Settings, label: t('sidebar.settings', "Settings"), href: "/settings" },
     ];
+
+    const filteredNavItems = navItems.filter(item => !item.adminOnly || isAdmin);
+
+    const userInitial = user?.userName?.substring(0, 2).toUpperCase() || "US";
 
     return (
         <aside className="hidden md:flex w-64 h-screen bg-card/30 backdrop-blur-xl border-r border-border/40 fixed left-0 top-0 flex-col z-40 transition-all duration-300">
             <div className="p-6 flex items-center justify-between border-b border-border/40">
                 <h1 className="text-2xl font-bold bg-gradient-to-br from-primary via-violet-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-sm">
-                    PNS Admin
+                    {isAdmin ? "PNS Admin" : "PNS User"}
                 </h1>
                 <div className="flex items-center gap-2">
                     <ModeToggle />
@@ -36,7 +40,7 @@ export function Sidebar() {
             </div>
 
             <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-                {navItems.map((item) => (
+                {filteredNavItems.map((item) => (
                     <NavLink
                         key={item.href}
                         to={item.href}
@@ -63,11 +67,11 @@ export function Sidebar() {
                 <NavLink to="/profile" className="block">
                     <div className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-muted/50 transition-colors cursor-pointer mb-2">
                         <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-indigo-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">
-                            AD
+                            {userInitial}
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-sm font-semibold">{t('sidebar.profile', 'Admin User')}</span>
-                            <span className="text-xs text-muted-foreground">admin@pns.com</span>
+                            <span className="text-sm font-semibold truncate max-w-[120px]">{user?.userName || 'User'}</span>
+                            <span className="text-xs text-muted-foreground truncate max-w-[120px]">{user?.email}</span>
                         </div>
                     </div>
                 </NavLink>

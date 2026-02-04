@@ -7,5 +7,7 @@ namespace Application.CQRS.EmailTemplate.Queries
 {
     public class GetEmailTemplatesListQuery : IRequest<List<EmailTemplateDto>>
     {
+        public string? UserId { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

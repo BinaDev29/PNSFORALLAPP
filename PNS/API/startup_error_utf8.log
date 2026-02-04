@@ -1,0 +1,5461 @@
+﻿Using launch settings from F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\Properties\launchSettings.json...
+Building...
+dotnet : Unhandled 
+exception. 
+System.AggregateException: 
+Some services are not able 
+to be constructed (Error 
+while validating the 
+service descriptor 
+'ServiceType: Application.Co
+ntracts.IRepository.IUnitOfW
+ork Lifetime: Scoped 
+ImplementationType: Persiste
+nce.Repositories.UnitOfWork'
+: Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ClientApplicatio
+n.Commands.CreateClientAppli
+cationCommand,Application.Re
+sponses.BaseCommandResponse]
+ Lifetime: Transient 
+ImplementationType: CreateCl
+ientApplicationCommandHandle
+r': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Sms.Commands.Sen
+dSmsCommand,Application.Resp
+onses.BaseCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Sms.Handlers.SendSm
+sCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Application.CQRS.S
+ms.Handlers.SendSmsCommandHa
+ndler'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Priority.Command
+s.CreatePriorityCommand,Appl
+ication.Responses.BaseComman
+dResponse] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.C
+reatePriorityCommandHandler'
+: Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Priority.Command
+s.DeletePriorityCommand,Medi
+atR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.D
+eletePriorityCommandHandler'
+: Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Priority.Queries
+.GetPrioritiesListQuery,Syst
+em.Collections.Generic.List`
+1[Application.DTO.Priority.P
+riorityDto]] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.G
+etPrioritiesListQueryHandler
+': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Priority.Queries
+.GetPriorityDetailQuery,Appl
+ication.DTO.Priority.Priorit
+yDto] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.G
+etPriorityDetailQueryHandler
+': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Priority.Command
+s.UpdatePriorityCommand,Medi
+atR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.U
+pdatePriorityCommandHandler'
+: Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Com
+mands.CreateNotificationComm
+and,Application.Responses.Ba
+seCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.CreateNotificationCommand
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Com
+mands.DeleteNotificationComm
+and,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.DeleteNotificationCommand
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetHighPriorityNotifica
+tionsQuery,System.Collection
+s.Generic.List`1[Application
+.DTO.Notification.Notificati
+onDto]] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetHighPriorityNotificati
+onsQueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Notification.Queries.GetNot
+ificationDetailQuery,Applica
+tion.DTO.Notification.Notifi
+cationDto] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetNotificationDetailQuer
+yHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Notification.Queries.GetNot
+ificationsListQuery,System.C
+ollections.Generic.List`1[Ap
+plication.DTO.Notification.N
+otificationDto]] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetNotificationsListQuery
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetNotificationStatisti
+csQuery,Application.DTO.Noti
+fication.NotificationStatist
+icsDto] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetNotificationStatistics
+QueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Notification.Queries.GetSee
+nNotificationsQuery,System.C
+ollections.Generic.List`1[Ap
+plication.DTO.Notification.N
+otificationDto]] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetSeenNotificationsQuery
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetUnseenNotificationsQ
+uery,System.Collections.Gene
+ric.List`1[Application.DTO.N
+otification.NotificationDto]
+] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetUnseenNotificationsQue
+ryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Notification.Commands.MarkN
+otificationAsSeenCommand,Med
+iatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.MarkNotificationAsSeenCom
+mandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Notification.Commands.Updat
+eNotificationCommand,MediatR
+.Unit] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.UpdateNotificationCommand
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationType
+.Commands.CreateNotification
+TypeCommand,Application.Resp
+onses.BaseCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.CreateNotificationTyp
+eCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.NotificationType.Commands.D
+eleteNotificationTypeCommand
+,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.DeleteNotificationTyp
+eCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.NotificationType.Queries.Ge
+tNotificationTypeDetailQuery
+,Application.DTO.Notificatio
+nType.NotificationTypeDto] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.GetNotificationTypeDe
+tailQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.NotificationType.Queries.Ge
+tNotificationTypesListQuery,
+System.Collections.Generic.L
+ist`1[Application.DTO.Notifi
+cationType.NotificationTypeD
+to]] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.GetNotificationTypesL
+istQueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.NotificationType.Commands.U
+pdateNotificationTypeCommand
+,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.UpdateNotificationTyp
+eCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.NotificationHistory.Queries
+.GetNotificationHistoriesLis
+tQuery,System.Collections.Ge
+neric.List`1[Application.DTO
+.NotificationHistory.Notific
+ationHistoryDto]] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationHistory
+.Handlers.GetNotificationHis
+toriesListQueryHandler': 
+Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationHist
+ory.Queries.GetNotificationH
+istoryDetailQuery,Applicatio
+n.DTO.NotificationHistory.No
+tificationHistoryDto] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationHistory
+.Handlers.GetNotificationHis
+toryDetailQueryHandler': 
+Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.) (Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.EmailTemplate.Co
+mmands.CreateEmailTemplateCo
+mmand,Application.Responses.
+BaseCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.CreateEmailTemplateComma
+ndHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.EmailTemplate.Commands.Dele
+teEmailTemplateCommand,Media
+tR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.DeleteEmailTemplateComma
+ndHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.EmailTemplate.Queries.GetEm
+ailTemplateDetailQuery,Appli
+cation.DTO.EmailTemplate.Ema
+ilTemplateDto] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.GetEmailTemplateDetailQu
+eryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.EmailTemplate.Queries.GetEm
+ailTemplatesListQuery,System
+.Collections.Generic.List`1[
+Application.DTO.EmailTemplat
+e.EmailTemplateDto]] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.GetEmailTemplatesListQue
+ryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.EmailTemplate.Commands.Upda
+teEmailTemplateCommand,Media
+tR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.UpdateEmailTemplateComma
+ndHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ClientApplication.Commands.
+DeleteClientApplicationComma
+nd,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.DeleteClientApplicat
+ionCommandHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ClientApplication.Queries.G
+etClientApplicationDetailQue
+ry,Application.DTO.ClientApp
+lication.ClientApplicationDt
+o] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.GetClientApplication
+DetailQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ClientApplication.Queries.G
+etClientApplicationsListQuer
+y,System.Collections.Generic
+.List`1[Application.DTO.Clie
+ntApplication.ClientApplicat
+ionDto]] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.GetClientApplication
+sListQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ClientApplication.Commands.
+UpdateClientApplicationComma
+nd,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.UpdateClientApplicat
+ionCommandHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ApplicationNotificationType
+Map.Commands.CreateApplicati
+onNotificationTypeMapCommand
+,Application.Responses.BaseC
+ommandResponse] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.CreateA
+pplicationNotificationTypeMa
+pCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ApplicationNotificationType
+Map.Commands.DeleteApplicati
+onNotificationTypeMapCommand
+,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.DeleteA
+pplicationNotificationTypeMa
+pCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ApplicationNotificationType
+Map.Queries.GetApplicationNo
+tificationTypeMapDetailQuery
+,Application.DTO.Application
+NotificationTypeMap.Applicat
+ionNotificationTypeMapDto] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.GetAppl
+icationNotificationTypeMapDe
+tailQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ApplicationNotificationType
+Map.Queries.GetApplicationNo
+tificationTypeMapsListQuery,
+System.Collections.Generic.L
+ist`1[Application.DTO.Applic
+ationNotificationTypeMap.App
+licationNotificationTypeMapD
+to]] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.GetAppl
+icationNotificationTypeMapsL
+istQueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.) (Error 
+while validating the 
+service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ApplicationNotificationType
+Map.Commands.UpdateApplicati
+onNotificationTypeMapCommand
+,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.UpdateA
+pplicationNotificationTypeMa
+pCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.)
+At line:1 char:1
++ dotnet run > 
+startup_error.log 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (Unhan  
+  dled excep...s.UnitOfWo   
+ rk'.):String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+ ---> System.InvalidOperatio
+nException: Error while 
+validating the service 
+descriptor 'ServiceType: App
+lication.Contracts.IReposito
+ry.IUnitOfWork Lifetime: 
+Scoped ImplementationType: P
+ersistence.Repositories.Unit
+OfWork': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceCo
+llectionContainerBuilderExte
+nsions.BuildServiceProvider(
+IServiceCollection 
+services, 
+ServiceProviderOptions 
+options)
+   at Microsoft.Extensions.H
+osting.HostApplicationBuilde
+r.Build()
+   at Microsoft.AspNetCore.B
+uilder.WebApplicationBuilder
+.Build()
+   at 
+Program.<Main>$(String[] 
+args) in F:\@INTERNSHIP 2017
+\PNSFORALLAPP\PNS\API\Progra
+m.cs:line 183
+   at 
+Program.<Main>(String[] 
+args)
+ ---> (Inner Exception #1) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.ClientApplication.Commands.
+CreateClientApplicationComma
+nd,Application.Responses.Bas
+eCommandResponse] Lifetime: 
+Transient 
+ImplementationType: CreateCl
+ientApplicationCommandHandle
+r': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #2) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Sms.Commands.SendSmsCommand
+,Application.Responses.BaseC
+ommandResponse] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Sms.Handlers.SendSm
+sCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Application.CQRS.S
+ms.Handlers.SendSmsCommandHa
+ndler'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Application.CQRS.S
+ms.Handlers.SendSmsCommandHa
+ndler'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #3) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Priority.Commands.CreatePri
+orityCommand,Application.Res
+ponses.BaseCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.C
+reatePriorityCommandHandler'
+: Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #4) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Priority.Commands.DeletePri
+orityCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.D
+eletePriorityCommandHandler'
+: Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #5) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Priority.Queries.GetPriorit
+iesListQuery,System.Collecti
+ons.Generic.List`1[Applicati
+on.DTO.Priority.PriorityDto]
+] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.G
+etPrioritiesListQueryHandler
+': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #6) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Priority.Queries.GetPriorit
+yDetailQuery,Application.DTO
+.Priority.PriorityDto] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.G
+etPriorityDetailQueryHandler
+': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #7) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Priority.Commands.UpdatePri
+orityCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Priority.Handlers.U
+pdatePriorityCommandHandler'
+: Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #8) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Notification.Commands.Creat
+eNotificationCommand,Applica
+tion.Responses.BaseCommandRe
+sponse] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.CreateNotificationCommand
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #9) S
+ystem.InvalidOperationExcept
+ion: Error while validating 
+the service descriptor 
+'ServiceType: MediatR.IReque
+stHandler`2[Application.CQRS
+.Notification.Commands.Delet
+eNotificationCommand,MediatR
+.Unit] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.DeleteNotificationCommand
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #10) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetHighPriorityNotifica
+tionsQuery,System.Collection
+s.Generic.List`1[Application
+.DTO.Notification.Notificati
+onDto]] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetHighPriorityNotificati
+onsQueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #11) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetNotificationDetailQu
+ery,Application.DTO.Notifica
+tion.NotificationDto] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetNotificationDetailQuer
+yHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #12) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetNotificationsListQue
+ry,System.Collections.Generi
+c.List`1[Application.DTO.Not
+ification.NotificationDto]] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetNotificationsListQuery
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #13) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetNotificationStatisti
+csQuery,Application.DTO.Noti
+fication.NotificationStatist
+icsDto] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetNotificationStatistics
+QueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #14) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetSeenNotificationsQue
+ry,System.Collections.Generi
+c.List`1[Application.DTO.Not
+ification.NotificationDto]] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetSeenNotificationsQuery
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #15) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Que
+ries.GetUnseenNotificationsQ
+uery,System.Collections.Gene
+ric.List`1[Application.DTO.N
+otification.NotificationDto]
+] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.GetUnseenNotificationsQue
+ryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #16) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Com
+mands.MarkNotificationAsSeen
+Command,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.MarkNotificationAsSeenCom
+mandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #17) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.Notification.Com
+mands.UpdateNotificationComm
+and,MediatR.Unit] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.Notification.Handle
+rs.UpdateNotificationCommand
+Handler': Unable to resolve 
+service for type 'Applicatio
+n.Contracts.IRepository.ISms
+TemplateRepository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #18) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationType
+.Commands.CreateNotification
+TypeCommand,Application.Resp
+onses.BaseCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.CreateNotificationTyp
+eCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #19) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationType
+.Commands.DeleteNotification
+TypeCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.DeleteNotificationTyp
+eCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #20) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationType
+.Queries.GetNotificationType
+DetailQuery,Application.DTO.
+NotificationType.Notificatio
+nTypeDto] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.GetNotificationTypeDe
+tailQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #21) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationType
+.Queries.GetNotificationType
+sListQuery,System.Collection
+s.Generic.List`1[Application
+.DTO.NotificationType.Notifi
+cationTypeDto]] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.GetNotificationTypesL
+istQueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #22) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationType
+.Commands.UpdateNotification
+TypeCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationType.Ha
+ndlers.UpdateNotificationTyp
+eCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #23) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationHist
+ory.Queries.GetNotificationH
+istoriesListQuery,System.Col
+lections.Generic.List`1[Appl
+ication.DTO.NotificationHist
+ory.NotificationHistoryDto]]
+ Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationHistory
+.Handlers.GetNotificationHis
+toriesListQueryHandler': 
+Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #24) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.NotificationHist
+ory.Queries.GetNotificationH
+istoryDetailQuery,Applicatio
+n.DTO.NotificationHistory.No
+tificationHistoryDto] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.NotificationHistory
+.Handlers.GetNotificationHis
+toryDetailQueryHandler': 
+Unable to resolve service 
+for type 'Application.Contra
+cts.IRepository.ISmsTemplate
+Repository' while 
+attempting to activate 'Pers
+istence.Repositories.UnitOfW
+ork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #25) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.EmailTemplate.Co
+mmands.CreateEmailTemplateCo
+mmand,Application.Responses.
+BaseCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.CreateEmailTemplateComma
+ndHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #26) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.EmailTemplate.Co
+mmands.DeleteEmailTemplateCo
+mmand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.DeleteEmailTemplateComma
+ndHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #27) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.EmailTemplate.Qu
+eries.GetEmailTemplateDetail
+Query,Application.DTO.EmailT
+emplate.EmailTemplateDto] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.GetEmailTemplateDetailQu
+eryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #28) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.EmailTemplate.Qu
+eries.GetEmailTemplatesListQ
+uery,System.Collections.Gene
+ric.List`1[Application.DTO.E
+mailTemplate.EmailTemplateDt
+o]] Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.GetEmailTemplatesListQue
+ryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #29) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.EmailTemplate.Co
+mmands.UpdateEmailTemplateCo
+mmand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.EmailTemplate.Handl
+ers.UpdateEmailTemplateComma
+ndHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #30) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ClientApplicatio
+n.Commands.DeleteClientAppli
+cationCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.DeleteClientApplicat
+ionCommandHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #31) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ClientApplicatio
+n.Queries.GetClientApplicati
+onDetailQuery,Application.DT
+O.ClientApplication.ClientAp
+plicationDto] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.GetClientApplication
+DetailQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #32) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ClientApplicatio
+n.Queries.GetClientApplicati
+onsListQuery,System.Collecti
+ons.Generic.List`1[Applicati
+on.DTO.ClientApplication.Cli
+entApplicationDto]] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.GetClientApplication
+sListQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #33) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ClientApplicatio
+n.Commands.UpdateClientAppli
+cationCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ClientApplication.H
+andlers.UpdateClientApplicat
+ionCommandHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #34) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ApplicationNotif
+icationTypeMap.Commands.Crea
+teApplicationNotificationTyp
+eMapCommand,Application.Resp
+onses.BaseCommandResponse] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.CreateA
+pplicationNotificationTypeMa
+pCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #35) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ApplicationNotif
+icationTypeMap.Commands.Dele
+teApplicationNotificationTyp
+eMapCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.DeleteA
+pplicationNotificationTypeMa
+pCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #36) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ApplicationNotif
+icationTypeMap.Queries.GetAp
+plicationNotificationTypeMap
+DetailQuery,Application.DTO.
+ApplicationNotificationTypeM
+ap.ApplicationNotificationTy
+peMapDto] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.GetAppl
+icationNotificationTypeMapDe
+tailQueryHandler': Unable 
+to resolve service for type 
+'Application.Contracts.IRepo
+sitory.ISmsTemplateRepositor
+y' while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #37) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ApplicationNotif
+icationTypeMap.Queries.GetAp
+plicationNotificationTypeMap
+sListQuery,System.Collection
+s.Generic.List`1[Application
+.DTO.ApplicationNotification
+TypeMap.ApplicationNotificat
+ionTypeMapDto]] Lifetime: 
+Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.GetAppl
+icationNotificationTypeMapsL
+istQueryHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+
+ ---> (Inner Exception #38) 
+System.InvalidOperationExcep
+tion: Error while 
+validating the service 
+descriptor 'ServiceType: Med
+iatR.IRequestHandler`2[Appli
+cation.CQRS.ApplicationNotif
+icationTypeMap.Commands.Upda
+teApplicationNotificationTyp
+eMapCommand,MediatR.Unit] 
+Lifetime: Transient 
+ImplementationType: Applicat
+ion.CQRS.ApplicationNotifica
+tionTypeMap.Handlers.UpdateA
+pplicationNotificationTypeMa
+pCommandHandler': Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+ ---> System.InvalidOperatio
+nException: Unable to 
+resolve service for type 'Ap
+plication.Contracts.IReposit
+ory.ISmsTemplateRepository' 
+while attempting to 
+activate 'Persistence.Reposi
+tories.UnitOfWork'.
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+allSite(ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateA
+rgumentCallSites(ServiceIden
+tifier serviceIdentifier, 
+Type implementationType, 
+CallSiteChain 
+callSiteChain, 
+ParameterInfo[] parameters, 
+Boolean 
+throwIfCallSiteNotFound)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.CreateC
+onstructorCallSite(ResultCac
+he lifetime, 
+ServiceIdentifier 
+serviceIdentifier, Type 
+implementationType, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.TryCrea
+teExact(ServiceDescriptor 
+descriptor, 
+ServiceIdentifier 
+serviceIdentifier, 
+CallSiteChain 
+callSiteChain, Int32 slot)
+   at Microsoft.Extensions.D
+ependencyInjection.ServiceLo
+okup.CallSiteFactory.GetCall
+Site(ServiceDescriptor 
+serviceDescriptor, 
+CallSiteChain callSiteChain)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   --- End of inner 
+exception stack trace ---
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider.ValidateService(Servi
+ceDescriptor descriptor)
+   at Microsoft.Extensions.D
+ependencyInjection.ServicePr
+ovider..ctor(ICollection`1 
+serviceDescriptors, 
+ServiceProviderOptions 
+options)<---
+

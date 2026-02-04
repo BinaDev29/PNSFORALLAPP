@@ -5,9 +5,11 @@ using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace Persistence
 {
-    public class PnsDbContext : DbContext
+    public class PnsDbContext : IdentityDbContext<AppUser>
     {
         public PnsDbContext(DbContextOptions<PnsDbContext> options) : base(options) { }
 
@@ -22,6 +24,8 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // ይህ መስመር ሁሉንም የIEntityTypeConfiguration ፋይሎች ያዋህዳል
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
@@ -51,7 +55,7 @@ namespace Persistence
                 }
             }
 
-            base.OnModelCreating(modelBuilder);
+
         }
 
         private static void SetGlobalQueryFilter<T>(ModelBuilder builder) where T : BaseDomainEntity

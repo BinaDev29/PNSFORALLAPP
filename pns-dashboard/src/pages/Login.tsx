@@ -4,13 +4,15 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
-import { Loader2, Lock, Mail } from "lucide-react";
+import { Loader2, Lock, Mail, Eye, EyeOff } from "lucide-react";
+import { AuthService } from "@/services/api";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
@@ -20,33 +22,22 @@ export default function LoginPage() {
         setIsLoading(true);
 
         try {
-            // In a real app, we would make an API call here.
-            // For now, we'll simulate a login.
-            // await DashboardService.login(email, password); 
+            const response = await AuthService.login({
+                email,
+                password
+            });
 
-            // Simple validation simulation
-            if (email && password) {
-                // Simulate delay
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
-                // Assuming successful login returns a token
-                const mockToken = "mock-jwt-token-" + Date.now();
-                login(mockToken);
-
+            if (response.token) {
+                login(response.token, response);
                 toast.success("Welcome back!", {
                     description: "You have successfully logged in."
                 });
-
                 navigate("/");
-            } else {
-                toast.error("Validation Error", {
-                    description: "Please enter both email and password."
-                });
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
             toast.error("Login Failed", {
-                description: "Invalid email or password. Please try again."
+                description: error.response?.data?.message || "Invalid email or password. Please try again."
             });
         } finally {
             setIsLoading(false);
@@ -94,18 +85,32 @@ export default function LoginPage() {
                                 <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                 <Input
                                     id="password"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder="••••••••"
-                                    className="pl-9 bg-background/50"
+                                    className="pl-9 pr-10 bg-background/50"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     disabled={isLoading}
                                     required
                                 />
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-foreground"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    disabled={isLoading}
+                                >
+                                    {showPassword ? (
+                                        <EyeOff className="h-4 w-4" />
+                                    ) : (
+                                        <Eye className="h-4 w-4" />
+                                    )}
+                                </Button>
                             </div>
                         </div>
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="flex flex-col space-y-4">
                         <Button className="w-full font-bold shadow-lg shadow-primary/25" type="submit" disabled={isLoading}>
                             {isLoading ? (
                                 <>
@@ -116,6 +121,12 @@ export default function LoginPage() {
                                 "Sign In"
                             )}
                         </Button>
+                        <div className="text-center text-sm text-muted-foreground">
+                            Don't have an account?{" "}
+                            <Link to="/register" className="text-primary hover:underline font-medium">
+                                Create one
+                            </Link>
+                        </div>
                     </CardFooter>
                 </form>
             </Card>

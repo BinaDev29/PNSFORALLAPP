@@ -4,12 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { motion } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { DashboardService, NotificationStatistics, ClientApplication, NotificationHistory } from "@/services/api";
+import { signalRService } from "@/services/signalr";
 import { formatDate } from "@/lib/utils";
 import { CreateNotificationDialog } from "@/components/shared/CreateNotificationDialog";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner"; // Assuming sonner is used for toasts, or normal toast
 
 const container = {
     hidden: { opacity: 0 },
@@ -28,6 +30,27 @@ const item = {
 
 export default function Dashboard() {
     const { t } = useTranslation();
+    const queryClient = useQueryClient();
+
+    useEffect(() => {
+        const startSignalR = async () => {
+            await signalRService.startConnection();
+
+            signalRService.on("notificationCreated", (message) => {
+                toast.success("New Activity", { description: message });
+                queryClient.invalidateQueries({ queryKey: ['dashboardStats'] });
+                queryClient.invalidateQueries({ queryKey: ['recentActivity'] });
+                queryClient.invalidateQueries({ queryKey: ['chartData'] });
+            });
+
+            signalRService.on("statsUpdated", (newStats) => {
+                // specific logic if we want to update cache directly without refetch
+                queryClient.invalidateQueries({ queryKey: ['dashboardStats'] });
+            });
+        };
+
+        startSignalR();
+    }, [queryClient]);
 
     const { data: statsData, isLoading: statsLoading } = useQuery<NotificationStatistics>({
         queryKey: ['dashboardStats'],

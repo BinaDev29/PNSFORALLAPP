@@ -7,5 +7,7 @@ namespace Application.CQRS.NotificationHistory.Queries
 {
     public class GetNotificationHistoriesListQuery : IRequest<List<NotificationHistoryDto>>
     {
+        public string? UserId { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

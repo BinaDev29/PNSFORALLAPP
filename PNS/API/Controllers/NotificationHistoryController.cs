@@ -9,11 +9,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Exceptions;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NotificationHistoryController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
@@ -23,7 +26,14 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<NotificationHistoryDto>), 200)]
         public async Task<ActionResult<List<NotificationHistoryDto>>> Get()
         {
-            var query = new GetNotificationHistoriesListQuery();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var isAdmin = User.IsInRole("Admin");
+
+            var query = new GetNotificationHistoriesListQuery
+            {
+                UserId = userId,
+                IsAdmin = isAdmin
+            };
             var histories = await _mediator.Send(query);
             return Ok(histories);
         }

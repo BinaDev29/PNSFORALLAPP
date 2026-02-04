@@ -14,6 +14,7 @@ namespace Application.Contracts.IRepository
         Task<IReadOnlyList<T>> GetAll(CancellationToken cancellationToken = default);
         Task<IReadOnlyList<T>> GetWhere(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
         Task<T> Add(T entity, CancellationToken cancellationToken = default);
+        Task<int> Count(CancellationToken cancellationToken = default);
 
         // Update and Delete should return the updated/deleted entity as Task<T>.
         Task<T> Update(T entity, CancellationToken cancellationToken = default);

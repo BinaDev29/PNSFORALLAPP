@@ -37,13 +37,21 @@ namespace Persistence.EntityConfigurations
                         
                         Converters = { new EmailAddressConverter(), new PhoneNumberConverter() }
                     }) ?? new List<object>())
-                .HasColumnType("nvarchar(max)");
+                .Metadata.SetValueComparer(new Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<List<object>>(
+                    (c1, c2) => c1 != null && c2 != null && c1.SequenceEqual(c2),
+                    c => c == null ? 0 : c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                    c => c != null ? c.ToList() : new List<object>()))
+                ;
 
             builder.Property(n => n.Metadata)
                 .HasConversion(
                     v => v == null ? null : JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
                     v => v == null ? null : JsonSerializer.Deserialize<Dictionary<string, string>>(v, (JsonSerializerOptions?)null))
-                .HasColumnType("nvarchar(max)");
+                .Metadata.SetValueComparer(new Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<Dictionary<string, string>>(
+                    (d1, d2) => d1 != null && d2 != null && d1.Count == d2.Count && !d1.Except(d2).Any(),
+                    d => d == null ? 0 : d.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                    d => d != null ? new Dictionary<string, string>(d) : new Dictionary<string, string>()))
+                ;
 
             builder.Property(n => n.Status)
                 .HasConversion<int>();
@@ -63,12 +71,12 @@ namespace Persistence.EntityConfigurations
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(n => n.Priority)
-                .WithMany()
+                .WithMany(p => p.Notifications)
                 .HasForeignKey(n => n.PriorityId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(n => n.NotificationType)
-                .WithMany()
+                .WithMany(t => t.Notifications)
                 .HasForeignKey(n => n.NotificationTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
 

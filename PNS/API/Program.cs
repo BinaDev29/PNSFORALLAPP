@@ -22,14 +22,27 @@ using Persistence.Interceptors;
 using Persistence.Repositories;
 using System.Threading.RateLimiting;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Serilog;
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/pns-api-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Database
-builder.Services.AddDbContext<PnsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PnsConnectionString")));
+// Database and Persistence Services (DbContext, Identity, Repositories, Interceptors)
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
 // MediatR and Application Services
 builder.Services.AddMediatR(cfg => {
@@ -45,6 +58,8 @@ builder.Services.AddValidatorsFromAssembly(typeof(ApplicationServiceRegistration
 
 // Application Services
 builder.Services.ConfigureApplicationServices();
+builder.Services.AddScoped<Application.Contracts.IDashboardHubService, API.Services.DashboardHubService>();
+builder.Services.AddTransient<Application.Contracts.Identity.IAuthService, Infrastructure.Identity.AuthService>();
 builder.Services.AddScoped<IEmailTemplateService, EmailTemplateService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IDateTime, DateTimeService>();
@@ -89,23 +104,6 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 builder.Services.AddScoped<ICacheService, RedisCacheService>();
 
-// Interceptors
-builder.Services.AddScoped<AuditableEntityInterceptor>();
-builder.Services.AddScoped<DomainEventInterceptor>();
-
-// Register persistence repositories and UnitOfWork so DI can create handlers that depend on IUnitOfWork
-builder.Services.AddScoped<IClientApplicationRepository, ClientApplicationRepository>();
-builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
-builder.Services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
-builder.Services.AddScoped<INotificationTypeRepository, NotificationTypeRepository>();
-builder.Services.AddScoped<IApplicationNotificationTypeMapRepository, ApplicationNotificationTypeMapRepository>();
-builder.Services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
-builder.Services.AddScoped<IPriorityRepository, PriorityRepository>();
-// FIX: Added registration for the ISmsTemplateRepository
-builder.Services.AddScoped<ISmsTemplateRepository, SmsTemplateRepository>();
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
 // Rate Limiting
 builder.Services.AddRateLimiter(options =>
 {
@@ -123,9 +121,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:5173", "http://localhost:3000") // Add your frontend URLs here
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowCredentials(); // Required for SignalR with tokens
     });
 });
 
@@ -137,6 +136,44 @@ builder.Services.AddHealthChecks()
 
 // HTTP Context Accessor
 builder.Services.AddHttpContextAccessor();
+
+// SignalR
+builder.Services.AddSignalR();
+
+// Authentication and Authorization
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"] ?? "MySuperSecretKeyForDevelopmentOnly12345!"))
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
+            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+            {
+                context.Token = accessToken;
+            }
+            return Task.CompletedTask;
+        }
+    };
+});
 
 // Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -184,24 +221,54 @@ app.UseSwaggerUI(c =>
 // Custom middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
+app.UseCors("AllowAll");
+
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+// Enhanced Security Headers
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Append("X-Frame-Options", "DENY");
+    context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+    context.Response.Headers.Append("X-XSS-Protection", "1; mode=block");
+    context.Response.Headers.Append("Referrer-Policy", "no-referrer");
+    context.Response.Headers.Append("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' http://localhost:5217 ws://localhost:5217;");
+    await next();
+});
+
+// Serve static files for React frontend
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.UseRateLimiter();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
+// Fallback to React index.html for non-API routes
+app.MapFallbackToFile("index.html");
+
 // Health check endpoint
 app.MapHealthChecks("/health");
+
+app.MapHub<API.Hubs.NotificationHub>("/hubs/notification");
 
 // Ensure database is created
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<PnsDbContext>();
-    context.Database.EnsureCreated();
+    var services = scope.ServiceProvider;
+    try 
+    {
+        await SeedData.Initialize(services);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
 }
 
 app.Run();
+

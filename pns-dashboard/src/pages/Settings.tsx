@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Bell, Globe, Mail, Palette, Wifi } from "lucide-react";
+import { Bell, Globe, Mail, Palette, Wifi, Code, Terminal, Copy } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
@@ -43,6 +43,7 @@ export default function SettingsPage() {
         { id: "appearance", label: "Appearance", icon: Palette },
         { id: "notifications", label: "Notifications", icon: Bell },
         { id: "api", label: "API & Integrations", icon: Wifi },
+        { id: "docs", label: "Documentation", icon: Code },
     ];
 
     return (
@@ -245,7 +246,12 @@ export default function SettingsPage() {
                                             <Label>Public API Key</Label>
                                             <div className="relative">
                                                 <Input readOnly value="pk_live_51M...xYz" className="font-mono bg-muted/50" />
-                                                <Button size="sm" variant="ghost" className="absolute right-1 top-1 h-8">Copy</Button>
+                                                <Button size="sm" variant="ghost" className="absolute right-1 top-1 h-8" onClick={() => {
+                                                    navigator.clipboard.writeText("pk_live_51M...xYz");
+                                                    toast.success("Copied to clipboard");
+                                                }}>
+                                                    <Copy className="h-4 w-4" />
+                                                </Button>
                                             </div>
                                         </div>
                                         <div className="space-y-2">
@@ -255,8 +261,76 @@ export default function SettingsPage() {
                                                 <Button size="sm" variant="outline" className="absolute right-1 top-1 h-8 bg-background">Reveal</Button>
                                             </div>
                                         </div>
-                                        <div className="pt-4">
+                                        <div className="pt-4 p-4 border rounded-lg bg-blue-500/5 border-blue-500/20">
+                                            <h4 className="text-sm font-semibold flex items-center gap-2 mb-2">
+                                                <Terminal className="w-4 h-4 text-blue-500" />
+                                                Quick Integration
+                                            </h4>
+                                            <p className="text-xs text-muted-foreground mb-4">
+                                                Use your Secret Key to authenticate requests from your server. Never share your secret key in client-side code.
+                                            </p>
+                                        </div>
+                                        <div className="pt-2">
                                             <Button variant="destructive" className="w-full sm:w-auto">Roll API Keys</Button>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            )}
+
+                            {activeTab === "docs" && (
+                                <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                                    <CardHeader>
+                                        <CardTitle>Developer Documentation</CardTitle>
+                                        <CardDescription>How to integrate PNS into your applications.</CardDescription>
+                                    </CardHeader>
+                                    <CardContent className="space-y-8">
+                                        <div className="space-y-4">
+                                            <h3 className="text-lg font-semibold">Send Notification</h3>
+                                            <div className="flex items-center gap-2 text-sm">
+                                                <span className="px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 font-bold">POST</span>
+                                                <code className="text-muted-foreground">/api/Notification</code>
+                                            </div>
+
+                                            <div className="space-y-4">
+                                                <div className="space-y-2">
+                                                    <Label>Request Body (JSON)</Label>
+                                                    <pre className="p-4 rounded-lg bg-muted text-xs overflow-x-auto font-mono">
+                                                        {`{
+  "title": "Alert Title",
+  "message": "Your notification message here",
+  "to": ["user@example.com"],
+  "clientApplicationId": "your-app-id",
+  "notificationTypeId": "type-id",
+  "priorityId": "priority-id"
+}`}
+                                                    </pre>
+                                                </div>
+
+                                                <div className="space-y-4">
+                                                    <Label>Example: Node.js (Axios)</Label>
+                                                    <pre className="p-4 rounded-lg bg-slate-950 text-slate-50 text-xs overflow-x-auto font-mono">
+                                                        {`const axios = require('axios');
+
+const sendNotification = async () => {
+  try {
+    const response = await axios.post('https://pns.example.com/api/Notification', {
+      title: 'Hello World',
+      message: 'This is a test notification',
+      to: ['recipient@email.com'],
+      clientApplicationId: 'APP_ID'
+    }, {
+      headers: {
+        'Authorization': 'Bearer YOUR_SECRET_KEY'
+      }
+    });
+    console.log('Sent:', response.data.id);
+  } catch (err) {
+    console.error('Failed:', err.message);
+  }
+};`}
+                                                    </pre>
+                                                </div>
+                                            </div>
                                         </div>
                                     </CardContent>
                                 </Card>

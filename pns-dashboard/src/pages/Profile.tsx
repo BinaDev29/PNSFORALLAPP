@@ -2,33 +2,53 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, Lock, Mail, Save, Loader2, ShieldCheck } from "lucide-react";
+import { User, Lock, Mail, Save, Loader2, ShieldCheck, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { AuthService } from "@/services/api";
+import { useEffect } from "react";
 
 export default function ProfilePage() {
     const [isLoading, setIsLoading] = useState(false);
     const [activeTab, setActiveTab] = useState("general");
     const [user, setUser] = useState({
-        name: "Admin User",
-        email: "admin@pns.com",
+        firstName: "",
+        lastName: "",
+        email: "",
         currentPassword: "",
         newPassword: "",
         confirmPassword: ""
     });
+    const [showCurrent, setShowCurrent] = useState(false);
+    const [showNew, setShowNew] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
 
     const [originalUser, setOriginalUser] = useState({
-        name: "Admin User",
-        email: "admin@pns.com"
+        firstName: "",
+        lastName: "",
+        email: ""
     });
+
+    useEffect(() => {
+        const currentUser = AuthService.getCurrentUser();
+        if (currentUser) {
+            const userData = {
+                firstName: currentUser.firstName || "",
+                lastName: currentUser.lastName || "",
+                email: currentUser.email || ""
+            };
+            setUser(prev => ({ ...prev, ...userData }));
+            setOriginalUser(userData);
+        }
+    }, []);
 
     const handleUpdateProfile = async (e: React.FormEvent) => {
         e.preventDefault();
 
         // precise change detection
-        if (user.name === originalUser.name && user.email === originalUser.email) {
+        if (user.firstName === originalUser.firstName && user.lastName === originalUser.lastName && user.email === originalUser.email) {
             toast.info("No changes detected", {
                 description: "Update your profile information to save changes."
             });
@@ -36,22 +56,35 @@ export default function ProfilePage() {
         }
 
         setIsLoading(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            await AuthService.updateProfile({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            });
 
-        // Update the baseline after successful save
-        setOriginalUser({ name: user.name, email: user.email });
+            setOriginalUser({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            });
 
-        setIsLoading(false);
-        toast.success("Profile updated successfully");
+            toast.success("Profile updated successfully");
+        } catch (error: any) {
+            toast.error("Update Failed", {
+                description: error.response?.data?.message || "Failed to update profile information."
+            });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleChangePassword = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!user.currentPassword || !user.newPassword || !user.confirmPassword) {
-            toast.info("No changes detected", {
-                description: "Please fill in all password fields to update security settings."
+            toast.info("Validation Error", {
+                description: "Please fill in all password fields."
             });
             return;
         }
@@ -64,11 +97,20 @@ export default function ProfilePage() {
         }
 
         setIsLoading(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1550));
-        setIsLoading(false);
-        toast.success("Password changed successfully");
-        setUser({ ...user, currentPassword: "", newPassword: "", confirmPassword: "" });
+        try {
+            await AuthService.changePassword({
+                currentPassword: user.currentPassword,
+                newPassword: user.newPassword
+            });
+            toast.success("Password changed successfully");
+            setUser({ ...user, currentPassword: "", newPassword: "", confirmPassword: "" });
+        } catch (error: any) {
+            toast.error("Password Change Failed", {
+                description: error.response?.data?.message || "Ensure your current password is correct."
+            });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -124,16 +166,30 @@ export default function ProfilePage() {
                                 </CardHeader>
                                 <form onSubmit={handleUpdateProfile}>
                                     <CardContent className="space-y-4">
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="name">Full Name</Label>
-                                            <div className="relative">
-                                                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                                                <Input
-                                                    id="name"
-                                                    className="pl-9"
-                                                    value={user.name}
-                                                    onChange={(e) => setUser({ ...user, name: e.target.value })}
-                                                />
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="grid gap-2">
+                                                <Label htmlFor="firstName">First Name</Label>
+                                                <div className="relative">
+                                                    <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                                    <Input
+                                                        id="firstName"
+                                                        className="pl-9"
+                                                        value={user.firstName}
+                                                        onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="grid gap-2">
+                                                <Label htmlFor="lastName">Last Name</Label>
+                                                <div className="relative">
+                                                    <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                                    <Input
+                                                        id="lastName"
+                                                        className="pl-9"
+                                                        value={user.lastName}
+                                                        onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="grid gap-2">
@@ -183,11 +239,24 @@ export default function ProfilePage() {
                                                 <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                                 <Input
                                                     id="current"
-                                                    type="password"
-                                                    className="pl-9"
+                                                    type={showCurrent ? "text" : "password"}
+                                                    className="pl-9 pr-10"
                                                     value={user.currentPassword}
                                                     onChange={(e) => setUser({ ...user, currentPassword: e.target.value })}
                                                 />
+                                                <Button
+                                                    type="button"
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-foreground"
+                                                    onClick={() => setShowCurrent(!showCurrent)}
+                                                >
+                                                    {showCurrent ? (
+                                                        <EyeOff className="h-4 w-4" />
+                                                    ) : (
+                                                        <Eye className="h-4 w-4" />
+                                                    )}
+                                                </Button>
                                             </div>
                                         </div>
                                         <div className="grid gap-2">
@@ -196,11 +265,24 @@ export default function ProfilePage() {
                                                 <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                                 <Input
                                                     id="new"
-                                                    type="password"
-                                                    className="pl-9"
+                                                    type={showNew ? "text" : "password"}
+                                                    className="pl-9 pr-10"
                                                     value={user.newPassword}
                                                     onChange={(e) => setUser({ ...user, newPassword: e.target.value })}
                                                 />
+                                                <Button
+                                                    type="button"
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-foreground"
+                                                    onClick={() => setShowNew(!showNew)}
+                                                >
+                                                    {showNew ? (
+                                                        <EyeOff className="h-4 w-4" />
+                                                    ) : (
+                                                        <Eye className="h-4 w-4" />
+                                                    )}
+                                                </Button>
                                             </div>
                                         </div>
                                         <div className="grid gap-2">
@@ -209,11 +291,24 @@ export default function ProfilePage() {
                                                 <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                                 <Input
                                                     id="confirm"
-                                                    type="password"
-                                                    className="pl-9"
+                                                    type={showConfirm ? "text" : "password"}
+                                                    className="pl-9 pr-10"
                                                     value={user.confirmPassword}
                                                     onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
                                                 />
+                                                <Button
+                                                    type="button"
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-foreground"
+                                                    onClick={() => setShowConfirm(!showConfirm)}
+                                                >
+                                                    {showConfirm ? (
+                                                        <EyeOff className="h-4 w-4" />
+                                                    ) : (
+                                                        <Eye className="h-4 w-4" />
+                                                    )}
+                                                </Button>
                                             </div>
                                         </div>
                                     </CardContent>

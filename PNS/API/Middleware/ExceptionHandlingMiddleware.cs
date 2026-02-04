@@ -3,6 +3,7 @@ using Domain.Exceptions;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -13,11 +14,13 @@ namespace API.Middleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+        private readonly IHostEnvironment _env;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger, IHostEnvironment env)
         {
             _next = next;
             _logger = logger;
+            _env = env;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -29,11 +32,11 @@ namespace API.Middleware
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An unhandled exception occurred");
-                await HandleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex, _env);
             }
         }
 
-        private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static async Task HandleExceptionAsync(HttpContext context, Exception exception, IHostEnvironment env)
         {
             context.Response.ContentType = "application/json";
 
@@ -65,6 +68,10 @@ namespace API.Middleware
                 default:
                     response.Message = "An error occurred while processing your request";
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    if (env.IsDevelopment())
+                    {
+                        response.Details = new List<string> { exception.ToString() };
+                    }
                     break;
             }
 
