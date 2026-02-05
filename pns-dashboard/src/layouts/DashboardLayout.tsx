@@ -12,7 +12,7 @@ export default function DashboardLayout() {
 
             <Sidebar />
             <main className="md:ml-64 min-h-screen p-6 md:p-8 transition-all duration-300 ease-in-out">
-                <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="max-w-7xl mx-auto space-y-8">
                     <Outlet />
                 </div>
             </main>

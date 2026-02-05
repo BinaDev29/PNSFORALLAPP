@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Bell, Filter, Plus, Search, Loader2, MoreHorizontal, Edit, Trash2 } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { DashboardService, NotificationHistory } from "@/services/api";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { formatDate } from "@/lib/utils";
@@ -58,19 +59,12 @@ export default function NotificationsPage() {
         n.status.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    if (isLoading) {
-        return (
-            <div className="flex h-[80vh] items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-        );
-    }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="space-y-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="space-y-1">
-                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-violet-500 bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-bold tracking-tight text-primary">
                         Notifications
                     </h2>
                     <p className="text-muted-foreground">Manage and track all sent notifications across applications.</p>
@@ -116,60 +110,77 @@ export default function NotificationsPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {filteredNotifications?.map((notification) => (
-                                <TableRow key={notification.id} className="group hover:bg-muted/50 transition-colors">
-                                    <TableCell className="font-medium group-hover:text-primary transition-colors">{notification.id.substring(0, 8)}...</TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                                                <Bell className="h-4 w-4" />
+                            {isLoading ? (
+                                Array.from({ length: 5 }).map((_, i) => (
+                                    <TableRow key={i}>
+                                        <TableCell><Skeleton className="h-4 w-24" /></TableCell>
+                                        <TableCell>
+                                            <div className="flex items-center gap-2">
+                                                <Skeleton className="h-8 w-8 rounded-lg" />
+                                                <Skeleton className="h-4 w-24" />
                                             </div>
-                                            <span className="font-medium">{notification.notificationId.substring(0, 8)}...</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge
-                                            variant="secondary"
-                                            className={`
-                                                ${notification.status === 'Sent' && 'bg-blue-500/15 text-blue-600 hover:bg-blue-500/25'}
-                                                ${notification.status === 'Delivered' && 'bg-emerald-500/15 text-emerald-600 hover:bg-emerald-500/25'}
-                                                ${notification.status === 'Failed' && 'bg-red-500/15 text-red-600 hover:bg-red-500/25'}
-                                            `}
-                                        >
-                                            {notification.status}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell className="text-right text-muted-foreground">{formatDate(notification.sentDate)}</TableCell>
-                                    <TableCell>
-                                        <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <span className="sr-only">Open menu</span>
-                                                    <MoreHorizontal className="h-4 w-4" />
-                                                </Button>
-                                            </DropdownMenuTrigger>
-                                            <DropdownMenuContent align="end">
-                                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                <DropdownMenuItem onClick={() => {
-                                                    setNotificationToEdit(notification);
-                                                    setEditDialogOpen(true);
-                                                }}>
-                                                    <Edit className="mr-2 h-4 w-4" />
-                                                    Edit
-                                                </DropdownMenuItem>
-                                                <DropdownMenuItem
-                                                    className="text-destructive focus:text-destructive"
-                                                    onClick={() => setNotificationToDelete(notification.notificationId)}
-                                                >
-                                                    <Trash2 className="mr-2 h-4 w-4" />
-                                                    Delete
-                                                </DropdownMenuItem>
-                                            </DropdownMenuContent>
-                                        </DropdownMenu>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                            {filteredNotifications?.length === 0 && (
+                                        </TableCell>
+                                        <TableCell><Skeleton className="h-6 w-16 rounded-full" /></TableCell>
+                                        <TableCell className="text-right"><Skeleton className="h-4 w-32 ml-auto" /></TableCell>
+                                        <TableCell><Skeleton className="h-8 w-8 rounded-md" /></TableCell>
+                                    </TableRow>
+                                ))
+                            ) : (
+                                filteredNotifications?.map((notification) => (
+                                    <TableRow key={notification.id} className="group hover:bg-muted/50 transition-colors">
+                                        <TableCell className="font-medium group-hover:text-primary transition-colors">{notification.id.substring(0, 8)}...</TableCell>
+                                        <TableCell>
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                                    <Bell className="h-4 w-4" />
+                                                </div>
+                                                <span className="font-medium">{notification.notificationId.substring(0, 8)}...</span>
+                                            </div>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Badge
+                                                variant="secondary"
+                                                className={`
+                                                    ${notification.status === 'Sent' && 'bg-blue-500/15 text-blue-600 hover:bg-blue-500/25'}
+                                                    ${notification.status === 'Delivered' && 'bg-emerald-500/15 text-emerald-600 hover:bg-emerald-500/25'}
+                                                    ${notification.status === 'Failed' && 'bg-red-500/15 text-red-600 hover:bg-red-500/25'}
+                                                `}
+                                            >
+                                                {notification.status}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell className="text-right text-muted-foreground">{formatDate(notification.sentDate)}</TableCell>
+                                        <TableCell>
+                                            <DropdownMenu>
+                                                <DropdownMenuTrigger asChild>
+                                                    <Button variant="ghost" className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        <span className="sr-only">Open menu</span>
+                                                        <MoreHorizontal className="h-4 w-4" />
+                                                    </Button>
+                                                </DropdownMenuTrigger>
+                                                <DropdownMenuContent align="end">
+                                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                                    <DropdownMenuItem onClick={() => {
+                                                        setNotificationToEdit(notification);
+                                                        setEditDialogOpen(true);
+                                                    }}>
+                                                        <Edit className="mr-2 h-4 w-4" />
+                                                        Edit
+                                                    </DropdownMenuItem>
+                                                    <DropdownMenuItem
+                                                        className="text-destructive focus:text-destructive"
+                                                        onClick={() => setNotificationToDelete(notification.notificationId)}
+                                                    >
+                                                        <Trash2 className="mr-2 h-4 w-4" />
+                                                        Delete
+                                                    </DropdownMenuItem>
+                                                </DropdownMenuContent>
+                                            </DropdownMenu>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            )}
+                            {!isLoading && filteredNotifications?.length === 0 && (
                                 <TableRow>
                                     <TableCell colSpan={7} className="h-24 text-center">
                                         No results.

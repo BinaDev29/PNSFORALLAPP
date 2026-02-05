@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Activity, Server, Database, Cpu, Wifi, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Mock service for health check
 const getSystemHealth = async () => {
@@ -60,7 +61,7 @@ export default function SystemHealthPage() {
     return (
         <div className="space-y-8">
             <div className="flex flex-col gap-2">
-                <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold tracking-tight text-emerald-600">
                     System Health
                 </h2>
                 <p className="text-muted-foreground">
@@ -82,7 +83,7 @@ export default function SystemHealthPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="text-2xl font-bold text-emerald-500 uppercase tracking-wide">
-                                {isLoading ? "..." : health?.status}
+                                {isLoading ? <Skeleton className="h-8 w-24" /> : health?.status}
                             </div>
                             <p className="text-xs text-muted-foreground">All systems operational</p>
                         </CardContent>
@@ -95,7 +96,7 @@ export default function SystemHealthPage() {
                             <Wifi className="h-4 w-4 text-blue-500" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{isLoading ? "..." : health?.uptime}</div>
+                            <div className="text-2xl font-bold">{isLoading ? <Skeleton className="h-8 w-24" /> : health?.uptime}</div>
                             <p className="text-xs text-muted-foreground">last incident: 42d ago</p>
                         </CardContent>
                     </Card>
@@ -107,7 +108,7 @@ export default function SystemHealthPage() {
                             <Activity className="h-4 w-4 text-purple-500" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{isLoading ? "..." : health?.latency}</div>
+                            <div className="text-2xl font-bold">{isLoading ? <Skeleton className="h-8 w-24" /> : health?.latency}</div>
                             <p className="text-xs text-muted-foreground">global average</p>
                         </CardContent>
                     </Card>
@@ -119,7 +120,7 @@ export default function SystemHealthPage() {
                             <Server className="h-4 w-4 text-orange-500" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">8/8</div>
+                            <div className="text-2xl font-bold">{isLoading ? <Skeleton className="h-8 w-16" /> : "8/8"}</div>
                             <p className="text-xs text-muted-foreground">regions healthy</p>
                         </CardContent>
                     </Card>
@@ -143,7 +144,18 @@ export default function SystemHealthPage() {
                         <CardContent>
                             <div className="space-y-4">
                                 {isLoading ? (
-                                    <div className="text-center py-4 text-muted-foreground">Loading service status...</div>
+                                    Array.from({ length: 6 }).map((_, i) => (
+                                        <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border/50">
+                                            <div className="flex items-center gap-3">
+                                                <Skeleton className="w-5 h-5 rounded-full" />
+                                                <div className="space-y-2">
+                                                    <Skeleton className="h-4 w-24" />
+                                                    <Skeleton className="h-3 w-16" />
+                                                </div>
+                                            </div>
+                                            <Skeleton className="h-6 w-12 rounded-full" />
+                                        </div>
+                                    ))
                                 ) : (
                                     health?.services.map((service, i) => (
                                         <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border/50 hover:bg-muted/50 transition-colors">
@@ -184,13 +196,13 @@ export default function SystemHealthPage() {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between text-sm">
                                     <span className="flex items-center gap-2"><Cpu className="w-4 h-4 text-muted-foreground" /> CPU Usage</span>
-                                    <span className="font-mono">{health?.resources.cpu}%</span>
+                                    <span className="font-mono">{isLoading ? "..." : `${health?.resources.cpu}%`}</span>
                                 </div>
                                 <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
                                     <motion.div
                                         className="h-full bg-blue-500"
                                         initial={{ width: 0 }}
-                                        animate={{ width: `${health?.resources.cpu}%` }}
+                                        animate={{ width: isLoading ? 0 : `${health?.resources.cpu}%` }}
                                         transition={{ duration: 1 }}
                                     />
                                 </div>
@@ -199,13 +211,13 @@ export default function SystemHealthPage() {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between text-sm">
                                     <span className="flex items-center gap-2"><Database className="w-4 h-4 text-muted-foreground" /> Memory Usage</span>
-                                    <span className="font-mono">{health?.resources.memory}%</span>
+                                    <span className="font-mono">{isLoading ? "..." : `${health?.resources.memory}%`}</span>
                                 </div>
                                 <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
                                     <motion.div
                                         className="h-full bg-purple-500"
                                         initial={{ width: 0 }}
-                                        animate={{ width: `${health?.resources.memory}%` }}
+                                        animate={{ width: isLoading ? 0 : `${health?.resources.memory}%` }}
                                         transition={{ duration: 1 }}
                                     />
                                 </div>
@@ -214,13 +226,13 @@ export default function SystemHealthPage() {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between text-sm">
                                     <span className="flex items-center gap-2"><Server className="w-4 h-4 text-muted-foreground" /> Storage</span>
-                                    <span className="font-mono">{health?.resources.storage}%</span>
+                                    <span className="font-mono">{isLoading ? "..." : `${health?.resources.storage}%`}</span>
                                 </div>
                                 <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
                                     <motion.div
                                         className="h-full bg-orange-500"
                                         initial={{ width: 0 }}
-                                        animate={{ width: `${health?.resources.storage}%` }}
+                                        animate={{ width: isLoading ? 0 : `${health?.resources.storage}%` }}
                                         transition={{ duration: 1 }}
                                     />
                                 </div>

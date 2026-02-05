@@ -11,7 +11,8 @@ import { formatDate } from "@/lib/utils";
 import { CreateNotificationDialog } from "@/components/shared/CreateNotificationDialog";
 import { useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "sonner"; // Assuming sonner is used for toasts, or normal toast
+import { toast } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const container = {
     hidden: { opacity: 0 },
@@ -105,7 +106,8 @@ export default function Dashboard() {
             color: "text-purple-500",
             bg: "bg-purple-500/10",
             gradient: "from-purple-500/20 to-transparent",
-            href: "/notifications"
+            href: "/notifications",
+            loading: statsLoading
         },
         {
             title: t('dashboard.successRate', "Success Rate"),
@@ -116,7 +118,8 @@ export default function Dashboard() {
             color: "text-emerald-500",
             bg: "bg-emerald-500/10",
             gradient: "from-emerald-500/20 to-transparent",
-            href: "/history"
+            href: "/history",
+            loading: statsLoading
         },
         {
             title: t('dashboard.failedMessages', "Failed Messages"),
@@ -127,7 +130,8 @@ export default function Dashboard() {
             color: "text-rose-500",
             bg: "bg-rose-500/10",
             gradient: "from-rose-500/20 to-transparent",
-            href: "/history"
+            href: "/history",
+            loading: statsLoading
         },
         {
             title: t('dashboard.activeClients', "Active Clients"),
@@ -138,17 +142,11 @@ export default function Dashboard() {
             color: "text-blue-500",
             bg: "bg-blue-500/10",
             gradient: "from-blue-500/20 to-transparent",
-            href: "/clients"
+            href: "/clients",
+            loading: clientsLoading
         },
     ];
 
-    if (isLoading) {
-        return (
-            <div className="flex h-screen items-center justify-center bg-background/50 backdrop-blur-sm">
-                <Loader2 className="w-10 h-10 animate-spin text-primary" />
-            </div>
-        );
-    }
 
     const handleDownloadReport = () => {
         if (!allHistory) return;
@@ -183,7 +181,7 @@ export default function Dashboard() {
         >
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="space-y-1">
-                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-bold tracking-tight text-primary">
                         {t('dashboard.overview', "Dashboard Overview")}
                     </h2>
                     <p className="text-muted-foreground">Welcome back to your notification control center.</p>
@@ -211,13 +209,22 @@ export default function Dashboard() {
                                 </div>
                             </CardHeader>
                             <CardContent className="relative z-10">
-                                <div className="text-2xl font-bold tracking-tight">{stat.value}</div>
-                                <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                                    <span className={stat.change.includes('+') ? "text-emerald-500 font-medium" : "text-rose-500 font-medium"}>
-                                        {stat.change}
-                                    </span>
-                                    <span className="opacity-80">from last month</span>
-                                </p>
+                                {stat.loading ? (
+                                    <div className="space-y-2">
+                                        <Skeleton className="h-8 w-24" />
+                                        <Skeleton className="h-4 w-32" />
+                                    </div>
+                                ) : (
+                                    <>
+                                        <div className="text-2xl font-bold tracking-tight">{stat.value}</div>
+                                        <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                                            <span className={stat.change.includes('+') ? "text-emerald-500 font-medium" : "text-rose-500 font-medium"}>
+                                                {stat.change}
+                                            </span>
+                                            <span className="opacity-80">from last month</span>
+                                        </p>
+                                    </>
+                                )}
                             </CardContent>
                         </Card>
                     );
@@ -254,63 +261,69 @@ export default function Dashboard() {
                         </CardHeader>
                         <CardContent className="pl-0">
                             <div className="h-[300px] w-full mt-4">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <AreaChart data={chartData}>
-                                        <defs>
-                                            <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.3} />
-                                                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-                                            </linearGradient>
-                                            <linearGradient id="colorSuccess" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                                                <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
-                                            </linearGradient>
-                                        </defs>
-                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" opacity={0.5} />
-                                        <XAxis
-                                            dataKey="name"
-                                            stroke="#888888"
-                                            fontSize={12}
-                                            tickLine={false}
-                                            axisLine={false}
-                                            tickMargin={10}
-                                        />
-                                        <YAxis
-                                            stroke="#888888"
-                                            fontSize={12}
-                                            tickLine={false}
-                                            axisLine={false}
-                                            tickFormatter={(value) => `${value}`}
-                                        />
-                                        <Tooltip
-                                            contentStyle={{
-                                                backgroundColor: 'hsl(var(--card))',
-                                                borderColor: 'hsl(var(--border))',
-                                                borderRadius: '8px',
-                                                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-                                            }}
-                                            itemStyle={{ color: 'hsl(var(--foreground))' }}
-                                        />
-                                        <Area
-                                            type="monotone"
-                                            dataKey="total"
-                                            stroke="#8884d8"
-                                            strokeWidth={2}
-                                            fillOpacity={1}
-                                            fill="url(#colorTotal)"
-                                            name="Total"
-                                        />
-                                        <Area
-                                            type="monotone"
-                                            dataKey="success"
-                                            stroke="#10b981"
-                                            strokeWidth={2}
-                                            fillOpacity={1}
-                                            fill="url(#colorSuccess)"
-                                            name="Success"
-                                        />
-                                    </AreaChart>
-                                </ResponsiveContainer>
+                                {!allHistory ? (
+                                    <div className="h-full w-full px-6 pb-4">
+                                        <Skeleton className="h-full w-full rounded-xl" />
+                                    </div>
+                                ) : (
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <AreaChart data={chartData}>
+                                            <defs>
+                                                <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="5%" stopColor="#8884d8" stopOpacity={0.3} />
+                                                    <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                                                </linearGradient>
+                                                <linearGradient id="colorSuccess" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                                                </linearGradient>
+                                            </defs>
+                                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" opacity={0.5} />
+                                            <XAxis
+                                                dataKey="name"
+                                                stroke="#888888"
+                                                fontSize={12}
+                                                tickLine={false}
+                                                axisLine={false}
+                                                tickMargin={10}
+                                            />
+                                            <YAxis
+                                                stroke="#888888"
+                                                fontSize={12}
+                                                tickLine={false}
+                                                axisLine={false}
+                                                tickFormatter={(value) => `${value}`}
+                                            />
+                                            <Tooltip
+                                                contentStyle={{
+                                                    backgroundColor: 'hsl(var(--card))',
+                                                    borderColor: 'hsl(var(--border))',
+                                                    borderRadius: '8px',
+                                                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                                                }}
+                                                itemStyle={{ color: 'hsl(var(--foreground))' }}
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="total"
+                                                stroke="#8884d8"
+                                                strokeWidth={2}
+                                                fillOpacity={1}
+                                                fill="url(#colorTotal)"
+                                                name="Total"
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="success"
+                                                stroke="#10b981"
+                                                strokeWidth={2}
+                                                fillOpacity={1}
+                                                fill="url(#colorSuccess)"
+                                                name="Success"
+                                            />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                )}
                             </div>
                         </CardContent>
                     </Card>
@@ -329,21 +342,33 @@ export default function Dashboard() {
                         </CardHeader>
                         <CardContent className="flex-1">
                             <div className="space-y-8 relative before:absolute before:inset-y-0 before:left-2.5 before:w-0.5 before:bg-border/50 pl-2">
-                                {recentActivity?.map((item) => (
-                                    <div key={item.id} className="flex gap-4 relative group">
-                                        <span className={`absolute left-0 top-1.5 w-5 h-5 rounded-full border-4 border-background shadow-sm z-10 group-hover:scale-110 transition-transform duration-200 ${item.status === 'Sent' || item.status === 'Delivered' ? 'bg-emerald-500' : 'bg-amber-500'}`} />
-                                        <div className="flex-1 -mt-1 p-3 rounded-xl hover:bg-muted/50 transition-colors duration-200 cursor-pointer border border-transparent hover:border-border/50">
-                                            <div className="flex justify-between items-start mb-1">
-                                                <p className="text-sm font-semibold leading-none">{item.status}</p>
-                                                <span className="text-[10px] text-muted-foreground font-medium bg-secondary px-2 py-0.5 rounded-full">{formatDate(item.sentDate)}</span>
+                                {activityLoading ? (
+                                    Array.from({ length: 5 }).map((_, i) => (
+                                        <div key={i} className="flex gap-4 relative">
+                                            <Skeleton className="absolute left-0 top-1.5 w-5 h-5 rounded-full z-10" />
+                                            <div className="flex-1 -mt-1 p-3 space-y-2">
+                                                <Skeleton className="h-4 w-24" />
+                                                <Skeleton className="h-3 w-16" />
                                             </div>
-                                            <p className="text-[10px] text-muted-foreground/60">
-                                                ID: <span className="text-foreground/80 font-mono">{item.id.slice(0, 8)}...</span>
-                                            </p>
                                         </div>
-                                    </div>
-                                ))}
-                                {(!recentActivity || recentActivity.length === 0) && (
+                                    ))
+                                ) : (
+                                    recentActivity?.map((item) => (
+                                        <div key={item.id} className="flex gap-4 relative group">
+                                            <span className={`absolute left-0 top-1.5 w-5 h-5 rounded-full border-4 border-background shadow-sm z-10 group-hover:scale-110 transition-transform duration-200 ${item.status === 'Sent' || item.status === 'Delivered' ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                                            <div className="flex-1 -mt-1 p-3 rounded-xl hover:bg-muted/50 transition-colors duration-200 cursor-pointer border border-transparent hover:border-border/50">
+                                                <div className="flex justify-between items-start mb-1">
+                                                    <p className="text-sm font-semibold leading-none">{item.status}</p>
+                                                    <span className="text-[10px] text-muted-foreground font-medium bg-secondary px-2 py-0.5 rounded-full">{formatDate(item.sentDate)}</span>
+                                                </div>
+                                                <p className="text-[10px] text-muted-foreground/60">
+                                                    ID: <span className="text-foreground/80 font-mono">{item.id.slice(0, 8)}...</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                                {!activityLoading && (!recentActivity || recentActivity.length === 0) && (
                                     <div className="text-center text-muted-foreground text-sm py-8">
                                         No recent activity found.
                                     </div>

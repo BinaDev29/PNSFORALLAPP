@@ -2,7 +2,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Search, Loader2 } from "lucide-react";
+import { Search } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { DashboardService } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import { formatDate } from "@/lib/utils";
@@ -58,18 +59,11 @@ export default function HistoryPage() {
         });
     }, [history, searchTerm, statusFilter, dateFilter]);
 
-    if (isLoading) {
-        return (
-            <div className="flex h-[80vh] items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-        );
-    }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="space-y-8">
             <div className="space-y-1">
-                <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold tracking-tight text-orange-500">
                     Notification History
                 </h2>
                 <p className="text-muted-foreground">Comprehensive log of all notification delivery attempts.</p>
@@ -127,26 +121,37 @@ export default function HistoryPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {filteredHistory?.map((item) => (
-                                <TableRow key={item.id} className="group hover:bg-muted/50 transition-colors">
-                                    <TableCell className="font-medium font-mono text-xs text-muted-foreground group-hover:text-foreground">{item.id}</TableCell>
-                                    <TableCell className="font-mono text-xs">{item.notificationId}</TableCell>
-                                    <TableCell>
-                                        <Badge
-                                            variant="secondary"
-                                            className={`
-                                                ${item.status === 'Sent' && 'bg-blue-500/15 text-blue-600'}
-                                                ${item.status === 'Delivered' && 'bg-emerald-500/15 text-emerald-600'}
-                                                ${item.status === 'Failed' && 'bg-red-500/15 text-red-600'}
-                                            `}
-                                        >
-                                            {item.status}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell className="text-right text-muted-foreground">{formatDate(item.sentDate)}</TableCell>
-                                </TableRow>
-                            ))}
-                            {filteredHistory?.length === 0 && (
+                            {isLoading ? (
+                                Array.from({ length: 5 }).map((_, i) => (
+                                    <TableRow key={i}>
+                                        <TableCell><Skeleton className="h-4 w-24" /></TableCell>
+                                        <TableCell><Skeleton className="h-4 w-24" /></TableCell>
+                                        <TableCell><Skeleton className="h-6 w-16 rounded-full" /></TableCell>
+                                        <TableCell className="text-right"><Skeleton className="h-4 w-32 ml-auto" /></TableCell>
+                                    </TableRow>
+                                ))
+                            ) : (
+                                filteredHistory?.map((item) => (
+                                    <TableRow key={item.id} className="group hover:bg-muted/50 transition-colors">
+                                        <TableCell className="font-medium font-mono text-xs text-muted-foreground group-hover:text-foreground">{item.id}</TableCell>
+                                        <TableCell className="font-mono text-xs">{item.notificationId}</TableCell>
+                                        <TableCell>
+                                            <Badge
+                                                variant="secondary"
+                                                className={`
+                                                    ${item.status === 'Sent' && 'bg-blue-500/15 text-blue-600'}
+                                                    ${item.status === 'Delivered' && 'bg-emerald-500/15 text-emerald-600'}
+                                                    ${item.status === 'Failed' && 'bg-red-500/15 text-red-600'}
+                                                `}
+                                            >
+                                                {item.status}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell className="text-right text-muted-foreground">{formatDate(item.sentDate)}</TableCell>
+                                    </TableRow>
+                                ))
+                            )}
+                            {!isLoading && filteredHistory?.length === 0 && (
                                 <TableRow>
                                     <TableCell colSpan={6} className="h-24 text-center">
                                         No history found.

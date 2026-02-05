@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Plus, Loader2, Smartphone, Key, Trash2, Pencil, Eye, EyeOff } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { DashboardService, CreateClientApplicationRequest, ClientApplication } from "@/services/api";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -117,19 +118,12 @@ export default function ClientsPage() {
         }
     };
 
-    if (isLoading) {
-        return (
-            <div className="flex h-[80vh] items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-        );
-    }
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="space-y-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="space-y-1">
-                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-bold tracking-tight text-blue-600">
                         Client Applications
                     </h2>
                     <p className="text-muted-foreground">Manage connected applications and their API credentials.</p>
@@ -253,62 +247,82 @@ export default function ClientsPage() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {displayClients.map((client) => (
-                    <Card key={client.id} className="relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:border-blue-500/20 group">
-                        <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2 gap-2">
-                            <div className="flex-1 min-w-0 space-y-1">
-                                <CardTitle className="text-xl font-bold truncate pr-1" title={client.name}>
-                                    {client.name}
-                                </CardTitle>
-                                <CardDescription className="line-clamp-2 text-xs">
-                                    {client.slogan || "No slogan provided"}
-                                </CardDescription>
-                            </div>
-                            <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                                <div className="flex gap-1">
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="h-8 w-8 text-primary hover:bg-primary/10 transition-opacity"
-                                        onClick={() => handleOpenEdit(client)}
-                                        title="Edit Application"
-                                    >
-                                        <Pencil className="w-4 h-4" />
-                                    </Button>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="h-8 w-8 text-destructive hover:bg-destructive/10 transition-opacity"
-                                        onClick={() => setClientToDelete(client.id)}
-                                        title="Delete Application"
-                                    >
-                                        <Trash2 className="w-4 h-4" />
-                                    </Button>
+                {isLoading ? (
+                    Array.from({ length: 3 }).map((_, i) => (
+                        <Card key={i} className="relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm">
+                            <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2 gap-2">
+                                <div className="flex-1 space-y-2">
+                                    <Skeleton className="h-6 w-3/4" />
+                                    <Skeleton className="h-4 w-1/2" />
                                 </div>
-                                <div className="h-12 w-12 flex items-center justify-center rounded-lg bg-white/5 p-1 border border-border/10">
-                                    {client.logo ? (
-                                        <img src={client.logo} alt="logo" className="w-full h-full object-contain rounded-md" />
-                                    ) : (
-                                        <Smartphone className="w-8 h-8 text-muted-foreground/20" />
-                                    )}
+                                <Skeleton className="h-12 w-12 rounded-lg" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-3 mt-1">
+                                    <Skeleton className="h-10 w-full" />
+                                    <Skeleton className="h-4 w-1/3" />
                                 </div>
-                            </div>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="space-y-3 mt-1">
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground p-2 rounded-md bg-secondary/50">
-                                    <Key className="w-4 h-4 flex-shrink-0" />
-                                    <code className="text-xs truncate font-mono">{client.key}</code>
+                            </CardContent>
+                        </Card>
+                    ))
+                ) : (
+                    displayClients.map((client) => (
+                        <Card key={client.id} className="relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:border-blue-500/20 group">
+                            <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2 gap-2">
+                                <div className="flex-1 min-w-0 space-y-1">
+                                    <CardTitle className="text-xl font-bold truncate pr-1" title={client.name}>
+                                        {client.name}
+                                    </CardTitle>
+                                    <CardDescription className="line-clamp-2 text-xs">
+                                        {client.slogan || "No slogan provided"}
+                                    </CardDescription>
                                 </div>
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <div className="font-semibold text-xs uppercase tracking-wider text-muted-foreground/70">App ID:</div>
-                                    <div className="font-mono text-xs">{client.appId}</div>
+                                <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                                    <div className="flex gap-1">
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className="h-8 w-8 text-primary hover:bg-primary/10 transition-opacity"
+                                            onClick={() => handleOpenEdit(client)}
+                                            title="Edit Application"
+                                        >
+                                            <Pencil className="w-4 h-4" />
+                                        </Button>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className="h-8 w-8 text-destructive hover:bg-destructive/10 transition-opacity"
+                                            onClick={() => setClientToDelete(client.id)}
+                                            title="Delete Application"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </Button>
+                                    </div>
+                                    <div className="h-12 w-12 flex items-center justify-center rounded-lg bg-white/5 p-1 border border-border/10">
+                                        {client.logo ? (
+                                            <img src={client.logo} alt="logo" className="w-full h-full object-contain rounded-md" />
+                                        ) : (
+                                            <Smartphone className="w-8 h-8 text-muted-foreground/20" />
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
-                {displayClients.length === 0 && (
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-3 mt-1">
+                                    <div className="flex items-center gap-2 text-sm text-muted-foreground p-2 rounded-md bg-secondary/50">
+                                        <Key className="w-4 h-4 flex-shrink-0" />
+                                        <code className="text-xs truncate font-mono">{client.key}</code>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                        <div className="font-semibold text-xs uppercase tracking-wider text-muted-foreground/70">App ID:</div>
+                                        <div className="font-mono text-xs">{client.appId}</div>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))
+                )}
+                {!isLoading && displayClients.length === 0 && (
                     <div className="col-span-full text-center py-12 text-muted-foreground">
                         No client applications found.
                     </div>

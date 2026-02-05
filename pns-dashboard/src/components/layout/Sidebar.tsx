@@ -30,7 +30,7 @@ export function Sidebar() {
     return (
         <aside className="hidden md:flex w-64 h-screen bg-card/30 backdrop-blur-xl border-r border-border/40 fixed left-0 top-0 flex-col z-40 transition-all duration-300">
             <div className="p-6 flex items-center justify-between border-b border-border/40">
-                <h1 className="text-2xl font-bold bg-gradient-to-br from-primary via-violet-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-sm">
+                <h1 className="text-2xl font-bold text-primary">
                     {isAdmin ? "PNS Admin" : "PNS User"}
                 </h1>
                 <div className="flex items-center gap-2">

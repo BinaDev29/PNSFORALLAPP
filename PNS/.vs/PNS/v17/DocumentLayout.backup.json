@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{442F4FD8-1CAC-4BD3-B1DF-F4A8FDAE9179}|PNS.Tests\\PNS.Tests.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\pns.tests\\notificationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{442F4FD8-1CAC-4BD3-B1DF-F4A8FDAE9179}|PNS.Tests\\PNS.Tests.csproj|solutionrelative:pns.tests\\notificationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -23,19 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NotificationTests.cs",
-              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\PNS.Tests\\NotificationTests.cs",
-              "RelativeDocumentMoniker": "PNS.Tests\\NotificationTests.cs",
-              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\PNS.Tests\\NotificationTests.cs",
-              "RelativeToolTip": "PNS.Tests\\NotificationTests.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-04T16:43:14.657Z",
-              "EditorCaption": ""
             }
           ]
         }

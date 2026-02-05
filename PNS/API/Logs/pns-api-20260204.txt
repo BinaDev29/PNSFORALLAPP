@@ -19,3 +19,27 @@
 2026-02-04 19:52:57.121 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (1173 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"$type":"GetNotificationTypesListQuery"}
 2026-02-04 19:52:57.393 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (1442 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"$type":"GetPrioritiesListQuery"}
 2026-02-04 19:54:31.203 +03:00 [WRN] PNS Long Running Request: GetNotificationHistoriesListQuery (1009 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationHistoriesListQuery"}
+2026-02-04 22:13:45.505 +03:00 [INF] SMS Queue Processor started
+2026-02-04 22:13:45.505 +03:00 [INF] Email Queue Processor started
+2026-02-04 22:14:53.520 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (699 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 22:14:53.520 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (699 milliseconds) Anonymous Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 22:23:59.250 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (907 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 22:23:59.250 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (910 milliseconds) Anonymous Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 23:09:09.726 +03:00 [INF] Email Queue Processor started
+2026-02-04 23:09:09.726 +03:00 [INF] SMS Queue Processor started
+2026-02-04 23:09:14.305 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (742 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 23:09:14.793 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (1315 milliseconds) Anonymous Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 23:09:19.869 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (2526 milliseconds) Anonymous Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 23:09:19.872 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (1914 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 23:17:55.731 +03:00 [INF] SMS Queue Processor started
+2026-02-04 23:17:55.731 +03:00 [INF] Email Queue Processor started
+2026-02-04 23:18:01.191 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (825 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 23:18:01.206 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (748 milliseconds) Anonymous Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 23:18:05.939 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (775 milliseconds) Anonymous Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-04 23:18:05.939 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (772 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 23:18:17.153 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (549 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 23:19:51.658 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (501 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 23:21:08.985 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (720 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-04 23:26:31.974 +03:00 [WRN] PNS Long Running Request: GetNotificationStatisticsQuery (757 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"StartDate":null,"EndDate":null,"ClientApplicationId":null,"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationStatisticsQuery"}
+2026-02-04 23:26:32.152 +03:00 [WRN] PNS Long Running Request: GetClientApplicationsListQuery (925 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetClientApplicationsListQuery"}
+2026-02-04 23:26:32.217 +03:00 [WRN] PNS Long Running Request: GetNotificationHistoriesListQuery (988 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationHistoriesListQuery"}

@@ -1,0 +1,20 @@
+2026-02-05 09:54:46.513 +03:00 [INF] Email Queue Processor started
+2026-02-05 09:54:46.513 +03:00 [INF] SMS Queue Processor started
+2026-02-05 09:55:36.453 +03:00 [WRN] PNS Long Running Request: GetPrioritiesListQuery (649 milliseconds) Anonymous Unknown {"$type":"GetPrioritiesListQuery"}
+2026-02-05 09:55:36.453 +03:00 [WRN] PNS Long Running Request: GetNotificationTypesListQuery (701 milliseconds) Anonymous Unknown {"$type":"GetNotificationTypesListQuery"}
+2026-02-05 09:55:48.631 +03:00 [WRN] PNS Long Running Request: GetNotificationHistoriesListQuery (757 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationHistoriesListQuery"}
+2026-02-05 09:58:53.614 +03:00 [WRN] PNS Long Running Request: GetNotificationStatisticsQuery (813 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"StartDate":null,"EndDate":null,"ClientApplicationId":null,"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetNotificationStatisticsQuery"}
+2026-02-05 09:58:53.651 +03:00 [WRN] PNS Long Running Request: GetClientApplicationsListQuery (618 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"GetClientApplicationsListQuery"}
+2026-02-05 10:00:05.502 +03:00 [INF] Sending individual notification emails to 1 recipients to ensure privacy
+2026-02-05 10:00:05.590 +03:00 [INF] Attempting to send email via SMTP
+2026-02-05 10:00:08.684 +03:00 [INF] Email sent successfully via SMTP using client credentials biniyamtehakele9@gmail.com to genettehakele@gmail.com
+2026-02-05 10:00:08.723 +03:00 [INF] Email sent successfully via SMTP, MessageId: 010653d2-53ae-4359-84e0-d9028f36736f
+2026-02-05 10:00:09.275 +03:00 [INF] Notification "ec61285a-696c-4dd5-4554-08de6484309f" processed. Individual emails sent: 1/1
+2026-02-05 10:00:09.528 +03:00 [WRN] PNS Long Running Request: CreateNotificationCommand (5291 milliseconds) 5c67bc8a-95d9-4190-9264-d3e93c9f0135 Unknown {"CreateNotificationDto":{"ClientApplicationId":"f82501cd-22c0-4b08-d30b-08de3d86a130","To":["genettehakele@gmail.com"],"Title":"Africom","Message":"test","NotificationTypeId":"8cd6f661-4ead-4a70-9d6e-e63347890645","PriorityId":"bbae86ca-e672-446a-f9cc-08de19fbe5df","$type":"CreateNotificationDto"},"UserId":"5c67bc8a-95d9-4190-9264-d3e93c9f0135","IsAdmin":true,"$type":"CreateNotificationCommand"}
+2026-02-05 10:10:12.121 +03:00 [WRN] PNS Long Running Request: GetClientApplicationsListQuery (819 milliseconds) a6d9be0a-83e2-4508-b9e2-0383b172fbc8 Unknown {"UserId":"a6d9be0a-83e2-4508-b9e2-0383b172fbc8","IsAdmin":false,"$type":"GetClientApplicationsListQuery"}
+2026-02-05 10:16:56.508 +03:00 [INF] Sending individual notification emails to 1 recipients to ensure privacy
+2026-02-05 10:16:56.512 +03:00 [INF] Attempting to send email via SMTP
+2026-02-05 10:16:58.889 +03:00 [INF] Email sent successfully via SMTP using client credentials biniyamtehakele9@gmail.com to genettehakele@gmail.com
+2026-02-05 10:16:58.912 +03:00 [INF] Email sent successfully via SMTP, MessageId: bef699d8-9316-49fe-93dd-7a388c75de7c
+2026-02-05 10:16:58.939 +03:00 [INF] Notification "dc716d7c-b35e-4528-4555-08de6484309f" processed. Individual emails sent: 1/1
+2026-02-05 10:16:58.953 +03:00 [WRN] PNS Long Running Request: CreateNotificationCommand (2495 milliseconds) a6d9be0a-83e2-4508-b9e2-0383b172fbc8 Unknown {"CreateNotificationDto":{"ClientApplicationId":"3f550db7-3d52-4c29-d194-08de648670f0","To":["genettehakele@gmail.com"],"Title":"Paradox","Message":"paradox test","NotificationTypeId":"8cd6f661-4ead-4a70-9d6e-e63347890645","PriorityId":"bbae86ca-e672-446a-f9cc-08de19fbe5df","$type":"CreateNotificationDto"},"UserId":"a6d9be0a-83e2-4508-b9e2-0383b172fbc8","IsAdmin":false,"$type":"CreateNotificationCommand"}
