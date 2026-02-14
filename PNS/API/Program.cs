@@ -84,9 +84,9 @@ else
 builder.Services.AddScoped<Application.Contracts.IEmailService, EnhancedEmailService>();
 
 // SMS Services
-builder.Services.AddScoped<ISmsService, Infrastructure.Services.SmsService>();
+builder.Services.AddScoped<ISmsProvider, TwilioSmsProvider>();
+builder.Services.AddScoped<ISmsService, EnhancedSmsService>();
 builder.Services.AddScoped<ISmsQueueService, SmsQueueService>();
-builder.Services.AddScoped<EnhancedSmsService>();
 
 // Background Services
 builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();

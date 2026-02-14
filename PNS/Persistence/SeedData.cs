@@ -24,6 +24,12 @@ namespace Persistence
 
             // Seed Admin User
             await SeedAdminUser(userManager);
+
+            // Seed Notification Types
+            await SeedNotificationTypes(context);
+
+            // Seed Priorities
+            await SeedPriorities(context);
         }
 
         private static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
@@ -72,6 +78,46 @@ namespace Persistence
                 {
                     await userManager.AddToRoleAsync(adminUser, "Admin");
                 }
+            }
+        }
+        private static async Task SeedNotificationTypes(PnsDbContext context)
+        {
+            if (!context.NotificationTypes.Any(t => t.Name == "Email"))
+            {
+                context.NotificationTypes.Add(new NotificationType { Id = Guid.NewGuid(), Name = "Email", Description = "Email notifications" });
+            }
+
+            if (!context.NotificationTypes.Any(t => t.Name == "SMS"))
+            {
+                context.NotificationTypes.Add(new NotificationType { Id = Guid.NewGuid(), Name = "SMS", Description = "SMS text messages" });
+            }
+
+            if (context.ChangeTracker.HasChanges())
+            {
+                await context.SaveChangesAsync();
+            }
+        }
+
+        private static async Task SeedPriorities(PnsDbContext context)
+        {
+            var priorities = new[]
+            {
+                new { Name = "Low", Desc = "Low priority", Level = 1 },
+                new { Name = "Normal", Desc = "Normal priority", Level = 2 },
+                new { Name = "High", Desc = "High priority", Level = 3 }
+            };
+
+            foreach (var p in priorities)
+            {
+                if (!context.Priorities.Any(pr => pr.Name == p.Name))
+                {
+                    context.Priorities.Add(new Priority { Id = Guid.NewGuid(), Name = p.Name, Description = p.Desc, Level = p.Level });
+                }
+            }
+
+            if (context.ChangeTracker.HasChanges())
+            {
+                await context.SaveChangesAsync();
             }
         }
     }

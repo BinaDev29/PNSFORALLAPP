@@ -25,18 +25,18 @@ namespace Application.Profiles
 
             // Notification
             CreateMap<Notification, NotificationDto>()
-                .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString()).ToList()))
+                .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString() ?? string.Empty).ToList()))
                 .ReverseMap();
 
             CreateMap<CreateNotificationDto, Notification>()
-                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(t => (object)EmailAddress.Create(t)).ToList()));
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => MapToRecipients(src.To)));
             CreateMap<Notification, CreateNotificationDto>()
-                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString()).ToList()));
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString() ?? string.Empty).ToList()));
 
             CreateMap<UpdateNotificationDto, Notification>()
-                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(t => (object)EmailAddress.Create(t)).ToList()));
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => MapToRecipients(src.To)));
             CreateMap<Notification, UpdateNotificationDto>()
-                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString()).ToList()));
+                  .ForMember(dest => dest.To, opt => opt.MapFrom(src => src.To.Select(x => x.ToString() ?? string.Empty).ToList()));
 
             // NotificationHistory
             CreateMap<NotificationHistory, NotificationHistoryDto>()
@@ -72,6 +72,17 @@ namespace Application.Profiles
             CreateMap<Priority, PriorityDto>().ReverseMap();
             CreateMap<Priority, CreatePriorityDto>().ReverseMap();
             CreateMap<Priority, UpdatePriorityDto>().ReverseMap();
+        }
+
+        private List<object> MapToRecipients(List<string> to)
+        {
+            if (to == null) return new List<object>();
+            return to.Select(t =>
+            {
+                if (EmailAddress.IsValidEmail(t)) return (object)EmailAddress.Create(t);
+                if (PhoneNumber.IsValid(t)) return (object)PhoneNumber.Create(t);
+                return (object)t;
+            }).ToList();
         }
     }
 }

@@ -76,13 +76,14 @@ namespace API.Controllers
             return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
         }
 
-        // PUT: api/ClientApplication
-        [HttpPut]
+        // PUT: api/ClientApplication/5
+        [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult> Put([FromBody] UpdateClientApplicationDto updateClientApplicationDto)
+        public async Task<ActionResult> Put(Guid id, [FromBody] UpdateClientApplicationDto updateClientApplicationDto)
         {
+            updateClientApplicationDto.Id = id;
             var command = new UpdateClientApplicationCommand { UpdateClientApplicationDto = updateClientApplicationDto };
 
             // FIX: Wrap in a try-catch to handle potential NotFound and Validation exceptions.

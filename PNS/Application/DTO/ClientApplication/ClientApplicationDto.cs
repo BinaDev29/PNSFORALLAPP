@@ -11,5 +11,7 @@ namespace Application.DTO.ClientApplication
         public required string Name { get; set; }
         public string? Slogan { get; set; }
         public string? Logo { get; set; }
+        public string? SmsSenderName { get; set; }
+        public string? SmsSenderNumber { get; set; }
     }
 }

@@ -20,13 +20,18 @@ namespace Domain.ValueObjects
             if (string.IsNullOrWhiteSpace(phoneNumber))
                 throw new ArgumentException("Phone number cannot be empty.", nameof(phoneNumber));
 
-            // የስልክ ቁጥሩን ለማረጋገጥ የሚረዳ ቀላል Regex (በአገር ላይ ተመስርቶ ይበልጥ ውስብስብ ሊሆን ይችላል)
-            var normalizedNumber = Regex.Replace(phoneNumber, @"[^\d]", ""); // ቁጥሮችን ብቻ ያስቀምጣል
-
-            if (!Regex.IsMatch(normalizedNumber, @"^\d{10,15}$"))
+            if (!IsValid(phoneNumber))
                 throw new ArgumentException($"'{phoneNumber}' is not a valid phone number format.", nameof(phoneNumber));
 
+            var normalizedNumber = Regex.Replace(phoneNumber, @"[^\d]", "");
             return new PhoneNumber(normalizedNumber);
+        }
+
+        public static bool IsValid(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber)) return false;
+            var normalizedNumber = Regex.Replace(phoneNumber, @"[^\d]", "");
+            return Regex.IsMatch(normalizedNumber, @"^\d{10,15}$");
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

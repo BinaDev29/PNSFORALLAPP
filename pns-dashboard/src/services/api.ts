@@ -144,6 +144,8 @@ export interface ClientApplication {
     name: string;
     slogan?: string;
     logo?: string;
+    smsSenderName?: string;
+    smsSenderNumber?: string;
 }
 
 export interface Notification {
@@ -284,6 +286,8 @@ export interface CreateClientApplicationRequest {
     logo: string;
     senderEmail: string;
     appPassword: string;
+    smsSenderName?: string;
+    smsSenderNumber?: string;
 }
 
 export interface EmailTemplate {

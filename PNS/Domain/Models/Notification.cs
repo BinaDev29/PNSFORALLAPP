@@ -47,7 +47,12 @@ namespace Domain.Models
         {
             // This part of the logic is better handled in the Application Layer.
             // Domain Layer should only deal with domain-specific logic.
-            var validRecipients = recipients.Select(r => (object)EmailAddress.Create(r)).ToList();
+            var validRecipients = recipients.Select(r => 
+            {
+                if (EmailAddress.IsValidEmail(r)) return (object)EmailAddress.Create(r);
+                if (PhoneNumber.IsValid(r)) return (object)PhoneNumber.Create(r);
+                return (object)r;
+            }).ToList();
 
             var notification = new Notification
             {

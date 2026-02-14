@@ -194,6 +194,12 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SmsSenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SmsSenderNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("ClientApplications");
@@ -369,6 +375,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -380,6 +389,12 @@ namespace Persistence.Migrations
 
                     b.Property<Guid?>("NotificationId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NotificationType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Recipient")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("SentDate")
                         .HasColumnType("datetime2");
@@ -469,6 +484,10 @@ namespace Persistence.Migrations
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

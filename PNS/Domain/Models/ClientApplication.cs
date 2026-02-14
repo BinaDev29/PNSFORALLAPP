@@ -13,5 +13,8 @@ namespace Domain.Models
 
         public required string SenderEmail { get; set; }
         public required string AppPassword { get; set; }
+
+        public string? SmsSenderName { get; set; }
+        public string? SmsSenderNumber { get; set; }
     }
 }

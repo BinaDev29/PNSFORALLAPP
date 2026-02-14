@@ -1,6 +1,7 @@
 ﻿// File Path: Infrastructure/BackgroundServices/EmailQueueProcessor.cs
 using Application.Common.Interfaces;
 using Application.Models.Email;
+using Application.Contracts.IRepository;
 using Infrastructure.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -51,7 +52,7 @@ namespace Infrastructure.BackgroundServices
                             {
                                 try
                                 {
-                                    await ProcessEmailAsync(queuedEmail);
+                                    await ProcessEmailAsync(queuedEmail, stoppingToken);
                                 }
                                 finally
                                 {
@@ -73,17 +74,45 @@ namespace Infrastructure.BackgroundServices
             _logger.LogInformation("Email Queue Processor stopped");
         }
 
-        private async Task ProcessEmailAsync(QueuedEmail queuedEmail)
+        private async Task ProcessEmailAsync(QueuedEmail queuedEmail, CancellationToken stoppingToken)
         {
             using var scope = _serviceProvider.CreateScope();
             var emailService = scope.ServiceProvider.GetRequiredService<Application.Contracts.IEmailService>();
+            var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
             try
             {
                 _logger.LogInformation("Processing email {EmailId}", queuedEmail.Email.Id);
 
-                // FIX: The method call is now corrected to use the public IEmailService method.
                 var success = await emailService.SendEmail(queuedEmail.Email);
+
+                // Update NotificationHistory
+                if (!string.IsNullOrEmpty(queuedEmail.Email.TrackingId))
+                {
+                    try
+                    {
+                        var parts = queuedEmail.Email.TrackingId.Split('_');
+                        if (parts.Length >= 2 && Guid.TryParse(parts[0], out var notificationId))
+                        {
+                            var recipient = parts[1];
+                            var histories = await unitOfWork.NotificationHistories.GetAll();
+                            var history = histories.FirstOrDefault(h => h.NotificationId == notificationId && h.Recipient == recipient);
+                            
+                            if (history != null)
+                            {
+                                history.Status = success ? "Sent" : "Failed";
+                                history.SentDate = DateTime.UtcNow;
+                                if (!success) history.ErrorMessage = "Failed to send via background processor";
+                                await unitOfWork.NotificationHistories.Update(history);
+                                await unitOfWork.Save(stoppingToken);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error updating notification history for email {EmailId}", queuedEmail.Email.Id);
+                    }
+                }
 
                 if (success)
                 {

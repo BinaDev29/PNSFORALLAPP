@@ -7,6 +7,7 @@ namespace Domain.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public required string To { get; set; }
+        public string? From { get; set; }
         public required string Body { get; set; }
         public string? TrackingId { get; set; }
         public int MaxRetries { get; set; } = 3;

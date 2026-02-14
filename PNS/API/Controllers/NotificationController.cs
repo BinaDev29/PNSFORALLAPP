@@ -102,13 +102,14 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        // PUT: api/Notification
-        [HttpPut]
+        // PUT: api/Notification/5
+        [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult> Put([FromBody] UpdateNotificationDto updateNotificationDto)
+        public async Task<ActionResult> Put(Guid id, [FromBody] UpdateNotificationDto updateNotificationDto)
         {
+            updateNotificationDto.Id = id;
             var command = new UpdateNotificationCommand { UpdateNotificationDto = updateNotificationDto };
             await _mediator.Send(command);
             return NoContent();

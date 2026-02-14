@@ -181,12 +181,18 @@ export function CreateNotificationDialog({ children, notification, open: control
                         />
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="to">Recipients (comma separated)</Label>
+                        <Label htmlFor="to">
+                            {types?.find(t => t.id === formData.notificationTypeId)?.name === 'SMS'
+                                ? "Recipient Phone Numbers (comma separated)"
+                                : "Recipient Emails (comma separated)"}
+                        </Label>
                         <Input
                             id="to"
                             value={formData.to}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, to: e.target.value })}
-                            placeholder="user@example.com, another@example.com"
+                            placeholder={types?.find(t => t.id === formData.notificationTypeId)?.name === 'SMS'
+                                ? "+251911223344, +251922334455"
+                                : "user@example.com, another@example.com"}
                             required
                         />
                     </div>

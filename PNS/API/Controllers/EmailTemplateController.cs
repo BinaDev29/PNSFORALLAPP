@@ -80,13 +80,14 @@ namespace API.Controllers
             return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
         }
 
-        // PUT: api/EmailTemplate
-        [HttpPut]
+        // PUT: api/EmailTemplate/5
+        [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult> Put([FromBody] UpdateEmailTemplateDto updateEmailTemplateDto)
+        public async Task<ActionResult> Put(Guid id, [FromBody] UpdateEmailTemplateDto updateEmailTemplateDto)
         {
+            updateEmailTemplateDto.Id = id;
             var command = new UpdateEmailTemplateCommand { UpdateEmailTemplateDto = updateEmailTemplateDto };
 
             // FIX: Wrap in a try-catch to handle potential NotFound and Validation exceptions.

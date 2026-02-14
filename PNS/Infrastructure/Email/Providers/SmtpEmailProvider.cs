@@ -61,6 +61,28 @@ namespace Infrastructure.Email.Providers
                     mailMessage.To.Add(recipient);
                 }
 
+                // Add attachments and handle inline images
+                if (emailMessage.Attachments != null && emailMessage.Attachments.Any())
+                {
+                    foreach (var attachment in emailMessage.Attachments)
+                    {
+                        var ms = new System.IO.MemoryStream(attachment.Content);
+                        if (attachment.IsInline && !string.IsNullOrEmpty(attachment.ContentId))
+                        {
+                            var inlineAttachment = new Attachment(ms, attachment.FileName, attachment.ContentType);
+                            inlineAttachment.ContentId = attachment.ContentId;
+                            inlineAttachment.ContentDisposition.Inline = true;
+                            inlineAttachment.ContentDisposition.DispositionType = "inline";
+                            mailMessage.Attachments.Add(inlineAttachment);
+                        }
+                        else
+                        {
+                            var ordinaryAttachment = new Attachment(ms, attachment.FileName, attachment.ContentType);
+                            mailMessage.Attachments.Add(ordinaryAttachment);
+                        }
+                    }
+                }
+
                 await client.SendMailAsync(mailMessage);
                 _logger.LogInformation("Email sent successfully via SMTP using client credentials {SenderEmail} to {Recipients}",
                     senderEmail, string.Join(", ", emailMessage.To));

@@ -558,10 +558,81 @@
             }
           }
         }
+      }
+    },
+    "/api/ClientApplication/{id}": {
+      "get": {
+        "tags": [
+          "ClientApplication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.ClientApplication.ClientApplicationDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.ClientApplication.ClientApplicationDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.ClientApplication.ClientApplicationDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
           "ClientApplication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -602,66 +673,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/ClientApplication/{id}": {
-      "get": {
-        "tags": [
-          "ClientApplication"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.ClientApplication.ClientApplicationDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.ClientApplication.ClientApplicationDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.ClientApplication.ClientApplicationDto"
                 }
               }
             }
@@ -832,10 +843,81 @@
             }
           }
         }
+      }
+    },
+    "/api/EmailTemplate/{id}": {
+      "get": {
+        "tags": [
+          "EmailTemplate"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.EmailTemplate.EmailTemplateDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.EmailTemplate.EmailTemplateDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.EmailTemplate.EmailTemplateDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
           "EmailTemplate"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -876,66 +958,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/EmailTemplate/{id}": {
-      "get": {
-        "tags": [
-          "EmailTemplate"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.EmailTemplate.EmailTemplateDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.EmailTemplate.EmailTemplateDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.EmailTemplate.EmailTemplateDto"
                 }
               }
             }
@@ -1616,10 +1638,81 @@
             }
           }
         }
+      }
+    },
+    "/api/Notification/{id}": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.Notification.NotificationDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.Notification.NotificationDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application.DTO.Notification.NotificationDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
           "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -1660,66 +1753,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Notification/{id}": {
-      "get": {
-        "tags": [
-          "Notification"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.Notification.NotificationDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.Notification.NotificationDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Application.DTO.Notification.NotificationDto"
                 }
               }
             }
@@ -3066,6 +3099,14 @@
           "logo": {
             "type": "string",
             "nullable": true
+          },
+          "smsSenderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsSenderNumber": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3110,6 +3151,14 @@
           "appPassword": {
             "minLength": 1,
             "type": "string"
+          },
+          "smsSenderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsSenderNumber": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3139,6 +3188,14 @@
             "nullable": true
           },
           "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsSenderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "smsSenderNumber": {
             "type": "string",
             "nullable": true
           }

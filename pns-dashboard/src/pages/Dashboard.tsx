@@ -1,4 +1,4 @@
-import { Bell, CheckCircle, AlertTriangle, Smartphone, TrendingUp, Activity, ArrowRight, Loader2, Download } from "lucide-react";
+import { Bell, CheckCircle, AlertTriangle, Smartphone, TrendingUp, Activity, ArrowRight, Download } from "lucide-react";
 import { useTranslation } from '@/i18n';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -44,7 +44,7 @@ export default function Dashboard() {
                 queryClient.invalidateQueries({ queryKey: ['chartData'] });
             });
 
-            signalRService.on("statsUpdated", (newStats) => {
+            signalRService.on("statsUpdated", () => {
                 // specific logic if we want to update cache directly without refetch
                 queryClient.invalidateQueries({ queryKey: ['dashboardStats'] });
             });
@@ -94,7 +94,7 @@ export default function Dashboard() {
     }, [allHistory]);
 
 
-    const isLoading = statsLoading || clientsLoading || activityLoading;
+
 
     const stats = [
         {
@@ -259,10 +259,10 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </CardHeader>
-                        <CardContent className="pl-0">
-                            <div className="h-[300px] w-full mt-4">
+                        <CardContent>
+                            <div className="h-[300px] min-h-[300px] w-full mt-4 relative">
                                 {!allHistory ? (
-                                    <div className="h-full w-full px-6 pb-4">
+                                    <div className="absolute inset-0 px-6 pb-4">
                                         <Skeleton className="h-full w-full rounded-xl" />
                                     </div>
                                 ) : (

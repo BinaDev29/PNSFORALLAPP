@@ -35,9 +35,9 @@ namespace Application.Models.Email
     public class EmailTemplate
     {
         public Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required string Subject { get; set; }
-        public required string HtmlBody { get; set; }
+        public required string Name { get; set; } = string.Empty;
+        public required string Subject { get; set; } = string.Empty;
+        public required string HtmlBody { get; set; } = string.Empty;
         public string? TextBody { get; set; }
         public List<string>? RequiredVariables { get; set; }
     }

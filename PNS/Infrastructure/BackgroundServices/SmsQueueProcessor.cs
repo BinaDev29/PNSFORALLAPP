@@ -1,5 +1,6 @@
 ﻿// File Path: Infrastructure/BackgroundServices/SmsQueueProcessor.cs
 using Application.Contracts;
+using Application.Contracts.IRepository;
 using Infrastructure.Sms;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,9 +38,39 @@ namespace Infrastructure.BackgroundServices
                     var smsMessage = await smsQueueService.DequeueAsync();
                     if (smsMessage != null)
                     {
+                        var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
                         _logger.LogInformation("Processing SMS message for {To}", smsMessage.To);
 
                         var success = await smsService.SendSmsAsync(smsMessage);
+                        
+                        // Update NotificationHistory
+                        if (!string.IsNullOrEmpty(smsMessage.TrackingId))
+                        {
+                            try
+                            {
+                                var parts = smsMessage.TrackingId.Split('_');
+                                if (parts.Length >= 2 && Guid.TryParse(parts[0], out var notificationId))
+                                {
+                                    var recipient = parts[1];
+                                    var histories = await unitOfWork.NotificationHistories.GetAll();
+                                    var history = histories.FirstOrDefault(h => h.NotificationId == notificationId && h.Recipient == recipient);
+                                    
+                                    if (history != null)
+                                    {
+                                        history.Status = success ? "Sent" : "Failed";
+                                        history.SentDate = DateTime.UtcNow;
+                                        if (!success) history.ErrorMessage = smsMessage.ErrorMessage;
+                                        await unitOfWork.NotificationHistories.Update(history);
+                                        await unitOfWork.Save(stoppingToken);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogError(ex, "Error updating notification history for SMS to {To}", smsMessage.To);
+                            }
+                        }
+
                         if (success)
                         {
                             _logger.LogInformation("SMS message processed successfully for {To}", smsMessage.To);

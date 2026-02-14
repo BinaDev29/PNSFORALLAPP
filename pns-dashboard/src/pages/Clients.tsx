@@ -23,7 +23,9 @@ export default function ClientsPage() {
         slogan: '',
         logo: '',
         senderEmail: '',
-        appPassword: ''
+        appPassword: '',
+        smsSenderName: '',
+        smsSenderNumber: ''
     });
 
     const queryClient = useQueryClient();
@@ -80,7 +82,7 @@ export default function ClientsPage() {
 
     const handleOpenCreate = () => {
         setEditingId(null);
-        setFormData({ appId: '', key: '', name: '', slogan: '', logo: '', senderEmail: '', appPassword: '' });
+        setFormData({ appId: '', key: '', name: '', slogan: '', logo: '', senderEmail: '', appPassword: '', smsSenderName: '', smsSenderNumber: '' });
         setIsDialogOpen(true);
     };
 
@@ -98,7 +100,9 @@ export default function ClientsPage() {
             slogan: client.slogan || '',
             logo: client.logo || '',
             senderEmail: '', // Cannot pre-fill sensitive/missing data if API doesn't return it
-            appPassword: ''  // password should definitely not be filled back
+            appPassword: '',  // password should definitely not be filled back
+            smsSenderName: client.smsSenderName || '',
+            smsSenderNumber: client.smsSenderNumber || ''
         });
         setIsDialogOpen(true);
     };
@@ -106,7 +110,7 @@ export default function ClientsPage() {
     const handleCloseDialog = () => {
         setIsDialogOpen(false);
         setEditingId(null);
-        setFormData({ appId: '', key: '', name: '', slogan: '', logo: '', senderEmail: '', appPassword: '' });
+        setFormData({ appId: '', key: '', name: '', slogan: '', logo: '', senderEmail: '', appPassword: '', smsSenderName: '', smsSenderNumber: '' });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -234,6 +238,26 @@ export default function ClientsPage() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="smsSenderName">SMS Sender Name</Label>
+                                        <Input
+                                            id="smsSenderName"
+                                            value={formData.smsSenderName}
+                                            onChange={(e) => setFormData({ ...formData, smsSenderName: e.target.value })}
+                                            placeholder="Optional"
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="smsSenderNumber">SMS Sender Number</Label>
+                                        <Input
+                                            id="smsSenderNumber"
+                                            value={formData.smsSenderNumber}
+                                            onChange={(e) => setFormData({ ...formData, smsSenderNumber: e.target.value })}
+                                            placeholder="e.g. +1234567890"
+                                        />
+                                    </div>
+                                </div>
                                 <DialogFooter>
                                     <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending}>
                                         {(createMutation.isPending || updateMutation.isPending) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -346,6 +370,6 @@ export default function ClientsPage() {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
-        </div>
+        </div >
     );
 }

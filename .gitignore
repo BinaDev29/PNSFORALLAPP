@@ -1,0 +1,38 @@
+## [Visual Studio]
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+## [Build Output]
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+## [Logs]
+*.log
+PNS/API/Logs/
+PNS/api_err.log
+PNS/build.log
+PNS/build_err.log
+PNS/build_err2.log
+PNS/infra_err.log
+
+## [Node.js / React]
+node_modules/
+pns-dashboard/node_modules/
+pns-dashboard/dist/
+pns-dashboard/build/
+.eslintcache
+
+## [Environment Files]
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+## [Other]
+.DS_Store
+Thumbs.db
