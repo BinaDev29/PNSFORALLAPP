@@ -16,10 +16,12 @@ using MediatR;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Persistence;
 using Persistence.Interceptors;
 using Persistence.Repositories;
+using Infrastructure;
 using System.Threading.RateLimiting;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -44,6 +46,9 @@ builder.Services.AddControllers();
 // Database and Persistence Services (DbContext, Identity, Repositories, Interceptors)
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
+// Infrastructure Services
+builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+
 // MediatR and Application Services
 builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(typeof(ApplicationServiceRegistration).Assembly);
@@ -59,50 +64,6 @@ builder.Services.AddValidatorsFromAssembly(typeof(ApplicationServiceRegistration
 // Application Services
 builder.Services.ConfigureApplicationServices();
 builder.Services.AddScoped<Application.Contracts.IDashboardHubService, API.Services.DashboardHubService>();
-builder.Services.AddTransient<Application.Contracts.Identity.IAuthService, Infrastructure.Identity.AuthService>();
-builder.Services.AddScoped<IEmailTemplateService, EmailTemplateService>();
-builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
-builder.Services.AddScoped<IDateTime, DateTimeService>();
-builder.Services.AddScoped<IDomainEventService, DomainEventService>();
-
-// Email Services - Use the SmtpSettings from Infrastructure.Email.Providers
-builder.Services.Configure<Infrastructure.Email.Providers.SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
-builder.Services.AddScoped<EnhancedEmailService>();
-
-// Conditionally register email providers
-var sendGridSection = builder.Configuration.GetSection("SendGridSettings");
-if (!string.IsNullOrEmpty(sendGridSection["ApiKey"]))
-{
-    builder.Services.Configure<SendGridSettings>(sendGridSection);
-    builder.Services.AddScoped<IEmailProvider, SendGridEmailProvider>();
-}
-else
-{
-    // Register SMTP provider only if SendGrid isn't configured
-    builder.Services.AddScoped<IEmailProvider, SmtpEmailProvider>();
-}
-builder.Services.AddScoped<Application.Contracts.IEmailService, EnhancedEmailService>();
-
-// SMS Services
-builder.Services.AddScoped<ISmsProvider, TwilioSmsProvider>();
-builder.Services.AddScoped<ISmsService, EnhancedSmsService>();
-builder.Services.AddScoped<ISmsQueueService, SmsQueueService>();
-
-// Background Services
-builder.Services.AddScoped<IEmailQueueService, EmailQueueService>();
-builder.Services.AddSingleton<EmailQueueProcessor>();
-builder.Services.AddHostedService(sp => sp.GetRequiredService<EmailQueueProcessor>());
-
-// SMS Background Services
-builder.Services.AddSingleton<SmsQueueProcessor>();
-builder.Services.AddHostedService(sp => sp.GetRequiredService<SmsQueueProcessor>());
-
-// Caching
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration.GetConnectionString("Redis") ?? "localhost:6379";
-});
-builder.Services.AddScoped<ICacheService, RedisCacheService>();
 
 // Rate Limiting
 builder.Services.AddRateLimiter(options =>
@@ -251,7 +212,26 @@ app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 // Health check endpoint
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    ResponseWriter = async (context, report) =>
+    {
+        context.Response.ContentType = "application/json";
+        var response = new
+        {
+            status = report.Status.ToString(),
+            totalLatency = report.TotalDuration.TotalMilliseconds,
+            services = report.Entries.Select(e => new
+            {
+                name = e.Key,
+                status = e.Value.Status.ToString(),
+                latency = e.Value.Duration.TotalMilliseconds,
+                description = e.Value.Description
+            })
+        };
+        await context.Response.WriteAsJsonAsync(response);
+    }
+});
 
 app.MapHub<API.Hubs.NotificationHub>("/hubs/notification");
 

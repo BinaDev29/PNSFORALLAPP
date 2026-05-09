@@ -146,6 +146,9 @@ export interface ClientApplication {
     logo?: string;
     smsSenderName?: string;
     smsSenderNumber?: string;
+    webhookUrl?: string;
+    webhookSecret?: string;
+    appPassword?: string;
 }
 
 export interface Notification {
@@ -254,6 +257,11 @@ export const DashboardService = {
         // Assuming endpoint for update exists on Notification resource
         const response = await api.put(`/Notification/${id}`, data);
         return response.data;
+    },
+    
+    getSystemHealth: async () => {
+        const response = await api.get('/health');
+        return response.data;
     }
 };
 
@@ -288,6 +296,8 @@ export interface CreateClientApplicationRequest {
     appPassword: string;
     smsSenderName?: string;
     smsSenderNumber?: string;
+    webhookUrl?: string;
+    webhookSecret?: string;
 }
 
 export interface EmailTemplate {

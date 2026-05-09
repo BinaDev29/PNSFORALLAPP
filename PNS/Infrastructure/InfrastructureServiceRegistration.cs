@@ -1,4 +1,4 @@
-﻿// File Path: Infrastructure/InfrastructureServiceRegistration.cs
+// File Path: Infrastructure/InfrastructureServiceRegistration.cs
 
 using Application.Contracts;
 using Application.Common.Interfaces;
@@ -39,8 +39,15 @@ namespace Infrastructure
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IDomainEventService, DomainEventService>();
             services.AddScoped<ICacheService, RedisCacheService>();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString("Redis") ?? "localhost:6379";
+            });
             services.AddScoped<IEmailTemplateService, EmailTemplateService>();
             services.AddTransient<IAuthService, AuthService>();
+            services.AddHttpClient<IWebhookService, WebhookService>();
+            services.AddSingleton<IPushNotificationService, FirebasePushNotificationService>();
+            services.AddSingleton<IMessageQueueService, RabbitMqService>();
 
             return services;
         }

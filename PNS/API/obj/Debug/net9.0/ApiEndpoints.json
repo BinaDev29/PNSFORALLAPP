@@ -421,6 +421,22 @@
     ]
   },
   {
+    "ContainingType": "API.Controllers.DeviceTokenController",
+    "Method": "RegisterToken",
+    "RelativePath": "api/DeviceToken/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "API.Controllers.DeviceTokenController\u002BRegisterTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.EmailTemplateController",
     "Method": "Get",
     "RelativePath": "api/EmailTemplate",

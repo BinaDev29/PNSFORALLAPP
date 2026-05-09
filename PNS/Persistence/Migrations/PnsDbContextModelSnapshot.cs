@@ -200,9 +200,66 @@ namespace Persistence.Migrations
                     b.Property<string>("SmsSenderNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("WebhookSecret")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebhookUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("ClientApplications");
+                });
+
+            modelBuilder.Entity("Domain.Models.DeviceToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClientApplicationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeviceType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientApplicationId");
+
+                    b.ToTable("DeviceTokens");
                 });
 
             modelBuilder.Entity("Domain.Models.EmailTemplate", b =>
@@ -694,6 +751,17 @@ namespace Persistence.Migrations
                     b.Navigation("ClientApplication");
 
                     b.Navigation("NotificationType");
+                });
+
+            modelBuilder.Entity("Domain.Models.DeviceToken", b =>
+                {
+                    b.HasOne("Domain.Models.ClientApplication", "ClientApplication")
+                        .WithMany()
+                        .HasForeignKey("ClientApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClientApplication");
                 });
 
             modelBuilder.Entity("Domain.Models.Notification", b =>

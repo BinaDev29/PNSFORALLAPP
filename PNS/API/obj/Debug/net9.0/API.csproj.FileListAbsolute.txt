@@ -12,8 +12,14 @@ F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\AutoMapper.Extensions.
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Azure.Core.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Azure.Identity.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\FirebaseAdmin.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\FluentValidation.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Google.Api.Gax.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Google.Api.Gax.Rest.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Google.Apis.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Google.Apis.Auth.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Google.Apis.Core.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Humanizer.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\MailKit.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\MediatR.dll
@@ -65,6 +71,7 @@ F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\MimeKit.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Mono.TextTemplating.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Newtonsoft.Json.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Pipelines.Sockets.Unofficial.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\RabbitMQ.Client.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\SendGrid.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Serilog.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\Serilog.AspNetCore.dll
@@ -92,6 +99,7 @@ F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.Diagnostics.Dia
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.Drawing.Common.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.IO.Pipelines.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.Management.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.Memory.Data.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.Runtime.Caching.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
@@ -174,6 +182,7 @@ F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\win-x86\nativ
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\bin\Debug\net9.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
@@ -204,10 +213,10 @@ F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\staticwebassets.build.
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\staticwebassets.build.json.cache
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\staticwebassets.development.json
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\API.csproj.Up2Date
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\API.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\refint\API.dll
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\API.pdb
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\API.genruntimeconfig.cache
 F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\ref\API.dll
-F:\@INTERNSHIP 2017\PNSFORALLAPP\PNS\API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

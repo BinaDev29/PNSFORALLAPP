@@ -1,4 +1,4 @@
-﻿// File Path: Persistence/PersistenceServiceRegistration.cs
+// File Path: Persistence/PersistenceServiceRegistration.cs
 using Application.Contracts.IRepository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -51,6 +51,7 @@ namespace Persistence
             services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
             services.AddScoped<IPriorityRepository, PriorityRepository>();
             services.AddScoped<ISmsTemplateRepository, SmsTemplateRepository>();
+            services.AddScoped<IDeviceTokenRepository, DeviceTokenRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

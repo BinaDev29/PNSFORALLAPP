@@ -54,11 +54,11 @@ export default function LoginPage() {
 
             <Card className="w-full max-w-md border-border/50 bg-card/50 backdrop-blur-xl shadow-2xl">
                 <CardHeader className="space-y-1 text-center">
-                    <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-br from-primary via-violet-500 to-indigo-500 bg-clip-text text-transparent">
-                        PNS Admin
+                    <CardTitle className="text-4xl font-extrabold tracking-tight bg-gradient-to-br from-primary via-violet-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                        PNS Central
                     </CardTitle>
-                    <CardDescription>
-                        Enter your credentials to access the dashboard
+                    <CardDescription className="text-sm font-medium tracking-wide uppercase mt-2">
+                        Unified Notification Platform
                     </CardDescription>
                 </CardHeader>
                 <form onSubmit={handleLogin}>

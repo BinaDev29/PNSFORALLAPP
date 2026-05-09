@@ -1,4 +1,4 @@
-﻿// File Path: Persistence/PnsDbContext.cs
+// File Path: Persistence/PnsDbContext.cs
 using Application.Common.Interfaces;
 using Domain.Common;
 using Domain.Models;
@@ -21,6 +21,7 @@ namespace Persistence
         public DbSet<EmailTemplate> EmailTemplates { get; set; }
         public DbSet<NotificationHistory> NotificationHistories { get; set; }
         public DbSet<SmsTemplate> SmsTemplates { get; set; }
+        public DbSet<DeviceToken> DeviceTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,7 +1,8 @@
-﻿// File Path: Infrastructure/BackgroundServices/EmailQueueProcessor.cs
+// File Path: Infrastructure/BackgroundServices/EmailQueueProcessor.cs
 using Application.Common.Interfaces;
 using Application.Models.Email;
 using Application.Contracts.IRepository;
+using Domain.Events;
 using Infrastructure.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -98,14 +99,19 @@ namespace Infrastructure.BackgroundServices
                             var histories = await unitOfWork.NotificationHistories.GetAll();
                             var history = histories.FirstOrDefault(h => h.NotificationId == notificationId && h.Recipient == recipient);
                             
-                            if (history != null)
-                            {
-                                history.Status = success ? "Sent" : "Failed";
-                                history.SentDate = DateTime.UtcNow;
-                                if (!success) history.ErrorMessage = "Failed to send via background processor";
-                                await unitOfWork.NotificationHistories.Update(history);
-                                await unitOfWork.Save(stoppingToken);
-                            }
+                                if (history != null)
+                                {
+                                    history.Status = success ? "Sent" : "Failed";
+                                    history.SentDate = DateTime.UtcNow;
+                                    if (!success) history.ErrorMessage = "Failed to send via background processor";
+                                    await unitOfWork.NotificationHistories.Update(history);
+                                    await unitOfWork.Save(stoppingToken);
+
+                                    // Publish Domain Event
+                                    var domainEventService = scope.ServiceProvider.GetRequiredService<IDomainEventService>();
+                                    await domainEventService.PublishAsync(new EmailNotificationSentEvent(
+                                        notificationId, recipient, success, success ? null : "Failed to send via background processor"));
+                                }
                         }
                     }
                     catch (Exception ex)

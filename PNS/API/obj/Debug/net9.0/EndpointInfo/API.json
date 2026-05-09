@@ -741,6 +741,37 @@
         }
       }
     },
+    "/api/DeviceToken/register": {
+      "post": {
+        "tags": [
+          "DeviceToken"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Controllers.DeviceTokenController+RegisterTokenRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Controllers.DeviceTokenController+RegisterTokenRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Controllers.DeviceTokenController+RegisterTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/EmailTemplate": {
       "get": {
         "tags": [
@@ -2767,6 +2798,28 @@
           "metadata": {
             "type": "object",
             "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Controllers.DeviceTokenController+RegisterTokenRequest": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientApplicationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "deviceType": {
+            "type": "string",
             "nullable": true
           }
         },

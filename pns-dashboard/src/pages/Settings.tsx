@@ -3,12 +3,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Bell, Globe, Mail, Palette, Wifi, Code, Terminal, Copy } from "lucide-react";
+import { Bell, Globe, Mail, Palette, Wifi, Code, Terminal, Copy, Shield, ChevronRight, Loader2, ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/components/theme-provider";
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1 }
+    }
+};
+
+const item = {
+    hidden: { x: -20, opacity: 0 },
+    show: { x: 0, opacity: 1 }
+};
 
 export default function SettingsPage() {
     const [activeTab, setActiveTab] = useState("general");
@@ -32,143 +46,155 @@ export default function SettingsPage() {
 
     const handleSave = async () => {
         setIsLoading(true);
-        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
         setIsLoading(false);
         toast.success("Settings saved successfully");
     };
 
     const tabs = [
-        { id: "general", label: "General", icon: Globe },
-        { id: "appearance", label: "Appearance", icon: Palette },
-        { id: "notifications", label: "Notifications", icon: Bell },
-        { id: "api", label: "API & Integrations", icon: Wifi },
-        { id: "docs", label: "Documentation", icon: Code },
+        { id: "general", label: "General Settings", icon: Globe, description: "System name & support" },
+        { id: "appearance", label: "Appearance", icon: Palette, description: "Themes & animations" },
+        { id: "notifications", label: "Notifications", icon: Bell, description: "Alert preferences" },
+        { id: "api", label: "API & Integrations", icon: Wifi, description: "Keys & authentication" },
+        { id: "docs", label: "Documentation", icon: Code, description: "Developer guide" },
     ];
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="space-y-8 pb-10">
             <div className="flex flex-col gap-2">
-                <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
-                    Settings
+                <h2 className="text-4xl font-black tracking-tight bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent uppercase">
+                    System Configuration
                 </h2>
-                <p className="text-muted-foreground">
-                    Configure your application preferences and system defaults.
+                <p className="text-muted-foreground font-medium">
+                    Manage your application ecosystem and developer credentials.
                 </p>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8">
-                {/* Sidebar Navigation for Settings */}
-                <div className="w-full md:w-64 flex-shrink-0 space-y-2">
+            <div className="flex flex-col lg:flex-row gap-8">
+                {/* Modern Sidebar */}
+                <motion.div 
+                    variants={container}
+                    initial="hidden"
+                    animate="show"
+                    className="w-full lg:w-80 flex-shrink-0 space-y-3"
+                >
                     {tabs.map((tab) => (
-                        <button
+                        <motion.button
                             key={tab.id}
+                            variants={item}
                             onClick={() => setActiveTab(tab.id)}
                             className={cn(
-                                "flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200",
+                                "flex items-center justify-between w-full p-4 rounded-2xl text-left transition-all duration-300 border-2 group shadow-lg",
                                 activeTab === tab.id
-                                    ? "bg-primary text-primary-foreground shadow-md"
-                                    : "bg-card hover:bg-muted text-muted-foreground hover:text-foreground"
+                                    ? "bg-primary text-primary-foreground border-primary shadow-primary/20 scale-[1.02]"
+                                    : "bg-card text-muted-foreground border-border/40 hover:border-primary/40 hover:bg-muted"
                             )}
                         >
-                            <tab.icon className="w-4 h-4" />
-                            {tab.label}
-                        </button>
+                            <div className="flex items-center gap-4">
+                                <div className={cn(
+                                    "p-2.5 rounded-xl ring-1",
+                                    activeTab === tab.id ? "bg-white/20 ring-white/30" : "bg-slate-950 ring-white/5 group-hover:ring-primary/30"
+                                )}>
+                                    <tab.icon className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <p className="font-black text-xs uppercase tracking-widest">{tab.label}</p>
+                                    <p className={cn(
+                                        "text-[10px] font-medium opacity-60",
+                                        activeTab === tab.id ? "text-primary-foreground" : "text-muted-foreground"
+                                    )}>{tab.description}</p>
+                                </div>
+                            </div>
+                            <ChevronRight className={cn(
+                                "w-4 h-4 transition-transform",
+                                activeTab === tab.id ? "rotate-90 translate-x-1" : "opacity-0 group-hover:opacity-100"
+                            )} />
+                        </motion.button>
                     ))}
-                </div>
+                </motion.div>
 
-                {/* Content Area */}
+                {/* Content Box */}
                 <div className="flex-1">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20 }}
-                            transition={{ duration: 0.2 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.3 }}
                         >
                             {activeTab === "general" && (
-                                <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                                    <CardHeader>
-                                        <CardTitle>General Settings</CardTitle>
-                                        <CardDescription>System-wide configurations.</CardDescription>
+                                <Card className="border-2 border-border bg-card shadow-2xl overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-1 h-full bg-blue-500" />
+                                    <CardHeader className="border-b border-border/40 bg-muted/10">
+                                        <CardTitle className="text-xl font-black text-foreground uppercase tracking-tight">General System Settings</CardTitle>
+                                        <CardDescription className="text-muted-foreground font-medium">Core configuration for your PNS instance.</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="space-y-6">
-                                        <div className="space-y-2">
-                                            <Label>Application Name</Label>
+                                    <CardContent className="space-y-6 pt-8">
+                                        <div className="space-y-3 p-4 rounded-xl bg-muted/30 border-2 border-border/50">
+                                            <Label className="text-[10px] font-black uppercase tracking-widest text-primary">Application Identification</Label>
                                             <Input
                                                 value={settings.appName}
                                                 onChange={(e) => setSettings({ ...settings, appName: e.target.value })}
+                                                className="bg-muted/20 border-border/40 font-bold h-11 text-foreground"
                                             />
                                         </div>
-                                        <div className="space-y-2">
-                                            <Label>Support Email</Label>
+                                        <div className="space-y-3 p-4 rounded-xl bg-muted/30 border-2 border-border/50">
+                                            <Label className="text-[10px] font-black uppercase tracking-widest text-primary">System Support Channel</Label>
                                             <div className="relative">
-                                                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                                <Mail className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
                                                 <Input
-                                                    className="pl-9"
+                                                    className="pl-10 bg-muted/20 border-border/40 font-bold h-11 text-foreground"
                                                     value={settings.supportEmail}
                                                     onChange={(e) => setSettings({ ...settings, supportEmail: e.target.value })}
                                                 />
                                             </div>
                                         </div>
                                     </CardContent>
-                                    <CardFooter>
-                                        <Button onClick={handleSave} disabled={isLoading}>
-                                            {isLoading ? "Saving..." : "Save Changes"}
+                                    <CardFooter className="bg-muted/5 border-t border-border/40 p-6">
+                                        <Button onClick={handleSave} disabled={isLoading} className="bg-primary hover:bg-primary/90 font-black uppercase tracking-widest px-8 shadow-lg shadow-primary/20">
+                                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                            Save All Changes
                                         </Button>
                                     </CardFooter>
                                 </Card>
                             )}
 
                             {activeTab === "appearance" && (
-                                <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                                    <CardHeader>
-                                        <CardTitle>Appearance</CardTitle>
-                                        <CardDescription>Customize how the dashboard looks and feels.</CardDescription>
+                                <Card className="border-2 border-border bg-card shadow-2xl overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-1 h-full bg-purple-500" />
+                                    <CardHeader className="border-b border-border/40 bg-muted/10">
+                                        <CardTitle className="text-xl font-black text-foreground uppercase tracking-tight text-purple-500">Visual Experience</CardTitle>
+                                        <CardDescription className="text-muted-foreground font-medium">Control the interface look and performance.</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="space-y-6">
-                                        <div className="flex items-center justify-between p-4 border rounded-lg bg-card/50">
-                                            <div className="space-y-0.5">
-                                                <Label className="text-base">Theme Preference</Label>
-                                                <p className="text-sm text-muted-foreground">
-                                                    Toggle between light and dark modes.
-                                                </p>
+                                    <CardContent className="space-y-6 pt-8">
+                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-6 border-2 border-border/50 rounded-2xl bg-muted/30 gap-4">
+                                            <div className="space-y-1">
+                                                <Label className="text-sm font-black text-foreground">System Color Mode</Label>
+                                                <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-tighter">Choose your preferred visual atmosphere</p>
                                             </div>
-                                            <div className="flex items-center gap-2 border p-1 rounded-full">
-                                                <Button
-                                                    variant={theme === 'light' ? 'default' : 'ghost'}
-                                                    size="sm"
-                                                    className="rounded-full h-8"
-                                                    onClick={() => setTheme("light")}
-                                                >
-                                                    Light
-                                                </Button>
-                                                <Button
-                                                    variant={theme === 'dark' ? 'default' : 'ghost'}
-                                                    size="sm"
-                                                    className="rounded-full h-8"
-                                                    onClick={() => setTheme("dark")}
-                                                >
-                                                    Dark
-                                                </Button>
-                                                <Button
-                                                    variant={theme === 'system' ? 'default' : 'ghost'}
-                                                    size="sm"
-                                                    className="rounded-full h-8"
-                                                    onClick={() => setTheme("system")}
-                                                >
-                                                    System
-                                                </Button>
+                                            <div className="flex items-center gap-1.5 bg-muted/30 p-1.5 rounded-full border-2 border-border/40 shadow-inner">
+                                                {['light', 'dark', 'system'].map((m) => (
+                                                    <Button
+                                                        key={m}
+                                                        variant={theme === m ? 'default' : 'ghost'}
+                                                        size="sm"
+                                                        className={cn(
+                                                            "rounded-full h-8 px-4 text-[10px] font-black uppercase",
+                                                            theme === m && "shadow-lg"
+                                                        )}
+                                                        onClick={() => setTheme(m as any)}
+                                                    >
+                                                        {m}
+                                                    </Button>
+                                                ))}
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center justify-between p-4 border rounded-lg bg-card/50">
-                                            <div className="space-y-0.5">
-                                                <Label className="text-base">Reduce Animations</Label>
-                                                <p className="text-sm text-muted-foreground">
-                                                    Turn off complex animations for better performance.
-                                                </p>
+                                        <div className="flex items-center justify-between p-6 border-2 border-border/50 rounded-2xl bg-muted/30">
+                                            <div className="space-y-1">
+                                                <Label className="text-sm font-black text-foreground">Performance Mode</Label>
+                                                <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-tighter">Reduce UI animations for faster rendering</p>
                                             </div>
                                             <Switch
                                                 checked={!settings.appearance.animations}
@@ -176,6 +202,7 @@ export default function SettingsPage() {
                                                     ...settings,
                                                     appearance: { ...settings.appearance, animations: !c }
                                                 })}
+                                                className="data-[state=checked]:bg-emerald-500"
                                             />
                                         </div>
                                     </CardContent>
@@ -183,153 +210,128 @@ export default function SettingsPage() {
                             )}
 
                             {activeTab === "notifications" && (
-                                <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                                    <CardHeader>
-                                        <CardTitle>Notification Preferences</CardTitle>
-                                        <CardDescription>Control what alerts you receive.</CardDescription>
+                                <Card className="border-2 border-border bg-card shadow-2xl overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-1 h-full bg-rose-500" />
+                                    <CardHeader className="border-b border-border/40 bg-muted/10">
+                                        <CardTitle className="text-xl font-black text-foreground uppercase tracking-tight text-rose-500">Communication Prefs</CardTitle>
+                                        <CardDescription className="text-muted-foreground font-medium">Set how the system talks back to you.</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="space-y-6">
-                                        <div className="flex items-center justify-between p-4 border rounded-lg bg-card/50">
-                                            <div className="space-y-0.5">
-                                                <Label className="text-base">Email Notifications</Label>
-                                                <p className="text-sm text-muted-foreground">
-                                                    Receive daily summaries via email.
-                                                </p>
+                                    <CardContent className="space-y-4 pt-8">
+                                        {[
+                                            { key: 'email', label: 'Email Summaries', desc: 'Daily activity reports via email', icon: Mail },
+                                            { key: 'push', label: 'Push Alerts', desc: 'Instant browser notifications', icon: Bell },
+                                            { key: 'security', label: 'Security Locks', desc: 'Locked critical security alerts', icon: Shield, locked: true },
+                                        ].map((item) => (
+                                            <div key={item.key} className="flex items-center justify-between p-5 border-2 border-border/50 rounded-2xl bg-muted/30 group hover:border-rose-500/30 transition-all">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="p-2 rounded-xl bg-card border border-border group-hover:scale-110 transition-transform">
+                                                        <item.icon className="w-5 h-5 text-rose-500" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[10px] text-muted-foreground font-bold uppercase">{item.desc}</p>
+                                                    </div>
+                                                </div>
+                                                <Switch
+                                                    checked={(settings.notifications as any)[item.key]}
+                                                    disabled={item.locked}
+                                                    onCheckedChange={(c) => setSettings({
+                                                        ...settings,
+                                                        notifications: { ...settings.notifications, [item.key]: c }
+                                                    })}
+                                                />
                                             </div>
-                                            <Switch
-                                                checked={settings.notifications.email}
-                                                onCheckedChange={(c) => setSettings({
-                                                    ...settings,
-                                                    notifications: { ...settings.notifications, email: c }
-                                                })}
-                                            />
-                                        </div>
-                                        <div className="flex items-center justify-between p-4 border rounded-lg bg-card/50">
-                                            <div className="space-y-0.5">
-                                                <Label className="text-base">Push Notifications</Label>
-                                                <p className="text-sm text-muted-foreground">
-                                                    Real-time alerts for critical events.
-                                                </p>
-                                            </div>
-                                            <Switch
-                                                checked={settings.notifications.push}
-                                                onCheckedChange={(c) => setSettings({
-                                                    ...settings,
-                                                    notifications: { ...settings.notifications, push: c }
-                                                })}
-                                            />
-                                        </div>
-                                        <div className="flex items-center justify-between p-4 border rounded-lg bg-card/50">
-                                            <div className="space-y-0.5">
-                                                <Label className="text-base">Security Alerts</Label>
-                                                <p className="text-sm text-muted-foreground">
-                                                    Notify me about suspicious login attempts.
-                                                </p>
-                                            </div>
-                                            <Switch
-                                                checked={settings.notifications.security}
-                                                disabled
-                                            />
-                                        </div>
+                                        ))}
                                     </CardContent>
                                 </Card>
                             )}
 
                             {activeTab === "api" && (
-                                <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                                    <CardHeader>
-                                        <CardTitle>API Configuration</CardTitle>
-                                        <CardDescription>Manage API keys and access tokens.</CardDescription>
+                                <Card className="border-2 border-border bg-card shadow-2xl overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
+                                    <CardHeader className="border-b border-border/40 bg-muted/10">
+                                        <CardTitle className="text-xl font-black text-foreground uppercase tracking-tight text-emerald-500">Access & Integration</CardTitle>
+                                        <CardDescription className="text-muted-foreground font-medium">Manage your secret keys and authentication.</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="space-y-6">
-                                        <div className="space-y-2">
-                                            <Label>Public API Key</Label>
-                                            <div className="relative">
-                                                <Input readOnly value="pk_live_51M...xYz" className="font-mono bg-muted/50" />
-                                                <Button size="sm" variant="ghost" className="absolute right-1 top-1 h-8" onClick={() => {
-                                                    navigator.clipboard.writeText("pk_live_51M...xYz");
-                                                    toast.success("Copied to clipboard");
-                                                }}>
+                                    <CardContent className="space-y-6 pt-8">
+                                        <div className="space-y-3 p-5 rounded-2xl bg-muted/30 border-2 border-border/40">
+                                            <div className="flex items-center justify-between">
+                                                <Label className="text-[10px] font-black uppercase tracking-widest text-emerald-500">Master API Key</Label>
+                                                <Badge variant="outline" className="text-[8px] bg-emerald-500/10 text-emerald-500 border-emerald-500/20">LIVE</Badge>
+                                            </div>
+                                            <div className="relative group">
+                                                <Input readOnly value="pk_live_51M...xYz" className="font-mono bg-muted/20 border-border/40 h-11 pr-12 text-foreground" />
+                                                <Button 
+                                                    size="icon" 
+                                                    variant="ghost" 
+                                                    className="absolute right-1 top-1.5 h-8 w-8 hover:bg-muted" 
+                                                    onClick={() => {
+                                                        navigator.clipboard.writeText("pk_live_51M...xYz");
+                                                        toast.success("Public key copied");
+                                                    }}
+                                                >
                                                     <Copy className="h-4 w-4" />
                                                 </Button>
                                             </div>
                                         </div>
-                                        <div className="space-y-2">
-                                            <Label>Secret Key</Label>
-                                            <div className="relative">
-                                                <Input type="password" readOnly value="sk_live_..." className="font-mono bg-muted/50" />
-                                                <Button size="sm" variant="outline" className="absolute right-1 top-1 h-8 bg-background">Reveal</Button>
+                                        <div className="p-4 rounded-xl bg-emerald-500/5 border-2 border-emerald-500/20 flex gap-4">
+                                            <div className="p-3 rounded-full bg-emerald-500/10 h-fit">
+                                                <Terminal className="w-5 h-5 text-emerald-500" />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <h4 className="text-sm font-black text-foreground uppercase tracking-tight">Security Protocol</h4>
+                                                <p className="text-[10px] text-muted-foreground leading-relaxed font-medium">
+                                                    Store your secret keys in a secure server-side environment. Never expose keys in client-side codebases or public repositories.
+                                                </p>
                                             </div>
                                         </div>
-                                        <div className="pt-4 p-4 border rounded-lg bg-blue-500/5 border-blue-500/20">
-                                            <h4 className="text-sm font-semibold flex items-center gap-2 mb-2">
-                                                <Terminal className="w-4 h-4 text-blue-500" />
-                                                Quick Integration
-                                            </h4>
-                                            <p className="text-xs text-muted-foreground mb-4">
-                                                Use your Secret Key to authenticate requests from your server. Never share your secret key in client-side code.
-                                            </p>
-                                        </div>
-                                        <div className="pt-2">
-                                            <Button variant="destructive" className="w-full sm:w-auto">Roll API Keys</Button>
-                                        </div>
+                                        <Button variant="destructive" className="w-full font-black uppercase tracking-widest shadow-xl shadow-destructive/10">Rotate Credentials</Button>
                                     </CardContent>
                                 </Card>
                             )}
 
                             {activeTab === "docs" && (
-                                <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                                    <CardHeader>
-                                        <CardTitle>Developer Documentation</CardTitle>
-                                        <CardDescription>How to integrate PNS into your applications.</CardDescription>
+                                <Card className="border-2 border-border bg-card shadow-2xl overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-1 h-full bg-blue-500" />
+                                    <CardHeader className="border-b border-border/40 bg-muted/10">
+                                        <CardTitle className="text-xl font-black text-foreground uppercase tracking-tight text-blue-500">Developer Handbook</CardTitle>
+                                        <CardDescription className="text-muted-foreground font-medium">How to connect and scale with PNS.</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="space-y-8">
-                                        <div className="space-y-4">
-                                            <h3 className="text-lg font-semibold">Send Notification</h3>
-                                            <div className="flex items-center gap-2 text-sm">
-                                                <span className="px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 font-bold">POST</span>
-                                                <code className="text-muted-foreground">/api/Notification</code>
+                                    <CardContent className="space-y-8 pt-8">
+                                        <div className="space-y-6">
+                                            <div className="space-y-3">
+                                                <h3 className="text-sm font-black text-foreground flex items-center gap-2 uppercase tracking-tight">
+                                                    <div className="w-2 h-2 rounded-full bg-blue-500" /> Standard Endpoint
+                                                </h3>
+                                                <div className="flex items-center gap-3 p-4 rounded-xl bg-muted/30 border-2 border-border/50">
+                                                    <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-[10px] font-black border border-blue-500/30">POST</span>
+                                                    <code className="text-xs font-mono text-foreground">/api/Notification/send</code>
+                                                </div>
                                             </div>
 
-                                            <div className="space-y-4">
-                                                <div className="space-y-2">
-                                                    <Label>Request Body (JSON)</Label>
-                                                    <pre className="p-4 rounded-lg bg-muted text-xs overflow-x-auto font-mono">
+                                            <div className="space-y-3">
+                                                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Payload Architecture</Label>
+                                                <div className="relative group">
+                                                    <pre className="p-5 rounded-2xl bg-muted border-2 border-border/50 text-[11px] overflow-x-auto font-mono text-foreground leading-relaxed shadow-inner">
                                                         {`{
   "title": "Alert Title",
-  "message": "Your notification message here",
+  "message": "Notification message body",
   "to": ["user@example.com"],
-  "clientApplicationId": "your-app-id",
-  "notificationTypeId": "type-id",
-  "priorityId": "priority-id"
+  "appId": "CLIENT_APP_ID"
 }`}
                                                     </pre>
+                                                    <Button size="icon" variant="ghost" className="absolute right-3 top-3 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        <Copy className="w-4 h-4" />
+                                                    </Button>
                                                 </div>
-
-                                                <div className="space-y-4">
-                                                    <Label>Example: Node.js (Axios)</Label>
-                                                    <pre className="p-4 rounded-lg bg-slate-950 text-slate-50 text-xs overflow-x-auto font-mono">
-                                                        {`const axios = require('axios');
-
-const sendNotification = async () => {
-  try {
-    const response = await axios.post('https://pns.example.com/api/Notification', {
-      title: 'Hello World',
-      message: 'This is a test notification',
-      to: ['recipient@email.com'],
-      clientApplicationId: 'APP_ID'
-    }, {
-      headers: {
-        'Authorization': 'Bearer YOUR_SECRET_KEY'
-      }
-    });
-    console.log('Sent:', response.data.id);
-  } catch (err) {
-    console.error('Failed:', err.message);
-  }
-};`}
-                                                    </pre>
+                                            </div>
+                                            <div className="p-4 rounded-2xl bg-slate-900 border-2 border-border/40 flex items-center justify-between group cursor-pointer hover:border-blue-500/30 transition-all">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="p-2 rounded-lg bg-blue-500/10">
+                                                        <Code className="w-4 h-4 text-blue-500" />
+                                                    </div>
+                                                    <span className="text-xs font-black uppercase text-white tracking-tight">Full SDK Documentation</span>
                                                 </div>
+                                                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
                                             </div>
                                         </div>
                                     </CardContent>

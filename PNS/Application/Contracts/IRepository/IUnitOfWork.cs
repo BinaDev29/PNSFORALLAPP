@@ -1,4 +1,4 @@
-﻿// File Path: Application/Contracts/IRepository/IUnitOfWork.cs
+// File Path: Application/Contracts/IRepository/IUnitOfWork.cs
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +15,8 @@ namespace Application.Contracts.IRepository
         IEmailTemplateRepository EmailTemplates { get; }
         IPriorityRepository Priorities { get; }
         ISmsTemplateRepository SmsTemplates { get; } // ይህ ጎድሎ ነበር፣ ጨምር።
+        IDeviceTokenRepository DeviceTokens { get; }
 
-        Task<int> Save(CancellationToken cancellationToken);
+        Task<int> Save(CancellationToken cancellationToken = default);
     }
 }

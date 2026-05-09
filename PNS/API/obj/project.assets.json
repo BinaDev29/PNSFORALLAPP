@@ -89,6 +89,24 @@
           }
         }
       },
+      "FirebaseAdmin/3.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Api.Gax.Rest": "4.13.1",
+          "Google.Apis.Auth": "1.73.0",
+          "System.Collections.Immutable": "8.0.0"
+        },
+        "compile": {
+          "lib/net6.0/FirebaseAdmin.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/FirebaseAdmin.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "FluentValidation/11.9.0": {
         "type": "package",
         "compile": {
@@ -116,6 +134,92 @@
         "runtime": {
           "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
             "related": ".xml"
+          }
+        }
+      },
+      "Google.Api.Gax/4.13.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
+          "Newtonsoft.Json": "13.0.4",
+          "System.Diagnostics.DiagnosticSource": "6.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Api.Gax.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Api.Gax.Rest/4.13.1": {
+        "type": "package",
+        "dependencies": {
+          "Google.Api.Gax": "4.13.1",
+          "Google.Apis.Auth": "1.73.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Api.Gax.Rest.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Api.Gax.Rest.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Apis/1.73.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis.Core": "1.73.0"
+        },
+        "compile": {
+          "lib/net6.0/Google.Apis.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.73.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis": "1.73.0",
+          "Google.Apis.Core": "1.73.0",
+          "System.Management": "7.0.2"
+        },
+        "compile": {
+          "lib/net6.0/Google.Apis.Auth.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.Auth.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Apis.Core/1.73.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.4"
+        },
+        "compile": {
+          "lib/net6.0/Google.Apis.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.Core.dll": {
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -1516,7 +1620,7 @@
           "buildTransitive/Mono.TextTemplating.targets": {}
         }
       },
-      "Newtonsoft.Json/13.0.3": {
+      "Newtonsoft.Json/13.0.4": {
         "type": "package",
         "compile": {
           "lib/net6.0/Newtonsoft.Json.dll": {
@@ -1541,6 +1645,23 @@
         },
         "runtime": {
           "lib/net5.0/Pipelines.Sockets.Unofficial.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "RabbitMQ.Client/7.2.1": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.Pipelines": "8.0.0",
+          "System.Threading.RateLimiting": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/RabbitMQ.Client.dll": {
             "related": ".xml"
           }
         }
@@ -1828,31 +1949,31 @@
           }
         }
       },
-      "System.CodeDom/6.0.0": {
+      "System.CodeDom/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net7.0/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/System.CodeDom.dll": {
+          "lib/net7.0/System.CodeDom.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
+          "buildTransitive/net6.0/_._": {}
         }
       },
-      "System.Collections.Immutable/7.0.0": {
+      "System.Collections.Immutable/8.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/_._": {
+          "lib/net8.0/System.Collections.Immutable.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net7.0/System.Collections.Immutable.dll": {
+          "lib/net8.0/System.Collections.Immutable.dll": {
             "related": ".xml"
           }
         },
@@ -2188,6 +2309,31 @@
         },
         "build": {
           "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "System.Management/7.0.2": {
+        "type": "package",
+        "dependencies": {
+          "System.CodeDom": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/System.Management.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/System.Management.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net7.0/System.Management.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
       "System.Memory/4.5.4": {
@@ -2626,6 +2772,22 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "System.Threading.RateLimiting/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Threading.RateLimiting.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Threading.RateLimiting.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "System.Threading.Tasks/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2730,6 +2892,7 @@
         "dependencies": {
           "Application": "1.0.0",
           "Domain": "1.0.0",
+          "FirebaseAdmin": "3.5.0",
           "MailKit": "4.3.0",
           "MediatR": "12.2.0",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.0",
@@ -2738,7 +2901,8 @@
           "Microsoft.Extensions.Hosting.Abstractions": "9.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.0",
           "Microsoft.Extensions.Options": "9.0.0",
-          "Newtonsoft.Json": "13.0.3",
+          "Newtonsoft.Json": "13.0.4",
+          "RabbitMQ.Client": "7.2.1",
           "SendGrid": "9.29.3",
           "Twilio": "7.13.0"
         },
@@ -2864,6 +3028,24 @@
         "packageIcon.png"
       ]
     },
+    "FirebaseAdmin/3.5.0": {
+      "sha512": "NL9dWvrGCbgu3VxumjpHXgHsagQswntJNLtgVIgTF/y2ro6e6UpvFuZrlfjsMTzRXJEXqnse3U5rN/6HC5TlFA==",
+      "type": "package",
+      "path": "firebaseadmin/3.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "firebaseadmin.3.5.0.nupkg.sha512",
+        "firebaseadmin.nuspec",
+        "lib/net462/FirebaseAdmin.dll",
+        "lib/net462/FirebaseAdmin.xml",
+        "lib/net6.0/FirebaseAdmin.dll",
+        "lib/net6.0/FirebaseAdmin.xml",
+        "lib/netstandard2.0/FirebaseAdmin.dll",
+        "lib/netstandard2.0/FirebaseAdmin.xml"
+      ]
+    },
     "FluentValidation/11.9.0": {
       "sha512": "VneVlTvwYDkfHV5av3QrQ0amALgrLX6LV94wlYyEsh0B/klJBW7C8y2eAtj5tOZ3jH6CAVpr4s1ZGgew/QWyig==",
       "type": "package",
@@ -2904,6 +3086,110 @@
         "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.xml",
         "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll",
         "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.xml"
+      ]
+    },
+    "Google.Api.Gax/4.13.1": {
+      "sha512": "ujDpZk7O2VqAEIqcSlhH0FKzVpGZWly/qcNjHxpNUrL445Tei9PHnu4V1pwW2WDiMDvo3TpL1Bi4DeU525Afrg==",
+      "type": "package",
+      "path": "google.api.gax/4.13.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.api.gax.4.13.1.nupkg.sha512",
+        "google.api.gax.nuspec",
+        "lib/net462/Google.Api.Gax.dll",
+        "lib/net462/Google.Api.Gax.pdb",
+        "lib/net462/Google.Api.Gax.xml",
+        "lib/netstandard2.0/Google.Api.Gax.dll",
+        "lib/netstandard2.0/Google.Api.Gax.pdb",
+        "lib/netstandard2.0/Google.Api.Gax.xml"
+      ]
+    },
+    "Google.Api.Gax.Rest/4.13.1": {
+      "sha512": "wDfFZXKoHC6sy+Yfub/4cLQOb5ozBVPqDOrxCUAeTfku4d96ILqgzulJSdkPHbiT3oWB3hlYTdJgUwNSJjyo+A==",
+      "type": "package",
+      "path": "google.api.gax.rest/4.13.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.api.gax.rest.4.13.1.nupkg.sha512",
+        "google.api.gax.rest.nuspec",
+        "lib/net462/Google.Api.Gax.Rest.dll",
+        "lib/net462/Google.Api.Gax.Rest.pdb",
+        "lib/net462/Google.Api.Gax.Rest.xml",
+        "lib/netstandard2.0/Google.Api.Gax.Rest.dll",
+        "lib/netstandard2.0/Google.Api.Gax.Rest.pdb",
+        "lib/netstandard2.0/Google.Api.Gax.Rest.xml"
+      ]
+    },
+    "Google.Apis/1.73.0": {
+      "sha512": "TnCjEyV2aCLQ6Zl40OCbEJULDuEkEWc6C/g81KYw5l1PqGo+G7pFZrV+YH8XgUL0JRUanz+IrUp8SsKF4dzkqg==",
+      "type": "package",
+      "path": "google.apis/1.73.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.1.73.0.nupkg.sha512",
+        "google.apis.nuspec",
+        "lib/net462/Google.Apis.dll",
+        "lib/net462/Google.Apis.pdb",
+        "lib/net462/Google.Apis.xml",
+        "lib/net6.0/Google.Apis.dll",
+        "lib/net6.0/Google.Apis.pdb",
+        "lib/net6.0/Google.Apis.xml",
+        "lib/netstandard2.0/Google.Apis.dll",
+        "lib/netstandard2.0/Google.Apis.pdb",
+        "lib/netstandard2.0/Google.Apis.xml"
+      ]
+    },
+    "Google.Apis.Auth/1.73.0": {
+      "sha512": "wEu12uhnRv3zrPBSqv4E2vPH6lYLtc1RPAnU9MJRCMFlBVwZ7Lnq3NfbYXi6VG7EurkYInTaMpeBZkbM/HrAog==",
+      "type": "package",
+      "path": "google.apis.auth/1.73.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.auth.1.73.0.nupkg.sha512",
+        "google.apis.auth.nuspec",
+        "lib/net462/Google.Apis.Auth.dll",
+        "lib/net462/Google.Apis.Auth.pdb",
+        "lib/net462/Google.Apis.Auth.xml",
+        "lib/net6.0/Google.Apis.Auth.dll",
+        "lib/net6.0/Google.Apis.Auth.pdb",
+        "lib/net6.0/Google.Apis.Auth.xml",
+        "lib/netstandard2.0/Google.Apis.Auth.dll",
+        "lib/netstandard2.0/Google.Apis.Auth.pdb",
+        "lib/netstandard2.0/Google.Apis.Auth.xml"
+      ]
+    },
+    "Google.Apis.Core/1.73.0": {
+      "sha512": "vSc7CY4KCP7HE4QTElDx/ExnGLbg9kXb89MS6cdvI+0D4sxvTYb16vGtXmF2jSDMV3iDmykSXdIUPTz8TDS6gg==",
+      "type": "package",
+      "path": "google.apis.core/1.73.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.core.1.73.0.nupkg.sha512",
+        "google.apis.core.nuspec",
+        "lib/net462/Google.Apis.Core.dll",
+        "lib/net462/Google.Apis.Core.pdb",
+        "lib/net462/Google.Apis.Core.xml",
+        "lib/net6.0/Google.Apis.Core.dll",
+        "lib/net6.0/Google.Apis.Core.pdb",
+        "lib/net6.0/Google.Apis.Core.xml",
+        "lib/netstandard2.0/Google.Apis.Core.dll",
+        "lib/netstandard2.0/Google.Apis.Core.pdb",
+        "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -5617,10 +5903,10 @@
         "readme.md"
       ]
     },
-    "Newtonsoft.Json/13.0.3": {
-      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+    "Newtonsoft.Json/13.0.4": {
+      "sha512": "pdgNNMai3zv51W5aq268sujXUyx7SNdE2bj1wZcWjAQrKMFZV260lbqYop1d2GM67JI1huLRwxo9ZqnfF/lC6A==",
       "type": "package",
-      "path": "newtonsoft.json/13.0.3",
+      "path": "newtonsoft.json/13.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5642,7 +5928,7 @@
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.13.0.4.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
@@ -5668,6 +5954,23 @@
         "lib/netstandard2.1/Pipelines.Sockets.Unofficial.xml",
         "pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
         "pipelines.sockets.unofficial.nuspec"
+      ]
+    },
+    "RabbitMQ.Client/7.2.1": {
+      "sha512": "YKXEfg9fVQiTKgZlvIhAfPSFaamEgi8DsQmisCH0IAsU4FYLrtoguDrDj6JtJVGUt40QPnBLRH6fTQcAC4qsOg==",
+      "type": "package",
+      "path": "rabbitmq.client/7.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net8.0/RabbitMQ.Client.dll",
+        "lib/net8.0/RabbitMQ.Client.xml",
+        "lib/netstandard2.0/RabbitMQ.Client.dll",
+        "lib/netstandard2.0/RabbitMQ.Client.xml",
+        "rabbitmq.client.7.2.1.nupkg.sha512",
+        "rabbitmq.client.nuspec"
       ]
     },
     "SendGrid/9.29.3": {
@@ -6068,39 +6371,43 @@
         "system.clientmodel.nuspec"
       ]
     },
-    "System.CodeDom/6.0.0": {
-      "sha512": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
+    "System.CodeDom/7.0.0": {
+      "sha512": "GLltyqEsE5/3IE+zYRP5sNa1l44qKl9v+bfdMcwg+M9qnQf47wK3H0SUR/T+3N4JEQXF3vV4CSuuo0rsg+nq2A==",
       "type": "package",
-      "path": "system.codedom/6.0.0",
+      "path": "system.codedom/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.CodeDom.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.CodeDom.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.CodeDom.dll",
-        "lib/net461/System.CodeDom.xml",
+        "lib/net462/System.CodeDom.dll",
+        "lib/net462/System.CodeDom.xml",
         "lib/net6.0/System.CodeDom.dll",
         "lib/net6.0/System.CodeDom.xml",
+        "lib/net7.0/System.CodeDom.dll",
+        "lib/net7.0/System.CodeDom.xml",
         "lib/netstandard2.0/System.CodeDom.dll",
         "lib/netstandard2.0/System.CodeDom.xml",
-        "system.codedom.6.0.0.nupkg.sha512",
+        "system.codedom.7.0.0.nupkg.sha512",
         "system.codedom.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Collections.Immutable/7.0.0": {
-      "sha512": "dQPcs0U1IKnBdRDBkrCTi1FoajSTBzLcVTpjO4MBCMC7f4pDOIPzgBoX8JjG7X6uZRJ8EBxsi8+DR1JuwjnzOQ==",
+    "System.Collections.Immutable/8.0.0": {
+      "sha512": "AurL6Y5BA1WotzlEvVaIDpqzpIPvYnnldxru8oXJU2yFxFUy3+pNXjXd1ymO+RA0rq0+590Q8gaz2l3Sr7fmqg==",
       "type": "package",
-      "path": "system.collections.immutable/7.0.0",
+      "path": "system.collections.immutable/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
-        "README.md",
+        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
         "buildTransitive/net461/System.Collections.Immutable.targets",
         "buildTransitive/net462/_._",
@@ -6112,9 +6419,11 @@
         "lib/net6.0/System.Collections.Immutable.xml",
         "lib/net7.0/System.Collections.Immutable.dll",
         "lib/net7.0/System.Collections.Immutable.xml",
+        "lib/net8.0/System.Collections.Immutable.dll",
+        "lib/net8.0/System.Collections.Immutable.xml",
         "lib/netstandard2.0/System.Collections.Immutable.dll",
         "lib/netstandard2.0/System.Collections.Immutable.xml",
-        "system.collections.immutable.7.0.0.nupkg.sha512",
+        "system.collections.immutable.8.0.0.nupkg.sha512",
         "system.collections.immutable.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6782,6 +7091,34 @@
         "lib/netstandard2.0/System.IO.Pipelines.xml",
         "system.io.pipelines.10.0.0.nupkg.sha512",
         "system.io.pipelines.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Management/7.0.2": {
+      "sha512": "/qEUN91mP/MUQmJnM5y5BdT7ZoPuVrtxnFlbJ8a3kBJGhe2wCzBfnPFtK2wTtEEcf3DMGR9J00GZZfg6HRI6yA==",
+      "type": "package",
+      "path": "system.management/7.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Management.targets",
+        "lib/net462/_._",
+        "lib/net6.0/System.Management.dll",
+        "lib/net6.0/System.Management.xml",
+        "lib/net7.0/System.Management.dll",
+        "lib/net7.0/System.Management.xml",
+        "lib/netstandard2.0/System.Management.dll",
+        "lib/netstandard2.0/System.Management.xml",
+        "runtimes/win/lib/net6.0/System.Management.dll",
+        "runtimes/win/lib/net6.0/System.Management.xml",
+        "runtimes/win/lib/net7.0/System.Management.dll",
+        "runtimes/win/lib/net7.0/System.Management.xml",
+        "system.management.7.0.2.nupkg.sha512",
+        "system.management.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -8038,6 +8375,35 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "System.Threading.RateLimiting/8.0.0": {
+      "sha512": "7mu9v0QDv66ar3DpGSZHg9NuNcxDaaAcnMULuZlaTpP9+hwXhrxNGsF5GmLkSHxFdb5bBc1TzeujsRgTrPWi+Q==",
+      "type": "package",
+      "path": "system.threading.ratelimiting/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Threading.RateLimiting.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Threading.RateLimiting.targets",
+        "lib/net462/System.Threading.RateLimiting.dll",
+        "lib/net462/System.Threading.RateLimiting.xml",
+        "lib/net6.0/System.Threading.RateLimiting.dll",
+        "lib/net6.0/System.Threading.RateLimiting.xml",
+        "lib/net7.0/System.Threading.RateLimiting.dll",
+        "lib/net7.0/System.Threading.RateLimiting.xml",
+        "lib/net8.0/System.Threading.RateLimiting.dll",
+        "lib/net8.0/System.Threading.RateLimiting.xml",
+        "lib/netstandard2.0/System.Threading.RateLimiting.dll",
+        "lib/netstandard2.0/System.Threading.RateLimiting.xml",
+        "system.threading.ratelimiting.8.0.0.nupkg.sha512",
+        "system.threading.ratelimiting.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Threading.Tasks/4.3.0": {
       "sha512": "LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "type": "package",
@@ -8387,8 +8753,30 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AutoMapper' 12.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MailKit' 4.3.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-9j88-vvj5-vhgr",
+      "libraryId": "MailKit",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

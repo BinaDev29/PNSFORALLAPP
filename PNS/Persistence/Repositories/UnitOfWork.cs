@@ -1,4 +1,4 @@
-﻿// File Path: Persistence/Repositories/UnitOfWork.cs
+// File Path: Persistence/Repositories/UnitOfWork.cs
 using Application.Contracts.IRepository;
 using Domain.Models;
 using Persistence;
@@ -24,6 +24,7 @@ namespace Persistence.Repositories
 
         // FIX: Add a private field for the SMS template repository
         private readonly ISmsTemplateRepository _smsTemplates;
+        private readonly IDeviceTokenRepository _deviceTokens;
 
         public UnitOfWork(PnsDbContext dbContext,
             IClientApplicationRepository clientApplications,
@@ -34,8 +35,8 @@ namespace Persistence.Repositories
             IEmailTemplateRepository emailTemplates,
             IPriorityRepository priorities,
             IGenericRepository<NotificationHistory> notificationHistory,
-            // FIX: Add the SMS template repository to the constructor parameters
-            ISmsTemplateRepository smsTemplates)
+            ISmsTemplateRepository smsTemplates,
+            IDeviceTokenRepository deviceTokens)
         {
             _dbContext = dbContext;
             _clientApplications = clientApplications;
@@ -46,8 +47,8 @@ namespace Persistence.Repositories
             _emailTemplates = emailTemplates;
             _priorities = priorities;
             _notificationHistory = notificationHistory;
-            // FIX: Initialize the new repository field
             _smsTemplates = smsTemplates;
+            _deviceTokens = deviceTokens;
         }
 
         // Public properties to access the repositories
@@ -62,8 +63,9 @@ namespace Persistence.Repositories
 
         // FIX: Add the public property for the SMS template repository
         public ISmsTemplateRepository SmsTemplates => _smsTemplates;
+        public IDeviceTokenRepository DeviceTokens => _deviceTokens;
 
-        public async Task<int> Save(CancellationToken cancellationToken)
+        public async Task<int> Save(CancellationToken cancellationToken = default)
         {
             return await _dbContext.SaveChangesAsync(cancellationToken);
         }

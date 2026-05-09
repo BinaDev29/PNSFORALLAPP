@@ -1,11 +1,14 @@
-﻿// File Path: Infrastructure/BackgroundServices/SmsQueueProcessor.cs
+// File Path: Infrastructure/BackgroundServices/SmsQueueProcessor.cs
+using Application.Common.Interfaces;
 using Application.Contracts;
 using Application.Contracts.IRepository;
-using Infrastructure.Sms;
+using Domain.Events;
+using Domain.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -62,6 +65,11 @@ namespace Infrastructure.BackgroundServices
                                         if (!success) history.ErrorMessage = smsMessage.ErrorMessage;
                                         await unitOfWork.NotificationHistories.Update(history);
                                         await unitOfWork.Save(stoppingToken);
+
+                                        // Publish Domain Event
+                                        var domainEventService = scope.ServiceProvider.GetRequiredService<IDomainEventService>();
+                                        await domainEventService.PublishAsync(new SmsNotificationSentEvent(
+                                            notificationId, recipient, smsMessage.Body, null, success, smsMessage.ErrorMessage));
                                     }
                                 }
                             }
@@ -83,7 +91,8 @@ namespace Infrastructure.BackgroundServices
                             // Re-queue if retries available
                             if (smsMessage.RetryCount < smsMessage.MaxRetries)
                             {
-                                await Task.Delay(TimeSpan.FromMinutes(Math.Pow(2, smsMessage.RetryCount)), stoppingToken);
+                                smsMessage.RetryCount++;
+                                await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, smsMessage.RetryCount)), stoppingToken);
                                 await smsQueueService.EnqueueSmsAsync(smsMessage);
                             }
                             else

@@ -1,4 +1,4 @@
-﻿// File Path: Domain/Models/ClientApplication.cs
+// File Path: Domain/Models/ClientApplication.cs
 using Domain.Common;
 
 namespace Domain.Models
@@ -16,5 +16,8 @@ namespace Domain.Models
 
         public string? SmsSenderName { get; set; }
         public string? SmsSenderNumber { get; set; }
+
+        public string? WebhookUrl { get; set; }
+        public string? WebhookSecret { get; set; }
     }
 }
