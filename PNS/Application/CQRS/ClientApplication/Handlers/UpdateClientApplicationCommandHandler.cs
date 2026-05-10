@@ -1,4 +1,4 @@
-﻿// File Path: Application/CQRS/ClientApplication/Handlers/UpdateClientApplicationCommandHandler.cs
+// File Path: Application/CQRS/ClientApplication/Handlers/UpdateClientApplicationCommandHandler.cs
 using Application.Contracts.IRepository;
 using Application.CQRS.ClientApplication.Commands;
 using Application.DTO.ClientApplication.Validator;
@@ -29,7 +29,34 @@ namespace Application.CQRS.ClientApplication.Handlers
                 throw new NotFoundException(nameof(Domain.Models.ClientApplication), request.UpdateClientApplicationDto.Id);
             }
 
-            mapper.Map(request.UpdateClientApplicationDto, clientApplication);
+            // Only update fields that are provided
+            if (!string.IsNullOrEmpty(request.UpdateClientApplicationDto.Name))
+                clientApplication.Name = request.UpdateClientApplicationDto.Name;
+            
+            if (request.UpdateClientApplicationDto.Slogan != null)
+                clientApplication.Slogan = request.UpdateClientApplicationDto.Slogan;
+            
+            if (request.UpdateClientApplicationDto.Logo != null)
+                clientApplication.Logo = request.UpdateClientApplicationDto.Logo;
+            
+            if (!string.IsNullOrEmpty(request.UpdateClientApplicationDto.SenderEmail))
+                clientApplication.SenderEmail = request.UpdateClientApplicationDto.SenderEmail;
+            
+            if (!string.IsNullOrEmpty(request.UpdateClientApplicationDto.AppPassword))
+                clientApplication.AppPassword = request.UpdateClientApplicationDto.AppPassword;
+            
+            if (request.UpdateClientApplicationDto.SmsSenderName != null)
+                clientApplication.SmsSenderName = request.UpdateClientApplicationDto.SmsSenderName;
+            
+            if (request.UpdateClientApplicationDto.SmsSenderNumber != null)
+                clientApplication.SmsSenderNumber = request.UpdateClientApplicationDto.SmsSenderNumber;
+
+            if (request.UpdateClientApplicationDto.WebhookUrl != null)
+                clientApplication.WebhookUrl = request.UpdateClientApplicationDto.WebhookUrl;
+
+            if (request.UpdateClientApplicationDto.WebhookSecret != null)
+                clientApplication.WebhookSecret = request.UpdateClientApplicationDto.WebhookSecret;
+
             await unitOfWork.ClientApplications.Update(clientApplication, cancellationToken);
 
             // የጠፋው የ Save ጥሪ እዚህ ላይ ታክሏል!

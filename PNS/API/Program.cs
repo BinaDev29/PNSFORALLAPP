@@ -212,7 +212,7 @@ app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 // Health check endpoint
-app.MapHealthChecks("/health", new HealthCheckOptions
+app.MapHealthChecks("/api/health", new HealthCheckOptions
 {
     ResponseWriter = async (context, report) =>
     {

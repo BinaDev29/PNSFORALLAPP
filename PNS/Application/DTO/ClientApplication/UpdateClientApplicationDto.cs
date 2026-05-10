@@ -1,4 +1,4 @@
-﻿// File Path: Application/DTO/ClientApplication/UpdateClientApplicationDto.cs
+// File Path: Application/DTO/ClientApplication/UpdateClientApplicationDto.cs
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,7 +14,11 @@ namespace Application.DTO.ClientApplication
         public required string Name { get; set; }
         public string? Slogan { get; set; }
         public string? Logo { get; set; }
+        public string? SenderEmail { get; set; }
+        public string? AppPassword { get; set; }
         public string? SmsSenderName { get; set; }
         public string? SmsSenderNumber { get; set; }
+        public string? WebhookUrl { get; set; }
+        public string? WebhookSecret { get; set; }
     }
 }

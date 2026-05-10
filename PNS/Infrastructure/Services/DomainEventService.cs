@@ -24,8 +24,8 @@ namespace Infrastructure.Services
             try
             {
                 // Better logging for clarity
-                _logger.LogInformation("Publishing domain event: {EventType} for AggregateId: {AggregateId}",
-                    domainEvent.GetType().Name, ((AggregateRoot)domainEvent).Id);
+                _logger.LogInformation("Publishing domain event: {EventType} for EventId: {EventId}",
+                    domainEvent.GetType().Name, domainEvent.Id);
 
                 await _mediator.Publish(domainEvent);
 

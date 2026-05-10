@@ -48,6 +48,8 @@ export default function TemplatesPage() {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState<EmailTemplate | null>(null);
     const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [editTemplate, setEditTemplate] = useState<EmailTemplate | null>(null);
 
     // Form state for new template
     const [newTemplate, setNewTemplate] = useState<CreateEmailTemplateRequest>({
@@ -72,6 +74,17 @@ export default function TemplatesPage() {
         }
     });
 
+    const updateMutation = useMutation({
+        mutationFn: ({ id, data }: { id: string, data: Partial<CreateEmailTemplateRequest> }) => 
+            DashboardService.updateEmailTemplate(id, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['emailTemplates'] });
+            toast.success("Template updated successfully");
+            setIsEditOpen(false);
+            setEditTemplate(null);
+        }
+    });
+
     const deleteMutation = useMutation({
         mutationFn: DashboardService.deleteEmailTemplate,
         onSuccess: () => {
@@ -87,6 +100,26 @@ export default function TemplatesPage() {
             return;
         }
         createMutation.mutate(newTemplate);
+    };
+
+    const handleEditSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!editTemplate) return;
+        
+        if (!editTemplate.name || !editTemplate.subject || !editTemplate.bodyHtml) {
+            toast.error("Please fill all required fields");
+            return;
+        }
+
+        updateMutation.mutate({
+            id: editTemplate.id,
+            data: {
+                name: editTemplate.name,
+                subject: editTemplate.subject,
+                bodyHtml: editTemplate.bodyHtml,
+                bodyText: editTemplate.bodyText
+            }
+        });
     };
 
     return (
@@ -190,7 +223,13 @@ export default function TemplatesPage() {
                                                             setSelectedTemplate(template);
                                                             setIsPreviewOpen(true);
                                                         }} />
-                                                        <Edit className="w-4 h-4 text-muted-foreground cursor-pointer hover:text-blue-500" />
+                                                        <Edit 
+                                                            className="w-4 h-4 text-muted-foreground cursor-pointer hover:text-blue-500" 
+                                                            onClick={() => {
+                                                                setEditTemplate(template);
+                                                                setIsEditOpen(true);
+                                                            }}
+                                                        />
                                                     </div>
                                                     <div className="flex items-center gap-1 mt-1 text-emerald-500/80">
                                                         <CheckCircle2 className="w-3 h-3" />
@@ -267,8 +306,67 @@ export default function TemplatesPage() {
                     </div>
                     <DialogFooter className="border-t border-border pt-4 px-2 bg-muted/20">
                         <Button variant="outline" onClick={() => setIsPreviewOpen(false)} className="font-bold border-2 border-border">Close Preview</Button>
-                        <Button className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold shadow-lg shadow-emerald-500/20">Edit Template</Button>
+                        <Button 
+                            className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold shadow-lg shadow-emerald-500/20"
+                            onClick={() => {
+                                setIsPreviewOpen(false);
+                                setEditTemplate(selectedTemplate);
+                                setIsEditOpen(true);
+                            }}
+                        >
+                            Edit Template
+                        </Button>
                     </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            {/* Edit Dialog */}
+            <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
+                <DialogContent className="max-w-2xl bg-card border-2 border-border shadow-2xl rounded-3xl overflow-hidden">
+                    <DialogHeader>
+                        <DialogTitle className="text-2xl font-black uppercase tracking-tight text-foreground">Edit Template</DialogTitle>
+                        <DialogDescription className="font-bold text-muted-foreground">Modify your existing email template.</DialogDescription>
+                    </DialogHeader>
+                    {editTemplate && (
+                        <form onSubmit={handleEditSubmit} className="space-y-6 pt-4">
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="space-y-2">
+                                    <Label htmlFor="edit-name" className="text-xs font-black uppercase tracking-widest text-primary">Template Name</Label>
+                                    <Input 
+                                        id="edit-name" 
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={editTemplate.name}
+                                        onChange={(e) => setEditTemplate({...editTemplate, name: e.target.value})}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="edit-subject" className="text-xs font-black uppercase tracking-widest text-primary">Email Subject</Label>
+                                    <Input 
+                                        id="edit-subject" 
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={editTemplate.subject}
+                                        onChange={(e) => setEditTemplate({...editTemplate, subject: e.target.value})}
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="edit-bodyHtml" className="text-xs font-black uppercase tracking-widest text-primary">HTML Content</Label>
+                                <Textarea 
+                                    id="edit-bodyHtml" 
+                                    className="min-h-[200px] bg-muted/20 font-mono text-xs border-2 border-border/50"
+                                    value={editTemplate.bodyHtml}
+                                    onChange={(e) => setEditTemplate({...editTemplate, bodyHtml: e.target.value})}
+                                />
+                            </div>
+                            <DialogFooter className="pt-4 border-t border-border">
+                                <Button type="button" variant="outline" onClick={() => setIsEditOpen(false)} className="font-bold border-2">Cancel</Button>
+                                <Button type="submit" disabled={updateMutation.isPending} className="bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-lg shadow-blue-500/20">
+                                    {updateMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    Save Changes
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    )}
                 </DialogContent>
             </Dialog>
         </div>

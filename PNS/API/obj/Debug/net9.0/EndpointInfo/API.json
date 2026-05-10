@@ -3244,11 +3244,27 @@
             "type": "string",
             "nullable": true
           },
+          "senderEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "appPassword": {
+            "type": "string",
+            "nullable": true
+          },
           "smsSenderName": {
             "type": "string",
             "nullable": true
           },
           "smsSenderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "webhookUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "webhookSecret": {
             "type": "string",
             "nullable": true
           }

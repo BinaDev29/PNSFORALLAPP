@@ -1,10 +1,35 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Search, ExternalLink, Shield, Key, Copy, Check, Edit, Trash2, Smartphone } from "lucide-react";
+import { 
+    Plus, 
+    Search, 
+    ExternalLink, 
+    Shield, 
+    Key, 
+    Copy, 
+    Check, 
+    Edit, 
+    Trash2, 
+    Smartphone,
+    Loader2,
+    Globe,
+    Lock
+} from "lucide-react";
+import { 
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { DashboardService, ClientApplication } from "@/services/api";
-import { useQuery } from "@tanstack/react-query";
+import { DashboardService, ClientApplication, CreateClientApplicationRequest } from "@/services/api";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -25,12 +50,55 @@ const item = {
 };
 
 export default function ClientsPage() {
+    const queryClient = useQueryClient();
     const [searchTerm, setSearchTerm] = useState("");
     const [copiedId, setCopiedId] = useState<string | null>(null);
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [editClient, setEditClient] = useState<ClientApplication | null>(null);
+
+    const [newClient, setNewClient] = useState<CreateClientApplicationRequest>({
+        appId: "",
+        key: "",
+        name: "",
+        slogan: "",
+        logo: "",
+        senderEmail: "",
+        appPassword: ""
+    });
 
     const { data: clients, isLoading } = useQuery<ClientApplication[]>({
         queryKey: ['activeClients'],
         queryFn: DashboardService.getClientApplications
+    });
+
+    const createMutation = useMutation({
+        mutationFn: DashboardService.createClientApplication,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['activeClients'] });
+            toast.success("Application registered successfully");
+            setIsRegisterOpen(false);
+            setNewClient({ appId: "", key: "", name: "", slogan: "", logo: "", senderEmail: "", appPassword: "" });
+        }
+    });
+
+    const updateMutation = useMutation({
+        mutationFn: ({ id, data }: { id: string, data: Partial<CreateClientApplicationRequest> }) => 
+            DashboardService.updateClientApplication(id, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['activeClients'] });
+            toast.success("Application updated successfully");
+            setIsEditOpen(false);
+            setEditClient(null);
+        }
+    });
+
+    const deleteMutation = useMutation({
+        mutationFn: DashboardService.deleteClientApplication,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['activeClients'] });
+            toast.success("Application deleted successfully");
+        }
     });
 
     const copyToClipboard = (text: string, id: string) => {
@@ -38,6 +106,37 @@ export default function ClientsPage() {
         setCopiedId(id);
         toast.success("Copied to clipboard");
         setTimeout(() => setCopiedId(null), 2000);
+    };
+
+    const handleRegisterSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newClient.name || !newClient.appId) {
+            toast.error("Name and App ID are required");
+            return;
+        }
+        createMutation.mutate(newClient);
+    };
+
+    const handleEditSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!editClient) return;
+        
+        const updateData: any = {
+            name: editClient.name,
+            slogan: editClient.slogan,
+            logo: editClient.logo,
+            senderEmail: editClient.senderEmail,
+        };
+
+        // Only send password if it's not empty (user wants to change it)
+        if (editClient.appPassword && editClient.appPassword.trim() !== "") {
+            updateData.appPassword = editClient.appPassword;
+        }
+
+        updateMutation.mutate({
+            id: editClient.id,
+            data: updateData
+        });
     };
 
     const filteredClients = clients?.filter(client =>
@@ -54,9 +153,79 @@ export default function ClientsPage() {
                     </h2>
                     <p className="text-muted-foreground font-medium">Manage connected applications and their API credentials.</p>
                 </div>
-                <Button className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl border-b-4 border-black/20 active:border-b-0 active:translate-y-1 transition-all">
-                    <Plus className="h-5 w-5" /> Register App
-                </Button>
+                <Dialog open={isRegisterOpen} onOpenChange={setIsRegisterOpen}>
+                    <DialogTrigger asChild>
+                        <Button className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl border-b-4 border-black/20 active:border-b-0 active:translate-y-1 transition-all font-bold">
+                            <Plus className="h-5 w-5" /> Register App
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl bg-card border-2 border-border shadow-2xl rounded-3xl">
+                        <DialogHeader>
+                            <DialogTitle className="text-2xl font-black uppercase tracking-tight">Register New App</DialogTitle>
+                            <DialogDescription className="font-medium text-muted-foreground">Register your application to start using the PNS services.</DialogDescription>
+                        </DialogHeader>
+                        <form onSubmit={handleRegisterSubmit} className="space-y-6 pt-4">
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">Application Name</Label>
+                                    <Input 
+                                        placeholder="e.g. Finance Portal" 
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={newClient.name}
+                                        onChange={(e) => setNewClient({...newClient, name: e.target.value})}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">App ID</Label>
+                                    <Input 
+                                        placeholder="e.g. finance-app" 
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={newClient.appId}
+                                        onChange={(e) => setNewClient({...newClient, appId: e.target.value})}
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label className="text-xs font-black uppercase tracking-widest text-primary">Slogan / Description</Label>
+                                <Input 
+                                    placeholder="The ultimate finance solution" 
+                                    className="bg-muted/30 border-2 border-border/50 font-bold"
+                                    value={newClient.slogan}
+                                    onChange={(e) => setNewClient({...newClient, slogan: e.target.value})}
+                                />
+                            </div>
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">Sender Email</Label>
+                                    <Input 
+                                        type="email"
+                                        placeholder="notifications@company.com" 
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={newClient.senderEmail}
+                                        onChange={(e) => setNewClient({...newClient, senderEmail: e.target.value})}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">App Password</Label>
+                                    <Input 
+                                        type="password"
+                                        placeholder="••••••••" 
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={newClient.appPassword}
+                                        onChange={(e) => setNewClient({...newClient, appPassword: e.target.value})}
+                                    />
+                                </div>
+                            </div>
+                            <DialogFooter className="pt-4 border-t border-border">
+                                <Button type="button" variant="outline" onClick={() => setIsRegisterOpen(false)} className="font-bold border-2">Cancel</Button>
+                                <Button type="submit" disabled={createMutation.isPending} className="bg-primary text-primary-foreground font-bold shadow-lg">
+                                    {createMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    Register Application
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    </DialogContent>
+                </Dialog>
             </div>
 
             <div className="relative max-w-md">
@@ -113,10 +282,27 @@ export default function ClientsPage() {
                                                 </div>
                                             </div>
                                             <div className="flex gap-1">
-                                                <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-muted">
+                                                <Button 
+                                                    variant="ghost" 
+                                                    size="icon" 
+                                                    className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-muted"
+                                                    onClick={() => {
+                                                        setEditClient(client);
+                                                        setIsEditOpen(true);
+                                                    }}
+                                                >
                                                     <Edit className="h-4 w-4" />
                                                 </Button>
-                                                <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10">
+                                                <Button 
+                                                    variant="ghost" 
+                                                    size="icon" 
+                                                    className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                                                    onClick={() => {
+                                                        if (window.confirm("Are you sure you want to delete this application?")) {
+                                                            deleteMutation.mutate(client.id);
+                                                        }
+                                                    }}
+                                                >
                                                     <Trash2 className="h-4 w-4" />
                                                 </Button>
                                             </div>
@@ -183,6 +369,74 @@ export default function ClientsPage() {
                     </AnimatePresence>
                 )}
             </motion.div>
+
+            {/* Edit Dialog */}
+            <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
+                <DialogContent className="max-w-2xl bg-card border-2 border-border shadow-2xl rounded-3xl">
+                    <DialogHeader>
+                        <DialogTitle className="text-2xl font-black uppercase tracking-tight">Edit Application</DialogTitle>
+                        <DialogDescription className="font-medium text-muted-foreground">Update your application's profile and credentials.</DialogDescription>
+                    </DialogHeader>
+                    {editClient && (
+                        <form onSubmit={handleEditSubmit} className="space-y-6 pt-4">
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">Application Name</Label>
+                                    <Input 
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={editClient.name}
+                                        onChange={(e) => setEditClient({...editClient, name: e.target.value})}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">App ID (Read-only)</Label>
+                                    <Input 
+                                        disabled
+                                        className="bg-muted/10 border-2 border-border/30 font-mono text-xs"
+                                        value={editClient.appId}
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label className="text-xs font-black uppercase tracking-widest text-primary">Slogan / Description</Label>
+                                <Input 
+                                    className="bg-muted/30 border-2 border-border/50 font-bold"
+                                    value={editClient.slogan || ""}
+                                    onChange={(e) => setEditClient({...editClient, slogan: e.target.value})}
+                                />
+                            </div>
+                            <div className="grid gap-6 md:grid-cols-2">
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">Sender Email</Label>
+                                    <Input 
+                                        type="email"
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={editClient.senderEmail || ""}
+                                        onChange={(e) => setEditClient({...editClient, senderEmail: e.target.value})}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="text-xs font-black uppercase tracking-widest text-primary">App Password</Label>
+                                    <Input 
+                                        type="password"
+                                        placeholder="Leave empty to keep current"
+                                        className="bg-muted/30 border-2 border-border/50 font-bold"
+                                        value={editClient.appPassword || ""}
+                                        onChange={(e) => setEditClient({...editClient, appPassword: e.target.value})}
+                                    />
+                                </div>
+                            </div>
+                            <DialogFooter className="pt-4 border-t border-border">
+                                <Button type="button" variant="outline" onClick={() => setIsEditOpen(false)} className="font-bold border-2">Cancel</Button>
+                                <Button type="submit" disabled={updateMutation.isPending} className="bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-lg">
+                                    {updateMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    Save Changes
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    )}
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
