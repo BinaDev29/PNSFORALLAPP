@@ -12,9 +12,7 @@ import {
     Edit, 
     Trash2, 
     Smartphone,
-    Loader2,
-    Globe,
-    Lock
+    Loader2
 } from "lucide-react";
 import { 
     Dialog,

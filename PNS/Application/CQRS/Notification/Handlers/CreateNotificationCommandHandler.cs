@@ -1,4 +1,4 @@
-﻿// File Path: Application/CQRS/Notification/Handlers/CreateNotificationCommandHandler.cs
+// File Path: Application/CQRS/Notification/Handlers/CreateNotificationCommandHandler.cs
 using Application.Contracts;
 using Application.Contracts.IRepository;
 using Application.CQRS.Notification.Commands;
@@ -160,38 +160,49 @@ namespace Application.CQRS.Notification.Handlers
                         try
                         {
                             var trackingId = $"{notification.Id}_{recipient}";
-                            var bodyHtml = $"<h2 style='margin-top: 0; margin-bottom: 10px; color: #333;'>{clientApplication.Name}.</h2><p style='margin-top: 0; margin-bottom: 20px; font-size: 16px; color: #555;'><em>{notification.Message}</em></p>";
+                            var isHtml = notification.Message.Contains("<html", StringComparison.OrdinalIgnoreCase) || 
+                                         notification.Message.Contains("<div", StringComparison.OrdinalIgnoreCase) || 
+                                         notification.Message.Contains("<p", StringComparison.OrdinalIgnoreCase) || 
+                                         notification.Message.Contains("<h", StringComparison.OrdinalIgnoreCase) ||
+                                         notification.Message.Contains("<body", StringComparison.OrdinalIgnoreCase);
+
+                            var bodyHtml = isHtml 
+                                ? notification.Message 
+                                : $"<h2 style='margin-top: 0; margin-bottom: 10px; color: #333;'>{clientApplication.Name}.</h2><p style='margin-top: 0; margin-bottom: 20px; font-size: 16px; color: #555;'><em>{notification.Message}</em></p>";
                             var attachments = new List<EmailAttachment>();
 
-                            // Handle logo as inline attachment if it's base64
-                            if (!string.IsNullOrEmpty(clientApplication.Logo) && clientApplication.Logo.Contains("base64,"))
+                            if (!isHtml)
                             {
-                                try 
+                                // Handle logo as inline attachment if it's base64
+                                if (!string.IsNullOrEmpty(clientApplication.Logo) && clientApplication.Logo.Contains("base64,"))
                                 {
-                                    var parts = clientApplication.Logo.Split(',');
-                                    var base64Data = parts[1];
-                                    var contentType = parts[0].Split(':')[1].Split(';')[0];
-                                    var extension = contentType.Split('/')[1];
-                                    
-                                    attachments.Add(new EmailAttachment 
+                                    try 
                                     {
-                                        FileName = $"logo.{extension}",
-                                        Content = Convert.FromBase64String(base64Data),
-                                        ContentType = contentType,
-                                        IsInline = true,
-                                        ContentId = "client_logo"
-                                    });
-                                    bodyHtml += "<img src='cid:client_logo' alt='Client Logo' style='max-width: 100%; width: auto; height: auto; max-height: 120px; display: block; margin: 20px 0; border: 0;' />";
+                                        var parts = clientApplication.Logo.Split(',');
+                                        var base64Data = parts[1];
+                                        var contentType = parts[0].Split(':')[1].Split(';')[0];
+                                        var extension = contentType.Split('/')[1];
+                                        
+                                        attachments.Add(new EmailAttachment 
+                                        {
+                                            FileName = $"logo.{extension}",
+                                            Content = Convert.FromBase64String(base64Data),
+                                            ContentType = contentType,
+                                            IsInline = true,
+                                            ContentId = "client_logo"
+                                        });
+                                        bodyHtml += "<img src='cid:client_logo' alt='Client Logo' style='max-width: 100%; width: auto; height: auto; max-height: 120px; display: block; margin: 20px 0; border: 0;' />";
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        _logger.LogWarning(ex, "Failed to embed logo as CID, falling back to original logo source");
+                                        bodyHtml += $"<img src='{clientApplication.Logo}' alt='Client Logo' style='max-width: 100%; width: auto; height: auto; max-height: 120px; display: block; margin: 20px 0; border: 0;' />";
+                                    }
                                 }
-                                catch (Exception ex)
+                                else if (!string.IsNullOrEmpty(clientApplication.Logo))
                                 {
-                                    _logger.LogWarning(ex, "Failed to embed logo as CID, falling back to original logo source");
                                     bodyHtml += $"<img src='{clientApplication.Logo}' alt='Client Logo' style='max-width: 100%; width: auto; height: auto; max-height: 120px; display: block; margin: 20px 0; border: 0;' />";
                                 }
-                            }
-                            else if (!string.IsNullOrEmpty(clientApplication.Logo))
-                            {
-                                bodyHtml += $"<img src='{clientApplication.Logo}' alt='Client Logo' style='max-width: 100%; width: auto; height: auto; max-height: 120px; display: block; margin: 20px 0; border: 0;' />";
                             }
 
                             // Create individual email message for each recipient

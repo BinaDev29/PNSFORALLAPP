@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E90E6478-4D60-4698-A894-CF4FDF8449BE}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|f:\\@internship 2017\\pnsforallapp\\pns\\domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{7BD30975-F357-417F-ABD5-90FEC2AF7704}|Domain\\Domain.csproj|solutionrelative:domain\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
@@ -27,15 +31,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-14T16:24:03.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Domain.csproj",
               "DocumentMoniker": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Domain.csproj",
               "RelativeDocumentMoniker": "Domain\\Domain.csproj",
               "ToolTip": "F:\\@INTERNSHIP 2017\\PNSFORALLAPP\\PNS\\Domain\\Domain.csproj",
               "RelativeToolTip": "Domain\\Domain.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-06T13:31:48.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T13:31:48.018Z"
             }
           ]
         }

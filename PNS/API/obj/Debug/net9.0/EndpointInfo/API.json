@@ -3160,6 +3160,14 @@
           "smsSenderNumber": {
             "type": "string",
             "nullable": true
+          },
+          "senderEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "appPassword": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

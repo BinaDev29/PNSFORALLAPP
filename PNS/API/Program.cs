@@ -231,7 +231,7 @@ app.MapHealthChecks("/api/health", new HealthCheckOptions
         };
         await context.Response.WriteAsJsonAsync(response);
     }
-});
+}).RequireAuthorization(new Microsoft.AspNetCore.Authorization.AuthorizeAttribute { Roles = "Admin" });
 
 app.MapHub<API.Hubs.NotificationHub>("/hubs/notification");
 

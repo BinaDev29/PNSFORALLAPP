@@ -8,8 +8,7 @@ import {
     TrendingUp,
     Users,
     Zap,
-    Mail,
-    Smartphone
+    Mail
 } from "lucide-react";
 import { 
     AreaChart, 
@@ -23,6 +22,7 @@ import {
 import { DashboardService, NotificationStatistics, NotificationHistory } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import { formatDistanceToNow, subDays, format, isSameDay } from "date-fns";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useMemo } from "react";
@@ -51,6 +51,7 @@ const item = {
 };
 
 export default function Dashboard() {
+    const navigate = useNavigate();
     const { data: stats, isLoading: statsLoading } = useQuery<NotificationStatistics>({
         queryKey: ['dashboardStats'],
         queryFn: () => DashboardService.getStatistics(),
@@ -111,6 +112,7 @@ export default function Dashboard() {
                         <Download className="h-4 w-4" /> Export CSV
                     </Button>
                     <Button 
+                        onClick={() => navigate('/notifications')}
                         className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl border-b-4 border-black/20 active:border-b-0 active:translate-y-1 transition-all font-bold"
                     >
                         Send New

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Bell, History, FileText, Smartphone, Settings, LogOut, Activity, X, Menu } from "lucide-react";
+import { LayoutDashboard, Bell, History, FileText, Smartphone, Settings, LogOut, Activity, X, Rocket } from "lucide-react";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         { icon: FileText, label: t('sidebar.templates', "Templates"), href: "/templates" },
         { icon: Smartphone, label: t('sidebar.clients', "Client Apps"), href: "/clients" },
         { icon: Activity, label: "System Health", href: "/system-health", adminOnly: true },
+        { icon: Rocket, label: "Product Roadmap", href: "/future-work", adminOnly: true },
         { icon: Settings, label: t('sidebar.settings', "Settings"), href: "/settings" },
     ];
 

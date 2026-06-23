@@ -8,6 +8,7 @@ import HistoryPage from "@/pages/History";
 import ProfilePage from "@/pages/Profile";
 import SystemHealthPage from "@/pages/SystemHealth";
 import SettingsPage from "@/pages/Settings";
+import FutureWorkPage from "@/pages/FutureWork";
 import { Toaster } from "@/components/ui/sonner"
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import LoginPage from "@/pages/Login";
@@ -20,6 +21,21 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   // Check both state and direct storage to prevent flickering
   if (!isAuthenticated && !checkAuth()) {
     return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return <>{children}</>;
+}
+
+function AdminRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, checkAuth, isAdmin } = useAuth();
+  const location = useLocation();
+
+  if (!isAuthenticated && !checkAuth()) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/" replace />;
   }
 
   return <>{children}</>;
@@ -45,7 +61,16 @@ function App() {
             <Route path="clients" element={<ClientsPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="settings" element={<SettingsPage />} />
-            <Route path="system-health" element={<SystemHealthPage />} />
+            <Route path="system-health" element={
+              <AdminRoute>
+                <SystemHealthPage />
+              </AdminRoute>
+            } />
+            <Route path="future-work" element={
+              <AdminRoute>
+                <FutureWorkPage />
+              </AdminRoute>
+            } />
             <Route path="*" element={<div className="h-[60vh] flex items-center justify-center text-muted-foreground">404 - Page Not Found</div>} />
           </Route>
         </Routes>

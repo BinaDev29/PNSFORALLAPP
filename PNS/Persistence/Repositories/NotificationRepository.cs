@@ -1,4 +1,4 @@
-﻿// File Path: Persistence/Repositories/NotificationRepository.cs
+// File Path: Persistence/Repositories/NotificationRepository.cs
 using Application.Contracts.IRepository;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -54,46 +54,50 @@ namespace Persistence.Repositories
             if (clientApplicationId.HasValue)
                 query = query.Where(n => n.ClientApplicationId == clientApplicationId.Value);
 
-            // Group by Status and Count
-            var stats = await query.GroupBy(n => n.Status)
+            var result = new Application.DTO.Notification.NotificationStatisticsDto();
+            result.TotalRequests = await query.CountAsync(cancellationToken);
+
+            // Get real status from NotificationHistories
+            var historyQuery = _dbContext.NotificationHistories.AsQueryable();
+            
+            if (!isAdmin && !string.IsNullOrEmpty(userId))
+            {
+                historyQuery = historyQuery.Where(h => h.Notification.CreatedBy == userId);
+            }
+            if (startDate.HasValue)
+                historyQuery = historyQuery.Where(h => h.SentDate >= startDate.Value);
+            if (endDate.HasValue)
+                historyQuery = historyQuery.Where(h => h.SentDate <= endDate.Value);
+            if (clientApplicationId.HasValue)
+                historyQuery = historyQuery.Where(h => h.Notification.ClientApplicationId == clientApplicationId.Value);
+
+            var historyStats = await historyQuery.GroupBy(h => h.Status)
                 .Select(g => new { Status = g.Key, Count = g.Count() })
                 .ToListAsync(cancellationToken);
 
-            var result = new Application.DTO.Notification.NotificationStatisticsDto();
-
-            foreach (var stat in stats)
+            foreach (var stat in historyStats)
             {
-                result.TotalRequests += stat.Count;
-                switch (stat.Status)
-                {
-                    case Domain.Enums.NotificationStatus.Pending:
-                        result.Pending += stat.Count;
-                        break;
-                    case Domain.Enums.NotificationStatus.Sent:
-                        result.Sent += stat.Count;
-                        break;
-                    case Domain.Enums.NotificationStatus.Failed:
-                        result.Failed += stat.Count;
-                        break;
-                    case Domain.Enums.NotificationStatus.Seen:
-                        result.Seen += stat.Count;
-                        // Seen also counts as Sent/Success usually, but here it's a separate state in Enum.
-                        // Ideally "Seen" implies "Sent" successfully.
-                        break;
-                    case Domain.Enums.NotificationStatus.Scheduled:
-                        result.Scheduled += stat.Count;
-                        break;
-                }
+                var statusStr = stat.Status?.ToUpper();
+                if (statusStr == "SENT" || statusStr == "SUCCESS")
+                    result.Sent += stat.Count;
+                else if (statusStr == "FAILED" || statusStr == "ERROR")
+                    result.Failed += stat.Count;
+                else if (statusStr == "QUEUED" || statusStr == "PENDING")
+                    result.Pending += stat.Count;
+                else if (statusStr == "SEEN")
+                    result.Seen += stat.Count;
             }
 
-            // Calculate Success Rate (Sent + Seen) / Total * 100
-            // Or (Total - Failed) / Total ?
-            // Let's go with (Sent + Seen) / Total for now.
-            if (result.TotalRequests > 0)
+            // Calculate Success Rate based only on processed messages
+            var processed = result.Sent + result.Seen + result.Failed;
+            if (processed > 0)
             {
-                // Including 'Seen' as 'Sent' for success rate calc
                 var successful = result.Sent + result.Seen;
-                result.SuccessRate = Math.Round((double)successful / result.TotalRequests * 100, 2);
+                result.SuccessRate = Math.Round((double)successful / processed * 100, 2);
+            }
+            else
+            {
+                result.SuccessRate = 0;
             }
 
             return result;

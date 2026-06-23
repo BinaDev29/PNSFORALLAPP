@@ -21,6 +21,8 @@ namespace Infrastructure
         public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             // Email Services
+            services.Configure<Infrastructure.Email.Providers.SmtpSettings>(configuration.GetSection("SmtpSettings"));
+            services.Configure<Infrastructure.Email.Providers.SendGridSettings>(configuration.GetSection("SendGridSettings"));
             services.AddSingleton<EmailQueueProcessor>();
             services.AddHostedService(provider => provider.GetRequiredService<EmailQueueProcessor>());
             services.AddScoped<IEmailQueueService, EmailQueueService>();

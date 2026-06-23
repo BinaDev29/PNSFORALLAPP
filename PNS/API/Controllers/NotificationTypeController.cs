@@ -9,11 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NotificationTypeController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
@@ -47,6 +49,7 @@ namespace API.Controllers
 
         // POST: api/NotificationType
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(BaseCommandResponse), 201)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNotificationTypeDto createNotificationTypeDto)
@@ -64,6 +67,7 @@ namespace API.Controllers
 
         // PUT: api/NotificationType
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -88,6 +92,7 @@ namespace API.Controllers
 
         // DELETE: api/NotificationType/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> Delete(Guid id)

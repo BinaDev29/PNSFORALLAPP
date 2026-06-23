@@ -9,10 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ApplicationNotificationTypeMapController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -52,6 +55,7 @@ namespace API.Controllers
 
         // POST: api/ApplicationNotificationTypeMap
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(BaseCommandResponse), 200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateApplicationNotificationTypeMapDto createApplicationNotificationTypeMapDto)
@@ -71,6 +75,7 @@ namespace API.Controllers
 
         // PUT: api/ApplicationNotificationTypeMap
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -96,6 +101,7 @@ namespace API.Controllers
 
         // DELETE: api/ApplicationNotificationTypeMap/{clientApplicationId}/{notificationTypeId}
         [HttpDelete("{clientApplicationId}/{notificationTypeId}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> Delete(Guid clientApplicationId, Guid notificationTypeId)

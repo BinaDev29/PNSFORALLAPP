@@ -9,11 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PriorityController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
@@ -48,6 +50,7 @@ namespace API.Controllers
 
         // POST: api/Priority
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(BaseCommandResponse), 201)] // FIX: Change status code to 201 Created.
         [ProducesResponseType(400)]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreatePriorityDto createPriorityDto)
@@ -67,6 +70,7 @@ namespace API.Controllers
 
         // PUT: api/Priority
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -92,6 +96,7 @@ namespace API.Controllers
 
         // DELETE: api/Priority/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> Delete(Guid id)

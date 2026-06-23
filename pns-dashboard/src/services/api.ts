@@ -149,6 +149,7 @@ export interface ClientApplication {
     webhookUrl?: string;
     webhookSecret?: string;
     appPassword?: string;
+    senderEmail?: string;
 }
 
 export interface Notification {
@@ -262,6 +263,11 @@ export const DashboardService = {
     getSystemHealth: async () => {
         const response = await api.get('/health');
         return response.data;
+    },
+
+    sendTemplatedNotification: async (data: SendTemplatedNotificationRequest) => {
+        const response = await api.post('/v1/EnhancedNotification/send-templated', data);
+        return response.data;
     }
 };
 
@@ -315,5 +321,15 @@ export interface CreateEmailTemplateRequest {
     bodyText?: string;
 }
 
+export interface SendTemplatedNotificationRequest {
+    templateName: string;
+    templateData: Record<string, string>;
+    recipients: string[];
+    from: string;
+    subject: string;
+    metadata: {
+        ClientApplicationId: string;
+    };
+}
 
 export default api;
